@@ -26,7 +26,7 @@ const signUpSchema = z
     username: z
       .string()
       .toLowerCase()
-      .min(5, "Username must be at least 2 characters"),
+      .min(5, "Username must be at least 5 characters"),
     name: z.string().min(2, "Name must be at least 2 characters"),
     email: z.email("Invalid email address"),
     password: z.string().min(8, "Password must be at least 8 characters"),
@@ -50,6 +50,13 @@ export default function SignUpPage() {
     formState: { errors },
   } = useForm<SignUpFormData>({
     resolver: zodResolver(signUpSchema),
+    defaultValues: {
+      username: "",
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: ""
+    }
   });
 
   const onSubmit = async (data: SignUpFormData) => {
@@ -81,7 +88,7 @@ export default function SignUpPage() {
       <CardHeader className="space-y-1">
         <CardTitle className="text-2xl font-bold">
           <span className="flex items-center gap-2">
-            <span className="text-primary">EBST</span>
+            <span className="text-primary">eBST</span>
           </span>
         </CardTitle>
         <CardDescription>Create an account to get started</CardDescription>
