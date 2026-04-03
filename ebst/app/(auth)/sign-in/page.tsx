@@ -25,7 +25,7 @@ const signInSchema = z.object({
   username: z
     .string()
     .toLowerCase()
-    .min(5, "Username must be at least 2 characters"),
+    .min(5, "Username must be at least 5 characters"),
   password: z.string().min(1, "Password is required"),
 });
 
