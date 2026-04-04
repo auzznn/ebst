@@ -1,0 +1,28 @@
+{
+  "name": "ebst-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "eBST Monorepo",
+  "workspaces": [
+    "apps/*", "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspaces --if-present",
+    "dev:web": "npm run dev -w @ebst/web",
+    "dev:api": "npm run start:dev -w @ebst/api",
+    "build": "npm run build --workspaces --if-present",
+    "build:web": "npm run build -w @ebst/web",
+    "build:api": "npm run build -w @ebst/api",
+    "start": "npm run start --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present"
+  },
+  "devDependencies": {
+    "@prisma/client": "^7.6.0",
+    "dotenv-cli": "^11.0.0",
+    "prisma": "^7.6.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

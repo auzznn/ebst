@@ -9,11 +9,15 @@
 /coverage
 
 # next.js
-/.next/
-/out/
+/apps/*/.next/
+/apps/*/out/
 
 # production
-/build
+/apps/*/build
+/apps/*/dist
+
+# Prisma generated files
+/shared/prisma-generated/
 
 # misc
 .DS_Store
@@ -34,5 +38,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
 
 
