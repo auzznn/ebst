@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Sidebar,
   SidebarContent,
@@ -10,15 +12,31 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Home, User, Settings } from "lucide-react";
+import { Home, User, Settings, MessageSquare } from "lucide-react";
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
+import { useEffect, useState } from "react";
 
 const menuItems = [
   { title: "Dashboard", url: "/dashboard", icon: Home },
-  { title: "Profile", url: "/profile", icon: User },
+  { title: "Communication", url: "/communication/channel", icon:  MessageSquare},
 ];
 
 export function AppSidebar() {
+  const { data: session } = authClient.useSession();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const footerItem = {
+    title: mounted ? session?.user.name : "Loading...",
+    url: "/profile",
+    icon: User,
+    avatar: mounted && session?.user.image ? session?.user.image : null,
+  };
+
+  if (!mounted) return null;
   return (
     <Sidebar variant="inset">
       <SidebarHeader />
@@ -41,7 +59,26 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter />
+      <SidebarFooter>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild>
+              <Link href={footerItem.url}>
+                {footerItem.avatar ? (
+                  <img
+                    src={footerItem.avatar}
+                    alt={footerItem.title}
+                    className="h-8 w-8 rounded-full"
+                  />
+                ) : (
+                  <footerItem.icon />
+                )}
+                <span>{footerItem.title}</span>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
     </Sidebar>
   );
 }
