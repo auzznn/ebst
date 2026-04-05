@@ -39,7 +39,6 @@ export function useChannel(id: string) {
   })
 }
 
-
 export function useCreateChannel() {
     const queryClient = useQueryClient()
 

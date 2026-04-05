@@ -6,13 +6,15 @@ import { CreateChannelDto } from './dto/create-channel.dto'
 export class ChannelsService {
   constructor(private prisma: PrismaService) {}
 
-  async create(dto: CreateChannelDto) {
+  async create(dto: CreateChannelDto, creatorId: string) {
+
+    const memberIds = [...new Set([creatorId, ...dto.memberIds])]
     return this.prisma.channel.create({
       data: {
         name: dto.name,
         isDM: dto.isDM,
         members: {
-          create: dto.memberIds.map((userId) => ({ userId })),
+          create: memberIds.map((userId) => ({ userId })),
         },
       },
       include: { members: { include: { user: true } } },
@@ -38,7 +40,7 @@ export class ChannelsService {
   async findOne(channelId: string, userId: string) {
     const channel = await this.prisma.channel.findUnique({
       where: { id: channelId },
-      include: { members: true },
+      include: { members: { include: { user: true } } },
     })
 
     if (!channel) throw new NotFoundException('Channel not found')

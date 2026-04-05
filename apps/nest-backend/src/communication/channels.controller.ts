@@ -9,7 +9,7 @@ export class ChannelsController {
   // better-auth attaches the user to req — adjust to your session shape
   @Post()
   create(@Body() dto: CreateChannelDto, @Req() req: any) {
-    return this.channelsService.create(dto)
+    return this.channelsService.create(dto, req.user.id)
   }
 
   @Get()

@@ -7,7 +7,7 @@ export type Message = {
   type: string
   fileUrl: string | null
   createdAt: string
-  sender: { id: string; name: string; email: string }
+  sender: { id: string; name: string; email: string; image?: string | null }
 }
 
 // Fetch message history for a channel
