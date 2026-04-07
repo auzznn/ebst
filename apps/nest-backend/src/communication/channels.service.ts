@@ -48,7 +48,7 @@ export class ChannelsService {
           take: 1,   // last message preview
         },
       },
-      orderBy: { createdAt: 'desc' },
+      orderBy: { lastMessage: 'desc' },
     })
 
     return channels.map((channel) => ({

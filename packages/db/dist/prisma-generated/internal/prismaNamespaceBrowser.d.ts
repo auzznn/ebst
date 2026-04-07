@@ -96,6 +96,7 @@ export declare const ChannelScalarFieldEnum: {
     readonly isDM: "isDM";
     readonly dmKey: "dmKey";
     readonly createdAt: "createdAt";
+    readonly lastMessage: "lastMessage";
 };
 export type ChannelScalarFieldEnum = (typeof ChannelScalarFieldEnum)[keyof typeof ChannelScalarFieldEnum];
 export declare const ChannelMemberScalarFieldEnum: {

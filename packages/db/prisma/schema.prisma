@@ -81,6 +81,7 @@ model Channel {
   isDM      Boolean         @default(false)
   dmKey String? @unique
   createdAt DateTime        @default(now())
+  lastMessage DateTime  @default(now())
   messages  Message[]
   members   ChannelMember[]
 }

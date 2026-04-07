@@ -11,7 +11,6 @@ import { Trash2, Send, Wifi, WifiOff, ArrowLeft } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
-import { useRouter } from "next/navigation";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -43,27 +42,51 @@ function groupByDate(messages: Message[]) {
 }
 
 export default function ChannelPage() {
-  const router = useRouter();
   const { id } = useParams<{ id: string }>();
   const { data: session, isPending } = authClient.useSession();
   const { data: channel } = useChannel(id);
-  const { data: messages, isLoading } = useMessages(id);
+  const {
+    data,
+    isLoading,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useMessages(id);
   const deleteMessage = useDeleteMessage(id);
   const { isConnected, typingUsers, sendMessage, sendTyping } = useSocket(id);
 
   const [input, setInput] = useState("");
   const bottomRef = useRef<HTMLDivElement>(null);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+
+  // Flatten all pages of messages
+  const messages = useMemo(() => {
+    return data?.pages.flatMap((page) => page.messages) ?? [];
+  }, [data]);
 
   // Group and reverse messages by date, memoized for performance
   const groupedMessages = useMemo(() => {
-    const reversed = [...(messages ?? [])].reverse();
-    return groupByDate(reversed);
+    console.log(messages.reverse())
+    return groupByDate([...messages].reverse());
   }, [messages]);
 
-  // Scroll to bottom when new messages arrive
+  // IntersectionObserver for infinite scroll
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasNextPage && !isFetchingNextPage) {
+          fetchNextPage();
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    if (sentinelRef.current) {
+      observer.observe(sentinelRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   function handleSend() {
     if (!input.trim()) return;
@@ -141,24 +164,18 @@ export default function ChannelPage() {
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4 bg-muted">
-        {isLoading && (
-          <p className="text-center text-sm text-foreground">
-            Loading messages...
+      <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4 bg-muted flex flex-col-reverse">
+        {/* Typing indicator (at top of JSX = bottom visually with flex-col-reverse) */}
+        {typingUsers.length > 0 && (
+          <p className="text-xs text-foreground/70 italic font-medium">
+            {typingUsers.length === 1
+              ? `Someone is typing...`
+              : `${typingUsers.length} people are typing...`}
           </p>
         )}
 
         {groupedMessages.map((group) => (
-          <div key={group.date} className="space-y-3">
-            {/* Date divider */}
-            <div className="flex items-center gap-3">
-              <div className="flex-1 h-px bg-foreground opacity-50" />
-              <span className="text-xs text-foreground font-medium">
-                {formatDateDivider(group.date)}
-              </span>
-              <div className="flex-1 h-px bg-foreground opacity-50" />
-            </div>
-
+          <div key={group.date} className="space-y-3 flex flex-col-reverse">
             {/* Messages for this date */}
             {group.messages.map((message) => {
               const isOwn = message.sender.id === session?.user.id;
@@ -172,7 +189,7 @@ export default function ChannelPage() {
                   )}
                 >
                   {/* Avatar */}
-                  <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-xs font-medium shrink-0">
+                  <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-medium shrink-0">
                     {message.sender.image ? (
                       <img
                         src={message.sender.image}
@@ -201,10 +218,10 @@ export default function ChannelPage() {
                     </div>
                     <div
                       className={cn(
-                        "px-4 py-2 rounded-xl text-sm",
+                        "px-4 py-2 rounded-xl text-sm border",
                         isOwn
-                          ? "bg-primary text-primary-foreground rounded-tr-sm"
-                          : "bg-muted rounded-tl-sm",
+                          ? "bg-primary text-primary-foreground border-primary rounded-tr-sm"
+                          : "bg-card text-card-foreground border-border rounded-tl-sm",
                       )}
                     >
                       {message.content}
@@ -248,19 +265,26 @@ export default function ChannelPage() {
                 </div>
               );
             })}
+            {/* Date divider */}
+            <div className="flex items-center gap-3 my-3">
+              <div className="flex-1 h-px bg-foreground/30" />
+              <span className="text-xs text-foreground/80 font-medium">
+                {formatDateDivider(group.date)}
+              </span>
+              <div className="flex-1 h-px bg-foreground/30" />
+            </div>
           </div>
         ))}
 
-        {/* Typing indicator */}
-        {typingUsers.length > 0 && (
-          <p className="text-xs text-muted-foreground italic">
-            {typingUsers.length === 1
-              ? `Someone is typing...`
-              : `${typingUsers.length} people are typing...`}
+        {/* Sentinel for infinite scroll */}
+        <div ref={sentinelRef} className="h-px" />
+
+        {/* Loading more messages */}
+        {isFetchingNextPage && (
+          <p className="text-center text-sm text-foreground font-medium">
+            Loading older messages...
           </p>
         )}
-
-        <div ref={bottomRef} />
       </div>
 
       {/* Input */}

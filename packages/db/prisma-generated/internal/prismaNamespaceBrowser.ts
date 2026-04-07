@@ -141,7 +141,8 @@ export const ChannelScalarFieldEnum = {
   name: 'name',
   isDM: 'isDM',
   dmKey: 'dmKey',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  lastMessage: 'lastMessage'
 } as const
 
 export type ChannelScalarFieldEnum = (typeof ChannelScalarFieldEnum)[keyof typeof ChannelScalarFieldEnum]

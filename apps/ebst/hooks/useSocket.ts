@@ -2,9 +2,10 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { getSocket } from '@/lib/socket'
-import { Message } from './useMessages'
+import { Message, MessagesResponse } from './useMessages'
 import { Channel } from './useChannels'
 import { useQueryClient } from '@tanstack/react-query'
+import { InfiniteData } from '@tanstack/react-query'
 
 export function useSocket(channelId: string) {
   const socket = getSocket()
@@ -24,13 +25,26 @@ export function useSocket(channelId: string) {
     socket.on('disconnect', () => setIsConnected(false))
 
     socket.on('new_message', (message: Message) => {
-      // 1. Append to the messages list for the open chat — same as before
-      queryClient.setQueryData<Message[]>(
+      // Update infinite query cache - add new message to the first page
+      queryClient.setQueryData<InfiniteData<MessagesResponse, unknown>>(
         ['messages', channelId],
-        (old) => [message, ...(old ?? [])],
+        (old) => {
+          if (!old) return old;
+          
+          return {
+            ...old,
+            pages: [
+              {
+                ...old.pages[0],
+                messages: [message, ...old.pages[0].messages],
+              },
+              ...old.pages.slice(1),
+            ],
+          };
+        },
       )
 
-      // 2. Also update messages[0] in the channels list cache so preview updates instantly
+      // Also update messages[0] in the channels list cache so preview updates instantly
       queryClient.setQueryData<Channel[]>(
         ['channels'],
         (old) =>
@@ -49,6 +63,8 @@ export function useSocket(channelId: string) {
               : ch,
           ) ?? [],
       )
+
+      queryClient.invalidateQueries({queryKey: ['channels']})
     })
 
     socket.on('user_typing', ({ userId }: { userId: string }) => {

@@ -18,4 +18,7 @@ export const auth = betterAuth({
     autoSignIn: false,
     minPasswordLength: 8,
   },
+  session: {
+    expiresIn: 60 * 60 * 24
+  }
 });

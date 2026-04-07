@@ -169,7 +169,8 @@ exports.ChannelScalarFieldEnum = {
     name: 'name',
     isDM: 'isDM',
     dmKey: 'dmKey',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    lastMessage: 'lastMessage'
 };
 exports.ChannelMemberScalarFieldEnum = {
     userId: 'userId',
