@@ -1,6 +1,6 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common'
 import { WsException } from '@nestjs/websockets'
-import { auth } from '../../../../ebst/lib/auth'   // your better-auth instance
+import { auth } from '@ebst/auth'
 
 @Injectable()
 export class WsAuthGuard implements CanActivate {

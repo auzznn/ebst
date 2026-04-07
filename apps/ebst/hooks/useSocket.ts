@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { getSocket } from '@/lib/socket'
 import { Message } from './useMessages'
+import { Channel } from './useChannels'
 import { useQueryClient } from '@tanstack/react-query'
 
 export function useSocket(channelId: string) {
@@ -13,7 +14,6 @@ export function useSocket(channelId: string) {
   const typingTimeout = useRef<NodeJS.Timeout | undefined>(undefined)
 
   useEffect(() => {
-    // Connect and join room
     socket.connect()
 
     socket.on('connect', () => {
@@ -23,15 +23,34 @@ export function useSocket(channelId: string) {
 
     socket.on('disconnect', () => setIsConnected(false))
 
-    // Incoming message — append to TanStack Query cache directly
     socket.on('new_message', (message: Message) => {
+      // 1. Append to the messages list for the open chat — same as before
       queryClient.setQueryData<Message[]>(
         ['messages', channelId],
         (old) => [message, ...(old ?? [])],
       )
+
+      // 2. Also update messages[0] in the channels list cache so preview updates instantly
+      queryClient.setQueryData<Channel[]>(
+        ['channels'],
+        (old) =>
+          old?.map((ch) =>
+            ch.id === channelId
+              ? {
+                  ...ch,
+                  messages: [
+                    {
+                      id: message.id,
+                      content: message.content,
+                      createdAt: message.createdAt,
+                    },
+                  ],
+                }
+              : ch,
+          ) ?? [],
+      )
     })
 
-    // Typing indicators
     socket.on('user_typing', ({ userId }: { userId: string }) => {
       setTypingUsers((prev) =>
         prev.includes(userId) ? prev : [...prev, userId],

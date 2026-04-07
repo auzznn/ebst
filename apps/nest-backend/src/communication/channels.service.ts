@@ -1,10 +1,11 @@
 import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common'
 import { PrismaService } from '../prisma/prisma.service'
 import { CreateChannelDto } from './dto/create-channel.dto'
+import { EncryptionService } from '../encryption/encryption.service'
 
 @Injectable()
 export class ChannelsService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService, private encryption: EncryptionService) {}
 
   async create(dto: CreateChannelDto, creatorId: string) {
 
@@ -22,7 +23,7 @@ export class ChannelsService {
   }
 
   async findAllForUser(userId: string) {
-    return this.prisma.channel.findMany({
+    const channels = await this.prisma.channel.findMany({
       where: {
         members: { some: { userId } },
       },
@@ -35,6 +36,14 @@ export class ChannelsService {
       },
       orderBy: { createdAt: 'desc' },
     })
+
+    return channels.map((channel) => ({
+      ...channel,
+      messages: channel.messages.map((m) => ({
+        ...m,
+        content: this.encryption.decrypt(m.content),
+      })),
+    }))
   }
 
   async findOne(channelId: string, userId: string) {

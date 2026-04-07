@@ -1,15 +1,16 @@
 import { Injectable } from '@nestjs/common'
 import { PrismaService } from '../prisma/prisma.service'
 import { SendMessageDto } from './dto/send-message.dto'
+import { EncryptionService } from 'src/encryption/encryption.service'
 
 @Injectable()
 export class MessagesService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService, private encryption: EncryptionService) {}
 
   async create(senderId: string, dto: SendMessageDto) {
-    return this.prisma.message.create({
+    const message = await this.prisma.message.create({
       data: {
-        content: dto.content,
+        content: this.encryption.encrypt(dto.content),
         type: dto.type ?? 'text',
         fileUrl: dto.fileUrl,
         senderId,
@@ -17,11 +18,16 @@ export class MessagesService {
       },
       include: { sender: true },
     })
+
+    return {
+      ...message,
+      content: this.encryption.decrypt(message.content)
+    }
   }
 
   async findByChannel(channelId: string, cursor?: string, take = 30) {
     // Cursor-based pagination — loads older messages on scroll
-    return this.prisma.message.findMany({
+    const message = await this.prisma.message.findMany({
       where: { channelId },
       orderBy: { createdAt: 'desc' },
       take,
@@ -31,6 +37,11 @@ export class MessagesService {
       }),
       include: { sender: true },
     })
+
+    return message.map((m) => ({
+      ...m,
+      content: this.encryption.decrypt(m.content)
+    }))
   }
 
   async delete(messageId: string, userId: string) {

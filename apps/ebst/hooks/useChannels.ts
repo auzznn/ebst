@@ -7,7 +7,7 @@ export type Channel = {
     name: string | null
     isDM: boolean | null
     createdAt: string
-    members: { user: {id: string; name: string; email: string}}[]
+    members: { user: {id: string; name: string; email: string; image: string | null}}[]
     messages: { id: string; content: string; createdAt: string}[]
 }
 

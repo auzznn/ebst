@@ -1,14 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useParams } from "next/navigation";
-import { useMessages, useDeleteMessage } from "@/hooks/useMessages";
+import { useMessages, useDeleteMessage, Message } from "@/hooks/useMessages";
 import { useChannel } from "@/hooks/useChannels";
 import { useSocket } from "@/hooks/useSocket";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Trash2, Send, Wifi, WifiOff, ArrowLeft } from "lucide-react";
-import { authClient } from "@/lib/auth-client"; // your better-auth client hook
+import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
 import { useRouter } from "next/navigation";
@@ -23,6 +23,24 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { formatMessageTime, formatDateDivider } from "@/lib/formatDate";
+
+function groupByDate(messages: Message[]) {
+  const groups: { date: string; messages: Message[] }[] = [];
+
+  for (const message of messages) {
+    const dateKey = new Date(message.createdAt).toDateString();
+    const existing = groups.find((g) => g.date === dateKey);
+
+    if (existing) {
+      existing.messages.push(message);
+    } else {
+      groups.push({ date: dateKey, messages: [message] });
+    }
+  }
+
+  return groups;
+}
 
 export default function ChannelPage() {
   const router = useRouter();
@@ -35,6 +53,12 @@ export default function ChannelPage() {
 
   const [input, setInput] = useState("");
   const bottomRef = useRef<HTMLDivElement>(null);
+
+  // Group and reverse messages by date, memoized for performance
+  const groupedMessages = useMemo(() => {
+    const reversed = [...(messages ?? [])].reverse();
+    return groupByDate(reversed);
+  }, [messages]);
 
   // Scroll to bottom when new messages arrive
   useEffect(() => {
@@ -99,7 +123,7 @@ export default function ChannelPage() {
           </Button>
           <h2 className="font-semibold text-lg">
             {channel.isDM
-              ? otherMember?.user?.name ?? "Direct Message"
+              ? (otherMember?.user?.name ?? "Direct Message")
               : `# ${channel.name}`}
           </h2>
           <Badge variant="outline" className="text-xs gap-1">
@@ -120,111 +144,121 @@ export default function ChannelPage() {
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-6 py-4 space-y-3">
+      <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4">
         {isLoading && (
           <p className="text-center text-sm text-muted-foreground">
             Loading messages...
           </p>
         )}
 
-        {/* Messages come back newest-first, reverse to show oldest at top */}
-        {[...(messages ?? [])].reverse().map((message) => {
-          const isOwn = message.sender.id === session?.user.id;
+        {groupedMessages.map((group) => (
+          <div key={group.date} className="space-y-3">
+            {/* Date divider */}
+            <div className="flex items-center gap-3">
+              <div className="flex-1 h-px bg-border" />
+              <span className="text-xs text-muted-foreground font-medium">
+                {formatDateDivider(group.date)}
+              </span>
+              <div className="flex-1 h-px bg-border" />
+            </div>
 
-          return (
-            <div
-              key={message.id}
-              className={cn(
-                "flex items-start gap-3 group",
-                isOwn && "flex-row-reverse",
-              )}
-            >
-              {/* Avatar */}
-              <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-xs font-medium shrink-0">
-                {message.sender.image ? (
-                  <img
-                    src={message.sender.image}
-                    alt={message.sender.name}
-                    className="rounded-full w-8 h-8"
-                  />
-                ) : (
-                  message.sender.name[0].toUpperCase()
-                )}
-              </div>
+            {/* Messages for this date */}
+            {group.messages.map((message) => {
+              const isOwn = message.sender.id === session?.user.id;
 
-              {/* Bubble */}
-              <div
-                className={cn(
-                  "max-w-sm space-y-1 flex items-start flex-col",
-                  isOwn && "items-end",
-                )}
-              >
-                <div className="flex items-center gap-2">
-                  <span className="text-xs text-foreground font-medium">
-                    {message.sender.name}
-                  </span>
-                  <span className="text-xs text-muted-foreground">
-                    {new Date(message.createdAt).toLocaleTimeString([], {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
-                  </span>
-                </div>
+              return (
                 <div
+                  key={message.id}
                   className={cn(
-                    "px-4 py-2 rounded-xl text-sm",
-                    isOwn
-                      ? "bg-primary text-primary-foreground rounded-tr-sm"
-                      : "bg-muted rounded-tl-sm",
+                    "flex items-start gap-3 group",
+                    isOwn && "flex-row-reverse",
                   )}
                 >
-                  {message.content}
-                </div>
-              </div>
+                  {/* Avatar */}
+                  <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-xs font-medium shrink-0">
+                    {message.sender.image ? (
+                      <img
+                        src={message.sender.image}
+                        alt={message.sender.name}
+                        className="rounded-full w-8 h-8"
+                      />
+                    ) : (
+                      message.sender.name[0].toUpperCase()
+                    )}
+                  </div>
 
-              {/* Delete (own messages only) */}
-              {isOwn && (
-                <AlertDialog>
-                  <AlertDialogTrigger asChild>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="opacity-0 group-hover:opacity-100 w-6 h-6 text-muted-foreground hover:text-destructive"
+                  {/* Bubble */}
+                  <div
+                    className={cn(
+                      "max-w-sm space-y-1 flex items-start flex-col",
+                      isOwn && "items-end",
+                    )}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs text-foreground font-medium">
+                        {message.sender.name}
+                      </span>
+                      <span className="text-xs text-muted-foreground">
+                        {formatMessageTime(message.createdAt)}
+                      </span>
+                    </div>
+                    <div
+                      className={cn(
+                        "px-4 py-2 rounded-xl text-sm",
+                        isOwn
+                          ? "bg-primary text-primary-foreground rounded-tr-sm"
+                          : "bg-muted rounded-tl-sm",
+                      )}
                     >
-                      <Trash2 className="w-3.5 h-3.5" />
-                    </Button>
-                  </AlertDialogTrigger>
-                  <AlertDialogContent>
-                    <AlertDialogHeader>
-                      <AlertDialogTitle>
-                        Are you sure want to delete this message?
-                      </AlertDialogTitle>
-                      <AlertDialogDescription>
-                        This action cannot be undone. This will permanently
-                        delete message from our server.
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
-                      <AlertDialogAction
-                        variant="destructive"
-                        onClick={() => deleteMessage.mutate(message.id)}
-                      >
-                        Delete
-                      </AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
-              )}
-            </div>
-          );
-        })}
+                      {message.content}
+                    </div>
+                  </div>
+
+                  {/* Delete (own messages only) */}
+                  {isOwn && (
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="opacity-0 group-hover:opacity-100 w-6 h-6 text-muted-foreground hover:text-destructive"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>
+                            Are you sure want to delete this message?
+                          </AlertDialogTitle>
+                          <AlertDialogDescription>
+                            This action cannot be undone. This will permanently
+                            delete message from our server.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction
+                            variant="destructive"
+                            onClick={() => deleteMessage.mutate(message.id)}
+                          >
+                            Delete
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        ))}
 
         {/* Typing indicator */}
         {typingUsers.length > 0 && (
           <p className="text-xs text-muted-foreground italic">
             {typingUsers.length === 1
-              ? `'Someone is typing...'`
+              ? `Someone is typing...`
               : `${typingUsers.length} people are typing...`}
           </p>
         )}

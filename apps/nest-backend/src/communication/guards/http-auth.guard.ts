@@ -1,5 +1,5 @@
 import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common'
-import { auth } from '../../../../ebst/lib/auth'
+import { auth } from '@ebst/auth'
 
 @Injectable()
 export class HttpAuthGuard implements CanActivate {
