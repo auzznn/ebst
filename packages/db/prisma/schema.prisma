@@ -79,6 +79,7 @@ model Channel {
   id        String          @id @default(uuid())
   name      String?
   isDM      Boolean         @default(false)
+  dmKey String? @unique
   createdAt DateTime        @default(now())
   messages  Message[]
   members   ChannelMember[]

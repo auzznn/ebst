@@ -8,12 +8,26 @@ export class ChannelsService {
   constructor(private prisma: PrismaService, private encryption: EncryptionService) {}
 
   async create(dto: CreateChannelDto, creatorId: string) {
-
     const memberIds = [...new Set([creatorId, ...dto.memberIds])]
+    const dmKey = memberIds.sort().join(':')
+
+    if (dto.isDM) {
+      const existing = await this.prisma.channel.findFirst({
+        where: {
+          dmKey
+        },
+        include: {
+          members: {include: {user: true}}
+        }
+      })
+      if (existing) return existing
+    }
+
     return this.prisma.channel.create({
       data: {
         name: dto.name,
         isDM: dto.isDM,
+        dmKey: dmKey,
         members: {
           create: memberIds.map((userId) => ({ userId })),
         },

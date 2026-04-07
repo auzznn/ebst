@@ -8,8 +8,8 @@
     "skipLibCheck": true,
     "declaration": true,
     "outDir": "./dist",
-    "rootDir": "./src"
+    "rootDir": "."
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "prisma-generated/**/*"],
   "exclude": ["node_modules", "dist"]
 }

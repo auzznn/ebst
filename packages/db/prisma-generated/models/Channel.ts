@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums"
-import type * as Prisma from "../internal/prismaNamespace"
+import type * as $Enums from "../enums.js"
+import type * as Prisma from "../internal/prismaNamespace.js"
 
 /**
  * Model Channel
@@ -28,6 +28,7 @@ export type ChannelMinAggregateOutputType = {
   id: string | null
   name: string | null
   isDM: boolean | null
+  dmKey: string | null
   createdAt: Date | null
 }
 
@@ -35,6 +36,7 @@ export type ChannelMaxAggregateOutputType = {
   id: string | null
   name: string | null
   isDM: boolean | null
+  dmKey: string | null
   createdAt: Date | null
 }
 
@@ -42,6 +44,7 @@ export type ChannelCountAggregateOutputType = {
   id: number
   name: number
   isDM: number
+  dmKey: number
   createdAt: number
   _all: number
 }
@@ -51,6 +54,7 @@ export type ChannelMinAggregateInputType = {
   id?: true
   name?: true
   isDM?: true
+  dmKey?: true
   createdAt?: true
 }
 
@@ -58,6 +62,7 @@ export type ChannelMaxAggregateInputType = {
   id?: true
   name?: true
   isDM?: true
+  dmKey?: true
   createdAt?: true
 }
 
@@ -65,6 +70,7 @@ export type ChannelCountAggregateInputType = {
   id?: true
   name?: true
   isDM?: true
+  dmKey?: true
   createdAt?: true
   _all?: true
 }
@@ -145,6 +151,7 @@ export type ChannelGroupByOutputType = {
   id: string
   name: string | null
   isDM: boolean
+  dmKey: string | null
   createdAt: Date
   _count: ChannelCountAggregateOutputType | null
   _min: ChannelMinAggregateOutputType | null
@@ -173,6 +180,7 @@ export type ChannelWhereInput = {
   id?: Prisma.StringFilter<"Channel"> | string
   name?: Prisma.StringNullableFilter<"Channel"> | string | null
   isDM?: Prisma.BoolFilter<"Channel"> | boolean
+  dmKey?: Prisma.StringNullableFilter<"Channel"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Channel"> | Date | string
   messages?: Prisma.MessageListRelationFilter
   members?: Prisma.ChannelMemberListRelationFilter
@@ -182,6 +190,7 @@ export type ChannelOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
   isDM?: Prisma.SortOrder
+  dmKey?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   messages?: Prisma.MessageOrderByRelationAggregateInput
   members?: Prisma.ChannelMemberOrderByRelationAggregateInput
@@ -189,6 +198,7 @@ export type ChannelOrderByWithRelationInput = {
 
 export type ChannelWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  dmKey?: string
   AND?: Prisma.ChannelWhereInput | Prisma.ChannelWhereInput[]
   OR?: Prisma.ChannelWhereInput[]
   NOT?: Prisma.ChannelWhereInput | Prisma.ChannelWhereInput[]
@@ -197,12 +207,13 @@ export type ChannelWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Channel"> | Date | string
   messages?: Prisma.MessageListRelationFilter
   members?: Prisma.ChannelMemberListRelationFilter
-}, "id">
+}, "id" | "dmKey">
 
 export type ChannelOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
   isDM?: Prisma.SortOrder
+  dmKey?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.ChannelCountOrderByAggregateInput
   _max?: Prisma.ChannelMaxOrderByAggregateInput
@@ -216,6 +227,7 @@ export type ChannelScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Channel"> | string
   name?: Prisma.StringNullableWithAggregatesFilter<"Channel"> | string | null
   isDM?: Prisma.BoolWithAggregatesFilter<"Channel"> | boolean
+  dmKey?: Prisma.StringNullableWithAggregatesFilter<"Channel"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Channel"> | Date | string
 }
 
@@ -223,6 +235,7 @@ export type ChannelCreateInput = {
   id?: string
   name?: string | null
   isDM?: boolean
+  dmKey?: string | null
   createdAt?: Date | string
   messages?: Prisma.MessageCreateNestedManyWithoutChannelInput
   members?: Prisma.ChannelMemberCreateNestedManyWithoutChannelInput
@@ -232,6 +245,7 @@ export type ChannelUncheckedCreateInput = {
   id?: string
   name?: string | null
   isDM?: boolean
+  dmKey?: string | null
   createdAt?: Date | string
   messages?: Prisma.MessageUncheckedCreateNestedManyWithoutChannelInput
   members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutChannelInput
@@ -241,6 +255,7 @@ export type ChannelUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isDM?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  dmKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   messages?: Prisma.MessageUpdateManyWithoutChannelNestedInput
   members?: Prisma.ChannelMemberUpdateManyWithoutChannelNestedInput
@@ -250,6 +265,7 @@ export type ChannelUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isDM?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  dmKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   messages?: Prisma.MessageUncheckedUpdateManyWithoutChannelNestedInput
   members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutChannelNestedInput
@@ -259,6 +275,7 @@ export type ChannelCreateManyInput = {
   id?: string
   name?: string | null
   isDM?: boolean
+  dmKey?: string | null
   createdAt?: Date | string
 }
 
@@ -266,6 +283,7 @@ export type ChannelUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isDM?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  dmKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -273,6 +291,7 @@ export type ChannelUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isDM?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  dmKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -280,6 +299,7 @@ export type ChannelCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   isDM?: Prisma.SortOrder
+  dmKey?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -287,6 +307,7 @@ export type ChannelMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   isDM?: Prisma.SortOrder
+  dmKey?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -294,6 +315,7 @@ export type ChannelMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   isDM?: Prisma.SortOrder
+  dmKey?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -334,6 +356,7 @@ export type ChannelCreateWithoutMembersInput = {
   id?: string
   name?: string | null
   isDM?: boolean
+  dmKey?: string | null
   createdAt?: Date | string
   messages?: Prisma.MessageCreateNestedManyWithoutChannelInput
 }
@@ -342,6 +365,7 @@ export type ChannelUncheckedCreateWithoutMembersInput = {
   id?: string
   name?: string | null
   isDM?: boolean
+  dmKey?: string | null
   createdAt?: Date | string
   messages?: Prisma.MessageUncheckedCreateNestedManyWithoutChannelInput
 }
@@ -366,6 +390,7 @@ export type ChannelUpdateWithoutMembersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isDM?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  dmKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   messages?: Prisma.MessageUpdateManyWithoutChannelNestedInput
 }
@@ -374,6 +399,7 @@ export type ChannelUncheckedUpdateWithoutMembersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isDM?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  dmKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   messages?: Prisma.MessageUncheckedUpdateManyWithoutChannelNestedInput
 }
@@ -382,6 +408,7 @@ export type ChannelCreateWithoutMessagesInput = {
   id?: string
   name?: string | null
   isDM?: boolean
+  dmKey?: string | null
   createdAt?: Date | string
   members?: Prisma.ChannelMemberCreateNestedManyWithoutChannelInput
 }
@@ -390,6 +417,7 @@ export type ChannelUncheckedCreateWithoutMessagesInput = {
   id?: string
   name?: string | null
   isDM?: boolean
+  dmKey?: string | null
   createdAt?: Date | string
   members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutChannelInput
 }
@@ -414,6 +442,7 @@ export type ChannelUpdateWithoutMessagesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isDM?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  dmKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   members?: Prisma.ChannelMemberUpdateManyWithoutChannelNestedInput
 }
@@ -422,6 +451,7 @@ export type ChannelUncheckedUpdateWithoutMessagesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isDM?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  dmKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutChannelNestedInput
 }
@@ -470,6 +500,7 @@ export type ChannelSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   id?: boolean
   name?: boolean
   isDM?: boolean
+  dmKey?: boolean
   createdAt?: boolean
   messages?: boolean | Prisma.Channel$messagesArgs<ExtArgs>
   members?: boolean | Prisma.Channel$membersArgs<ExtArgs>
@@ -480,6 +511,7 @@ export type ChannelSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   name?: boolean
   isDM?: boolean
+  dmKey?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["channel"]>
 
@@ -487,6 +519,7 @@ export type ChannelSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   name?: boolean
   isDM?: boolean
+  dmKey?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["channel"]>
 
@@ -494,10 +527,11 @@ export type ChannelSelectScalar = {
   id?: boolean
   name?: boolean
   isDM?: boolean
+  dmKey?: boolean
   createdAt?: boolean
 }
 
-export type ChannelOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "isDM" | "createdAt", ExtArgs["result"]["channel"]>
+export type ChannelOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "isDM" | "dmKey" | "createdAt", ExtArgs["result"]["channel"]>
 export type ChannelInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   messages?: boolean | Prisma.Channel$messagesArgs<ExtArgs>
   members?: boolean | Prisma.Channel$membersArgs<ExtArgs>
@@ -516,6 +550,7 @@ export type $ChannelPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     id: string
     name: string | null
     isDM: boolean
+    dmKey: string | null
     createdAt: Date
   }, ExtArgs["result"]["channel"]>
   composites: {}
@@ -945,6 +980,7 @@ export interface ChannelFieldRefs {
   readonly id: Prisma.FieldRef<"Channel", 'String'>
   readonly name: Prisma.FieldRef<"Channel", 'String'>
   readonly isDM: Prisma.FieldRef<"Channel", 'Boolean'>
+  readonly dmKey: Prisma.FieldRef<"Channel", 'String'>
   readonly createdAt: Prisma.FieldRef<"Channel", 'DateTime'>
 }
     

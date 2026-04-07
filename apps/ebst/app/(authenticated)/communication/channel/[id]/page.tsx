@@ -116,12 +116,9 @@ export default function ChannelPage() {
   return (
     <div className="flex flex-col h-full overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between px-6 py-4 border-b shrink-0">
+      <div className="flex items-center justify-between px-6 h-14 border-b shrink-0">
         <div className="flex items-center gap-3">
-          <Button variant="link" size="icon" onClick={() => router.back()}>
-            <ArrowLeft className="size-6" />
-          </Button>
-          <h2 className="font-semibold text-lg">
+          <h2 className="font-semibold text-base">
             {channel.isDM
               ? (otherMember?.user?.name ?? "Direct Message")
               : `# ${channel.name}`}
@@ -144,9 +141,9 @@ export default function ChannelPage() {
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4">
+      <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4 bg-muted">
         {isLoading && (
-          <p className="text-center text-sm text-muted-foreground">
+          <p className="text-center text-sm text-foreground">
             Loading messages...
           </p>
         )}
@@ -155,11 +152,11 @@ export default function ChannelPage() {
           <div key={group.date} className="space-y-3">
             {/* Date divider */}
             <div className="flex items-center gap-3">
-              <div className="flex-1 h-px bg-border" />
-              <span className="text-xs text-muted-foreground font-medium">
+              <div className="flex-1 h-px bg-foreground opacity-50" />
+              <span className="text-xs text-foreground font-medium">
                 {formatDateDivider(group.date)}
               </span>
-              <div className="flex-1 h-px bg-border" />
+              <div className="flex-1 h-px bg-foreground opacity-50" />
             </div>
 
             {/* Messages for this date */}

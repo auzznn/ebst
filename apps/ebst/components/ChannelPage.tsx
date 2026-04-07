@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { useChannels, useCreateChannel } from "@/hooks/useChannels";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Dialog,
   DialogContent,
@@ -64,14 +63,14 @@ export default function ChannelsPage() {
   return (
     <div className="flex flex-col h-full overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between px-6 py-4 border-b shrink-0">
-        <h1 className="text-xl font-semibold">Channels</h1>
+      <div className="flex items-center justify-between px-4 h-14 border-b shrink-0">
+        <h1 className="text-base font-semibold">Channels</h1>
 
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button size="sm">
-              <Plus className="w-2 h-2 mr" />
-              New channel
+            <Button size="sm" className="h-8 px-3">
+              <Plus className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline ml-1.5">New</span>
             </Button>
           </DialogTrigger>
           <DialogContent>
@@ -85,6 +84,7 @@ export default function ChannelsPage() {
                   placeholder="e.g. general"
                   value={channelName}
                   onChange={(e) => setChannelName(e.target.value)}
+                  disabled={selectedUsers.length <= 1}
                 />
               </div>
               <div className="space-y-1">
@@ -172,7 +172,6 @@ export default function ChannelsPage() {
                 onClick={handleCreate}
                 disabled={
                   createChannel.isPending ||
-                  !channelName.trim() ||
                   selectedUsers.length === 0
                 }
               >
@@ -184,78 +183,69 @@ export default function ChannelsPage() {
       </div>
 
       {/* Scrollable content */}
-      <div className="flex-1 overflow-y-auto px-6 py-6">
+      <div className="flex-1 overflow-y-auto px-3 py-3">
         {isLoading && (
-          <div className="flex items-center justify-center h-64">
-            <p className="text-muted-foreground text-sm">Loading channels...</p>
+          <div className="flex items-center justify-center h-32">
+            <p className="text-muted-foreground text-xs">Loading channels...</p>
           </div>
         )}
 
         {error && (
-          <div className="flex items-center justify-center h-64">
-            <p className="text-destructive text-sm">Failed to load channels.</p>
+          <div className="flex items-center justify-center h-32">
+            <p className="text-destructive text-xs">Failed to load channels.</p>
           </div>
         )}
 
         {!isLoading && !error && (
-          <div className="max-w-2xl mx-auto space-y-6">
+          <div className="space-y-2">
             {channels?.length === 0 && (
-              <Card>
-                <CardContent className="flex flex-col items-center justify-center py-12 text-center">
-                  <MessageSquare className="w-10 h-10 text-muted-foreground mb-3" />
-                  <p className="font-medium">No channels yet</p>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    Create one to start collaborating
-                  </p>
-                </CardContent>
-              </Card>
+              <div className="flex flex-col items-center justify-center py-8 px-4 text-center">
+                <MessageSquare className="w-8 h-8 text-muted-foreground mb-2" />
+                <p className="text-sm font-medium">No channels yet</p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Create one to start collaborating
+                </p>
+              </div>
             )}
 
-            <div className="space-y-2">
+            <div className="space-y-1">
               {channels?.map((channel) => (
-                <Card
+                <div
                   key={channel.id}
-                  className="cursor-pointer hover:bg-accent transition-colors"
+                  className="cursor-pointer hover:bg-accent transition-colors rounded-lg p-3 group"
                   onClick={() =>
                     router.push(`/communication/channel/${channel.id}`)
                   }
                 >
-                  <CardHeader className="py-4 px-5">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        {/* <MessageSquare className="w-4 h-4 text-muted-foreground" /> */}
-                        <UserAvatar channel={channel} session={session} />
-                        <CardTitle className="text-base font-small">
-                          <span className="truncate block max-w-37.5">
-                            {channel.isDM
-                              ? (channel.members.find(
-                                  (m) => m.user.id !== session?.user.id,
-                                )?.user.name ?? "Unknown")
-                              : `# ${channel.name}`}
-                          </span>
-                        </CardTitle>
-                        {channel.isDM && (
-                          <Badge variant="secondary" className="text-xs">
-                            DM
-                          </Badge>
-                        )}
-                      </div>
-                      {channel.isDM ? (
-                        ""
-                      ) : (
-                        <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                          <Users className="w-3 h-3" />
-                          {channel.members.length}
-                        </div>
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2.5 min-w-0 flex-1">
+                      <UserAvatar channel={channel} session={session} />
+                      <span className="text-sm font-medium truncate block">
+                        {channel.isDM
+                          ? (channel.members.find(
+                              (m) => m.user.id !== session?.user.id,
+                            )?.user.name ?? "Unknown")
+                          : `${channel.name}`}
+                      </span>
+                      {channel.isDM && (
+                        <Badge variant="secondary" className="text-[10px] h-4 px-1.5 shrink-0">
+                          DM
+                        </Badge>
                       )}
                     </div>
-                    {channel.messages[0] && (
-                      <p className="text-sm text-muted-foreground truncate pl-7">
-                        {channel.messages[0].content}
-                      </p>
+                    {!channel.isDM && (
+                      <div className="flex items-center gap-1 text-xs text-muted-foreground shrink-0">
+                        <Users className="w-3 h-3" />
+                        <span className="text-[10px]">{channel.members.length}</span>
+                      </div>
                     )}
-                  </CardHeader>
-                </Card>
+                  </div>
+                  {channel.messages[0] && (
+                    <p className="text-xs text-muted-foreground truncate mt-1.5 pl-10">
+                      {channel.messages[0].content}
+                    </p>
+                  )}
+                </div>
               ))}
             </div>
           </div>
