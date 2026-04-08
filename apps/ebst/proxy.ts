@@ -15,5 +15,8 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {// required for DB access
-  matcher: ["/dashboard", "/profile"],
+  matcher: ["/dashboard/:path*", 
+    "/profile/:path*", 
+    "/communication/:path*"],
 };
+32

@@ -9,6 +9,7 @@ import {
   SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
+  SidebarMenuAction,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
@@ -16,6 +17,7 @@ import { Home, User, Settings, MessageSquare } from "lucide-react";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import { useEffect, useState } from "react";
+import SignOutBtn from "../SignOutBtn";
 
 const menuItems = [
   { title: "Dashboard", url: "/dashboard", icon: Home },
@@ -61,7 +63,7 @@ export function AppSidebar() {
       </SidebarContent>
       <SidebarFooter className="border-t">
         <SidebarMenu>
-          <SidebarMenuItem>
+          <SidebarMenuItem className="flex flex-row items-center gap-2">
             <SidebarMenuButton asChild>
               <Link href={footerItem.url}>
                 {footerItem.avatar ? (
@@ -75,6 +77,9 @@ export function AppSidebar() {
                 )}
                 <span>{footerItem.title}</span>
               </Link>
+            </SidebarMenuButton>
+            <SidebarMenuButton asChild>
+              <SignOutBtn></SignOutBtn>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
