@@ -1,0 +1,1365 @@
+import type * as runtime from "@prisma/client/runtime/client";
+import type * as Prisma from "../internal/prismaNamespace.js";
+/**
+ * Model BillLine
+ *
+ */
+export type BillLineModel = runtime.Types.Result.DefaultSelection<Prisma.$BillLinePayload>;
+export type AggregateBillLine = {
+    _count: BillLineCountAggregateOutputType | null;
+    _avg: BillLineAvgAggregateOutputType | null;
+    _sum: BillLineSumAggregateOutputType | null;
+    _min: BillLineMinAggregateOutputType | null;
+    _max: BillLineMaxAggregateOutputType | null;
+};
+export type BillLineAvgAggregateOutputType = {
+    quantity: runtime.Decimal | null;
+    unitPrice: runtime.Decimal | null;
+};
+export type BillLineSumAggregateOutputType = {
+    quantity: runtime.Decimal | null;
+    unitPrice: runtime.Decimal | null;
+};
+export type BillLineMinAggregateOutputType = {
+    id: string | null;
+    billId: string | null;
+    description: string | null;
+    quantity: runtime.Decimal | null;
+    unitPrice: runtime.Decimal | null;
+    accountId: string | null;
+};
+export type BillLineMaxAggregateOutputType = {
+    id: string | null;
+    billId: string | null;
+    description: string | null;
+    quantity: runtime.Decimal | null;
+    unitPrice: runtime.Decimal | null;
+    accountId: string | null;
+};
+export type BillLineCountAggregateOutputType = {
+    id: number;
+    billId: number;
+    description: number;
+    quantity: number;
+    unitPrice: number;
+    accountId: number;
+    _all: number;
+};
+export type BillLineAvgAggregateInputType = {
+    quantity?: true;
+    unitPrice?: true;
+};
+export type BillLineSumAggregateInputType = {
+    quantity?: true;
+    unitPrice?: true;
+};
+export type BillLineMinAggregateInputType = {
+    id?: true;
+    billId?: true;
+    description?: true;
+    quantity?: true;
+    unitPrice?: true;
+    accountId?: true;
+};
+export type BillLineMaxAggregateInputType = {
+    id?: true;
+    billId?: true;
+    description?: true;
+    quantity?: true;
+    unitPrice?: true;
+    accountId?: true;
+};
+export type BillLineCountAggregateInputType = {
+    id?: true;
+    billId?: true;
+    description?: true;
+    quantity?: true;
+    unitPrice?: true;
+    accountId?: true;
+    _all?: true;
+};
+export type BillLineAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Filter which BillLine to aggregate.
+     */
+    where?: Prisma.BillLineWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of BillLines to fetch.
+     */
+    orderBy?: Prisma.BillLineOrderByWithRelationInput | Prisma.BillLineOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the start position
+     */
+    cursor?: Prisma.BillLineWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` BillLines from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` BillLines.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Count returned BillLines
+    **/
+    _count?: true | BillLineCountAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to average
+    **/
+    _avg?: BillLineAvgAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to sum
+    **/
+    _sum?: BillLineSumAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the minimum value
+    **/
+    _min?: BillLineMinAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the maximum value
+    **/
+    _max?: BillLineMaxAggregateInputType;
+};
+export type GetBillLineAggregateType<T extends BillLineAggregateArgs> = {
+    [P in keyof T & keyof AggregateBillLine]: P extends '_count' | 'count' ? T[P] extends true ? number : Prisma.GetScalarType<T[P], AggregateBillLine[P]> : Prisma.GetScalarType<T[P], AggregateBillLine[P]>;
+};
+export type BillLineGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.BillLineWhereInput;
+    orderBy?: Prisma.BillLineOrderByWithAggregationInput | Prisma.BillLineOrderByWithAggregationInput[];
+    by: Prisma.BillLineScalarFieldEnum[] | Prisma.BillLineScalarFieldEnum;
+    having?: Prisma.BillLineScalarWhereWithAggregatesInput;
+    take?: number;
+    skip?: number;
+    _count?: BillLineCountAggregateInputType | true;
+    _avg?: BillLineAvgAggregateInputType;
+    _sum?: BillLineSumAggregateInputType;
+    _min?: BillLineMinAggregateInputType;
+    _max?: BillLineMaxAggregateInputType;
+};
+export type BillLineGroupByOutputType = {
+    id: string;
+    billId: string;
+    description: string;
+    quantity: runtime.Decimal;
+    unitPrice: runtime.Decimal;
+    accountId: string;
+    _count: BillLineCountAggregateOutputType | null;
+    _avg: BillLineAvgAggregateOutputType | null;
+    _sum: BillLineSumAggregateOutputType | null;
+    _min: BillLineMinAggregateOutputType | null;
+    _max: BillLineMaxAggregateOutputType | null;
+};
+export type GetBillLineGroupByPayload<T extends BillLineGroupByArgs> = Prisma.PrismaPromise<Array<Prisma.PickEnumerable<BillLineGroupByOutputType, T['by']> & {
+    [P in ((keyof T) & (keyof BillLineGroupByOutputType))]: P extends '_count' ? T[P] extends boolean ? number : Prisma.GetScalarType<T[P], BillLineGroupByOutputType[P]> : Prisma.GetScalarType<T[P], BillLineGroupByOutputType[P]>;
+}>>;
+export type BillLineWhereInput = {
+    AND?: Prisma.BillLineWhereInput | Prisma.BillLineWhereInput[];
+    OR?: Prisma.BillLineWhereInput[];
+    NOT?: Prisma.BillLineWhereInput | Prisma.BillLineWhereInput[];
+    id?: Prisma.StringFilter<"BillLine"> | string;
+    billId?: Prisma.StringFilter<"BillLine"> | string;
+    description?: Prisma.StringFilter<"BillLine"> | string;
+    quantity?: Prisma.DecimalFilter<"BillLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    unitPrice?: Prisma.DecimalFilter<"BillLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    accountId?: Prisma.StringFilter<"BillLine"> | string;
+    bill?: Prisma.XOR<Prisma.BillScalarRelationFilter, Prisma.BillWhereInput>;
+    account?: Prisma.XOR<Prisma.AccountingScalarRelationFilter, Prisma.AccountingWhereInput>;
+};
+export type BillLineOrderByWithRelationInput = {
+    id?: Prisma.SortOrder;
+    billId?: Prisma.SortOrder;
+    description?: Prisma.SortOrder;
+    quantity?: Prisma.SortOrder;
+    unitPrice?: Prisma.SortOrder;
+    accountId?: Prisma.SortOrder;
+    bill?: Prisma.BillOrderByWithRelationInput;
+    account?: Prisma.AccountingOrderByWithRelationInput;
+};
+export type BillLineWhereUniqueInput = Prisma.AtLeast<{
+    id?: string;
+    AND?: Prisma.BillLineWhereInput | Prisma.BillLineWhereInput[];
+    OR?: Prisma.BillLineWhereInput[];
+    NOT?: Prisma.BillLineWhereInput | Prisma.BillLineWhereInput[];
+    billId?: Prisma.StringFilter<"BillLine"> | string;
+    description?: Prisma.StringFilter<"BillLine"> | string;
+    quantity?: Prisma.DecimalFilter<"BillLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    unitPrice?: Prisma.DecimalFilter<"BillLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    accountId?: Prisma.StringFilter<"BillLine"> | string;
+    bill?: Prisma.XOR<Prisma.BillScalarRelationFilter, Prisma.BillWhereInput>;
+    account?: Prisma.XOR<Prisma.AccountingScalarRelationFilter, Prisma.AccountingWhereInput>;
+}, "id">;
+export type BillLineOrderByWithAggregationInput = {
+    id?: Prisma.SortOrder;
+    billId?: Prisma.SortOrder;
+    description?: Prisma.SortOrder;
+    quantity?: Prisma.SortOrder;
+    unitPrice?: Prisma.SortOrder;
+    accountId?: Prisma.SortOrder;
+    _count?: Prisma.BillLineCountOrderByAggregateInput;
+    _avg?: Prisma.BillLineAvgOrderByAggregateInput;
+    _max?: Prisma.BillLineMaxOrderByAggregateInput;
+    _min?: Prisma.BillLineMinOrderByAggregateInput;
+    _sum?: Prisma.BillLineSumOrderByAggregateInput;
+};
+export type BillLineScalarWhereWithAggregatesInput = {
+    AND?: Prisma.BillLineScalarWhereWithAggregatesInput | Prisma.BillLineScalarWhereWithAggregatesInput[];
+    OR?: Prisma.BillLineScalarWhereWithAggregatesInput[];
+    NOT?: Prisma.BillLineScalarWhereWithAggregatesInput | Prisma.BillLineScalarWhereWithAggregatesInput[];
+    id?: Prisma.StringWithAggregatesFilter<"BillLine"> | string;
+    billId?: Prisma.StringWithAggregatesFilter<"BillLine"> | string;
+    description?: Prisma.StringWithAggregatesFilter<"BillLine"> | string;
+    quantity?: Prisma.DecimalWithAggregatesFilter<"BillLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    unitPrice?: Prisma.DecimalWithAggregatesFilter<"BillLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    accountId?: Prisma.StringWithAggregatesFilter<"BillLine"> | string;
+};
+export type BillLineCreateInput = {
+    id?: string;
+    description: string;
+    quantity: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    bill: Prisma.BillCreateNestedOneWithoutLinesInput;
+    account: Prisma.AccountingCreateNestedOneWithoutBillLinesInput;
+};
+export type BillLineUncheckedCreateInput = {
+    id?: string;
+    billId: string;
+    description: string;
+    quantity: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    accountId: string;
+};
+export type BillLineUpdateInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.StringFieldUpdateOperationsInput | string;
+    quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    bill?: Prisma.BillUpdateOneRequiredWithoutLinesNestedInput;
+    account?: Prisma.AccountingUpdateOneRequiredWithoutBillLinesNestedInput;
+};
+export type BillLineUncheckedUpdateInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    billId?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.StringFieldUpdateOperationsInput | string;
+    quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    accountId?: Prisma.StringFieldUpdateOperationsInput | string;
+};
+export type BillLineCreateManyInput = {
+    id?: string;
+    billId: string;
+    description: string;
+    quantity: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    accountId: string;
+};
+export type BillLineUpdateManyMutationInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.StringFieldUpdateOperationsInput | string;
+    quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+};
+export type BillLineUncheckedUpdateManyInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    billId?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.StringFieldUpdateOperationsInput | string;
+    quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    accountId?: Prisma.StringFieldUpdateOperationsInput | string;
+};
+export type BillLineListRelationFilter = {
+    every?: Prisma.BillLineWhereInput;
+    some?: Prisma.BillLineWhereInput;
+    none?: Prisma.BillLineWhereInput;
+};
+export type BillLineOrderByRelationAggregateInput = {
+    _count?: Prisma.SortOrder;
+};
+export type BillLineCountOrderByAggregateInput = {
+    id?: Prisma.SortOrder;
+    billId?: Prisma.SortOrder;
+    description?: Prisma.SortOrder;
+    quantity?: Prisma.SortOrder;
+    unitPrice?: Prisma.SortOrder;
+    accountId?: Prisma.SortOrder;
+};
+export type BillLineAvgOrderByAggregateInput = {
+    quantity?: Prisma.SortOrder;
+    unitPrice?: Prisma.SortOrder;
+};
+export type BillLineMaxOrderByAggregateInput = {
+    id?: Prisma.SortOrder;
+    billId?: Prisma.SortOrder;
+    description?: Prisma.SortOrder;
+    quantity?: Prisma.SortOrder;
+    unitPrice?: Prisma.SortOrder;
+    accountId?: Prisma.SortOrder;
+};
+export type BillLineMinOrderByAggregateInput = {
+    id?: Prisma.SortOrder;
+    billId?: Prisma.SortOrder;
+    description?: Prisma.SortOrder;
+    quantity?: Prisma.SortOrder;
+    unitPrice?: Prisma.SortOrder;
+    accountId?: Prisma.SortOrder;
+};
+export type BillLineSumOrderByAggregateInput = {
+    quantity?: Prisma.SortOrder;
+    unitPrice?: Prisma.SortOrder;
+};
+export type BillLineCreateNestedManyWithoutAccountInput = {
+    create?: Prisma.XOR<Prisma.BillLineCreateWithoutAccountInput, Prisma.BillLineUncheckedCreateWithoutAccountInput> | Prisma.BillLineCreateWithoutAccountInput[] | Prisma.BillLineUncheckedCreateWithoutAccountInput[];
+    connectOrCreate?: Prisma.BillLineCreateOrConnectWithoutAccountInput | Prisma.BillLineCreateOrConnectWithoutAccountInput[];
+    createMany?: Prisma.BillLineCreateManyAccountInputEnvelope;
+    connect?: Prisma.BillLineWhereUniqueInput | Prisma.BillLineWhereUniqueInput[];
+};
+export type BillLineUncheckedCreateNestedManyWithoutAccountInput = {
+    create?: Prisma.XOR<Prisma.BillLineCreateWithoutAccountInput, Prisma.BillLineUncheckedCreateWithoutAccountInput> | Prisma.BillLineCreateWithoutAccountInput[] | Prisma.BillLineUncheckedCreateWithoutAccountInput[];
+    connectOrCreate?: Prisma.BillLineCreateOrConnectWithoutAccountInput | Prisma.BillLineCreateOrConnectWithoutAccountInput[];
+    createMany?: Prisma.BillLineCreateManyAccountInputEnvelope;
+    connect?: Prisma.BillLineWhereUniqueInput | Prisma.BillLineWhereUniqueInput[];
+};
+export type BillLineUpdateManyWithoutAccountNestedInput = {
+    create?: Prisma.XOR<Prisma.BillLineCreateWithoutAccountInput, Prisma.BillLineUncheckedCreateWithoutAccountInput> | Prisma.BillLineCreateWithoutAccountInput[] | Prisma.BillLineUncheckedCreateWithoutAccountInput[];
+    connectOrCreate?: Prisma.BillLineCreateOrConnectWithoutAccountInput | Prisma.BillLineCreateOrConnectWithoutAccountInput[];
+    upsert?: Prisma.BillLineUpsertWithWhereUniqueWithoutAccountInput | Prisma.BillLineUpsertWithWhereUniqueWithoutAccountInput[];
+    createMany?: Prisma.BillLineCreateManyAccountInputEnvelope;
+    set?: Prisma.BillLineWhereUniqueInput | Prisma.BillLineWhereUniqueInput[];
+    disconnect?: Prisma.BillLineWhereUniqueInput | Prisma.BillLineWhereUniqueInput[];
+    delete?: Prisma.BillLineWhereUniqueInput | Prisma.BillLineWhereUniqueInput[];
+    connect?: Prisma.BillLineWhereUniqueInput | Prisma.BillLineWhereUniqueInput[];
+    update?: Prisma.BillLineUpdateWithWhereUniqueWithoutAccountInput | Prisma.BillLineUpdateWithWhereUniqueWithoutAccountInput[];
+    updateMany?: Prisma.BillLineUpdateManyWithWhereWithoutAccountInput | Prisma.BillLineUpdateManyWithWhereWithoutAccountInput[];
+    deleteMany?: Prisma.BillLineScalarWhereInput | Prisma.BillLineScalarWhereInput[];
+};
+export type BillLineUncheckedUpdateManyWithoutAccountNestedInput = {
+    create?: Prisma.XOR<Prisma.BillLineCreateWithoutAccountInput, Prisma.BillLineUncheckedCreateWithoutAccountInput> | Prisma.BillLineCreateWithoutAccountInput[] | Prisma.BillLineUncheckedCreateWithoutAccountInput[];
+    connectOrCreate?: Prisma.BillLineCreateOrConnectWithoutAccountInput | Prisma.BillLineCreateOrConnectWithoutAccountInput[];
+    upsert?: Prisma.BillLineUpsertWithWhereUniqueWithoutAccountInput | Prisma.BillLineUpsertWithWhereUniqueWithoutAccountInput[];
+    createMany?: Prisma.BillLineCreateManyAccountInputEnvelope;
+    set?: Prisma.BillLineWhereUniqueInput | Prisma.BillLineWhereUniqueInput[];
+    disconnect?: Prisma.BillLineWhereUniqueInput | Prisma.BillLineWhereUniqueInput[];
+    delete?: Prisma.BillLineWhereUniqueInput | Prisma.BillLineWhereUniqueInput[];
+    connect?: Prisma.BillLineWhereUniqueInput | Prisma.BillLineWhereUniqueInput[];
+    update?: Prisma.BillLineUpdateWithWhereUniqueWithoutAccountInput | Prisma.BillLineUpdateWithWhereUniqueWithoutAccountInput[];
+    updateMany?: Prisma.BillLineUpdateManyWithWhereWithoutAccountInput | Prisma.BillLineUpdateManyWithWhereWithoutAccountInput[];
+    deleteMany?: Prisma.BillLineScalarWhereInput | Prisma.BillLineScalarWhereInput[];
+};
+export type BillLineCreateNestedManyWithoutBillInput = {
+    create?: Prisma.XOR<Prisma.BillLineCreateWithoutBillInput, Prisma.BillLineUncheckedCreateWithoutBillInput> | Prisma.BillLineCreateWithoutBillInput[] | Prisma.BillLineUncheckedCreateWithoutBillInput[];
+    connectOrCreate?: Prisma.BillLineCreateOrConnectWithoutBillInput | Prisma.BillLineCreateOrConnectWithoutBillInput[];
+    createMany?: Prisma.BillLineCreateManyBillInputEnvelope;
+    connect?: Prisma.BillLineWhereUniqueInput | Prisma.BillLineWhereUniqueInput[];
+};
+export type BillLineUncheckedCreateNestedManyWithoutBillInput = {
+    create?: Prisma.XOR<Prisma.BillLineCreateWithoutBillInput, Prisma.BillLineUncheckedCreateWithoutBillInput> | Prisma.BillLineCreateWithoutBillInput[] | Prisma.BillLineUncheckedCreateWithoutBillInput[];
+    connectOrCreate?: Prisma.BillLineCreateOrConnectWithoutBillInput | Prisma.BillLineCreateOrConnectWithoutBillInput[];
+    createMany?: Prisma.BillLineCreateManyBillInputEnvelope;
+    connect?: Prisma.BillLineWhereUniqueInput | Prisma.BillLineWhereUniqueInput[];
+};
+export type BillLineUpdateManyWithoutBillNestedInput = {
+    create?: Prisma.XOR<Prisma.BillLineCreateWithoutBillInput, Prisma.BillLineUncheckedCreateWithoutBillInput> | Prisma.BillLineCreateWithoutBillInput[] | Prisma.BillLineUncheckedCreateWithoutBillInput[];
+    connectOrCreate?: Prisma.BillLineCreateOrConnectWithoutBillInput | Prisma.BillLineCreateOrConnectWithoutBillInput[];
+    upsert?: Prisma.BillLineUpsertWithWhereUniqueWithoutBillInput | Prisma.BillLineUpsertWithWhereUniqueWithoutBillInput[];
+    createMany?: Prisma.BillLineCreateManyBillInputEnvelope;
+    set?: Prisma.BillLineWhereUniqueInput | Prisma.BillLineWhereUniqueInput[];
+    disconnect?: Prisma.BillLineWhereUniqueInput | Prisma.BillLineWhereUniqueInput[];
+    delete?: Prisma.BillLineWhereUniqueInput | Prisma.BillLineWhereUniqueInput[];
+    connect?: Prisma.BillLineWhereUniqueInput | Prisma.BillLineWhereUniqueInput[];
+    update?: Prisma.BillLineUpdateWithWhereUniqueWithoutBillInput | Prisma.BillLineUpdateWithWhereUniqueWithoutBillInput[];
+    updateMany?: Prisma.BillLineUpdateManyWithWhereWithoutBillInput | Prisma.BillLineUpdateManyWithWhereWithoutBillInput[];
+    deleteMany?: Prisma.BillLineScalarWhereInput | Prisma.BillLineScalarWhereInput[];
+};
+export type BillLineUncheckedUpdateManyWithoutBillNestedInput = {
+    create?: Prisma.XOR<Prisma.BillLineCreateWithoutBillInput, Prisma.BillLineUncheckedCreateWithoutBillInput> | Prisma.BillLineCreateWithoutBillInput[] | Prisma.BillLineUncheckedCreateWithoutBillInput[];
+    connectOrCreate?: Prisma.BillLineCreateOrConnectWithoutBillInput | Prisma.BillLineCreateOrConnectWithoutBillInput[];
+    upsert?: Prisma.BillLineUpsertWithWhereUniqueWithoutBillInput | Prisma.BillLineUpsertWithWhereUniqueWithoutBillInput[];
+    createMany?: Prisma.BillLineCreateManyBillInputEnvelope;
+    set?: Prisma.BillLineWhereUniqueInput | Prisma.BillLineWhereUniqueInput[];
+    disconnect?: Prisma.BillLineWhereUniqueInput | Prisma.BillLineWhereUniqueInput[];
+    delete?: Prisma.BillLineWhereUniqueInput | Prisma.BillLineWhereUniqueInput[];
+    connect?: Prisma.BillLineWhereUniqueInput | Prisma.BillLineWhereUniqueInput[];
+    update?: Prisma.BillLineUpdateWithWhereUniqueWithoutBillInput | Prisma.BillLineUpdateWithWhereUniqueWithoutBillInput[];
+    updateMany?: Prisma.BillLineUpdateManyWithWhereWithoutBillInput | Prisma.BillLineUpdateManyWithWhereWithoutBillInput[];
+    deleteMany?: Prisma.BillLineScalarWhereInput | Prisma.BillLineScalarWhereInput[];
+};
+export type BillLineCreateWithoutAccountInput = {
+    id?: string;
+    description: string;
+    quantity: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    bill: Prisma.BillCreateNestedOneWithoutLinesInput;
+};
+export type BillLineUncheckedCreateWithoutAccountInput = {
+    id?: string;
+    billId: string;
+    description: string;
+    quantity: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
+};
+export type BillLineCreateOrConnectWithoutAccountInput = {
+    where: Prisma.BillLineWhereUniqueInput;
+    create: Prisma.XOR<Prisma.BillLineCreateWithoutAccountInput, Prisma.BillLineUncheckedCreateWithoutAccountInput>;
+};
+export type BillLineCreateManyAccountInputEnvelope = {
+    data: Prisma.BillLineCreateManyAccountInput | Prisma.BillLineCreateManyAccountInput[];
+    skipDuplicates?: boolean;
+};
+export type BillLineUpsertWithWhereUniqueWithoutAccountInput = {
+    where: Prisma.BillLineWhereUniqueInput;
+    update: Prisma.XOR<Prisma.BillLineUpdateWithoutAccountInput, Prisma.BillLineUncheckedUpdateWithoutAccountInput>;
+    create: Prisma.XOR<Prisma.BillLineCreateWithoutAccountInput, Prisma.BillLineUncheckedCreateWithoutAccountInput>;
+};
+export type BillLineUpdateWithWhereUniqueWithoutAccountInput = {
+    where: Prisma.BillLineWhereUniqueInput;
+    data: Prisma.XOR<Prisma.BillLineUpdateWithoutAccountInput, Prisma.BillLineUncheckedUpdateWithoutAccountInput>;
+};
+export type BillLineUpdateManyWithWhereWithoutAccountInput = {
+    where: Prisma.BillLineScalarWhereInput;
+    data: Prisma.XOR<Prisma.BillLineUpdateManyMutationInput, Prisma.BillLineUncheckedUpdateManyWithoutAccountInput>;
+};
+export type BillLineScalarWhereInput = {
+    AND?: Prisma.BillLineScalarWhereInput | Prisma.BillLineScalarWhereInput[];
+    OR?: Prisma.BillLineScalarWhereInput[];
+    NOT?: Prisma.BillLineScalarWhereInput | Prisma.BillLineScalarWhereInput[];
+    id?: Prisma.StringFilter<"BillLine"> | string;
+    billId?: Prisma.StringFilter<"BillLine"> | string;
+    description?: Prisma.StringFilter<"BillLine"> | string;
+    quantity?: Prisma.DecimalFilter<"BillLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    unitPrice?: Prisma.DecimalFilter<"BillLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    accountId?: Prisma.StringFilter<"BillLine"> | string;
+};
+export type BillLineCreateWithoutBillInput = {
+    id?: string;
+    description: string;
+    quantity: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    account: Prisma.AccountingCreateNestedOneWithoutBillLinesInput;
+};
+export type BillLineUncheckedCreateWithoutBillInput = {
+    id?: string;
+    description: string;
+    quantity: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    accountId: string;
+};
+export type BillLineCreateOrConnectWithoutBillInput = {
+    where: Prisma.BillLineWhereUniqueInput;
+    create: Prisma.XOR<Prisma.BillLineCreateWithoutBillInput, Prisma.BillLineUncheckedCreateWithoutBillInput>;
+};
+export type BillLineCreateManyBillInputEnvelope = {
+    data: Prisma.BillLineCreateManyBillInput | Prisma.BillLineCreateManyBillInput[];
+    skipDuplicates?: boolean;
+};
+export type BillLineUpsertWithWhereUniqueWithoutBillInput = {
+    where: Prisma.BillLineWhereUniqueInput;
+    update: Prisma.XOR<Prisma.BillLineUpdateWithoutBillInput, Prisma.BillLineUncheckedUpdateWithoutBillInput>;
+    create: Prisma.XOR<Prisma.BillLineCreateWithoutBillInput, Prisma.BillLineUncheckedCreateWithoutBillInput>;
+};
+export type BillLineUpdateWithWhereUniqueWithoutBillInput = {
+    where: Prisma.BillLineWhereUniqueInput;
+    data: Prisma.XOR<Prisma.BillLineUpdateWithoutBillInput, Prisma.BillLineUncheckedUpdateWithoutBillInput>;
+};
+export type BillLineUpdateManyWithWhereWithoutBillInput = {
+    where: Prisma.BillLineScalarWhereInput;
+    data: Prisma.XOR<Prisma.BillLineUpdateManyMutationInput, Prisma.BillLineUncheckedUpdateManyWithoutBillInput>;
+};
+export type BillLineCreateManyAccountInput = {
+    id?: string;
+    billId: string;
+    description: string;
+    quantity: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
+};
+export type BillLineUpdateWithoutAccountInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.StringFieldUpdateOperationsInput | string;
+    quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    bill?: Prisma.BillUpdateOneRequiredWithoutLinesNestedInput;
+};
+export type BillLineUncheckedUpdateWithoutAccountInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    billId?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.StringFieldUpdateOperationsInput | string;
+    quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+};
+export type BillLineUncheckedUpdateManyWithoutAccountInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    billId?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.StringFieldUpdateOperationsInput | string;
+    quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+};
+export type BillLineCreateManyBillInput = {
+    id?: string;
+    description: string;
+    quantity: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    accountId: string;
+};
+export type BillLineUpdateWithoutBillInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.StringFieldUpdateOperationsInput | string;
+    quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    account?: Prisma.AccountingUpdateOneRequiredWithoutBillLinesNestedInput;
+};
+export type BillLineUncheckedUpdateWithoutBillInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.StringFieldUpdateOperationsInput | string;
+    quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    accountId?: Prisma.StringFieldUpdateOperationsInput | string;
+};
+export type BillLineUncheckedUpdateManyWithoutBillInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.StringFieldUpdateOperationsInput | string;
+    quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    accountId?: Prisma.StringFieldUpdateOperationsInput | string;
+};
+export type BillLineSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+    id?: boolean;
+    billId?: boolean;
+    description?: boolean;
+    quantity?: boolean;
+    unitPrice?: boolean;
+    accountId?: boolean;
+    bill?: boolean | Prisma.BillDefaultArgs<ExtArgs>;
+    account?: boolean | Prisma.AccountingDefaultArgs<ExtArgs>;
+}, ExtArgs["result"]["billLine"]>;
+export type BillLineSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+    id?: boolean;
+    billId?: boolean;
+    description?: boolean;
+    quantity?: boolean;
+    unitPrice?: boolean;
+    accountId?: boolean;
+    bill?: boolean | Prisma.BillDefaultArgs<ExtArgs>;
+    account?: boolean | Prisma.AccountingDefaultArgs<ExtArgs>;
+}, ExtArgs["result"]["billLine"]>;
+export type BillLineSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+    id?: boolean;
+    billId?: boolean;
+    description?: boolean;
+    quantity?: boolean;
+    unitPrice?: boolean;
+    accountId?: boolean;
+    bill?: boolean | Prisma.BillDefaultArgs<ExtArgs>;
+    account?: boolean | Prisma.AccountingDefaultArgs<ExtArgs>;
+}, ExtArgs["result"]["billLine"]>;
+export type BillLineSelectScalar = {
+    id?: boolean;
+    billId?: boolean;
+    description?: boolean;
+    quantity?: boolean;
+    unitPrice?: boolean;
+    accountId?: boolean;
+};
+export type BillLineOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "billId" | "description" | "quantity" | "unitPrice" | "accountId", ExtArgs["result"]["billLine"]>;
+export type BillLineInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    bill?: boolean | Prisma.BillDefaultArgs<ExtArgs>;
+    account?: boolean | Prisma.AccountingDefaultArgs<ExtArgs>;
+};
+export type BillLineIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    bill?: boolean | Prisma.BillDefaultArgs<ExtArgs>;
+    account?: boolean | Prisma.AccountingDefaultArgs<ExtArgs>;
+};
+export type BillLineIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    bill?: boolean | Prisma.BillDefaultArgs<ExtArgs>;
+    account?: boolean | Prisma.AccountingDefaultArgs<ExtArgs>;
+};
+export type $BillLinePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    name: "BillLine";
+    objects: {
+        bill: Prisma.$BillPayload<ExtArgs>;
+        account: Prisma.$AccountingPayload<ExtArgs>;
+    };
+    scalars: runtime.Types.Extensions.GetPayloadResult<{
+        id: string;
+        billId: string;
+        description: string;
+        quantity: runtime.Decimal;
+        unitPrice: runtime.Decimal;
+        accountId: string;
+    }, ExtArgs["result"]["billLine"]>;
+    composites: {};
+};
+export type BillLineGetPayload<S extends boolean | null | undefined | BillLineDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$BillLinePayload, S>;
+export type BillLineCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = Omit<BillLineFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+    select?: BillLineCountAggregateInputType | true;
+};
+export interface BillLineDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: {
+        types: Prisma.TypeMap<ExtArgs>['model']['BillLine'];
+        meta: {
+            name: 'BillLine';
+        };
+    };
+    /**
+     * Find zero or one BillLine that matches the filter.
+     * @param {BillLineFindUniqueArgs} args - Arguments to find a BillLine
+     * @example
+     * // Get one BillLine
+     * const billLine = await prisma.billLine.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BillLineFindUniqueArgs>(args: Prisma.SelectSubset<T, BillLineFindUniqueArgs<ExtArgs>>): Prisma.Prisma__BillLineClient<runtime.Types.Result.GetResult<Prisma.$BillLinePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find one BillLine that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BillLineFindUniqueOrThrowArgs} args - Arguments to find a BillLine
+     * @example
+     * // Get one BillLine
+     * const billLine = await prisma.billLine.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BillLineFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, BillLineFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__BillLineClient<runtime.Types.Result.GetResult<Prisma.$BillLinePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find the first BillLine that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillLineFindFirstArgs} args - Arguments to find a BillLine
+     * @example
+     * // Get one BillLine
+     * const billLine = await prisma.billLine.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BillLineFindFirstArgs>(args?: Prisma.SelectSubset<T, BillLineFindFirstArgs<ExtArgs>>): Prisma.Prisma__BillLineClient<runtime.Types.Result.GetResult<Prisma.$BillLinePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find the first BillLine that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillLineFindFirstOrThrowArgs} args - Arguments to find a BillLine
+     * @example
+     * // Get one BillLine
+     * const billLine = await prisma.billLine.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BillLineFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, BillLineFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__BillLineClient<runtime.Types.Result.GetResult<Prisma.$BillLinePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find zero or more BillLines that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillLineFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BillLines
+     * const billLines = await prisma.billLine.findMany()
+     *
+     * // Get first 10 BillLines
+     * const billLines = await prisma.billLine.findMany({ take: 10 })
+     *
+     * // Only select the `id`
+     * const billLineWithIdOnly = await prisma.billLine.findMany({ select: { id: true } })
+     *
+     */
+    findMany<T extends BillLineFindManyArgs>(args?: Prisma.SelectSubset<T, BillLineFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BillLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>;
+    /**
+     * Create a BillLine.
+     * @param {BillLineCreateArgs} args - Arguments to create a BillLine.
+     * @example
+     * // Create one BillLine
+     * const BillLine = await prisma.billLine.create({
+     *   data: {
+     *     // ... data to create a BillLine
+     *   }
+     * })
+     *
+     */
+    create<T extends BillLineCreateArgs>(args: Prisma.SelectSubset<T, BillLineCreateArgs<ExtArgs>>): Prisma.Prisma__BillLineClient<runtime.Types.Result.GetResult<Prisma.$BillLinePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Create many BillLines.
+     * @param {BillLineCreateManyArgs} args - Arguments to create many BillLines.
+     * @example
+     * // Create many BillLines
+     * const billLine = await prisma.billLine.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     */
+    createMany<T extends BillLineCreateManyArgs>(args?: Prisma.SelectSubset<T, BillLineCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Create many BillLines and returns the data saved in the database.
+     * @param {BillLineCreateManyAndReturnArgs} args - Arguments to create many BillLines.
+     * @example
+     * // Create many BillLines
+     * const billLine = await prisma.billLine.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Create many BillLines and only return the `id`
+     * const billLineWithIdOnly = await prisma.billLine.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    createManyAndReturn<T extends BillLineCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, BillLineCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BillLinePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>;
+    /**
+     * Delete a BillLine.
+     * @param {BillLineDeleteArgs} args - Arguments to delete one BillLine.
+     * @example
+     * // Delete one BillLine
+     * const BillLine = await prisma.billLine.delete({
+     *   where: {
+     *     // ... filter to delete one BillLine
+     *   }
+     * })
+     *
+     */
+    delete<T extends BillLineDeleteArgs>(args: Prisma.SelectSubset<T, BillLineDeleteArgs<ExtArgs>>): Prisma.Prisma__BillLineClient<runtime.Types.Result.GetResult<Prisma.$BillLinePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Update one BillLine.
+     * @param {BillLineUpdateArgs} args - Arguments to update one BillLine.
+     * @example
+     * // Update one BillLine
+     * const billLine = await prisma.billLine.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    update<T extends BillLineUpdateArgs>(args: Prisma.SelectSubset<T, BillLineUpdateArgs<ExtArgs>>): Prisma.Prisma__BillLineClient<runtime.Types.Result.GetResult<Prisma.$BillLinePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Delete zero or more BillLines.
+     * @param {BillLineDeleteManyArgs} args - Arguments to filter BillLines to delete.
+     * @example
+     * // Delete a few BillLines
+     * const { count } = await prisma.billLine.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     *
+     */
+    deleteMany<T extends BillLineDeleteManyArgs>(args?: Prisma.SelectSubset<T, BillLineDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Update zero or more BillLines.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillLineUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BillLines
+     * const billLine = await prisma.billLine.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    updateMany<T extends BillLineUpdateManyArgs>(args: Prisma.SelectSubset<T, BillLineUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Update zero or more BillLines and returns the data updated in the database.
+     * @param {BillLineUpdateManyAndReturnArgs} args - Arguments to update many BillLines.
+     * @example
+     * // Update many BillLines
+     * const billLine = await prisma.billLine.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Update zero or more BillLines and only return the `id`
+     * const billLineWithIdOnly = await prisma.billLine.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    updateManyAndReturn<T extends BillLineUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, BillLineUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BillLinePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>;
+    /**
+     * Create or update one BillLine.
+     * @param {BillLineUpsertArgs} args - Arguments to update or create a BillLine.
+     * @example
+     * // Update or create a BillLine
+     * const billLine = await prisma.billLine.upsert({
+     *   create: {
+     *     // ... data to create a BillLine
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BillLine we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BillLineUpsertArgs>(args: Prisma.SelectSubset<T, BillLineUpsertArgs<ExtArgs>>): Prisma.Prisma__BillLineClient<runtime.Types.Result.GetResult<Prisma.$BillLinePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Count the number of BillLines.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillLineCountArgs} args - Arguments to filter BillLines to count.
+     * @example
+     * // Count the number of BillLines
+     * const count = await prisma.billLine.count({
+     *   where: {
+     *     // ... the filter for the BillLines we want to count
+     *   }
+     * })
+    **/
+    count<T extends BillLineCountArgs>(args?: Prisma.Subset<T, BillLineCountArgs>): Prisma.PrismaPromise<T extends runtime.Types.Utils.Record<'select', any> ? T['select'] extends true ? number : Prisma.GetScalarType<T['select'], BillLineCountAggregateOutputType> : number>;
+    /**
+     * Allows you to perform aggregations operations on a BillLine.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillLineAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BillLineAggregateArgs>(args: Prisma.Subset<T, BillLineAggregateArgs>): Prisma.PrismaPromise<GetBillLineAggregateType<T>>;
+    /**
+     * Group by BillLine.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillLineGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     *
+    **/
+    groupBy<T extends BillLineGroupByArgs, HasSelectOrTake extends Prisma.Or<Prisma.Extends<'skip', Prisma.Keys<T>>, Prisma.Extends<'take', Prisma.Keys<T>>>, OrderByArg extends Prisma.True extends HasSelectOrTake ? {
+        orderBy: BillLineGroupByArgs['orderBy'];
+    } : {
+        orderBy?: BillLineGroupByArgs['orderBy'];
+    }, OrderFields extends Prisma.ExcludeUnderscoreKeys<Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>>, ByFields extends Prisma.MaybeTupleToUnion<T['by']>, ByValid extends Prisma.Has<ByFields, OrderFields>, HavingFields extends Prisma.GetHavingFields<T['having']>, HavingValid extends Prisma.Has<ByFields, HavingFields>, ByEmpty extends T['by'] extends never[] ? Prisma.True : Prisma.False, InputErrors extends ByEmpty extends Prisma.True ? `Error: "by" must not be empty.` : HavingValid extends Prisma.False ? {
+        [P in HavingFields]: P extends ByFields ? never : P extends string ? `Error: Field "${P}" used in "having" needs to be provided in "by".` : [
+            Error,
+            'Field ',
+            P,
+            ` in "having" needs to be provided in "by"`
+        ];
+    }[HavingFields] : 'take' extends Prisma.Keys<T> ? 'orderBy' extends Prisma.Keys<T> ? ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields] : 'Error: If you provide "take", you also need to provide "orderBy"' : 'skip' extends Prisma.Keys<T> ? 'orderBy' extends Prisma.Keys<T> ? ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields] : 'Error: If you provide "skip", you also need to provide "orderBy"' : ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields]>(args: Prisma.SubsetIntersection<T, BillLineGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBillLineGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>;
+    /**
+     * Fields of the BillLine model
+     */
+    readonly fields: BillLineFieldRefs;
+}
+/**
+ * The delegate class that acts as a "Promise-like" for BillLine.
+ * Why is this prefixed with `Prisma__`?
+ * Because we want to prevent naming conflicts as mentioned in
+ * https://github.com/prisma/prisma-client-js/issues/707
+ */
+export interface Prisma__BillLineClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise";
+    bill<T extends Prisma.BillDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BillDefaultArgs<ExtArgs>>): Prisma.Prisma__BillClient<runtime.Types.Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
+    account<T extends Prisma.AccountingDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccountingDefaultArgs<ExtArgs>>): Prisma.Prisma__AccountingClient<runtime.Types.Result.GetResult<Prisma.$AccountingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): runtime.Types.Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): runtime.Types.Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): runtime.Types.Utils.JsPromise<T>;
+}
+/**
+ * Fields of the BillLine model
+ */
+export interface BillLineFieldRefs {
+    readonly id: Prisma.FieldRef<"BillLine", 'String'>;
+    readonly billId: Prisma.FieldRef<"BillLine", 'String'>;
+    readonly description: Prisma.FieldRef<"BillLine", 'String'>;
+    readonly quantity: Prisma.FieldRef<"BillLine", 'Decimal'>;
+    readonly unitPrice: Prisma.FieldRef<"BillLine", 'Decimal'>;
+    readonly accountId: Prisma.FieldRef<"BillLine", 'String'>;
+}
+/**
+ * BillLine findUnique
+ */
+export type BillLineFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillLine
+     */
+    select?: Prisma.BillLineSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the BillLine
+     */
+    omit?: Prisma.BillLineOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.BillLineInclude<ExtArgs> | null;
+    /**
+     * Filter, which BillLine to fetch.
+     */
+    where: Prisma.BillLineWhereUniqueInput;
+};
+/**
+ * BillLine findUniqueOrThrow
+ */
+export type BillLineFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillLine
+     */
+    select?: Prisma.BillLineSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the BillLine
+     */
+    omit?: Prisma.BillLineOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.BillLineInclude<ExtArgs> | null;
+    /**
+     * Filter, which BillLine to fetch.
+     */
+    where: Prisma.BillLineWhereUniqueInput;
+};
+/**
+ * BillLine findFirst
+ */
+export type BillLineFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillLine
+     */
+    select?: Prisma.BillLineSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the BillLine
+     */
+    omit?: Prisma.BillLineOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.BillLineInclude<ExtArgs> | null;
+    /**
+     * Filter, which BillLine to fetch.
+     */
+    where?: Prisma.BillLineWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of BillLines to fetch.
+     */
+    orderBy?: Prisma.BillLineOrderByWithRelationInput | Prisma.BillLineOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for BillLines.
+     */
+    cursor?: Prisma.BillLineWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` BillLines from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` BillLines.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of BillLines.
+     */
+    distinct?: Prisma.BillLineScalarFieldEnum | Prisma.BillLineScalarFieldEnum[];
+};
+/**
+ * BillLine findFirstOrThrow
+ */
+export type BillLineFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillLine
+     */
+    select?: Prisma.BillLineSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the BillLine
+     */
+    omit?: Prisma.BillLineOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.BillLineInclude<ExtArgs> | null;
+    /**
+     * Filter, which BillLine to fetch.
+     */
+    where?: Prisma.BillLineWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of BillLines to fetch.
+     */
+    orderBy?: Prisma.BillLineOrderByWithRelationInput | Prisma.BillLineOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for BillLines.
+     */
+    cursor?: Prisma.BillLineWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` BillLines from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` BillLines.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of BillLines.
+     */
+    distinct?: Prisma.BillLineScalarFieldEnum | Prisma.BillLineScalarFieldEnum[];
+};
+/**
+ * BillLine findMany
+ */
+export type BillLineFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillLine
+     */
+    select?: Prisma.BillLineSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the BillLine
+     */
+    omit?: Prisma.BillLineOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.BillLineInclude<ExtArgs> | null;
+    /**
+     * Filter, which BillLines to fetch.
+     */
+    where?: Prisma.BillLineWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of BillLines to fetch.
+     */
+    orderBy?: Prisma.BillLineOrderByWithRelationInput | Prisma.BillLineOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for listing BillLines.
+     */
+    cursor?: Prisma.BillLineWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` BillLines from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` BillLines.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of BillLines.
+     */
+    distinct?: Prisma.BillLineScalarFieldEnum | Prisma.BillLineScalarFieldEnum[];
+};
+/**
+ * BillLine create
+ */
+export type BillLineCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillLine
+     */
+    select?: Prisma.BillLineSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the BillLine
+     */
+    omit?: Prisma.BillLineOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.BillLineInclude<ExtArgs> | null;
+    /**
+     * The data needed to create a BillLine.
+     */
+    data: Prisma.XOR<Prisma.BillLineCreateInput, Prisma.BillLineUncheckedCreateInput>;
+};
+/**
+ * BillLine createMany
+ */
+export type BillLineCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BillLines.
+     */
+    data: Prisma.BillLineCreateManyInput | Prisma.BillLineCreateManyInput[];
+    skipDuplicates?: boolean;
+};
+/**
+ * BillLine createManyAndReturn
+ */
+export type BillLineCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillLine
+     */
+    select?: Prisma.BillLineSelectCreateManyAndReturn<ExtArgs> | null;
+    /**
+     * Omit specific fields from the BillLine
+     */
+    omit?: Prisma.BillLineOmit<ExtArgs> | null;
+    /**
+     * The data used to create many BillLines.
+     */
+    data: Prisma.BillLineCreateManyInput | Prisma.BillLineCreateManyInput[];
+    skipDuplicates?: boolean;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.BillLineIncludeCreateManyAndReturn<ExtArgs> | null;
+};
+/**
+ * BillLine update
+ */
+export type BillLineUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillLine
+     */
+    select?: Prisma.BillLineSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the BillLine
+     */
+    omit?: Prisma.BillLineOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.BillLineInclude<ExtArgs> | null;
+    /**
+     * The data needed to update a BillLine.
+     */
+    data: Prisma.XOR<Prisma.BillLineUpdateInput, Prisma.BillLineUncheckedUpdateInput>;
+    /**
+     * Choose, which BillLine to update.
+     */
+    where: Prisma.BillLineWhereUniqueInput;
+};
+/**
+ * BillLine updateMany
+ */
+export type BillLineUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BillLines.
+     */
+    data: Prisma.XOR<Prisma.BillLineUpdateManyMutationInput, Prisma.BillLineUncheckedUpdateManyInput>;
+    /**
+     * Filter which BillLines to update
+     */
+    where?: Prisma.BillLineWhereInput;
+    /**
+     * Limit how many BillLines to update.
+     */
+    limit?: number;
+};
+/**
+ * BillLine updateManyAndReturn
+ */
+export type BillLineUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillLine
+     */
+    select?: Prisma.BillLineSelectUpdateManyAndReturn<ExtArgs> | null;
+    /**
+     * Omit specific fields from the BillLine
+     */
+    omit?: Prisma.BillLineOmit<ExtArgs> | null;
+    /**
+     * The data used to update BillLines.
+     */
+    data: Prisma.XOR<Prisma.BillLineUpdateManyMutationInput, Prisma.BillLineUncheckedUpdateManyInput>;
+    /**
+     * Filter which BillLines to update
+     */
+    where?: Prisma.BillLineWhereInput;
+    /**
+     * Limit how many BillLines to update.
+     */
+    limit?: number;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.BillLineIncludeUpdateManyAndReturn<ExtArgs> | null;
+};
+/**
+ * BillLine upsert
+ */
+export type BillLineUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillLine
+     */
+    select?: Prisma.BillLineSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the BillLine
+     */
+    omit?: Prisma.BillLineOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.BillLineInclude<ExtArgs> | null;
+    /**
+     * The filter to search for the BillLine to update in case it exists.
+     */
+    where: Prisma.BillLineWhereUniqueInput;
+    /**
+     * In case the BillLine found by the `where` argument doesn't exist, create a new BillLine with this data.
+     */
+    create: Prisma.XOR<Prisma.BillLineCreateInput, Prisma.BillLineUncheckedCreateInput>;
+    /**
+     * In case the BillLine was found with the provided `where` argument, update it with this data.
+     */
+    update: Prisma.XOR<Prisma.BillLineUpdateInput, Prisma.BillLineUncheckedUpdateInput>;
+};
+/**
+ * BillLine delete
+ */
+export type BillLineDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillLine
+     */
+    select?: Prisma.BillLineSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the BillLine
+     */
+    omit?: Prisma.BillLineOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.BillLineInclude<ExtArgs> | null;
+    /**
+     * Filter which BillLine to delete.
+     */
+    where: Prisma.BillLineWhereUniqueInput;
+};
+/**
+ * BillLine deleteMany
+ */
+export type BillLineDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Filter which BillLines to delete
+     */
+    where?: Prisma.BillLineWhereInput;
+    /**
+     * Limit how many BillLines to delete.
+     */
+    limit?: number;
+};
+/**
+ * BillLine without action
+ */
+export type BillLineDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillLine
+     */
+    select?: Prisma.BillLineSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the BillLine
+     */
+    omit?: Prisma.BillLineOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.BillLineInclude<ExtArgs> | null;
+};

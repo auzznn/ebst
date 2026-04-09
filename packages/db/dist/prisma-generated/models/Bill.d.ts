@@ -1,0 +1,1792 @@
+import type * as runtime from "@prisma/client/runtime/client";
+import type * as $Enums from "../enums.js";
+import type * as Prisma from "../internal/prismaNamespace.js";
+/**
+ * Model Bill
+ *
+ */
+export type BillModel = runtime.Types.Result.DefaultSelection<Prisma.$BillPayload>;
+export type AggregateBill = {
+    _count: BillCountAggregateOutputType | null;
+    _avg: BillAvgAggregateOutputType | null;
+    _sum: BillSumAggregateOutputType | null;
+    _min: BillMinAggregateOutputType | null;
+    _max: BillMaxAggregateOutputType | null;
+};
+export type BillAvgAggregateOutputType = {
+    subtotal: runtime.Decimal | null;
+    taxAmount: runtime.Decimal | null;
+    total: runtime.Decimal | null;
+};
+export type BillSumAggregateOutputType = {
+    subtotal: runtime.Decimal | null;
+    taxAmount: runtime.Decimal | null;
+    total: runtime.Decimal | null;
+};
+export type BillMinAggregateOutputType = {
+    id: string | null;
+    billNumber: string | null;
+    vendorId: string | null;
+    issueDate: Date | null;
+    dueDate: Date | null;
+    status: $Enums.BillStatus | null;
+    subtotal: runtime.Decimal | null;
+    taxCodeId: string | null;
+    taxAmount: runtime.Decimal | null;
+    total: runtime.Decimal | null;
+    createdAt: Date | null;
+    updatedAt: Date | null;
+};
+export type BillMaxAggregateOutputType = {
+    id: string | null;
+    billNumber: string | null;
+    vendorId: string | null;
+    issueDate: Date | null;
+    dueDate: Date | null;
+    status: $Enums.BillStatus | null;
+    subtotal: runtime.Decimal | null;
+    taxCodeId: string | null;
+    taxAmount: runtime.Decimal | null;
+    total: runtime.Decimal | null;
+    createdAt: Date | null;
+    updatedAt: Date | null;
+};
+export type BillCountAggregateOutputType = {
+    id: number;
+    billNumber: number;
+    vendorId: number;
+    issueDate: number;
+    dueDate: number;
+    status: number;
+    subtotal: number;
+    taxCodeId: number;
+    taxAmount: number;
+    total: number;
+    createdAt: number;
+    updatedAt: number;
+    _all: number;
+};
+export type BillAvgAggregateInputType = {
+    subtotal?: true;
+    taxAmount?: true;
+    total?: true;
+};
+export type BillSumAggregateInputType = {
+    subtotal?: true;
+    taxAmount?: true;
+    total?: true;
+};
+export type BillMinAggregateInputType = {
+    id?: true;
+    billNumber?: true;
+    vendorId?: true;
+    issueDate?: true;
+    dueDate?: true;
+    status?: true;
+    subtotal?: true;
+    taxCodeId?: true;
+    taxAmount?: true;
+    total?: true;
+    createdAt?: true;
+    updatedAt?: true;
+};
+export type BillMaxAggregateInputType = {
+    id?: true;
+    billNumber?: true;
+    vendorId?: true;
+    issueDate?: true;
+    dueDate?: true;
+    status?: true;
+    subtotal?: true;
+    taxCodeId?: true;
+    taxAmount?: true;
+    total?: true;
+    createdAt?: true;
+    updatedAt?: true;
+};
+export type BillCountAggregateInputType = {
+    id?: true;
+    billNumber?: true;
+    vendorId?: true;
+    issueDate?: true;
+    dueDate?: true;
+    status?: true;
+    subtotal?: true;
+    taxCodeId?: true;
+    taxAmount?: true;
+    total?: true;
+    createdAt?: true;
+    updatedAt?: true;
+    _all?: true;
+};
+export type BillAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Filter which Bill to aggregate.
+     */
+    where?: Prisma.BillWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of Bills to fetch.
+     */
+    orderBy?: Prisma.BillOrderByWithRelationInput | Prisma.BillOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the start position
+     */
+    cursor?: Prisma.BillWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` Bills from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` Bills.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Count returned Bills
+    **/
+    _count?: true | BillCountAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to average
+    **/
+    _avg?: BillAvgAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to sum
+    **/
+    _sum?: BillSumAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the minimum value
+    **/
+    _min?: BillMinAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the maximum value
+    **/
+    _max?: BillMaxAggregateInputType;
+};
+export type GetBillAggregateType<T extends BillAggregateArgs> = {
+    [P in keyof T & keyof AggregateBill]: P extends '_count' | 'count' ? T[P] extends true ? number : Prisma.GetScalarType<T[P], AggregateBill[P]> : Prisma.GetScalarType<T[P], AggregateBill[P]>;
+};
+export type BillGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.BillWhereInput;
+    orderBy?: Prisma.BillOrderByWithAggregationInput | Prisma.BillOrderByWithAggregationInput[];
+    by: Prisma.BillScalarFieldEnum[] | Prisma.BillScalarFieldEnum;
+    having?: Prisma.BillScalarWhereWithAggregatesInput;
+    take?: number;
+    skip?: number;
+    _count?: BillCountAggregateInputType | true;
+    _avg?: BillAvgAggregateInputType;
+    _sum?: BillSumAggregateInputType;
+    _min?: BillMinAggregateInputType;
+    _max?: BillMaxAggregateInputType;
+};
+export type BillGroupByOutputType = {
+    id: string;
+    billNumber: string;
+    vendorId: string;
+    issueDate: Date;
+    dueDate: Date;
+    status: $Enums.BillStatus;
+    subtotal: runtime.Decimal;
+    taxCodeId: string | null;
+    taxAmount: runtime.Decimal;
+    total: runtime.Decimal;
+    createdAt: Date;
+    updatedAt: Date;
+    _count: BillCountAggregateOutputType | null;
+    _avg: BillAvgAggregateOutputType | null;
+    _sum: BillSumAggregateOutputType | null;
+    _min: BillMinAggregateOutputType | null;
+    _max: BillMaxAggregateOutputType | null;
+};
+export type GetBillGroupByPayload<T extends BillGroupByArgs> = Prisma.PrismaPromise<Array<Prisma.PickEnumerable<BillGroupByOutputType, T['by']> & {
+    [P in ((keyof T) & (keyof BillGroupByOutputType))]: P extends '_count' ? T[P] extends boolean ? number : Prisma.GetScalarType<T[P], BillGroupByOutputType[P]> : Prisma.GetScalarType<T[P], BillGroupByOutputType[P]>;
+}>>;
+export type BillWhereInput = {
+    AND?: Prisma.BillWhereInput | Prisma.BillWhereInput[];
+    OR?: Prisma.BillWhereInput[];
+    NOT?: Prisma.BillWhereInput | Prisma.BillWhereInput[];
+    id?: Prisma.StringFilter<"Bill"> | string;
+    billNumber?: Prisma.StringFilter<"Bill"> | string;
+    vendorId?: Prisma.StringFilter<"Bill"> | string;
+    issueDate?: Prisma.DateTimeFilter<"Bill"> | Date | string;
+    dueDate?: Prisma.DateTimeFilter<"Bill"> | Date | string;
+    status?: Prisma.EnumBillStatusFilter<"Bill"> | $Enums.BillStatus;
+    subtotal?: Prisma.DecimalFilter<"Bill"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    taxCodeId?: Prisma.StringNullableFilter<"Bill"> | string | null;
+    taxAmount?: Prisma.DecimalFilter<"Bill"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFilter<"Bill"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Prisma.DateTimeFilter<"Bill"> | Date | string;
+    updatedAt?: Prisma.DateTimeFilter<"Bill"> | Date | string;
+    vendor?: Prisma.XOR<Prisma.VendorScalarRelationFilter, Prisma.VendorWhereInput>;
+    taxCode?: Prisma.XOR<Prisma.TaxCodeNullableScalarRelationFilter, Prisma.TaxCodeWhereInput> | null;
+    lines?: Prisma.BillLineListRelationFilter;
+};
+export type BillOrderByWithRelationInput = {
+    id?: Prisma.SortOrder;
+    billNumber?: Prisma.SortOrder;
+    vendorId?: Prisma.SortOrder;
+    issueDate?: Prisma.SortOrder;
+    dueDate?: Prisma.SortOrder;
+    status?: Prisma.SortOrder;
+    subtotal?: Prisma.SortOrder;
+    taxCodeId?: Prisma.SortOrderInput | Prisma.SortOrder;
+    taxAmount?: Prisma.SortOrder;
+    total?: Prisma.SortOrder;
+    createdAt?: Prisma.SortOrder;
+    updatedAt?: Prisma.SortOrder;
+    vendor?: Prisma.VendorOrderByWithRelationInput;
+    taxCode?: Prisma.TaxCodeOrderByWithRelationInput;
+    lines?: Prisma.BillLineOrderByRelationAggregateInput;
+};
+export type BillWhereUniqueInput = Prisma.AtLeast<{
+    id?: string;
+    billNumber?: string;
+    AND?: Prisma.BillWhereInput | Prisma.BillWhereInput[];
+    OR?: Prisma.BillWhereInput[];
+    NOT?: Prisma.BillWhereInput | Prisma.BillWhereInput[];
+    vendorId?: Prisma.StringFilter<"Bill"> | string;
+    issueDate?: Prisma.DateTimeFilter<"Bill"> | Date | string;
+    dueDate?: Prisma.DateTimeFilter<"Bill"> | Date | string;
+    status?: Prisma.EnumBillStatusFilter<"Bill"> | $Enums.BillStatus;
+    subtotal?: Prisma.DecimalFilter<"Bill"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    taxCodeId?: Prisma.StringNullableFilter<"Bill"> | string | null;
+    taxAmount?: Prisma.DecimalFilter<"Bill"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFilter<"Bill"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Prisma.DateTimeFilter<"Bill"> | Date | string;
+    updatedAt?: Prisma.DateTimeFilter<"Bill"> | Date | string;
+    vendor?: Prisma.XOR<Prisma.VendorScalarRelationFilter, Prisma.VendorWhereInput>;
+    taxCode?: Prisma.XOR<Prisma.TaxCodeNullableScalarRelationFilter, Prisma.TaxCodeWhereInput> | null;
+    lines?: Prisma.BillLineListRelationFilter;
+}, "id" | "billNumber">;
+export type BillOrderByWithAggregationInput = {
+    id?: Prisma.SortOrder;
+    billNumber?: Prisma.SortOrder;
+    vendorId?: Prisma.SortOrder;
+    issueDate?: Prisma.SortOrder;
+    dueDate?: Prisma.SortOrder;
+    status?: Prisma.SortOrder;
+    subtotal?: Prisma.SortOrder;
+    taxCodeId?: Prisma.SortOrderInput | Prisma.SortOrder;
+    taxAmount?: Prisma.SortOrder;
+    total?: Prisma.SortOrder;
+    createdAt?: Prisma.SortOrder;
+    updatedAt?: Prisma.SortOrder;
+    _count?: Prisma.BillCountOrderByAggregateInput;
+    _avg?: Prisma.BillAvgOrderByAggregateInput;
+    _max?: Prisma.BillMaxOrderByAggregateInput;
+    _min?: Prisma.BillMinOrderByAggregateInput;
+    _sum?: Prisma.BillSumOrderByAggregateInput;
+};
+export type BillScalarWhereWithAggregatesInput = {
+    AND?: Prisma.BillScalarWhereWithAggregatesInput | Prisma.BillScalarWhereWithAggregatesInput[];
+    OR?: Prisma.BillScalarWhereWithAggregatesInput[];
+    NOT?: Prisma.BillScalarWhereWithAggregatesInput | Prisma.BillScalarWhereWithAggregatesInput[];
+    id?: Prisma.StringWithAggregatesFilter<"Bill"> | string;
+    billNumber?: Prisma.StringWithAggregatesFilter<"Bill"> | string;
+    vendorId?: Prisma.StringWithAggregatesFilter<"Bill"> | string;
+    issueDate?: Prisma.DateTimeWithAggregatesFilter<"Bill"> | Date | string;
+    dueDate?: Prisma.DateTimeWithAggregatesFilter<"Bill"> | Date | string;
+    status?: Prisma.EnumBillStatusWithAggregatesFilter<"Bill"> | $Enums.BillStatus;
+    subtotal?: Prisma.DecimalWithAggregatesFilter<"Bill"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    taxCodeId?: Prisma.StringNullableWithAggregatesFilter<"Bill"> | string | null;
+    taxAmount?: Prisma.DecimalWithAggregatesFilter<"Bill"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalWithAggregatesFilter<"Bill"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Prisma.DateTimeWithAggregatesFilter<"Bill"> | Date | string;
+    updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Bill"> | Date | string;
+};
+export type BillCreateInput = {
+    id?: string;
+    billNumber: string;
+    issueDate: Date | string;
+    dueDate: Date | string;
+    status?: $Enums.BillStatus;
+    subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    vendor: Prisma.VendorCreateNestedOneWithoutBillsInput;
+    taxCode?: Prisma.TaxCodeCreateNestedOneWithoutBillsInput;
+    lines?: Prisma.BillLineCreateNestedManyWithoutBillInput;
+};
+export type BillUncheckedCreateInput = {
+    id?: string;
+    billNumber: string;
+    vendorId: string;
+    issueDate: Date | string;
+    dueDate: Date | string;
+    status?: $Enums.BillStatus;
+    subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    taxCodeId?: string | null;
+    taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    lines?: Prisma.BillLineUncheckedCreateNestedManyWithoutBillInput;
+};
+export type BillUpdateInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    billNumber?: Prisma.StringFieldUpdateOperationsInput | string;
+    issueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    status?: Prisma.EnumBillStatusFieldUpdateOperationsInput | $Enums.BillStatus;
+    subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    vendor?: Prisma.VendorUpdateOneRequiredWithoutBillsNestedInput;
+    taxCode?: Prisma.TaxCodeUpdateOneWithoutBillsNestedInput;
+    lines?: Prisma.BillLineUpdateManyWithoutBillNestedInput;
+};
+export type BillUncheckedUpdateInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    billNumber?: Prisma.StringFieldUpdateOperationsInput | string;
+    vendorId?: Prisma.StringFieldUpdateOperationsInput | string;
+    issueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    status?: Prisma.EnumBillStatusFieldUpdateOperationsInput | $Enums.BillStatus;
+    subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    taxCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    lines?: Prisma.BillLineUncheckedUpdateManyWithoutBillNestedInput;
+};
+export type BillCreateManyInput = {
+    id?: string;
+    billNumber: string;
+    vendorId: string;
+    issueDate: Date | string;
+    dueDate: Date | string;
+    status?: $Enums.BillStatus;
+    subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    taxCodeId?: string | null;
+    taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+};
+export type BillUpdateManyMutationInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    billNumber?: Prisma.StringFieldUpdateOperationsInput | string;
+    issueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    status?: Prisma.EnumBillStatusFieldUpdateOperationsInput | $Enums.BillStatus;
+    subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+export type BillUncheckedUpdateManyInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    billNumber?: Prisma.StringFieldUpdateOperationsInput | string;
+    vendorId?: Prisma.StringFieldUpdateOperationsInput | string;
+    issueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    status?: Prisma.EnumBillStatusFieldUpdateOperationsInput | $Enums.BillStatus;
+    subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    taxCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+export type BillCountOrderByAggregateInput = {
+    id?: Prisma.SortOrder;
+    billNumber?: Prisma.SortOrder;
+    vendorId?: Prisma.SortOrder;
+    issueDate?: Prisma.SortOrder;
+    dueDate?: Prisma.SortOrder;
+    status?: Prisma.SortOrder;
+    subtotal?: Prisma.SortOrder;
+    taxCodeId?: Prisma.SortOrder;
+    taxAmount?: Prisma.SortOrder;
+    total?: Prisma.SortOrder;
+    createdAt?: Prisma.SortOrder;
+    updatedAt?: Prisma.SortOrder;
+};
+export type BillAvgOrderByAggregateInput = {
+    subtotal?: Prisma.SortOrder;
+    taxAmount?: Prisma.SortOrder;
+    total?: Prisma.SortOrder;
+};
+export type BillMaxOrderByAggregateInput = {
+    id?: Prisma.SortOrder;
+    billNumber?: Prisma.SortOrder;
+    vendorId?: Prisma.SortOrder;
+    issueDate?: Prisma.SortOrder;
+    dueDate?: Prisma.SortOrder;
+    status?: Prisma.SortOrder;
+    subtotal?: Prisma.SortOrder;
+    taxCodeId?: Prisma.SortOrder;
+    taxAmount?: Prisma.SortOrder;
+    total?: Prisma.SortOrder;
+    createdAt?: Prisma.SortOrder;
+    updatedAt?: Prisma.SortOrder;
+};
+export type BillMinOrderByAggregateInput = {
+    id?: Prisma.SortOrder;
+    billNumber?: Prisma.SortOrder;
+    vendorId?: Prisma.SortOrder;
+    issueDate?: Prisma.SortOrder;
+    dueDate?: Prisma.SortOrder;
+    status?: Prisma.SortOrder;
+    subtotal?: Prisma.SortOrder;
+    taxCodeId?: Prisma.SortOrder;
+    taxAmount?: Prisma.SortOrder;
+    total?: Prisma.SortOrder;
+    createdAt?: Prisma.SortOrder;
+    updatedAt?: Prisma.SortOrder;
+};
+export type BillSumOrderByAggregateInput = {
+    subtotal?: Prisma.SortOrder;
+    taxAmount?: Prisma.SortOrder;
+    total?: Prisma.SortOrder;
+};
+export type BillScalarRelationFilter = {
+    is?: Prisma.BillWhereInput;
+    isNot?: Prisma.BillWhereInput;
+};
+export type BillListRelationFilter = {
+    every?: Prisma.BillWhereInput;
+    some?: Prisma.BillWhereInput;
+    none?: Prisma.BillWhereInput;
+};
+export type BillOrderByRelationAggregateInput = {
+    _count?: Prisma.SortOrder;
+};
+export type EnumBillStatusFieldUpdateOperationsInput = {
+    set?: $Enums.BillStatus;
+};
+export type BillCreateNestedOneWithoutLinesInput = {
+    create?: Prisma.XOR<Prisma.BillCreateWithoutLinesInput, Prisma.BillUncheckedCreateWithoutLinesInput>;
+    connectOrCreate?: Prisma.BillCreateOrConnectWithoutLinesInput;
+    connect?: Prisma.BillWhereUniqueInput;
+};
+export type BillUpdateOneRequiredWithoutLinesNestedInput = {
+    create?: Prisma.XOR<Prisma.BillCreateWithoutLinesInput, Prisma.BillUncheckedCreateWithoutLinesInput>;
+    connectOrCreate?: Prisma.BillCreateOrConnectWithoutLinesInput;
+    upsert?: Prisma.BillUpsertWithoutLinesInput;
+    connect?: Prisma.BillWhereUniqueInput;
+    update?: Prisma.XOR<Prisma.XOR<Prisma.BillUpdateToOneWithWhereWithoutLinesInput, Prisma.BillUpdateWithoutLinesInput>, Prisma.BillUncheckedUpdateWithoutLinesInput>;
+};
+export type BillCreateNestedManyWithoutTaxCodeInput = {
+    create?: Prisma.XOR<Prisma.BillCreateWithoutTaxCodeInput, Prisma.BillUncheckedCreateWithoutTaxCodeInput> | Prisma.BillCreateWithoutTaxCodeInput[] | Prisma.BillUncheckedCreateWithoutTaxCodeInput[];
+    connectOrCreate?: Prisma.BillCreateOrConnectWithoutTaxCodeInput | Prisma.BillCreateOrConnectWithoutTaxCodeInput[];
+    createMany?: Prisma.BillCreateManyTaxCodeInputEnvelope;
+    connect?: Prisma.BillWhereUniqueInput | Prisma.BillWhereUniqueInput[];
+};
+export type BillUncheckedCreateNestedManyWithoutTaxCodeInput = {
+    create?: Prisma.XOR<Prisma.BillCreateWithoutTaxCodeInput, Prisma.BillUncheckedCreateWithoutTaxCodeInput> | Prisma.BillCreateWithoutTaxCodeInput[] | Prisma.BillUncheckedCreateWithoutTaxCodeInput[];
+    connectOrCreate?: Prisma.BillCreateOrConnectWithoutTaxCodeInput | Prisma.BillCreateOrConnectWithoutTaxCodeInput[];
+    createMany?: Prisma.BillCreateManyTaxCodeInputEnvelope;
+    connect?: Prisma.BillWhereUniqueInput | Prisma.BillWhereUniqueInput[];
+};
+export type BillUpdateManyWithoutTaxCodeNestedInput = {
+    create?: Prisma.XOR<Prisma.BillCreateWithoutTaxCodeInput, Prisma.BillUncheckedCreateWithoutTaxCodeInput> | Prisma.BillCreateWithoutTaxCodeInput[] | Prisma.BillUncheckedCreateWithoutTaxCodeInput[];
+    connectOrCreate?: Prisma.BillCreateOrConnectWithoutTaxCodeInput | Prisma.BillCreateOrConnectWithoutTaxCodeInput[];
+    upsert?: Prisma.BillUpsertWithWhereUniqueWithoutTaxCodeInput | Prisma.BillUpsertWithWhereUniqueWithoutTaxCodeInput[];
+    createMany?: Prisma.BillCreateManyTaxCodeInputEnvelope;
+    set?: Prisma.BillWhereUniqueInput | Prisma.BillWhereUniqueInput[];
+    disconnect?: Prisma.BillWhereUniqueInput | Prisma.BillWhereUniqueInput[];
+    delete?: Prisma.BillWhereUniqueInput | Prisma.BillWhereUniqueInput[];
+    connect?: Prisma.BillWhereUniqueInput | Prisma.BillWhereUniqueInput[];
+    update?: Prisma.BillUpdateWithWhereUniqueWithoutTaxCodeInput | Prisma.BillUpdateWithWhereUniqueWithoutTaxCodeInput[];
+    updateMany?: Prisma.BillUpdateManyWithWhereWithoutTaxCodeInput | Prisma.BillUpdateManyWithWhereWithoutTaxCodeInput[];
+    deleteMany?: Prisma.BillScalarWhereInput | Prisma.BillScalarWhereInput[];
+};
+export type BillUncheckedUpdateManyWithoutTaxCodeNestedInput = {
+    create?: Prisma.XOR<Prisma.BillCreateWithoutTaxCodeInput, Prisma.BillUncheckedCreateWithoutTaxCodeInput> | Prisma.BillCreateWithoutTaxCodeInput[] | Prisma.BillUncheckedCreateWithoutTaxCodeInput[];
+    connectOrCreate?: Prisma.BillCreateOrConnectWithoutTaxCodeInput | Prisma.BillCreateOrConnectWithoutTaxCodeInput[];
+    upsert?: Prisma.BillUpsertWithWhereUniqueWithoutTaxCodeInput | Prisma.BillUpsertWithWhereUniqueWithoutTaxCodeInput[];
+    createMany?: Prisma.BillCreateManyTaxCodeInputEnvelope;
+    set?: Prisma.BillWhereUniqueInput | Prisma.BillWhereUniqueInput[];
+    disconnect?: Prisma.BillWhereUniqueInput | Prisma.BillWhereUniqueInput[];
+    delete?: Prisma.BillWhereUniqueInput | Prisma.BillWhereUniqueInput[];
+    connect?: Prisma.BillWhereUniqueInput | Prisma.BillWhereUniqueInput[];
+    update?: Prisma.BillUpdateWithWhereUniqueWithoutTaxCodeInput | Prisma.BillUpdateWithWhereUniqueWithoutTaxCodeInput[];
+    updateMany?: Prisma.BillUpdateManyWithWhereWithoutTaxCodeInput | Prisma.BillUpdateManyWithWhereWithoutTaxCodeInput[];
+    deleteMany?: Prisma.BillScalarWhereInput | Prisma.BillScalarWhereInput[];
+};
+export type BillCreateNestedManyWithoutVendorInput = {
+    create?: Prisma.XOR<Prisma.BillCreateWithoutVendorInput, Prisma.BillUncheckedCreateWithoutVendorInput> | Prisma.BillCreateWithoutVendorInput[] | Prisma.BillUncheckedCreateWithoutVendorInput[];
+    connectOrCreate?: Prisma.BillCreateOrConnectWithoutVendorInput | Prisma.BillCreateOrConnectWithoutVendorInput[];
+    createMany?: Prisma.BillCreateManyVendorInputEnvelope;
+    connect?: Prisma.BillWhereUniqueInput | Prisma.BillWhereUniqueInput[];
+};
+export type BillUncheckedCreateNestedManyWithoutVendorInput = {
+    create?: Prisma.XOR<Prisma.BillCreateWithoutVendorInput, Prisma.BillUncheckedCreateWithoutVendorInput> | Prisma.BillCreateWithoutVendorInput[] | Prisma.BillUncheckedCreateWithoutVendorInput[];
+    connectOrCreate?: Prisma.BillCreateOrConnectWithoutVendorInput | Prisma.BillCreateOrConnectWithoutVendorInput[];
+    createMany?: Prisma.BillCreateManyVendorInputEnvelope;
+    connect?: Prisma.BillWhereUniqueInput | Prisma.BillWhereUniqueInput[];
+};
+export type BillUpdateManyWithoutVendorNestedInput = {
+    create?: Prisma.XOR<Prisma.BillCreateWithoutVendorInput, Prisma.BillUncheckedCreateWithoutVendorInput> | Prisma.BillCreateWithoutVendorInput[] | Prisma.BillUncheckedCreateWithoutVendorInput[];
+    connectOrCreate?: Prisma.BillCreateOrConnectWithoutVendorInput | Prisma.BillCreateOrConnectWithoutVendorInput[];
+    upsert?: Prisma.BillUpsertWithWhereUniqueWithoutVendorInput | Prisma.BillUpsertWithWhereUniqueWithoutVendorInput[];
+    createMany?: Prisma.BillCreateManyVendorInputEnvelope;
+    set?: Prisma.BillWhereUniqueInput | Prisma.BillWhereUniqueInput[];
+    disconnect?: Prisma.BillWhereUniqueInput | Prisma.BillWhereUniqueInput[];
+    delete?: Prisma.BillWhereUniqueInput | Prisma.BillWhereUniqueInput[];
+    connect?: Prisma.BillWhereUniqueInput | Prisma.BillWhereUniqueInput[];
+    update?: Prisma.BillUpdateWithWhereUniqueWithoutVendorInput | Prisma.BillUpdateWithWhereUniqueWithoutVendorInput[];
+    updateMany?: Prisma.BillUpdateManyWithWhereWithoutVendorInput | Prisma.BillUpdateManyWithWhereWithoutVendorInput[];
+    deleteMany?: Prisma.BillScalarWhereInput | Prisma.BillScalarWhereInput[];
+};
+export type BillUncheckedUpdateManyWithoutVendorNestedInput = {
+    create?: Prisma.XOR<Prisma.BillCreateWithoutVendorInput, Prisma.BillUncheckedCreateWithoutVendorInput> | Prisma.BillCreateWithoutVendorInput[] | Prisma.BillUncheckedCreateWithoutVendorInput[];
+    connectOrCreate?: Prisma.BillCreateOrConnectWithoutVendorInput | Prisma.BillCreateOrConnectWithoutVendorInput[];
+    upsert?: Prisma.BillUpsertWithWhereUniqueWithoutVendorInput | Prisma.BillUpsertWithWhereUniqueWithoutVendorInput[];
+    createMany?: Prisma.BillCreateManyVendorInputEnvelope;
+    set?: Prisma.BillWhereUniqueInput | Prisma.BillWhereUniqueInput[];
+    disconnect?: Prisma.BillWhereUniqueInput | Prisma.BillWhereUniqueInput[];
+    delete?: Prisma.BillWhereUniqueInput | Prisma.BillWhereUniqueInput[];
+    connect?: Prisma.BillWhereUniqueInput | Prisma.BillWhereUniqueInput[];
+    update?: Prisma.BillUpdateWithWhereUniqueWithoutVendorInput | Prisma.BillUpdateWithWhereUniqueWithoutVendorInput[];
+    updateMany?: Prisma.BillUpdateManyWithWhereWithoutVendorInput | Prisma.BillUpdateManyWithWhereWithoutVendorInput[];
+    deleteMany?: Prisma.BillScalarWhereInput | Prisma.BillScalarWhereInput[];
+};
+export type BillCreateWithoutLinesInput = {
+    id?: string;
+    billNumber: string;
+    issueDate: Date | string;
+    dueDate: Date | string;
+    status?: $Enums.BillStatus;
+    subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    vendor: Prisma.VendorCreateNestedOneWithoutBillsInput;
+    taxCode?: Prisma.TaxCodeCreateNestedOneWithoutBillsInput;
+};
+export type BillUncheckedCreateWithoutLinesInput = {
+    id?: string;
+    billNumber: string;
+    vendorId: string;
+    issueDate: Date | string;
+    dueDate: Date | string;
+    status?: $Enums.BillStatus;
+    subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    taxCodeId?: string | null;
+    taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+};
+export type BillCreateOrConnectWithoutLinesInput = {
+    where: Prisma.BillWhereUniqueInput;
+    create: Prisma.XOR<Prisma.BillCreateWithoutLinesInput, Prisma.BillUncheckedCreateWithoutLinesInput>;
+};
+export type BillUpsertWithoutLinesInput = {
+    update: Prisma.XOR<Prisma.BillUpdateWithoutLinesInput, Prisma.BillUncheckedUpdateWithoutLinesInput>;
+    create: Prisma.XOR<Prisma.BillCreateWithoutLinesInput, Prisma.BillUncheckedCreateWithoutLinesInput>;
+    where?: Prisma.BillWhereInput;
+};
+export type BillUpdateToOneWithWhereWithoutLinesInput = {
+    where?: Prisma.BillWhereInput;
+    data: Prisma.XOR<Prisma.BillUpdateWithoutLinesInput, Prisma.BillUncheckedUpdateWithoutLinesInput>;
+};
+export type BillUpdateWithoutLinesInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    billNumber?: Prisma.StringFieldUpdateOperationsInput | string;
+    issueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    status?: Prisma.EnumBillStatusFieldUpdateOperationsInput | $Enums.BillStatus;
+    subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    vendor?: Prisma.VendorUpdateOneRequiredWithoutBillsNestedInput;
+    taxCode?: Prisma.TaxCodeUpdateOneWithoutBillsNestedInput;
+};
+export type BillUncheckedUpdateWithoutLinesInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    billNumber?: Prisma.StringFieldUpdateOperationsInput | string;
+    vendorId?: Prisma.StringFieldUpdateOperationsInput | string;
+    issueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    status?: Prisma.EnumBillStatusFieldUpdateOperationsInput | $Enums.BillStatus;
+    subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    taxCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+export type BillCreateWithoutTaxCodeInput = {
+    id?: string;
+    billNumber: string;
+    issueDate: Date | string;
+    dueDate: Date | string;
+    status?: $Enums.BillStatus;
+    subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    vendor: Prisma.VendorCreateNestedOneWithoutBillsInput;
+    lines?: Prisma.BillLineCreateNestedManyWithoutBillInput;
+};
+export type BillUncheckedCreateWithoutTaxCodeInput = {
+    id?: string;
+    billNumber: string;
+    vendorId: string;
+    issueDate: Date | string;
+    dueDate: Date | string;
+    status?: $Enums.BillStatus;
+    subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    lines?: Prisma.BillLineUncheckedCreateNestedManyWithoutBillInput;
+};
+export type BillCreateOrConnectWithoutTaxCodeInput = {
+    where: Prisma.BillWhereUniqueInput;
+    create: Prisma.XOR<Prisma.BillCreateWithoutTaxCodeInput, Prisma.BillUncheckedCreateWithoutTaxCodeInput>;
+};
+export type BillCreateManyTaxCodeInputEnvelope = {
+    data: Prisma.BillCreateManyTaxCodeInput | Prisma.BillCreateManyTaxCodeInput[];
+    skipDuplicates?: boolean;
+};
+export type BillUpsertWithWhereUniqueWithoutTaxCodeInput = {
+    where: Prisma.BillWhereUniqueInput;
+    update: Prisma.XOR<Prisma.BillUpdateWithoutTaxCodeInput, Prisma.BillUncheckedUpdateWithoutTaxCodeInput>;
+    create: Prisma.XOR<Prisma.BillCreateWithoutTaxCodeInput, Prisma.BillUncheckedCreateWithoutTaxCodeInput>;
+};
+export type BillUpdateWithWhereUniqueWithoutTaxCodeInput = {
+    where: Prisma.BillWhereUniqueInput;
+    data: Prisma.XOR<Prisma.BillUpdateWithoutTaxCodeInput, Prisma.BillUncheckedUpdateWithoutTaxCodeInput>;
+};
+export type BillUpdateManyWithWhereWithoutTaxCodeInput = {
+    where: Prisma.BillScalarWhereInput;
+    data: Prisma.XOR<Prisma.BillUpdateManyMutationInput, Prisma.BillUncheckedUpdateManyWithoutTaxCodeInput>;
+};
+export type BillScalarWhereInput = {
+    AND?: Prisma.BillScalarWhereInput | Prisma.BillScalarWhereInput[];
+    OR?: Prisma.BillScalarWhereInput[];
+    NOT?: Prisma.BillScalarWhereInput | Prisma.BillScalarWhereInput[];
+    id?: Prisma.StringFilter<"Bill"> | string;
+    billNumber?: Prisma.StringFilter<"Bill"> | string;
+    vendorId?: Prisma.StringFilter<"Bill"> | string;
+    issueDate?: Prisma.DateTimeFilter<"Bill"> | Date | string;
+    dueDate?: Prisma.DateTimeFilter<"Bill"> | Date | string;
+    status?: Prisma.EnumBillStatusFilter<"Bill"> | $Enums.BillStatus;
+    subtotal?: Prisma.DecimalFilter<"Bill"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    taxCodeId?: Prisma.StringNullableFilter<"Bill"> | string | null;
+    taxAmount?: Prisma.DecimalFilter<"Bill"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFilter<"Bill"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Prisma.DateTimeFilter<"Bill"> | Date | string;
+    updatedAt?: Prisma.DateTimeFilter<"Bill"> | Date | string;
+};
+export type BillCreateWithoutVendorInput = {
+    id?: string;
+    billNumber: string;
+    issueDate: Date | string;
+    dueDate: Date | string;
+    status?: $Enums.BillStatus;
+    subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    taxCode?: Prisma.TaxCodeCreateNestedOneWithoutBillsInput;
+    lines?: Prisma.BillLineCreateNestedManyWithoutBillInput;
+};
+export type BillUncheckedCreateWithoutVendorInput = {
+    id?: string;
+    billNumber: string;
+    issueDate: Date | string;
+    dueDate: Date | string;
+    status?: $Enums.BillStatus;
+    subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    taxCodeId?: string | null;
+    taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    lines?: Prisma.BillLineUncheckedCreateNestedManyWithoutBillInput;
+};
+export type BillCreateOrConnectWithoutVendorInput = {
+    where: Prisma.BillWhereUniqueInput;
+    create: Prisma.XOR<Prisma.BillCreateWithoutVendorInput, Prisma.BillUncheckedCreateWithoutVendorInput>;
+};
+export type BillCreateManyVendorInputEnvelope = {
+    data: Prisma.BillCreateManyVendorInput | Prisma.BillCreateManyVendorInput[];
+    skipDuplicates?: boolean;
+};
+export type BillUpsertWithWhereUniqueWithoutVendorInput = {
+    where: Prisma.BillWhereUniqueInput;
+    update: Prisma.XOR<Prisma.BillUpdateWithoutVendorInput, Prisma.BillUncheckedUpdateWithoutVendorInput>;
+    create: Prisma.XOR<Prisma.BillCreateWithoutVendorInput, Prisma.BillUncheckedCreateWithoutVendorInput>;
+};
+export type BillUpdateWithWhereUniqueWithoutVendorInput = {
+    where: Prisma.BillWhereUniqueInput;
+    data: Prisma.XOR<Prisma.BillUpdateWithoutVendorInput, Prisma.BillUncheckedUpdateWithoutVendorInput>;
+};
+export type BillUpdateManyWithWhereWithoutVendorInput = {
+    where: Prisma.BillScalarWhereInput;
+    data: Prisma.XOR<Prisma.BillUpdateManyMutationInput, Prisma.BillUncheckedUpdateManyWithoutVendorInput>;
+};
+export type BillCreateManyTaxCodeInput = {
+    id?: string;
+    billNumber: string;
+    vendorId: string;
+    issueDate: Date | string;
+    dueDate: Date | string;
+    status?: $Enums.BillStatus;
+    subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+};
+export type BillUpdateWithoutTaxCodeInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    billNumber?: Prisma.StringFieldUpdateOperationsInput | string;
+    issueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    status?: Prisma.EnumBillStatusFieldUpdateOperationsInput | $Enums.BillStatus;
+    subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    vendor?: Prisma.VendorUpdateOneRequiredWithoutBillsNestedInput;
+    lines?: Prisma.BillLineUpdateManyWithoutBillNestedInput;
+};
+export type BillUncheckedUpdateWithoutTaxCodeInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    billNumber?: Prisma.StringFieldUpdateOperationsInput | string;
+    vendorId?: Prisma.StringFieldUpdateOperationsInput | string;
+    issueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    status?: Prisma.EnumBillStatusFieldUpdateOperationsInput | $Enums.BillStatus;
+    subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    lines?: Prisma.BillLineUncheckedUpdateManyWithoutBillNestedInput;
+};
+export type BillUncheckedUpdateManyWithoutTaxCodeInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    billNumber?: Prisma.StringFieldUpdateOperationsInput | string;
+    vendorId?: Prisma.StringFieldUpdateOperationsInput | string;
+    issueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    status?: Prisma.EnumBillStatusFieldUpdateOperationsInput | $Enums.BillStatus;
+    subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+export type BillCreateManyVendorInput = {
+    id?: string;
+    billNumber: string;
+    issueDate: Date | string;
+    dueDate: Date | string;
+    status?: $Enums.BillStatus;
+    subtotal: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    taxCodeId?: string | null;
+    taxAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+};
+export type BillUpdateWithoutVendorInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    billNumber?: Prisma.StringFieldUpdateOperationsInput | string;
+    issueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    status?: Prisma.EnumBillStatusFieldUpdateOperationsInput | $Enums.BillStatus;
+    subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    taxCode?: Prisma.TaxCodeUpdateOneWithoutBillsNestedInput;
+    lines?: Prisma.BillLineUpdateManyWithoutBillNestedInput;
+};
+export type BillUncheckedUpdateWithoutVendorInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    billNumber?: Prisma.StringFieldUpdateOperationsInput | string;
+    issueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    status?: Prisma.EnumBillStatusFieldUpdateOperationsInput | $Enums.BillStatus;
+    subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    taxCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    lines?: Prisma.BillLineUncheckedUpdateManyWithoutBillNestedInput;
+};
+export type BillUncheckedUpdateManyWithoutVendorInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    billNumber?: Prisma.StringFieldUpdateOperationsInput | string;
+    issueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    status?: Prisma.EnumBillStatusFieldUpdateOperationsInput | $Enums.BillStatus;
+    subtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    taxCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    taxAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+/**
+ * Count Type BillCountOutputType
+ */
+export type BillCountOutputType = {
+    lines: number;
+};
+export type BillCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    lines?: boolean | BillCountOutputTypeCountLinesArgs;
+};
+/**
+ * BillCountOutputType without action
+ */
+export type BillCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillCountOutputType
+     */
+    select?: Prisma.BillCountOutputTypeSelect<ExtArgs> | null;
+};
+/**
+ * BillCountOutputType without action
+ */
+export type BillCountOutputTypeCountLinesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.BillLineWhereInput;
+};
+export type BillSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+    id?: boolean;
+    billNumber?: boolean;
+    vendorId?: boolean;
+    issueDate?: boolean;
+    dueDate?: boolean;
+    status?: boolean;
+    subtotal?: boolean;
+    taxCodeId?: boolean;
+    taxAmount?: boolean;
+    total?: boolean;
+    createdAt?: boolean;
+    updatedAt?: boolean;
+    vendor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>;
+    taxCode?: boolean | Prisma.Bill$taxCodeArgs<ExtArgs>;
+    lines?: boolean | Prisma.Bill$linesArgs<ExtArgs>;
+    _count?: boolean | Prisma.BillCountOutputTypeDefaultArgs<ExtArgs>;
+}, ExtArgs["result"]["bill"]>;
+export type BillSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+    id?: boolean;
+    billNumber?: boolean;
+    vendorId?: boolean;
+    issueDate?: boolean;
+    dueDate?: boolean;
+    status?: boolean;
+    subtotal?: boolean;
+    taxCodeId?: boolean;
+    taxAmount?: boolean;
+    total?: boolean;
+    createdAt?: boolean;
+    updatedAt?: boolean;
+    vendor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>;
+    taxCode?: boolean | Prisma.Bill$taxCodeArgs<ExtArgs>;
+}, ExtArgs["result"]["bill"]>;
+export type BillSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+    id?: boolean;
+    billNumber?: boolean;
+    vendorId?: boolean;
+    issueDate?: boolean;
+    dueDate?: boolean;
+    status?: boolean;
+    subtotal?: boolean;
+    taxCodeId?: boolean;
+    taxAmount?: boolean;
+    total?: boolean;
+    createdAt?: boolean;
+    updatedAt?: boolean;
+    vendor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>;
+    taxCode?: boolean | Prisma.Bill$taxCodeArgs<ExtArgs>;
+}, ExtArgs["result"]["bill"]>;
+export type BillSelectScalar = {
+    id?: boolean;
+    billNumber?: boolean;
+    vendorId?: boolean;
+    issueDate?: boolean;
+    dueDate?: boolean;
+    status?: boolean;
+    subtotal?: boolean;
+    taxCodeId?: boolean;
+    taxAmount?: boolean;
+    total?: boolean;
+    createdAt?: boolean;
+    updatedAt?: boolean;
+};
+export type BillOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "billNumber" | "vendorId" | "issueDate" | "dueDate" | "status" | "subtotal" | "taxCodeId" | "taxAmount" | "total" | "createdAt" | "updatedAt", ExtArgs["result"]["bill"]>;
+export type BillInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    vendor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>;
+    taxCode?: boolean | Prisma.Bill$taxCodeArgs<ExtArgs>;
+    lines?: boolean | Prisma.Bill$linesArgs<ExtArgs>;
+    _count?: boolean | Prisma.BillCountOutputTypeDefaultArgs<ExtArgs>;
+};
+export type BillIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    vendor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>;
+    taxCode?: boolean | Prisma.Bill$taxCodeArgs<ExtArgs>;
+};
+export type BillIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    vendor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>;
+    taxCode?: boolean | Prisma.Bill$taxCodeArgs<ExtArgs>;
+};
+export type $BillPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    name: "Bill";
+    objects: {
+        vendor: Prisma.$VendorPayload<ExtArgs>;
+        taxCode: Prisma.$TaxCodePayload<ExtArgs> | null;
+        lines: Prisma.$BillLinePayload<ExtArgs>[];
+    };
+    scalars: runtime.Types.Extensions.GetPayloadResult<{
+        id: string;
+        billNumber: string;
+        vendorId: string;
+        issueDate: Date;
+        dueDate: Date;
+        status: $Enums.BillStatus;
+        subtotal: runtime.Decimal;
+        taxCodeId: string | null;
+        taxAmount: runtime.Decimal;
+        total: runtime.Decimal;
+        createdAt: Date;
+        updatedAt: Date;
+    }, ExtArgs["result"]["bill"]>;
+    composites: {};
+};
+export type BillGetPayload<S extends boolean | null | undefined | BillDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$BillPayload, S>;
+export type BillCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = Omit<BillFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+    select?: BillCountAggregateInputType | true;
+};
+export interface BillDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: {
+        types: Prisma.TypeMap<ExtArgs>['model']['Bill'];
+        meta: {
+            name: 'Bill';
+        };
+    };
+    /**
+     * Find zero or one Bill that matches the filter.
+     * @param {BillFindUniqueArgs} args - Arguments to find a Bill
+     * @example
+     * // Get one Bill
+     * const bill = await prisma.bill.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BillFindUniqueArgs>(args: Prisma.SelectSubset<T, BillFindUniqueArgs<ExtArgs>>): Prisma.Prisma__BillClient<runtime.Types.Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find one Bill that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BillFindUniqueOrThrowArgs} args - Arguments to find a Bill
+     * @example
+     * // Get one Bill
+     * const bill = await prisma.bill.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BillFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, BillFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__BillClient<runtime.Types.Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find the first Bill that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillFindFirstArgs} args - Arguments to find a Bill
+     * @example
+     * // Get one Bill
+     * const bill = await prisma.bill.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BillFindFirstArgs>(args?: Prisma.SelectSubset<T, BillFindFirstArgs<ExtArgs>>): Prisma.Prisma__BillClient<runtime.Types.Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find the first Bill that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillFindFirstOrThrowArgs} args - Arguments to find a Bill
+     * @example
+     * // Get one Bill
+     * const bill = await prisma.bill.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BillFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, BillFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__BillClient<runtime.Types.Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find zero or more Bills that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Bills
+     * const bills = await prisma.bill.findMany()
+     *
+     * // Get first 10 Bills
+     * const bills = await prisma.bill.findMany({ take: 10 })
+     *
+     * // Only select the `id`
+     * const billWithIdOnly = await prisma.bill.findMany({ select: { id: true } })
+     *
+     */
+    findMany<T extends BillFindManyArgs>(args?: Prisma.SelectSubset<T, BillFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>;
+    /**
+     * Create a Bill.
+     * @param {BillCreateArgs} args - Arguments to create a Bill.
+     * @example
+     * // Create one Bill
+     * const Bill = await prisma.bill.create({
+     *   data: {
+     *     // ... data to create a Bill
+     *   }
+     * })
+     *
+     */
+    create<T extends BillCreateArgs>(args: Prisma.SelectSubset<T, BillCreateArgs<ExtArgs>>): Prisma.Prisma__BillClient<runtime.Types.Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Create many Bills.
+     * @param {BillCreateManyArgs} args - Arguments to create many Bills.
+     * @example
+     * // Create many Bills
+     * const bill = await prisma.bill.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     */
+    createMany<T extends BillCreateManyArgs>(args?: Prisma.SelectSubset<T, BillCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Create many Bills and returns the data saved in the database.
+     * @param {BillCreateManyAndReturnArgs} args - Arguments to create many Bills.
+     * @example
+     * // Create many Bills
+     * const bill = await prisma.bill.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Create many Bills and only return the `id`
+     * const billWithIdOnly = await prisma.bill.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    createManyAndReturn<T extends BillCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, BillCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>;
+    /**
+     * Delete a Bill.
+     * @param {BillDeleteArgs} args - Arguments to delete one Bill.
+     * @example
+     * // Delete one Bill
+     * const Bill = await prisma.bill.delete({
+     *   where: {
+     *     // ... filter to delete one Bill
+     *   }
+     * })
+     *
+     */
+    delete<T extends BillDeleteArgs>(args: Prisma.SelectSubset<T, BillDeleteArgs<ExtArgs>>): Prisma.Prisma__BillClient<runtime.Types.Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Update one Bill.
+     * @param {BillUpdateArgs} args - Arguments to update one Bill.
+     * @example
+     * // Update one Bill
+     * const bill = await prisma.bill.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    update<T extends BillUpdateArgs>(args: Prisma.SelectSubset<T, BillUpdateArgs<ExtArgs>>): Prisma.Prisma__BillClient<runtime.Types.Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Delete zero or more Bills.
+     * @param {BillDeleteManyArgs} args - Arguments to filter Bills to delete.
+     * @example
+     * // Delete a few Bills
+     * const { count } = await prisma.bill.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     *
+     */
+    deleteMany<T extends BillDeleteManyArgs>(args?: Prisma.SelectSubset<T, BillDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Update zero or more Bills.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Bills
+     * const bill = await prisma.bill.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    updateMany<T extends BillUpdateManyArgs>(args: Prisma.SelectSubset<T, BillUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Update zero or more Bills and returns the data updated in the database.
+     * @param {BillUpdateManyAndReturnArgs} args - Arguments to update many Bills.
+     * @example
+     * // Update many Bills
+     * const bill = await prisma.bill.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Update zero or more Bills and only return the `id`
+     * const billWithIdOnly = await prisma.bill.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    updateManyAndReturn<T extends BillUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, BillUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>;
+    /**
+     * Create or update one Bill.
+     * @param {BillUpsertArgs} args - Arguments to update or create a Bill.
+     * @example
+     * // Update or create a Bill
+     * const bill = await prisma.bill.upsert({
+     *   create: {
+     *     // ... data to create a Bill
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Bill we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BillUpsertArgs>(args: Prisma.SelectSubset<T, BillUpsertArgs<ExtArgs>>): Prisma.Prisma__BillClient<runtime.Types.Result.GetResult<Prisma.$BillPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Count the number of Bills.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillCountArgs} args - Arguments to filter Bills to count.
+     * @example
+     * // Count the number of Bills
+     * const count = await prisma.bill.count({
+     *   where: {
+     *     // ... the filter for the Bills we want to count
+     *   }
+     * })
+    **/
+    count<T extends BillCountArgs>(args?: Prisma.Subset<T, BillCountArgs>): Prisma.PrismaPromise<T extends runtime.Types.Utils.Record<'select', any> ? T['select'] extends true ? number : Prisma.GetScalarType<T['select'], BillCountAggregateOutputType> : number>;
+    /**
+     * Allows you to perform aggregations operations on a Bill.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BillAggregateArgs>(args: Prisma.Subset<T, BillAggregateArgs>): Prisma.PrismaPromise<GetBillAggregateType<T>>;
+    /**
+     * Group by Bill.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BillGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     *
+    **/
+    groupBy<T extends BillGroupByArgs, HasSelectOrTake extends Prisma.Or<Prisma.Extends<'skip', Prisma.Keys<T>>, Prisma.Extends<'take', Prisma.Keys<T>>>, OrderByArg extends Prisma.True extends HasSelectOrTake ? {
+        orderBy: BillGroupByArgs['orderBy'];
+    } : {
+        orderBy?: BillGroupByArgs['orderBy'];
+    }, OrderFields extends Prisma.ExcludeUnderscoreKeys<Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>>, ByFields extends Prisma.MaybeTupleToUnion<T['by']>, ByValid extends Prisma.Has<ByFields, OrderFields>, HavingFields extends Prisma.GetHavingFields<T['having']>, HavingValid extends Prisma.Has<ByFields, HavingFields>, ByEmpty extends T['by'] extends never[] ? Prisma.True : Prisma.False, InputErrors extends ByEmpty extends Prisma.True ? `Error: "by" must not be empty.` : HavingValid extends Prisma.False ? {
+        [P in HavingFields]: P extends ByFields ? never : P extends string ? `Error: Field "${P}" used in "having" needs to be provided in "by".` : [
+            Error,
+            'Field ',
+            P,
+            ` in "having" needs to be provided in "by"`
+        ];
+    }[HavingFields] : 'take' extends Prisma.Keys<T> ? 'orderBy' extends Prisma.Keys<T> ? ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields] : 'Error: If you provide "take", you also need to provide "orderBy"' : 'skip' extends Prisma.Keys<T> ? 'orderBy' extends Prisma.Keys<T> ? ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields] : 'Error: If you provide "skip", you also need to provide "orderBy"' : ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields]>(args: Prisma.SubsetIntersection<T, BillGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBillGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>;
+    /**
+     * Fields of the Bill model
+     */
+    readonly fields: BillFieldRefs;
+}
+/**
+ * The delegate class that acts as a "Promise-like" for Bill.
+ * Why is this prefixed with `Prisma__`?
+ * Because we want to prevent naming conflicts as mentioned in
+ * https://github.com/prisma/prisma-client-js/issues/707
+ */
+export interface Prisma__BillClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise";
+    vendor<T extends Prisma.VendorDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.VendorDefaultArgs<ExtArgs>>): Prisma.Prisma__VendorClient<runtime.Types.Result.GetResult<Prisma.$VendorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
+    taxCode<T extends Prisma.Bill$taxCodeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Bill$taxCodeArgs<ExtArgs>>): Prisma.Prisma__TaxCodeClient<runtime.Types.Result.GetResult<Prisma.$TaxCodePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    lines<T extends Prisma.Bill$linesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Bill$linesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BillLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): runtime.Types.Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): runtime.Types.Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): runtime.Types.Utils.JsPromise<T>;
+}
+/**
+ * Fields of the Bill model
+ */
+export interface BillFieldRefs {
+    readonly id: Prisma.FieldRef<"Bill", 'String'>;
+    readonly billNumber: Prisma.FieldRef<"Bill", 'String'>;
+    readonly vendorId: Prisma.FieldRef<"Bill", 'String'>;
+    readonly issueDate: Prisma.FieldRef<"Bill", 'DateTime'>;
+    readonly dueDate: Prisma.FieldRef<"Bill", 'DateTime'>;
+    readonly status: Prisma.FieldRef<"Bill", 'BillStatus'>;
+    readonly subtotal: Prisma.FieldRef<"Bill", 'Decimal'>;
+    readonly taxCodeId: Prisma.FieldRef<"Bill", 'String'>;
+    readonly taxAmount: Prisma.FieldRef<"Bill", 'Decimal'>;
+    readonly total: Prisma.FieldRef<"Bill", 'Decimal'>;
+    readonly createdAt: Prisma.FieldRef<"Bill", 'DateTime'>;
+    readonly updatedAt: Prisma.FieldRef<"Bill", 'DateTime'>;
+}
+/**
+ * Bill findUnique
+ */
+export type BillFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bill
+     */
+    select?: Prisma.BillSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Bill
+     */
+    omit?: Prisma.BillOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.BillInclude<ExtArgs> | null;
+    /**
+     * Filter, which Bill to fetch.
+     */
+    where: Prisma.BillWhereUniqueInput;
+};
+/**
+ * Bill findUniqueOrThrow
+ */
+export type BillFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bill
+     */
+    select?: Prisma.BillSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Bill
+     */
+    omit?: Prisma.BillOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.BillInclude<ExtArgs> | null;
+    /**
+     * Filter, which Bill to fetch.
+     */
+    where: Prisma.BillWhereUniqueInput;
+};
+/**
+ * Bill findFirst
+ */
+export type BillFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bill
+     */
+    select?: Prisma.BillSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Bill
+     */
+    omit?: Prisma.BillOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.BillInclude<ExtArgs> | null;
+    /**
+     * Filter, which Bill to fetch.
+     */
+    where?: Prisma.BillWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of Bills to fetch.
+     */
+    orderBy?: Prisma.BillOrderByWithRelationInput | Prisma.BillOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for Bills.
+     */
+    cursor?: Prisma.BillWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` Bills from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` Bills.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of Bills.
+     */
+    distinct?: Prisma.BillScalarFieldEnum | Prisma.BillScalarFieldEnum[];
+};
+/**
+ * Bill findFirstOrThrow
+ */
+export type BillFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bill
+     */
+    select?: Prisma.BillSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Bill
+     */
+    omit?: Prisma.BillOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.BillInclude<ExtArgs> | null;
+    /**
+     * Filter, which Bill to fetch.
+     */
+    where?: Prisma.BillWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of Bills to fetch.
+     */
+    orderBy?: Prisma.BillOrderByWithRelationInput | Prisma.BillOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for Bills.
+     */
+    cursor?: Prisma.BillWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` Bills from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` Bills.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of Bills.
+     */
+    distinct?: Prisma.BillScalarFieldEnum | Prisma.BillScalarFieldEnum[];
+};
+/**
+ * Bill findMany
+ */
+export type BillFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bill
+     */
+    select?: Prisma.BillSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Bill
+     */
+    omit?: Prisma.BillOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.BillInclude<ExtArgs> | null;
+    /**
+     * Filter, which Bills to fetch.
+     */
+    where?: Prisma.BillWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of Bills to fetch.
+     */
+    orderBy?: Prisma.BillOrderByWithRelationInput | Prisma.BillOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for listing Bills.
+     */
+    cursor?: Prisma.BillWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` Bills from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` Bills.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of Bills.
+     */
+    distinct?: Prisma.BillScalarFieldEnum | Prisma.BillScalarFieldEnum[];
+};
+/**
+ * Bill create
+ */
+export type BillCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bill
+     */
+    select?: Prisma.BillSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Bill
+     */
+    omit?: Prisma.BillOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.BillInclude<ExtArgs> | null;
+    /**
+     * The data needed to create a Bill.
+     */
+    data: Prisma.XOR<Prisma.BillCreateInput, Prisma.BillUncheckedCreateInput>;
+};
+/**
+ * Bill createMany
+ */
+export type BillCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Bills.
+     */
+    data: Prisma.BillCreateManyInput | Prisma.BillCreateManyInput[];
+    skipDuplicates?: boolean;
+};
+/**
+ * Bill createManyAndReturn
+ */
+export type BillCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bill
+     */
+    select?: Prisma.BillSelectCreateManyAndReturn<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Bill
+     */
+    omit?: Prisma.BillOmit<ExtArgs> | null;
+    /**
+     * The data used to create many Bills.
+     */
+    data: Prisma.BillCreateManyInput | Prisma.BillCreateManyInput[];
+    skipDuplicates?: boolean;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.BillIncludeCreateManyAndReturn<ExtArgs> | null;
+};
+/**
+ * Bill update
+ */
+export type BillUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bill
+     */
+    select?: Prisma.BillSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Bill
+     */
+    omit?: Prisma.BillOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.BillInclude<ExtArgs> | null;
+    /**
+     * The data needed to update a Bill.
+     */
+    data: Prisma.XOR<Prisma.BillUpdateInput, Prisma.BillUncheckedUpdateInput>;
+    /**
+     * Choose, which Bill to update.
+     */
+    where: Prisma.BillWhereUniqueInput;
+};
+/**
+ * Bill updateMany
+ */
+export type BillUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Bills.
+     */
+    data: Prisma.XOR<Prisma.BillUpdateManyMutationInput, Prisma.BillUncheckedUpdateManyInput>;
+    /**
+     * Filter which Bills to update
+     */
+    where?: Prisma.BillWhereInput;
+    /**
+     * Limit how many Bills to update.
+     */
+    limit?: number;
+};
+/**
+ * Bill updateManyAndReturn
+ */
+export type BillUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bill
+     */
+    select?: Prisma.BillSelectUpdateManyAndReturn<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Bill
+     */
+    omit?: Prisma.BillOmit<ExtArgs> | null;
+    /**
+     * The data used to update Bills.
+     */
+    data: Prisma.XOR<Prisma.BillUpdateManyMutationInput, Prisma.BillUncheckedUpdateManyInput>;
+    /**
+     * Filter which Bills to update
+     */
+    where?: Prisma.BillWhereInput;
+    /**
+     * Limit how many Bills to update.
+     */
+    limit?: number;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.BillIncludeUpdateManyAndReturn<ExtArgs> | null;
+};
+/**
+ * Bill upsert
+ */
+export type BillUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bill
+     */
+    select?: Prisma.BillSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Bill
+     */
+    omit?: Prisma.BillOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.BillInclude<ExtArgs> | null;
+    /**
+     * The filter to search for the Bill to update in case it exists.
+     */
+    where: Prisma.BillWhereUniqueInput;
+    /**
+     * In case the Bill found by the `where` argument doesn't exist, create a new Bill with this data.
+     */
+    create: Prisma.XOR<Prisma.BillCreateInput, Prisma.BillUncheckedCreateInput>;
+    /**
+     * In case the Bill was found with the provided `where` argument, update it with this data.
+     */
+    update: Prisma.XOR<Prisma.BillUpdateInput, Prisma.BillUncheckedUpdateInput>;
+};
+/**
+ * Bill delete
+ */
+export type BillDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bill
+     */
+    select?: Prisma.BillSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Bill
+     */
+    omit?: Prisma.BillOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.BillInclude<ExtArgs> | null;
+    /**
+     * Filter which Bill to delete.
+     */
+    where: Prisma.BillWhereUniqueInput;
+};
+/**
+ * Bill deleteMany
+ */
+export type BillDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Filter which Bills to delete
+     */
+    where?: Prisma.BillWhereInput;
+    /**
+     * Limit how many Bills to delete.
+     */
+    limit?: number;
+};
+/**
+ * Bill.taxCode
+ */
+export type Bill$taxCodeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaxCode
+     */
+    select?: Prisma.TaxCodeSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the TaxCode
+     */
+    omit?: Prisma.TaxCodeOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.TaxCodeInclude<ExtArgs> | null;
+    where?: Prisma.TaxCodeWhereInput;
+};
+/**
+ * Bill.lines
+ */
+export type Bill$linesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BillLine
+     */
+    select?: Prisma.BillLineSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the BillLine
+     */
+    omit?: Prisma.BillLineOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.BillLineInclude<ExtArgs> | null;
+    where?: Prisma.BillLineWhereInput;
+    orderBy?: Prisma.BillLineOrderByWithRelationInput | Prisma.BillLineOrderByWithRelationInput[];
+    cursor?: Prisma.BillLineWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: Prisma.BillLineScalarFieldEnum | Prisma.BillLineScalarFieldEnum[];
+};
+/**
+ * Bill without action
+ */
+export type BillDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bill
+     */
+    select?: Prisma.BillSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Bill
+     */
+    omit?: Prisma.BillOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.BillInclude<ExtArgs> | null;
+};

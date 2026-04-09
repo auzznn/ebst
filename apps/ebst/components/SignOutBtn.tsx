@@ -39,7 +39,7 @@ export default function SignOutBtn() {
         <AlertDialogHeader>
           <AlertDialogTitle>Do you want to sign-out?</AlertDialogTitle>
           <AlertDialogDescription>
-            You will be needed to enter your credentials again, to access eBST.
+            You will be needed to enter your credentials again to access eBST.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

@@ -3,8 +3,8 @@ datasource db {
 }
 
 generator client {
-  provider = "prisma-client"
-  output   = "../prisma-generated"
+  provider     = "prisma-client"
+  output       = "../prisma-generated"
   moduleFormat = "cjs"
 }
 
@@ -22,6 +22,9 @@ model User {
   displayUsername String?
   messages        Message[]
   members         ChannelMember[]
+  role            Role            @default(FINANCE)
+  journalEntries  JournalEntry[]
+  payrollEntries  PayrollEntry[]  @relation("EmployeePayroll")
 
   @@unique([email])
   @@map("user")
@@ -76,14 +79,14 @@ model Verification {
 }
 
 model Channel {
-  id        String          @id @default(uuid())
-  name      String?
-  isDM      Boolean         @default(false)
-  dmKey String? @unique
-  createdAt DateTime        @default(now())
-  lastMessage DateTime  @default(now())
-  messages  Message[]
-  members   ChannelMember[]
+  id          String          @id @default(uuid())
+  name        String?
+  isDM        Boolean         @default(false)
+  dmKey       String?         @unique
+  createdAt   DateTime        @default(now())
+  lastMessage DateTime        @default(now())
+  messages    Message[]
+  members     ChannelMember[]
 }
 
 model ChannelMember {
@@ -106,4 +109,257 @@ model Message {
   channelId String
   sender    User     @relation(fields: [senderId], references: [id])
   channel   Channel  @relation(fields: [channelId], references: [id])
+}
+
+// ─── Chart of Accounts ───────────────────────────────────────────────────────
+// Mirrors every sheet in your Buku Besar.
+// type maps to: ASSET (aktiva), LIABILITY (passiva), EQUITY (modal),
+//               REVENUE (pendapatan), EXPENSE (biaya)
+
+model Accounting {
+  id        String       @id @default(uuid())
+  code      String       @unique // e.g. "1.1", "1.3", "2.1"
+  name      String // e.g. "Kas", "Piutang Usaha", "Hutang Usaha"
+  type      AccountType
+  parentId  String?
+  parent    Accounting?  @relation("AccountTree", fields: [parentId], references: [id])
+  children  Accounting[] @relation("AccountTree")
+  isActive  Boolean      @default(true)
+  balance   Decimal      @default(0) @db.Decimal(19, 4) // cached running balance
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  lines        JournalLine[]
+  invoiceLines InvoiceLine[]
+  billLines    BillLine[]
+
+  @@map("accounts")
+}
+
+enum AccountType {
+  ASSET // Aktiva: Kas, Bank, Piutang, Tanah, Gedung, Kendaraan, Mesin
+  LIABILITY // Passiva: Hutang Usaha, Hutang Bank, Hutang PPN, Hutang Leasing
+  EQUITY // Modal
+  REVENUE // Pendapatan: Penjualan, Pendapatan Lain
+  EXPENSE // Biaya: Gaji, Material, Listrik, Transport, Penyusutan
+}
+
+// ─── Journal Entries ─────────────────────────────────────────────────────────
+// One entry per transaction. Each entry has 2+ lines (always balanced).
+// status DRAFT → POSTED → VOID (never deleted)
+
+model JournalEntry {
+  id          String             @id @default(uuid())
+  reference   String             @unique // e.g. "INV-2025-12-001", "PAYROLL-DEC-2025"
+  entryDate   DateTime
+  description String
+  status      JournalEntryStatus @default(DRAFT)
+  createdById String
+  createdBy   User               @relation(fields: [createdById], references: [id])
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+
+  lines JournalLine[]
+
+  @@index([entryDate])
+  @@index([status])
+  @@map("journal_entries")
+}
+
+enum JournalEntryStatus {
+  DRAFT // Being prepared
+  POSTED // Confirmed, affects balances
+  VOID // Cancelled — reversal entry created automatically
+}
+
+// ─── Journal Lines ───────────────────────────────────────────────────────────
+// Two lines minimum per entry. SUM(debit) must always equal SUM(credit).
+// This is the core of double-entry — same rule your admin enforces in Excel.
+
+model JournalLine {
+  id             String       @id @default(uuid())
+  journalEntryId String
+  journalEntry   JournalEntry @relation(fields: [journalEntryId], references: [id])
+  accountId      String
+  account        Accounting   @relation(fields: [accountId], references: [id])
+  debit          Decimal      @default(0) @db.Decimal(19, 4)
+  credit         Decimal      @default(0) @db.Decimal(19, 4)
+  memo           String?
+
+  @@index([accountId])
+  @@index([journalEntryId])
+  @@map("journal_lines")
+}
+
+// ─── Invoices (AR — Piutang) ──────────────────────────────────────────────────
+// Tracks money owed TO you. PT. BST example: PT. Sakura Java, Chiyoda Kogyo, etc.
+
+model Invoice {
+  id            String        @id @default(uuid())
+  invoiceNumber String        @unique // e.g. "INV-2025-12-001"
+  customerId    String
+  customer      Customer      @relation(fields: [customerId], references: [id])
+  issueDate     DateTime
+  dueDate       DateTime
+  status        InvoiceStatus @default(DRAFT)
+  subtotal      Decimal       @db.Decimal(19, 4)
+  taxCodeId     String?
+  taxCode       TaxCode?      @relation(fields: [taxCodeId], references: [id])
+  taxAmount     Decimal       @default(0) @db.Decimal(19, 4)
+  total         Decimal       @db.Decimal(19, 4)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  lines InvoiceLine[]
+
+  @@map("invoices")
+}
+
+enum InvoiceStatus {
+  DRAFT
+  SENT
+  PARTIAL
+  PAID
+  VOID
+}
+
+model InvoiceLine {
+  id          String     @id @default(uuid())
+  invoiceId   String
+  invoice     Invoice    @relation(fields: [invoiceId], references: [id])
+  description String
+  quantity    Decimal    @db.Decimal(10, 4)
+  unitPrice   Decimal    @db.Decimal(19, 4)
+  accountId   String
+  account     Accounting @relation(fields: [accountId], references: [id])
+
+  @@map("invoice_lines")
+}
+
+// ─── Bills (AP — Hutang Usaha) ────────────────────────────────────────────────
+// Tracks money you OWE suppliers.
+// PT. BST example: Grasindo, Max Asia Stainless, Baralogam, etc.
+
+model Bill {
+  id         String     @id @default(uuid())
+  billNumber String     @unique
+  vendorId   String
+  vendor     Vendor     @relation(fields: [vendorId], references: [id])
+  issueDate  DateTime
+  dueDate    DateTime
+  status     BillStatus @default(DRAFT)
+  subtotal   Decimal    @db.Decimal(19, 4)
+  taxCodeId  String?
+  taxCode    TaxCode?   @relation(fields: [taxCodeId], references: [id])
+  taxAmount  Decimal    @default(0) @db.Decimal(19, 4)
+  total      Decimal    @db.Decimal(19, 4)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+
+  lines BillLine[]
+
+  @@map("bills")
+}
+
+enum BillStatus {
+  DRAFT
+  APPROVED
+  PARTIAL
+  PAID
+  VOID
+}
+
+model BillLine {
+  id          String     @id @default(uuid())
+  billId      String
+  bill        Bill       @relation(fields: [billId], references: [id])
+  description String
+  quantity    Decimal    @db.Decimal(10, 4)
+  unitPrice   Decimal    @db.Decimal(19, 4)
+  accountId   String
+  account     Accounting @relation(fields: [accountId], references: [id])
+
+  @@map("bill_lines")
+}
+
+// ─── Payroll ──────────────────────────────────────────────────────────────────
+// PT. BST: Biaya Gaji, Lembur, Tunjangan, BPJS — one run per month
+
+model PayrollRun {
+  id              String        @id @default(uuid())
+  payPeriodStart  DateTime
+  payPeriodEnd    DateTime
+  paymentDate     DateTime
+  status          PayrollStatus @default(DRAFT)
+  totalGross      Decimal       @db.Decimal(19, 4)
+  totalDeductions Decimal       @db.Decimal(19, 4)
+  totalNet        Decimal       @db.Decimal(19, 4)
+  createdAt       DateTime      @default(now())
+
+  entries PayrollEntry[]
+
+  @@map("payroll_runs")
+}
+
+enum PayrollStatus {
+  DRAFT
+  PROCESSED
+  PAID
+}
+
+model PayrollEntry {
+  id           String     @id @default(uuid())
+  payrollRunId String
+  payrollRun   PayrollRun @relation(fields: [payrollRunId], references: [id])
+  employeeId   String
+  employee     User       @relation("EmployeePayroll", fields: [employeeId], references: [id])
+  grossPay     Decimal    @db.Decimal(19, 4)
+  taxWithheld  Decimal    @db.Decimal(19, 4)
+  bpjsAmount   Decimal    @default(0) @db.Decimal(19, 4)
+  netPay       Decimal    @db.Decimal(19, 4)
+
+  @@map("payroll_entries")
+}
+
+// ─── Tax Codes ────────────────────────────────────────────────────────────────
+// PT. BST uses PPN (VAT). Your Neraca shows Hutang PPN = Rp 1,434,111,000.
+// Standard Indonesian PPN rate = 11%
+
+model TaxCode {
+  id       String  @id @default(uuid())
+  code     String  @unique // e.g. "PPN-11"
+  name     String // e.g. "PPN 11%"
+  rate     Decimal @db.Decimal(5, 4) // 0.1100
+  isActive Boolean @default(true)
+
+  invoices Invoice[]
+  bills    Bill[]
+
+  @@map("tax_codes")
+}
+
+// ─── Customers & Vendors ──────────────────────────────────────────────────────
+
+model Customer {
+  id       String    @id @default(uuid())
+  name     String // e.g. "PT. Sakura Java", "Chiyoda Kogyo Indonesia"
+  taxId    String? // NPWP
+  invoices Invoice[]
+
+  @@map("customers")
+}
+
+model Vendor {
+  id    String  @id @default(uuid())
+  name  String // e.g. "Grasindo", "Max Asia Stainless", "Baralogam Multijaya"
+  taxId String?
+  bills Bill[]
+
+  @@map("vendors")
+}
+
+enum Role {
+  ADMIN
+  FINANCE
+  EXECS
 }

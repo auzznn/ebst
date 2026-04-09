@@ -33,6 +33,18 @@ export declare const ModelName: {
     readonly Channel: "Channel";
     readonly ChannelMember: "ChannelMember";
     readonly Message: "Message";
+    readonly Accounting: "Accounting";
+    readonly JournalEntry: "JournalEntry";
+    readonly JournalLine: "JournalLine";
+    readonly Invoice: "Invoice";
+    readonly InvoiceLine: "InvoiceLine";
+    readonly Bill: "Bill";
+    readonly BillLine: "BillLine";
+    readonly PayrollRun: "PayrollRun";
+    readonly PayrollEntry: "PayrollEntry";
+    readonly TaxCode: "TaxCode";
+    readonly Customer: "Customer";
+    readonly Vendor: "Vendor";
 };
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
 export declare const TransactionIsolationLevel: {
@@ -52,6 +64,7 @@ export declare const UserScalarFieldEnum: {
     readonly updatedAt: "updatedAt";
     readonly username: "username";
     readonly displayUsername: "displayUsername";
+    readonly role: "role";
 };
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum];
 export declare const SessionScalarFieldEnum: {
@@ -115,6 +128,128 @@ export declare const MessageScalarFieldEnum: {
     readonly channelId: "channelId";
 };
 export type MessageScalarFieldEnum = (typeof MessageScalarFieldEnum)[keyof typeof MessageScalarFieldEnum];
+export declare const AccountingScalarFieldEnum: {
+    readonly id: "id";
+    readonly code: "code";
+    readonly name: "name";
+    readonly type: "type";
+    readonly parentId: "parentId";
+    readonly isActive: "isActive";
+    readonly balance: "balance";
+    readonly createdAt: "createdAt";
+    readonly updatedAt: "updatedAt";
+};
+export type AccountingScalarFieldEnum = (typeof AccountingScalarFieldEnum)[keyof typeof AccountingScalarFieldEnum];
+export declare const JournalEntryScalarFieldEnum: {
+    readonly id: "id";
+    readonly reference: "reference";
+    readonly entryDate: "entryDate";
+    readonly description: "description";
+    readonly status: "status";
+    readonly createdById: "createdById";
+    readonly createdAt: "createdAt";
+    readonly updatedAt: "updatedAt";
+};
+export type JournalEntryScalarFieldEnum = (typeof JournalEntryScalarFieldEnum)[keyof typeof JournalEntryScalarFieldEnum];
+export declare const JournalLineScalarFieldEnum: {
+    readonly id: "id";
+    readonly journalEntryId: "journalEntryId";
+    readonly accountId: "accountId";
+    readonly debit: "debit";
+    readonly credit: "credit";
+    readonly memo: "memo";
+};
+export type JournalLineScalarFieldEnum = (typeof JournalLineScalarFieldEnum)[keyof typeof JournalLineScalarFieldEnum];
+export declare const InvoiceScalarFieldEnum: {
+    readonly id: "id";
+    readonly invoiceNumber: "invoiceNumber";
+    readonly customerId: "customerId";
+    readonly issueDate: "issueDate";
+    readonly dueDate: "dueDate";
+    readonly status: "status";
+    readonly subtotal: "subtotal";
+    readonly taxCodeId: "taxCodeId";
+    readonly taxAmount: "taxAmount";
+    readonly total: "total";
+    readonly createdAt: "createdAt";
+    readonly updatedAt: "updatedAt";
+};
+export type InvoiceScalarFieldEnum = (typeof InvoiceScalarFieldEnum)[keyof typeof InvoiceScalarFieldEnum];
+export declare const InvoiceLineScalarFieldEnum: {
+    readonly id: "id";
+    readonly invoiceId: "invoiceId";
+    readonly description: "description";
+    readonly quantity: "quantity";
+    readonly unitPrice: "unitPrice";
+    readonly accountId: "accountId";
+};
+export type InvoiceLineScalarFieldEnum = (typeof InvoiceLineScalarFieldEnum)[keyof typeof InvoiceLineScalarFieldEnum];
+export declare const BillScalarFieldEnum: {
+    readonly id: "id";
+    readonly billNumber: "billNumber";
+    readonly vendorId: "vendorId";
+    readonly issueDate: "issueDate";
+    readonly dueDate: "dueDate";
+    readonly status: "status";
+    readonly subtotal: "subtotal";
+    readonly taxCodeId: "taxCodeId";
+    readonly taxAmount: "taxAmount";
+    readonly total: "total";
+    readonly createdAt: "createdAt";
+    readonly updatedAt: "updatedAt";
+};
+export type BillScalarFieldEnum = (typeof BillScalarFieldEnum)[keyof typeof BillScalarFieldEnum];
+export declare const BillLineScalarFieldEnum: {
+    readonly id: "id";
+    readonly billId: "billId";
+    readonly description: "description";
+    readonly quantity: "quantity";
+    readonly unitPrice: "unitPrice";
+    readonly accountId: "accountId";
+};
+export type BillLineScalarFieldEnum = (typeof BillLineScalarFieldEnum)[keyof typeof BillLineScalarFieldEnum];
+export declare const PayrollRunScalarFieldEnum: {
+    readonly id: "id";
+    readonly payPeriodStart: "payPeriodStart";
+    readonly payPeriodEnd: "payPeriodEnd";
+    readonly paymentDate: "paymentDate";
+    readonly status: "status";
+    readonly totalGross: "totalGross";
+    readonly totalDeductions: "totalDeductions";
+    readonly totalNet: "totalNet";
+    readonly createdAt: "createdAt";
+};
+export type PayrollRunScalarFieldEnum = (typeof PayrollRunScalarFieldEnum)[keyof typeof PayrollRunScalarFieldEnum];
+export declare const PayrollEntryScalarFieldEnum: {
+    readonly id: "id";
+    readonly payrollRunId: "payrollRunId";
+    readonly employeeId: "employeeId";
+    readonly grossPay: "grossPay";
+    readonly taxWithheld: "taxWithheld";
+    readonly bpjsAmount: "bpjsAmount";
+    readonly netPay: "netPay";
+};
+export type PayrollEntryScalarFieldEnum = (typeof PayrollEntryScalarFieldEnum)[keyof typeof PayrollEntryScalarFieldEnum];
+export declare const TaxCodeScalarFieldEnum: {
+    readonly id: "id";
+    readonly code: "code";
+    readonly name: "name";
+    readonly rate: "rate";
+    readonly isActive: "isActive";
+};
+export type TaxCodeScalarFieldEnum = (typeof TaxCodeScalarFieldEnum)[keyof typeof TaxCodeScalarFieldEnum];
+export declare const CustomerScalarFieldEnum: {
+    readonly id: "id";
+    readonly name: "name";
+    readonly taxId: "taxId";
+};
+export type CustomerScalarFieldEnum = (typeof CustomerScalarFieldEnum)[keyof typeof CustomerScalarFieldEnum];
+export declare const VendorScalarFieldEnum: {
+    readonly id: "id";
+    readonly name: "name";
+    readonly taxId: "taxId";
+};
+export type VendorScalarFieldEnum = (typeof VendorScalarFieldEnum)[keyof typeof VendorScalarFieldEnum];
 export declare const SortOrder: {
     readonly asc: "asc";
     readonly desc: "desc";

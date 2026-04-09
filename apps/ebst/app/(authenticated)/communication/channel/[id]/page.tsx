@@ -7,7 +7,7 @@ import { useChannel } from "@/hooks/useChannels";
 import { useSocket } from "@/hooks/useSocket";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Trash2, Send, Wifi, WifiOff, ArrowLeft } from "lucide-react";
+import { Trash2, Send, Wifi, WifiOff } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
@@ -147,7 +147,7 @@ export default function ChannelPage() {
               : `# ${channel.name}`}
           </h2>
           <Badge variant="outline" className="text-xs gap-1">
-            {channel.members.length} members
+            {channel.isDM? "DM" : `${channel.members.length} members`}
           </Badge>
         </div>
         <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
