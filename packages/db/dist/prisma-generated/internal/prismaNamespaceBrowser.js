@@ -48,7 +48,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.NullsOrder = exports.QueryMode = exports.SortOrder = exports.MessageScalarFieldEnum = exports.ChannelMemberScalarFieldEnum = exports.ChannelScalarFieldEnum = exports.VerificationScalarFieldEnum = exports.AccountScalarFieldEnum = exports.SessionScalarFieldEnum = exports.UserScalarFieldEnum = exports.TransactionIsolationLevel = exports.ModelName = exports.AnyNull = exports.JsonNull = exports.DbNull = exports.NullTypes = exports.Decimal = void 0;
+exports.NullsOrder = exports.QueryMode = exports.SortOrder = exports.FixedAssetScalarFieldEnum = exports.JournalLineScalarFieldEnum = exports.JournalEntryScalarFieldEnum = exports.ChartOfAccountScalarFieldEnum = exports.MessageScalarFieldEnum = exports.ChannelMemberScalarFieldEnum = exports.ChannelScalarFieldEnum = exports.VerificationScalarFieldEnum = exports.AccountScalarFieldEnum = exports.SessionScalarFieldEnum = exports.UserScalarFieldEnum = exports.TransactionIsolationLevel = exports.ModelName = exports.AnyNull = exports.JsonNull = exports.DbNull = exports.NullTypes = exports.Decimal = void 0;
 const runtime = __importStar(require("@prisma/client/runtime/index-browser"));
 exports.Decimal = runtime.Decimal;
 exports.NullTypes = {
@@ -81,7 +81,11 @@ exports.ModelName = {
     Verification: 'Verification',
     Channel: 'Channel',
     ChannelMember: 'ChannelMember',
-    Message: 'Message'
+    Message: 'Message',
+    ChartOfAccount: 'ChartOfAccount',
+    JournalEntry: 'JournalEntry',
+    JournalLine: 'JournalLine',
+    FixedAsset: 'FixedAsset'
 };
 /*
  * Enums
@@ -158,6 +162,43 @@ exports.MessageScalarFieldEnum = {
     createdAt: 'createdAt',
     senderId: 'senderId',
     channelId: 'channelId'
+};
+exports.ChartOfAccountScalarFieldEnum = {
+    id: 'id',
+    code: 'code',
+    name: 'name',
+    type: 'type',
+    parentCode: 'parentCode',
+    isActive: 'isActive',
+    createdAt: 'createdAt'
+};
+exports.JournalEntryScalarFieldEnum = {
+    id: 'id',
+    date: 'date',
+    description: 'description',
+    period: 'period',
+    createdAt: 'createdAt',
+    createdById: 'createdById'
+};
+exports.JournalLineScalarFieldEnum = {
+    id: 'id',
+    journalEntryId: 'journalEntryId',
+    accountId: 'accountId',
+    amount: 'amount',
+    isDebit: 'isDebit',
+    description: 'description'
+};
+exports.FixedAssetScalarFieldEnum = {
+    id: 'id',
+    name: 'name',
+    category: 'category',
+    acquisitionDate: 'acquisitionDate',
+    usefulLifeMonths: 'usefulLifeMonths',
+    acquisitionCost: 'acquisitionCost',
+    monthlyDepreciation: 'monthlyDepreciation',
+    accumulatedDepreciation: 'accumulatedDepreciation',
+    bookValue: 'bookValue',
+    createdAt: 'createdAt'
 };
 exports.SortOrder = {
     asc: 'asc',

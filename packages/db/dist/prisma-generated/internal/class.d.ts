@@ -192,5 +192,49 @@ export interface PrismaClient<in LogOpts extends Prisma.LogLevel = never, in out
     get message(): Prisma.MessageDelegate<ExtArgs, {
         omit: OmitOpts;
     }>;
+    /**
+     * `prisma.chartOfAccount`: Exposes CRUD operations for the **ChartOfAccount** model.
+      * Example usage:
+      * ```ts
+      * // Fetch zero or more ChartOfAccounts
+      * const chartOfAccounts = await prisma.chartOfAccount.findMany()
+      * ```
+      */
+    get chartOfAccount(): Prisma.ChartOfAccountDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
+    /**
+     * `prisma.journalEntry`: Exposes CRUD operations for the **JournalEntry** model.
+      * Example usage:
+      * ```ts
+      * // Fetch zero or more JournalEntries
+      * const journalEntries = await prisma.journalEntry.findMany()
+      * ```
+      */
+    get journalEntry(): Prisma.JournalEntryDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
+    /**
+     * `prisma.journalLine`: Exposes CRUD operations for the **JournalLine** model.
+      * Example usage:
+      * ```ts
+      * // Fetch zero or more JournalLines
+      * const journalLines = await prisma.journalLine.findMany()
+      * ```
+      */
+    get journalLine(): Prisma.JournalLineDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
+    /**
+     * `prisma.fixedAsset`: Exposes CRUD operations for the **FixedAsset** model.
+      * Example usage:
+      * ```ts
+      * // Fetch zero or more FixedAssets
+      * const fixedAssets = await prisma.fixedAsset.findMany()
+      * ```
+      */
+    get fixedAsset(): Prisma.FixedAssetDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
 }
 export declare function getPrismaClientClass(): PrismaClientConstructor;

@@ -37,3 +37,23 @@ export type ChannelMember = Prisma.ChannelMemberModel;
  *
  */
 export type Message = Prisma.MessageModel;
+/**
+ * Model ChartOfAccount
+ *
+ */
+export type ChartOfAccount = Prisma.ChartOfAccountModel;
+/**
+ * Model JournalEntry
+ *
+ */
+export type JournalEntry = Prisma.JournalEntryModel;
+/**
+ * Model JournalLine
+ *
+ */
+export type JournalLine = Prisma.JournalLineModel;
+/**
+ * Model FixedAsset
+ *
+ */
+export type FixedAsset = Prisma.FixedAssetModel;

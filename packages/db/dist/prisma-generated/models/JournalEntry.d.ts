@@ -1,5 +1,4 @@
 import type * as runtime from "@prisma/client/runtime/client";
-import type * as $Enums from "../enums.js";
 import type * as Prisma from "../internal/prismaNamespace.js";
 /**
  * Model JournalEntry
@@ -13,64 +12,52 @@ export type AggregateJournalEntry = {
 };
 export type JournalEntryMinAggregateOutputType = {
     id: string | null;
-    reference: string | null;
-    entryDate: Date | null;
+    date: Date | null;
     description: string | null;
-    status: $Enums.JournalEntryStatus | null;
-    createdById: string | null;
+    period: string | null;
     createdAt: Date | null;
-    updatedAt: Date | null;
+    createdById: string | null;
 };
 export type JournalEntryMaxAggregateOutputType = {
     id: string | null;
-    reference: string | null;
-    entryDate: Date | null;
+    date: Date | null;
     description: string | null;
-    status: $Enums.JournalEntryStatus | null;
-    createdById: string | null;
+    period: string | null;
     createdAt: Date | null;
-    updatedAt: Date | null;
+    createdById: string | null;
 };
 export type JournalEntryCountAggregateOutputType = {
     id: number;
-    reference: number;
-    entryDate: number;
+    date: number;
     description: number;
-    status: number;
-    createdById: number;
+    period: number;
     createdAt: number;
-    updatedAt: number;
+    createdById: number;
     _all: number;
 };
 export type JournalEntryMinAggregateInputType = {
     id?: true;
-    reference?: true;
-    entryDate?: true;
+    date?: true;
     description?: true;
-    status?: true;
-    createdById?: true;
+    period?: true;
     createdAt?: true;
-    updatedAt?: true;
+    createdById?: true;
 };
 export type JournalEntryMaxAggregateInputType = {
     id?: true;
-    reference?: true;
-    entryDate?: true;
+    date?: true;
     description?: true;
-    status?: true;
-    createdById?: true;
+    period?: true;
     createdAt?: true;
-    updatedAt?: true;
+    createdById?: true;
 };
 export type JournalEntryCountAggregateInputType = {
     id?: true;
-    reference?: true;
-    entryDate?: true;
+    date?: true;
     description?: true;
-    status?: true;
-    createdById?: true;
+    period?: true;
     createdAt?: true;
-    updatedAt?: true;
+    createdById?: true;
     _all?: true;
 };
 export type JournalEntryAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -137,13 +124,11 @@ export type JournalEntryGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 };
 export type JournalEntryGroupByOutputType = {
     id: string;
-    reference: string;
-    entryDate: Date;
+    date: Date;
     description: string;
-    status: $Enums.JournalEntryStatus;
-    createdById: string;
+    period: string;
     createdAt: Date;
-    updatedAt: Date;
+    createdById: string;
     _count: JournalEntryCountAggregateOutputType | null;
     _min: JournalEntryMinAggregateOutputType | null;
     _max: JournalEntryMaxAggregateOutputType | null;
@@ -156,52 +141,44 @@ export type JournalEntryWhereInput = {
     OR?: Prisma.JournalEntryWhereInput[];
     NOT?: Prisma.JournalEntryWhereInput | Prisma.JournalEntryWhereInput[];
     id?: Prisma.StringFilter<"JournalEntry"> | string;
-    reference?: Prisma.StringFilter<"JournalEntry"> | string;
-    entryDate?: Prisma.DateTimeFilter<"JournalEntry"> | Date | string;
+    date?: Prisma.DateTimeFilter<"JournalEntry"> | Date | string;
     description?: Prisma.StringFilter<"JournalEntry"> | string;
-    status?: Prisma.EnumJournalEntryStatusFilter<"JournalEntry"> | $Enums.JournalEntryStatus;
-    createdById?: Prisma.StringFilter<"JournalEntry"> | string;
+    period?: Prisma.StringFilter<"JournalEntry"> | string;
     createdAt?: Prisma.DateTimeFilter<"JournalEntry"> | Date | string;
-    updatedAt?: Prisma.DateTimeFilter<"JournalEntry"> | Date | string;
+    createdById?: Prisma.StringFilter<"JournalEntry"> | string;
     createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
     lines?: Prisma.JournalLineListRelationFilter;
 };
 export type JournalEntryOrderByWithRelationInput = {
     id?: Prisma.SortOrder;
-    reference?: Prisma.SortOrder;
-    entryDate?: Prisma.SortOrder;
+    date?: Prisma.SortOrder;
     description?: Prisma.SortOrder;
-    status?: Prisma.SortOrder;
-    createdById?: Prisma.SortOrder;
+    period?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
-    updatedAt?: Prisma.SortOrder;
+    createdById?: Prisma.SortOrder;
     createdBy?: Prisma.UserOrderByWithRelationInput;
     lines?: Prisma.JournalLineOrderByRelationAggregateInput;
 };
 export type JournalEntryWhereUniqueInput = Prisma.AtLeast<{
     id?: string;
-    reference?: string;
     AND?: Prisma.JournalEntryWhereInput | Prisma.JournalEntryWhereInput[];
     OR?: Prisma.JournalEntryWhereInput[];
     NOT?: Prisma.JournalEntryWhereInput | Prisma.JournalEntryWhereInput[];
-    entryDate?: Prisma.DateTimeFilter<"JournalEntry"> | Date | string;
+    date?: Prisma.DateTimeFilter<"JournalEntry"> | Date | string;
     description?: Prisma.StringFilter<"JournalEntry"> | string;
-    status?: Prisma.EnumJournalEntryStatusFilter<"JournalEntry"> | $Enums.JournalEntryStatus;
-    createdById?: Prisma.StringFilter<"JournalEntry"> | string;
+    period?: Prisma.StringFilter<"JournalEntry"> | string;
     createdAt?: Prisma.DateTimeFilter<"JournalEntry"> | Date | string;
-    updatedAt?: Prisma.DateTimeFilter<"JournalEntry"> | Date | string;
+    createdById?: Prisma.StringFilter<"JournalEntry"> | string;
     createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
     lines?: Prisma.JournalLineListRelationFilter;
-}, "id" | "reference">;
+}, "id">;
 export type JournalEntryOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
-    reference?: Prisma.SortOrder;
-    entryDate?: Prisma.SortOrder;
+    date?: Prisma.SortOrder;
     description?: Prisma.SortOrder;
-    status?: Prisma.SortOrder;
-    createdById?: Prisma.SortOrder;
+    period?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
-    updatedAt?: Prisma.SortOrder;
+    createdById?: Prisma.SortOrder;
     _count?: Prisma.JournalEntryCountOrderByAggregateInput;
     _max?: Prisma.JournalEntryMaxOrderByAggregateInput;
     _min?: Prisma.JournalEntryMinOrderByAggregateInput;
@@ -211,86 +188,70 @@ export type JournalEntryScalarWhereWithAggregatesInput = {
     OR?: Prisma.JournalEntryScalarWhereWithAggregatesInput[];
     NOT?: Prisma.JournalEntryScalarWhereWithAggregatesInput | Prisma.JournalEntryScalarWhereWithAggregatesInput[];
     id?: Prisma.StringWithAggregatesFilter<"JournalEntry"> | string;
-    reference?: Prisma.StringWithAggregatesFilter<"JournalEntry"> | string;
-    entryDate?: Prisma.DateTimeWithAggregatesFilter<"JournalEntry"> | Date | string;
+    date?: Prisma.DateTimeWithAggregatesFilter<"JournalEntry"> | Date | string;
     description?: Prisma.StringWithAggregatesFilter<"JournalEntry"> | string;
-    status?: Prisma.EnumJournalEntryStatusWithAggregatesFilter<"JournalEntry"> | $Enums.JournalEntryStatus;
-    createdById?: Prisma.StringWithAggregatesFilter<"JournalEntry"> | string;
+    period?: Prisma.StringWithAggregatesFilter<"JournalEntry"> | string;
     createdAt?: Prisma.DateTimeWithAggregatesFilter<"JournalEntry"> | Date | string;
-    updatedAt?: Prisma.DateTimeWithAggregatesFilter<"JournalEntry"> | Date | string;
+    createdById?: Prisma.StringWithAggregatesFilter<"JournalEntry"> | string;
 };
 export type JournalEntryCreateInput = {
     id?: string;
-    reference: string;
-    entryDate: Date | string;
+    date: Date | string;
     description: string;
-    status?: $Enums.JournalEntryStatus;
+    period: string;
     createdAt?: Date | string;
-    updatedAt?: Date | string;
     createdBy: Prisma.UserCreateNestedOneWithoutJournalEntriesInput;
     lines?: Prisma.JournalLineCreateNestedManyWithoutJournalEntryInput;
 };
 export type JournalEntryUncheckedCreateInput = {
     id?: string;
-    reference: string;
-    entryDate: Date | string;
+    date: Date | string;
     description: string;
-    status?: $Enums.JournalEntryStatus;
-    createdById: string;
+    period: string;
     createdAt?: Date | string;
-    updatedAt?: Date | string;
+    createdById: string;
     lines?: Prisma.JournalLineUncheckedCreateNestedManyWithoutJournalEntryInput;
 };
 export type JournalEntryUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
-    reference?: Prisma.StringFieldUpdateOperationsInput | string;
-    entryDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     description?: Prisma.StringFieldUpdateOperationsInput | string;
-    status?: Prisma.EnumJournalEntryStatusFieldUpdateOperationsInput | $Enums.JournalEntryStatus;
+    period?: Prisma.StringFieldUpdateOperationsInput | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     createdBy?: Prisma.UserUpdateOneRequiredWithoutJournalEntriesNestedInput;
     lines?: Prisma.JournalLineUpdateManyWithoutJournalEntryNestedInput;
 };
 export type JournalEntryUncheckedUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
-    reference?: Prisma.StringFieldUpdateOperationsInput | string;
-    entryDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     description?: Prisma.StringFieldUpdateOperationsInput | string;
-    status?: Prisma.EnumJournalEntryStatusFieldUpdateOperationsInput | $Enums.JournalEntryStatus;
-    createdById?: Prisma.StringFieldUpdateOperationsInput | string;
+    period?: Prisma.StringFieldUpdateOperationsInput | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    createdById?: Prisma.StringFieldUpdateOperationsInput | string;
     lines?: Prisma.JournalLineUncheckedUpdateManyWithoutJournalEntryNestedInput;
 };
 export type JournalEntryCreateManyInput = {
     id?: string;
-    reference: string;
-    entryDate: Date | string;
+    date: Date | string;
     description: string;
-    status?: $Enums.JournalEntryStatus;
-    createdById: string;
+    period: string;
     createdAt?: Date | string;
-    updatedAt?: Date | string;
+    createdById: string;
 };
 export type JournalEntryUpdateManyMutationInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
-    reference?: Prisma.StringFieldUpdateOperationsInput | string;
-    entryDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     description?: Prisma.StringFieldUpdateOperationsInput | string;
-    status?: Prisma.EnumJournalEntryStatusFieldUpdateOperationsInput | $Enums.JournalEntryStatus;
+    period?: Prisma.StringFieldUpdateOperationsInput | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 export type JournalEntryUncheckedUpdateManyInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
-    reference?: Prisma.StringFieldUpdateOperationsInput | string;
-    entryDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     description?: Prisma.StringFieldUpdateOperationsInput | string;
-    status?: Prisma.EnumJournalEntryStatusFieldUpdateOperationsInput | $Enums.JournalEntryStatus;
-    createdById?: Prisma.StringFieldUpdateOperationsInput | string;
+    period?: Prisma.StringFieldUpdateOperationsInput | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    createdById?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 export type JournalEntryListRelationFilter = {
     every?: Prisma.JournalEntryWhereInput;
@@ -302,33 +263,27 @@ export type JournalEntryOrderByRelationAggregateInput = {
 };
 export type JournalEntryCountOrderByAggregateInput = {
     id?: Prisma.SortOrder;
-    reference?: Prisma.SortOrder;
-    entryDate?: Prisma.SortOrder;
+    date?: Prisma.SortOrder;
     description?: Prisma.SortOrder;
-    status?: Prisma.SortOrder;
-    createdById?: Prisma.SortOrder;
+    period?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
-    updatedAt?: Prisma.SortOrder;
+    createdById?: Prisma.SortOrder;
 };
 export type JournalEntryMaxOrderByAggregateInput = {
     id?: Prisma.SortOrder;
-    reference?: Prisma.SortOrder;
-    entryDate?: Prisma.SortOrder;
+    date?: Prisma.SortOrder;
     description?: Prisma.SortOrder;
-    status?: Prisma.SortOrder;
-    createdById?: Prisma.SortOrder;
+    period?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
-    updatedAt?: Prisma.SortOrder;
+    createdById?: Prisma.SortOrder;
 };
 export type JournalEntryMinOrderByAggregateInput = {
     id?: Prisma.SortOrder;
-    reference?: Prisma.SortOrder;
-    entryDate?: Prisma.SortOrder;
+    date?: Prisma.SortOrder;
     description?: Prisma.SortOrder;
-    status?: Prisma.SortOrder;
-    createdById?: Prisma.SortOrder;
+    period?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
-    updatedAt?: Prisma.SortOrder;
+    createdById?: Prisma.SortOrder;
 };
 export type JournalEntryScalarRelationFilter = {
     is?: Prisma.JournalEntryWhereInput;
@@ -372,9 +327,6 @@ export type JournalEntryUncheckedUpdateManyWithoutCreatedByNestedInput = {
     updateMany?: Prisma.JournalEntryUpdateManyWithWhereWithoutCreatedByInput | Prisma.JournalEntryUpdateManyWithWhereWithoutCreatedByInput[];
     deleteMany?: Prisma.JournalEntryScalarWhereInput | Prisma.JournalEntryScalarWhereInput[];
 };
-export type EnumJournalEntryStatusFieldUpdateOperationsInput = {
-    set?: $Enums.JournalEntryStatus;
-};
 export type JournalEntryCreateNestedOneWithoutLinesInput = {
     create?: Prisma.XOR<Prisma.JournalEntryCreateWithoutLinesInput, Prisma.JournalEntryUncheckedCreateWithoutLinesInput>;
     connectOrCreate?: Prisma.JournalEntryCreateOrConnectWithoutLinesInput;
@@ -389,22 +341,18 @@ export type JournalEntryUpdateOneRequiredWithoutLinesNestedInput = {
 };
 export type JournalEntryCreateWithoutCreatedByInput = {
     id?: string;
-    reference: string;
-    entryDate: Date | string;
+    date: Date | string;
     description: string;
-    status?: $Enums.JournalEntryStatus;
+    period: string;
     createdAt?: Date | string;
-    updatedAt?: Date | string;
     lines?: Prisma.JournalLineCreateNestedManyWithoutJournalEntryInput;
 };
 export type JournalEntryUncheckedCreateWithoutCreatedByInput = {
     id?: string;
-    reference: string;
-    entryDate: Date | string;
+    date: Date | string;
     description: string;
-    status?: $Enums.JournalEntryStatus;
+    period: string;
     createdAt?: Date | string;
-    updatedAt?: Date | string;
     lines?: Prisma.JournalLineUncheckedCreateNestedManyWithoutJournalEntryInput;
 };
 export type JournalEntryCreateOrConnectWithoutCreatedByInput = {
@@ -433,33 +381,27 @@ export type JournalEntryScalarWhereInput = {
     OR?: Prisma.JournalEntryScalarWhereInput[];
     NOT?: Prisma.JournalEntryScalarWhereInput | Prisma.JournalEntryScalarWhereInput[];
     id?: Prisma.StringFilter<"JournalEntry"> | string;
-    reference?: Prisma.StringFilter<"JournalEntry"> | string;
-    entryDate?: Prisma.DateTimeFilter<"JournalEntry"> | Date | string;
+    date?: Prisma.DateTimeFilter<"JournalEntry"> | Date | string;
     description?: Prisma.StringFilter<"JournalEntry"> | string;
-    status?: Prisma.EnumJournalEntryStatusFilter<"JournalEntry"> | $Enums.JournalEntryStatus;
-    createdById?: Prisma.StringFilter<"JournalEntry"> | string;
+    period?: Prisma.StringFilter<"JournalEntry"> | string;
     createdAt?: Prisma.DateTimeFilter<"JournalEntry"> | Date | string;
-    updatedAt?: Prisma.DateTimeFilter<"JournalEntry"> | Date | string;
+    createdById?: Prisma.StringFilter<"JournalEntry"> | string;
 };
 export type JournalEntryCreateWithoutLinesInput = {
     id?: string;
-    reference: string;
-    entryDate: Date | string;
+    date: Date | string;
     description: string;
-    status?: $Enums.JournalEntryStatus;
+    period: string;
     createdAt?: Date | string;
-    updatedAt?: Date | string;
     createdBy: Prisma.UserCreateNestedOneWithoutJournalEntriesInput;
 };
 export type JournalEntryUncheckedCreateWithoutLinesInput = {
     id?: string;
-    reference: string;
-    entryDate: Date | string;
+    date: Date | string;
     description: string;
-    status?: $Enums.JournalEntryStatus;
-    createdById: string;
+    period: string;
     createdAt?: Date | string;
-    updatedAt?: Date | string;
+    createdById: string;
 };
 export type JournalEntryCreateOrConnectWithoutLinesInput = {
     where: Prisma.JournalEntryWhereUniqueInput;
@@ -476,61 +418,49 @@ export type JournalEntryUpdateToOneWithWhereWithoutLinesInput = {
 };
 export type JournalEntryUpdateWithoutLinesInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
-    reference?: Prisma.StringFieldUpdateOperationsInput | string;
-    entryDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     description?: Prisma.StringFieldUpdateOperationsInput | string;
-    status?: Prisma.EnumJournalEntryStatusFieldUpdateOperationsInput | $Enums.JournalEntryStatus;
+    period?: Prisma.StringFieldUpdateOperationsInput | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     createdBy?: Prisma.UserUpdateOneRequiredWithoutJournalEntriesNestedInput;
 };
 export type JournalEntryUncheckedUpdateWithoutLinesInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
-    reference?: Prisma.StringFieldUpdateOperationsInput | string;
-    entryDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     description?: Prisma.StringFieldUpdateOperationsInput | string;
-    status?: Prisma.EnumJournalEntryStatusFieldUpdateOperationsInput | $Enums.JournalEntryStatus;
-    createdById?: Prisma.StringFieldUpdateOperationsInput | string;
+    period?: Prisma.StringFieldUpdateOperationsInput | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    createdById?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 export type JournalEntryCreateManyCreatedByInput = {
     id?: string;
-    reference: string;
-    entryDate: Date | string;
+    date: Date | string;
     description: string;
-    status?: $Enums.JournalEntryStatus;
+    period: string;
     createdAt?: Date | string;
-    updatedAt?: Date | string;
 };
 export type JournalEntryUpdateWithoutCreatedByInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
-    reference?: Prisma.StringFieldUpdateOperationsInput | string;
-    entryDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     description?: Prisma.StringFieldUpdateOperationsInput | string;
-    status?: Prisma.EnumJournalEntryStatusFieldUpdateOperationsInput | $Enums.JournalEntryStatus;
+    period?: Prisma.StringFieldUpdateOperationsInput | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     lines?: Prisma.JournalLineUpdateManyWithoutJournalEntryNestedInput;
 };
 export type JournalEntryUncheckedUpdateWithoutCreatedByInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
-    reference?: Prisma.StringFieldUpdateOperationsInput | string;
-    entryDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     description?: Prisma.StringFieldUpdateOperationsInput | string;
-    status?: Prisma.EnumJournalEntryStatusFieldUpdateOperationsInput | $Enums.JournalEntryStatus;
+    period?: Prisma.StringFieldUpdateOperationsInput | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     lines?: Prisma.JournalLineUncheckedUpdateManyWithoutJournalEntryNestedInput;
 };
 export type JournalEntryUncheckedUpdateManyWithoutCreatedByInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
-    reference?: Prisma.StringFieldUpdateOperationsInput | string;
-    entryDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     description?: Prisma.StringFieldUpdateOperationsInput | string;
-    status?: Prisma.EnumJournalEntryStatusFieldUpdateOperationsInput | $Enums.JournalEntryStatus;
+    period?: Prisma.StringFieldUpdateOperationsInput | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 /**
  * Count Type JournalEntryCountOutputType
@@ -558,50 +488,42 @@ export type JournalEntryCountOutputTypeCountLinesArgs<ExtArgs extends runtime.Ty
 };
 export type JournalEntrySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
-    reference?: boolean;
-    entryDate?: boolean;
+    date?: boolean;
     description?: boolean;
-    status?: boolean;
-    createdById?: boolean;
+    period?: boolean;
     createdAt?: boolean;
-    updatedAt?: boolean;
+    createdById?: boolean;
     createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     lines?: boolean | Prisma.JournalEntry$linesArgs<ExtArgs>;
     _count?: boolean | Prisma.JournalEntryCountOutputTypeDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["journalEntry"]>;
 export type JournalEntrySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
-    reference?: boolean;
-    entryDate?: boolean;
+    date?: boolean;
     description?: boolean;
-    status?: boolean;
-    createdById?: boolean;
+    period?: boolean;
     createdAt?: boolean;
-    updatedAt?: boolean;
+    createdById?: boolean;
     createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["journalEntry"]>;
 export type JournalEntrySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
-    reference?: boolean;
-    entryDate?: boolean;
+    date?: boolean;
     description?: boolean;
-    status?: boolean;
-    createdById?: boolean;
+    period?: boolean;
     createdAt?: boolean;
-    updatedAt?: boolean;
+    createdById?: boolean;
     createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["journalEntry"]>;
 export type JournalEntrySelectScalar = {
     id?: boolean;
-    reference?: boolean;
-    entryDate?: boolean;
+    date?: boolean;
     description?: boolean;
-    status?: boolean;
-    createdById?: boolean;
+    period?: boolean;
     createdAt?: boolean;
-    updatedAt?: boolean;
+    createdById?: boolean;
 };
-export type JournalEntryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "reference" | "entryDate" | "description" | "status" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["journalEntry"]>;
+export type JournalEntryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "date" | "description" | "period" | "createdAt" | "createdById", ExtArgs["result"]["journalEntry"]>;
 export type JournalEntryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     lines?: boolean | Prisma.JournalEntry$linesArgs<ExtArgs>;
@@ -621,13 +543,11 @@ export type $JournalEntryPayload<ExtArgs extends runtime.Types.Extensions.Intern
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         id: string;
-        reference: string;
-        entryDate: Date;
+        date: Date;
         description: string;
-        status: $Enums.JournalEntryStatus;
-        createdById: string;
+        period: string;
         createdAt: Date;
-        updatedAt: Date;
+        createdById: string;
     }, ExtArgs["result"]["journalEntry"]>;
     composites: {};
 };
@@ -985,13 +905,11 @@ export interface Prisma__JournalEntryClient<T, Null = never, ExtArgs extends run
  */
 export interface JournalEntryFieldRefs {
     readonly id: Prisma.FieldRef<"JournalEntry", 'String'>;
-    readonly reference: Prisma.FieldRef<"JournalEntry", 'String'>;
-    readonly entryDate: Prisma.FieldRef<"JournalEntry", 'DateTime'>;
+    readonly date: Prisma.FieldRef<"JournalEntry", 'DateTime'>;
     readonly description: Prisma.FieldRef<"JournalEntry", 'String'>;
-    readonly status: Prisma.FieldRef<"JournalEntry", 'JournalEntryStatus'>;
-    readonly createdById: Prisma.FieldRef<"JournalEntry", 'String'>;
+    readonly period: Prisma.FieldRef<"JournalEntry", 'String'>;
     readonly createdAt: Prisma.FieldRef<"JournalEntry", 'DateTime'>;
-    readonly updatedAt: Prisma.FieldRef<"JournalEntry", 'DateTime'>;
+    readonly createdById: Prisma.FieldRef<"JournalEntry", 'String'>;
 }
 /**
  * JournalEntry findUnique

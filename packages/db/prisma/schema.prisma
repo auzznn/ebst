@@ -23,6 +23,7 @@ model User {
   messages        Message[]
   members         ChannelMember[]
   role            Role            @default(FINANCE)
+  journalEntries  JournalEntry[]
 
   @@unique([email])
   @@map("user")
@@ -113,4 +114,70 @@ model Message {
   channelId String
   sender    User     @relation(fields: [senderId], references: [id])
   channel   Channel  @relation(fields: [channelId], references: [id])
+}
+
+// ─── Accounting Module ──────────────────────────────────────────
+
+enum AccountType {
+  ASSET
+  CONTRA_ASSET
+  LIABILITY
+  EQUITY
+  REVENUE
+  EXPENSE
+}
+
+model ChartOfAccount {
+  id          String        @id @default(uuid())
+  code        String        @unique
+  name        String
+  type        AccountType
+  parentCode  String?
+  isActive    Boolean       @default(true)
+  createdAt   DateTime      @default(now())
+
+  journalLines JournalLine[]
+
+  @@map("chart_of_account")
+}
+
+model JournalEntry {
+  id          String        @id @default(uuid())
+  date        DateTime
+  description String
+  period      String        // "2025-12" format
+  createdAt   DateTime      @default(now())
+  createdById String
+  createdBy   User          @relation(fields: [createdById], references: [id])
+  lines       JournalLine[]
+
+  @@map("journal_entry")
+}
+
+model JournalLine {
+  id             String         @id @default(uuid())
+  journalEntryId String
+  journalEntry   JournalEntry   @relation(fields: [journalEntryId], references: [id], onDelete: Cascade)
+  accountId      String
+  account        ChartOfAccount @relation(fields: [accountId], references: [id])
+  amount         Float
+  isDebit        Boolean
+  description    String?
+
+  @@map("journal_line")
+}
+
+model FixedAsset {
+  id                      String   @id @default(uuid())
+  name                    String
+  category                String
+  acquisitionDate         DateTime
+  usefulLifeMonths        Int
+  acquisitionCost         Float
+  monthlyDepreciation     Float
+  accumulatedDepreciation Float    @default(0)
+  bookValue               Float
+  createdAt               DateTime @default(now())
+
+  @@map("fixed_asset")
 }

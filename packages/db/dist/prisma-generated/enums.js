@@ -9,9 +9,17 @@
 * 🟢 You can import this file directly.
 */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Role = void 0;
+exports.AccountType = exports.Role = void 0;
 exports.Role = {
     ADMIN: 'ADMIN',
     FINANCE: 'FINANCE',
     EXECUTIVE: 'EXECUTIVE'
+};
+exports.AccountType = {
+    ASSET: 'ASSET',
+    CONTRA_ASSET: 'CONTRA_ASSET',
+    LIABILITY: 'LIABILITY',
+    EQUITY: 'EQUITY',
+    REVENUE: 'REVENUE',
+    EXPENSE: 'EXPENSE'
 };

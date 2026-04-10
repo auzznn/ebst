@@ -57,7 +57,11 @@ export const ModelName = {
   Verification: 'Verification',
   Channel: 'Channel',
   ChannelMember: 'ChannelMember',
-  Message: 'Message'
+  Message: 'Message',
+  ChartOfAccount: 'ChartOfAccount',
+  JournalEntry: 'JournalEntry',
+  JournalLine: 'JournalLine',
+  FixedAsset: 'FixedAsset'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -169,6 +173,59 @@ export const MessageScalarFieldEnum = {
 } as const
 
 export type MessageScalarFieldEnum = (typeof MessageScalarFieldEnum)[keyof typeof MessageScalarFieldEnum]
+
+
+export const ChartOfAccountScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  type: 'type',
+  parentCode: 'parentCode',
+  isActive: 'isActive',
+  createdAt: 'createdAt'
+} as const
+
+export type ChartOfAccountScalarFieldEnum = (typeof ChartOfAccountScalarFieldEnum)[keyof typeof ChartOfAccountScalarFieldEnum]
+
+
+export const JournalEntryScalarFieldEnum = {
+  id: 'id',
+  date: 'date',
+  description: 'description',
+  period: 'period',
+  createdAt: 'createdAt',
+  createdById: 'createdById'
+} as const
+
+export type JournalEntryScalarFieldEnum = (typeof JournalEntryScalarFieldEnum)[keyof typeof JournalEntryScalarFieldEnum]
+
+
+export const JournalLineScalarFieldEnum = {
+  id: 'id',
+  journalEntryId: 'journalEntryId',
+  accountId: 'accountId',
+  amount: 'amount',
+  isDebit: 'isDebit',
+  description: 'description'
+} as const
+
+export type JournalLineScalarFieldEnum = (typeof JournalLineScalarFieldEnum)[keyof typeof JournalLineScalarFieldEnum]
+
+
+export const FixedAssetScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  category: 'category',
+  acquisitionDate: 'acquisitionDate',
+  usefulLifeMonths: 'usefulLifeMonths',
+  acquisitionCost: 'acquisitionCost',
+  monthlyDepreciation: 'monthlyDepreciation',
+  accumulatedDepreciation: 'accumulatedDepreciation',
+  bookValue: 'bookValue',
+  createdAt: 'createdAt'
+} as const
+
+export type FixedAssetScalarFieldEnum = (typeof FixedAssetScalarFieldEnum)[keyof typeof FixedAssetScalarFieldEnum]
 
 
 export const SortOrder = {

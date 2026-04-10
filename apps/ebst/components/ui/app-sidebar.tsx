@@ -13,7 +13,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Home, User, Settings, MessageSquare, Shield } from "lucide-react";
+import { Home, User, Settings, MessageSquare, Shield, Calculator } from "lucide-react";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import { useEffect, useState } from "react";
@@ -63,6 +63,16 @@ export function AppSidebar() {
                     <Link href="/admin">
                       <Shield />
                       <span>Admin Settings</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              )}
+              {(session?.user.role === "ADMIN" || session?.user.role === "FINANCE") && (
+                <SidebarMenuItem key="Accounting">
+                  <SidebarMenuButton asChild>
+                    <Link href="/accounting">
+                      <Calculator />
+                      <span>Accounting</span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>

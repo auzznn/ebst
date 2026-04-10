@@ -5,4 +5,8 @@ export type * from './models/Verification.js';
 export type * from './models/Channel.js';
 export type * from './models/ChannelMember.js';
 export type * from './models/Message.js';
+export type * from './models/ChartOfAccount.js';
+export type * from './models/JournalEntry.js';
+export type * from './models/JournalLine.js';
+export type * from './models/FixedAsset.js';
 export type * from './commonInputTypes.js';

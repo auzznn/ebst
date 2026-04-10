@@ -33,6 +33,10 @@ export declare const ModelName: {
     readonly Channel: "Channel";
     readonly ChannelMember: "ChannelMember";
     readonly Message: "Message";
+    readonly ChartOfAccount: "ChartOfAccount";
+    readonly JournalEntry: "JournalEntry";
+    readonly JournalLine: "JournalLine";
+    readonly FixedAsset: "FixedAsset";
 };
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
 export declare const TransactionIsolationLevel: {
@@ -116,6 +120,47 @@ export declare const MessageScalarFieldEnum: {
     readonly channelId: "channelId";
 };
 export type MessageScalarFieldEnum = (typeof MessageScalarFieldEnum)[keyof typeof MessageScalarFieldEnum];
+export declare const ChartOfAccountScalarFieldEnum: {
+    readonly id: "id";
+    readonly code: "code";
+    readonly name: "name";
+    readonly type: "type";
+    readonly parentCode: "parentCode";
+    readonly isActive: "isActive";
+    readonly createdAt: "createdAt";
+};
+export type ChartOfAccountScalarFieldEnum = (typeof ChartOfAccountScalarFieldEnum)[keyof typeof ChartOfAccountScalarFieldEnum];
+export declare const JournalEntryScalarFieldEnum: {
+    readonly id: "id";
+    readonly date: "date";
+    readonly description: "description";
+    readonly period: "period";
+    readonly createdAt: "createdAt";
+    readonly createdById: "createdById";
+};
+export type JournalEntryScalarFieldEnum = (typeof JournalEntryScalarFieldEnum)[keyof typeof JournalEntryScalarFieldEnum];
+export declare const JournalLineScalarFieldEnum: {
+    readonly id: "id";
+    readonly journalEntryId: "journalEntryId";
+    readonly accountId: "accountId";
+    readonly amount: "amount";
+    readonly isDebit: "isDebit";
+    readonly description: "description";
+};
+export type JournalLineScalarFieldEnum = (typeof JournalLineScalarFieldEnum)[keyof typeof JournalLineScalarFieldEnum];
+export declare const FixedAssetScalarFieldEnum: {
+    readonly id: "id";
+    readonly name: "name";
+    readonly category: "category";
+    readonly acquisitionDate: "acquisitionDate";
+    readonly usefulLifeMonths: "usefulLifeMonths";
+    readonly acquisitionCost: "acquisitionCost";
+    readonly monthlyDepreciation: "monthlyDepreciation";
+    readonly accumulatedDepreciation: "accumulatedDepreciation";
+    readonly bookValue: "bookValue";
+    readonly createdAt: "createdAt";
+};
+export type FixedAssetScalarFieldEnum = (typeof FixedAssetScalarFieldEnum)[keyof typeof FixedAssetScalarFieldEnum];
 export declare const SortOrder: {
     readonly asc: "asc";
     readonly desc: "desc";

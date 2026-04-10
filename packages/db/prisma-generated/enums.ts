@@ -16,3 +16,15 @@ export const Role = {
 } as const
 
 export type Role = (typeof Role)[keyof typeof Role]
+
+
+export const AccountType = {
+  ASSET: 'ASSET',
+  CONTRA_ASSET: 'CONTRA_ASSET',
+  LIABILITY: 'LIABILITY',
+  EQUITY: 'EQUITY',
+  REVENUE: 'REVENUE',
+  EXPENSE: 'EXPENSE'
+} as const
+
+export type AccountType = (typeof AccountType)[keyof typeof AccountType]
