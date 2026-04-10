@@ -9,61 +9,10 @@
 * 🟢 You can import this file directly.
 */
 
-export const AccountType = {
-  ASSET: 'ASSET',
-  LIABILITY: 'LIABILITY',
-  EQUITY: 'EQUITY',
-  REVENUE: 'REVENUE',
-  EXPENSE: 'EXPENSE'
-} as const
-
-export type AccountType = (typeof AccountType)[keyof typeof AccountType]
-
-
-export const JournalEntryStatus = {
-  DRAFT: 'DRAFT',
-  POSTED: 'POSTED',
-  VOID: 'VOID'
-} as const
-
-export type JournalEntryStatus = (typeof JournalEntryStatus)[keyof typeof JournalEntryStatus]
-
-
-export const InvoiceStatus = {
-  DRAFT: 'DRAFT',
-  SENT: 'SENT',
-  PARTIAL: 'PARTIAL',
-  PAID: 'PAID',
-  VOID: 'VOID'
-} as const
-
-export type InvoiceStatus = (typeof InvoiceStatus)[keyof typeof InvoiceStatus]
-
-
-export const BillStatus = {
-  DRAFT: 'DRAFT',
-  APPROVED: 'APPROVED',
-  PARTIAL: 'PARTIAL',
-  PAID: 'PAID',
-  VOID: 'VOID'
-} as const
-
-export type BillStatus = (typeof BillStatus)[keyof typeof BillStatus]
-
-
-export const PayrollStatus = {
-  DRAFT: 'DRAFT',
-  PROCESSED: 'PROCESSED',
-  PAID: 'PAID'
-} as const
-
-export type PayrollStatus = (typeof PayrollStatus)[keyof typeof PayrollStatus]
-
-
 export const Role = {
   ADMIN: 'ADMIN',
   FINANCE: 'FINANCE',
-  EXECS: 'EXECS'
+  EXECUTIVE: 'EXECUTIVE'
 } as const
 
 export type Role = (typeof Role)[keyof typeof Role]

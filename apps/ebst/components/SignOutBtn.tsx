@@ -16,13 +16,16 @@ import { authClient } from '@/lib/auth-client'
 import { useRouter } from 'next/navigation'
 import { LogOut } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { useQueryClient } from '@tanstack/react-query'
 
 export default function SignOutBtn() {
     const router = useRouter()
+    const queryClient = useQueryClient()
     const handleSignOut = async () => {
         await authClient.signOut({
             fetchOptions: {
                 onSuccess: () => {
+                    queryClient.clear()
                     router.replace('/sign-in')
                 }
             }

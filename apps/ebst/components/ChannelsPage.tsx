@@ -223,8 +223,8 @@ export default function ChannelsPage() {
                       <span className="text-sm font-medium truncate block">
                         {channel.isDM
                           ? (channel.members.find(
-                              (m) => m.user.id !== session?.user.id,
-                            )?.user.name ?? "Unknown")
+                            (m) => m.user.id !== session?.user.id,
+                          )?.user.name ?? "Unknown")
                           : `${channel.name}`}
                       </span>
                       {channel.isDM && (

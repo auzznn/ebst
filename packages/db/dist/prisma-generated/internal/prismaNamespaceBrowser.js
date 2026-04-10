@@ -48,7 +48,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.NullsOrder = exports.QueryMode = exports.SortOrder = exports.VendorScalarFieldEnum = exports.CustomerScalarFieldEnum = exports.TaxCodeScalarFieldEnum = exports.PayrollEntryScalarFieldEnum = exports.PayrollRunScalarFieldEnum = exports.BillLineScalarFieldEnum = exports.BillScalarFieldEnum = exports.InvoiceLineScalarFieldEnum = exports.InvoiceScalarFieldEnum = exports.JournalLineScalarFieldEnum = exports.JournalEntryScalarFieldEnum = exports.AccountingScalarFieldEnum = exports.MessageScalarFieldEnum = exports.ChannelMemberScalarFieldEnum = exports.ChannelScalarFieldEnum = exports.VerificationScalarFieldEnum = exports.AccountScalarFieldEnum = exports.SessionScalarFieldEnum = exports.UserScalarFieldEnum = exports.TransactionIsolationLevel = exports.ModelName = exports.AnyNull = exports.JsonNull = exports.DbNull = exports.NullTypes = exports.Decimal = void 0;
+exports.NullsOrder = exports.QueryMode = exports.SortOrder = exports.MessageScalarFieldEnum = exports.ChannelMemberScalarFieldEnum = exports.ChannelScalarFieldEnum = exports.VerificationScalarFieldEnum = exports.AccountScalarFieldEnum = exports.SessionScalarFieldEnum = exports.UserScalarFieldEnum = exports.TransactionIsolationLevel = exports.ModelName = exports.AnyNull = exports.JsonNull = exports.DbNull = exports.NullTypes = exports.Decimal = void 0;
 const runtime = __importStar(require("@prisma/client/runtime/index-browser"));
 exports.Decimal = runtime.Decimal;
 exports.NullTypes = {
@@ -81,19 +81,7 @@ exports.ModelName = {
     Verification: 'Verification',
     Channel: 'Channel',
     ChannelMember: 'ChannelMember',
-    Message: 'Message',
-    Accounting: 'Accounting',
-    JournalEntry: 'JournalEntry',
-    JournalLine: 'JournalLine',
-    Invoice: 'Invoice',
-    InvoiceLine: 'InvoiceLine',
-    Bill: 'Bill',
-    BillLine: 'BillLine',
-    PayrollRun: 'PayrollRun',
-    PayrollEntry: 'PayrollEntry',
-    TaxCode: 'TaxCode',
-    Customer: 'Customer',
-    Vendor: 'Vendor'
+    Message: 'Message'
 };
 /*
  * Enums
@@ -170,116 +158,6 @@ exports.MessageScalarFieldEnum = {
     createdAt: 'createdAt',
     senderId: 'senderId',
     channelId: 'channelId'
-};
-exports.AccountingScalarFieldEnum = {
-    id: 'id',
-    code: 'code',
-    name: 'name',
-    type: 'type',
-    parentId: 'parentId',
-    isActive: 'isActive',
-    balance: 'balance',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-};
-exports.JournalEntryScalarFieldEnum = {
-    id: 'id',
-    reference: 'reference',
-    entryDate: 'entryDate',
-    description: 'description',
-    status: 'status',
-    createdById: 'createdById',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-};
-exports.JournalLineScalarFieldEnum = {
-    id: 'id',
-    journalEntryId: 'journalEntryId',
-    accountId: 'accountId',
-    debit: 'debit',
-    credit: 'credit',
-    memo: 'memo'
-};
-exports.InvoiceScalarFieldEnum = {
-    id: 'id',
-    invoiceNumber: 'invoiceNumber',
-    customerId: 'customerId',
-    issueDate: 'issueDate',
-    dueDate: 'dueDate',
-    status: 'status',
-    subtotal: 'subtotal',
-    taxCodeId: 'taxCodeId',
-    taxAmount: 'taxAmount',
-    total: 'total',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-};
-exports.InvoiceLineScalarFieldEnum = {
-    id: 'id',
-    invoiceId: 'invoiceId',
-    description: 'description',
-    quantity: 'quantity',
-    unitPrice: 'unitPrice',
-    accountId: 'accountId'
-};
-exports.BillScalarFieldEnum = {
-    id: 'id',
-    billNumber: 'billNumber',
-    vendorId: 'vendorId',
-    issueDate: 'issueDate',
-    dueDate: 'dueDate',
-    status: 'status',
-    subtotal: 'subtotal',
-    taxCodeId: 'taxCodeId',
-    taxAmount: 'taxAmount',
-    total: 'total',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-};
-exports.BillLineScalarFieldEnum = {
-    id: 'id',
-    billId: 'billId',
-    description: 'description',
-    quantity: 'quantity',
-    unitPrice: 'unitPrice',
-    accountId: 'accountId'
-};
-exports.PayrollRunScalarFieldEnum = {
-    id: 'id',
-    payPeriodStart: 'payPeriodStart',
-    payPeriodEnd: 'payPeriodEnd',
-    paymentDate: 'paymentDate',
-    status: 'status',
-    totalGross: 'totalGross',
-    totalDeductions: 'totalDeductions',
-    totalNet: 'totalNet',
-    createdAt: 'createdAt'
-};
-exports.PayrollEntryScalarFieldEnum = {
-    id: 'id',
-    payrollRunId: 'payrollRunId',
-    employeeId: 'employeeId',
-    grossPay: 'grossPay',
-    taxWithheld: 'taxWithheld',
-    bpjsAmount: 'bpjsAmount',
-    netPay: 'netPay'
-};
-exports.TaxCodeScalarFieldEnum = {
-    id: 'id',
-    code: 'code',
-    name: 'name',
-    rate: 'rate',
-    isActive: 'isActive'
-};
-exports.CustomerScalarFieldEnum = {
-    id: 'id',
-    name: 'name',
-    taxId: 'taxId'
-};
-exports.VendorScalarFieldEnum = {
-    id: 'id',
-    name: 'name',
-    taxId: 'taxId'
 };
 exports.SortOrder = {
     asc: 'asc',

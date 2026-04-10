@@ -9,40 +9,9 @@
 * 🟢 You can import this file directly.
 */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Role = exports.PayrollStatus = exports.BillStatus = exports.InvoiceStatus = exports.JournalEntryStatus = exports.AccountType = void 0;
-exports.AccountType = {
-    ASSET: 'ASSET',
-    LIABILITY: 'LIABILITY',
-    EQUITY: 'EQUITY',
-    REVENUE: 'REVENUE',
-    EXPENSE: 'EXPENSE'
-};
-exports.JournalEntryStatus = {
-    DRAFT: 'DRAFT',
-    POSTED: 'POSTED',
-    VOID: 'VOID'
-};
-exports.InvoiceStatus = {
-    DRAFT: 'DRAFT',
-    SENT: 'SENT',
-    PARTIAL: 'PARTIAL',
-    PAID: 'PAID',
-    VOID: 'VOID'
-};
-exports.BillStatus = {
-    DRAFT: 'DRAFT',
-    APPROVED: 'APPROVED',
-    PARTIAL: 'PARTIAL',
-    PAID: 'PAID',
-    VOID: 'VOID'
-};
-exports.PayrollStatus = {
-    DRAFT: 'DRAFT',
-    PROCESSED: 'PROCESSED',
-    PAID: 'PAID'
-};
+exports.Role = void 0;
 exports.Role = {
     ADMIN: 'ADMIN',
     FINANCE: 'FINANCE',
-    EXECS: 'EXECS'
+    EXECUTIVE: 'EXECUTIVE'
 };

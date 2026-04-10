@@ -10,15 +10,18 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { useRouter } from "next/navigation"
+import { useQueryClient } from "@tanstack/react-query"
 
 export default function DashboardPage() {
   const { data: session, isPending } = authClient.useSession()
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   const handleSignOut = async () => {
     await authClient.signOut({
       fetchOptions: {
         onSuccess: () => {
+          queryClient.clear();
           router.push("/sign-in")
         }
       }
@@ -66,6 +69,10 @@ export default function DashboardPage() {
                 <div>
                   <span className="text-muted-foreground">Name:</span>{" "}
                   {session.user.name ?? "—"}
+                </div>
+                <div>
+                  <span className="text-muted-foreground">Role:</span>{" "}
+                  {session.user.role ?? "—"}
                 </div>
                 <div>
                   <span className="text-muted-foreground">Email:</span>{" "}

@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import ChannelsPage from '@/components/ChannelPage'
+import ChannelsPage from '@/components/ChannelsPage'
 
 export default function ChannelsLayout({ children }: { children: ReactNode }) {
   return (
