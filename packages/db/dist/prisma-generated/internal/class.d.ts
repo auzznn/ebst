@@ -236,5 +236,16 @@ export interface PrismaClient<in LogOpts extends Prisma.LogLevel = never, in out
     get fixedAsset(): Prisma.FixedAssetDelegate<ExtArgs, {
         omit: OmitOpts;
     }>;
+    /**
+     * `prisma.businessDocument`: Exposes CRUD operations for the **BusinessDocument** model.
+      * Example usage:
+      * ```ts
+      * // Fetch zero or more BusinessDocuments
+      * const businessDocuments = await prisma.businessDocument.findMany()
+      * ```
+      */
+    get businessDocument(): Prisma.BusinessDocumentDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
 }
 export declare function getPrismaClientClass(): PrismaClientConstructor;

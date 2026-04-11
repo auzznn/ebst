@@ -1,0 +1,45 @@
+import { Controller, Post, Get, Delete, Body, Param, Req, UseGuards, UseInterceptors, UploadedFile } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { FilesService } from './files.service';
+import { HttpAuthGuard } from '../communication/guards/http-auth.guard';
+import type { Express } from 'express';
+
+@Controller('files')
+@UseGuards(HttpAuthGuard)
+export class FilesController {
+    constructor(private readonly filesService: FilesService) { }
+
+    @Post('upload-direct')
+    @UseInterceptors(FileInterceptor('file'))
+    async uploadFileDirect(@UploadedFile() file: Express.Multer.File) {
+        return this.filesService.uploadFileDirect(
+            file.originalname,
+            file.mimetype,
+            file.buffer
+        );
+    }
+
+    @Post('register')
+    async registerDocument(@Body() dto: any, @Req() req: any) {
+        return this.filesService.registerDocument({
+            ...dto,
+            userId: req.user.id,
+        });
+    }
+
+    @Get()
+    async listDocuments(@Req() req: any) {
+        return this.filesService.listDocuments(req.user.id, req.user.role);
+    }
+
+    @Get(':key/download')
+    async getDownloadUrl(@Param('key') key: string, @Req() req: any) {
+        const url = await this.filesService.getDownloadUrl(decodeURIComponent(key), req.user.id, req.user.role);
+        return { url };
+    }
+
+    @Delete(':key')
+    async deleteFile(@Param('key') key: string, @Req() req: any) {
+        return this.filesService.deleteFile(decodeURIComponent(key), req.user.id);
+    }
+}

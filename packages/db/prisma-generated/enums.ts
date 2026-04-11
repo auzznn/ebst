@@ -28,3 +28,13 @@ export const AccountType = {
 } as const
 
 export type AccountType = (typeof AccountType)[keyof typeof AccountType]
+
+
+export const DocumentType = {
+  INVOICE: 'INVOICE',
+  PURCHASE_ORDER: 'PURCHASE_ORDER',
+  DELIVERY_NOTE: 'DELIVERY_NOTE',
+  OTHER: 'OTHER'
+} as const
+
+export type DocumentType = (typeof DocumentType)[keyof typeof DocumentType]

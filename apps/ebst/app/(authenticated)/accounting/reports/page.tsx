@@ -19,7 +19,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import api from "@/lib/api";
 import { useTrialBalance, useProfitLoss, useBalanceSheet } from "@/hooks/useAccounting";
 
 type ReportTab = "trial-balance" | "profit-loss" | "balance-sheet";
@@ -331,7 +330,7 @@ export default function ReportsPage() {
             Generated from your journal entries
           </p>
         </div>
-        <div className="w-40">
+        <div className="w-40 flex flex-col gap-2">
           <Label>Period</Label>
           <Input
             placeholder="e.g. 2025-12"

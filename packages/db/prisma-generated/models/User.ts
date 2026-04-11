@@ -227,6 +227,7 @@ export type UserWhereInput = {
   messages?: Prisma.MessageListRelationFilter
   members?: Prisma.ChannelMemberListRelationFilter
   journalEntries?: Prisma.JournalEntryListRelationFilter
+  businessDocuments?: Prisma.BusinessDocumentListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -245,6 +246,7 @@ export type UserOrderByWithRelationInput = {
   messages?: Prisma.MessageOrderByRelationAggregateInput
   members?: Prisma.ChannelMemberOrderByRelationAggregateInput
   journalEntries?: Prisma.JournalEntryOrderByRelationAggregateInput
+  businessDocuments?: Prisma.BusinessDocumentOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -266,6 +268,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   messages?: Prisma.MessageListRelationFilter
   members?: Prisma.ChannelMemberListRelationFilter
   journalEntries?: Prisma.JournalEntryListRelationFilter
+  businessDocuments?: Prisma.BusinessDocumentListRelationFilter
 }, "id" | "username" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -316,6 +319,7 @@ export type UserCreateInput = {
   messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   members?: Prisma.ChannelMemberCreateNestedManyWithoutUserInput
   journalEntries?: Prisma.JournalEntryCreateNestedManyWithoutCreatedByInput
+  businessDocuments?: Prisma.BusinessDocumentCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -334,6 +338,7 @@ export type UserUncheckedCreateInput = {
   messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutUserInput
   journalEntries?: Prisma.JournalEntryUncheckedCreateNestedManyWithoutCreatedByInput
+  businessDocuments?: Prisma.BusinessDocumentUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -352,6 +357,7 @@ export type UserUpdateInput = {
   messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   members?: Prisma.ChannelMemberUpdateManyWithoutUserNestedInput
   journalEntries?: Prisma.JournalEntryUpdateManyWithoutCreatedByNestedInput
+  businessDocuments?: Prisma.BusinessDocumentUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -370,6 +376,7 @@ export type UserUncheckedUpdateInput = {
   messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutUserNestedInput
   journalEntries?: Prisma.JournalEntryUncheckedUpdateManyWithoutCreatedByNestedInput
+  businessDocuments?: Prisma.BusinessDocumentUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -545,6 +552,20 @@ export type UserUpdateOneRequiredWithoutJournalEntriesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutJournalEntriesInput, Prisma.UserUpdateWithoutJournalEntriesInput>, Prisma.UserUncheckedUpdateWithoutJournalEntriesInput>
 }
 
+export type UserCreateNestedOneWithoutBusinessDocumentsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBusinessDocumentsInput, Prisma.UserUncheckedCreateWithoutBusinessDocumentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBusinessDocumentsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutBusinessDocumentsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBusinessDocumentsInput, Prisma.UserUncheckedCreateWithoutBusinessDocumentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBusinessDocumentsInput
+  upsert?: Prisma.UserUpsertWithoutBusinessDocumentsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutBusinessDocumentsInput, Prisma.UserUpdateWithoutBusinessDocumentsInput>, Prisma.UserUncheckedUpdateWithoutBusinessDocumentsInput>
+}
+
 export type UserCreateWithoutSessionsInput = {
   id: string
   name: string
@@ -560,6 +581,7 @@ export type UserCreateWithoutSessionsInput = {
   messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   members?: Prisma.ChannelMemberCreateNestedManyWithoutUserInput
   journalEntries?: Prisma.JournalEntryCreateNestedManyWithoutCreatedByInput
+  businessDocuments?: Prisma.BusinessDocumentCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -577,6 +599,7 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutUserInput
   journalEntries?: Prisma.JournalEntryUncheckedCreateNestedManyWithoutCreatedByInput
+  businessDocuments?: Prisma.BusinessDocumentUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -610,6 +633,7 @@ export type UserUpdateWithoutSessionsInput = {
   messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   members?: Prisma.ChannelMemberUpdateManyWithoutUserNestedInput
   journalEntries?: Prisma.JournalEntryUpdateManyWithoutCreatedByNestedInput
+  businessDocuments?: Prisma.BusinessDocumentUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -627,6 +651,7 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutUserNestedInput
   journalEntries?: Prisma.JournalEntryUncheckedUpdateManyWithoutCreatedByNestedInput
+  businessDocuments?: Prisma.BusinessDocumentUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAccountsInput = {
@@ -644,6 +669,7 @@ export type UserCreateWithoutAccountsInput = {
   messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   members?: Prisma.ChannelMemberCreateNestedManyWithoutUserInput
   journalEntries?: Prisma.JournalEntryCreateNestedManyWithoutCreatedByInput
+  businessDocuments?: Prisma.BusinessDocumentCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAccountsInput = {
@@ -661,6 +687,7 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutUserInput
   journalEntries?: Prisma.JournalEntryUncheckedCreateNestedManyWithoutCreatedByInput
+  businessDocuments?: Prisma.BusinessDocumentUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAccountsInput = {
@@ -694,6 +721,7 @@ export type UserUpdateWithoutAccountsInput = {
   messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   members?: Prisma.ChannelMemberUpdateManyWithoutUserNestedInput
   journalEntries?: Prisma.JournalEntryUpdateManyWithoutCreatedByNestedInput
+  businessDocuments?: Prisma.BusinessDocumentUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -711,6 +739,7 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutUserNestedInput
   journalEntries?: Prisma.JournalEntryUncheckedUpdateManyWithoutCreatedByNestedInput
+  businessDocuments?: Prisma.BusinessDocumentUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutMembersInput = {
@@ -728,6 +757,7 @@ export type UserCreateWithoutMembersInput = {
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   journalEntries?: Prisma.JournalEntryCreateNestedManyWithoutCreatedByInput
+  businessDocuments?: Prisma.BusinessDocumentCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutMembersInput = {
@@ -745,6 +775,7 @@ export type UserUncheckedCreateWithoutMembersInput = {
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   journalEntries?: Prisma.JournalEntryUncheckedCreateNestedManyWithoutCreatedByInput
+  businessDocuments?: Prisma.BusinessDocumentUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutMembersInput = {
@@ -778,6 +809,7 @@ export type UserUpdateWithoutMembersInput = {
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   journalEntries?: Prisma.JournalEntryUpdateManyWithoutCreatedByNestedInput
+  businessDocuments?: Prisma.BusinessDocumentUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMembersInput = {
@@ -795,6 +827,7 @@ export type UserUncheckedUpdateWithoutMembersInput = {
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   journalEntries?: Prisma.JournalEntryUncheckedUpdateManyWithoutCreatedByNestedInput
+  businessDocuments?: Prisma.BusinessDocumentUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutMessagesInput = {
@@ -812,6 +845,7 @@ export type UserCreateWithoutMessagesInput = {
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   members?: Prisma.ChannelMemberCreateNestedManyWithoutUserInput
   journalEntries?: Prisma.JournalEntryCreateNestedManyWithoutCreatedByInput
+  businessDocuments?: Prisma.BusinessDocumentCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutMessagesInput = {
@@ -829,6 +863,7 @@ export type UserUncheckedCreateWithoutMessagesInput = {
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutUserInput
   journalEntries?: Prisma.JournalEntryUncheckedCreateNestedManyWithoutCreatedByInput
+  businessDocuments?: Prisma.BusinessDocumentUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutMessagesInput = {
@@ -862,6 +897,7 @@ export type UserUpdateWithoutMessagesInput = {
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   members?: Prisma.ChannelMemberUpdateManyWithoutUserNestedInput
   journalEntries?: Prisma.JournalEntryUpdateManyWithoutCreatedByNestedInput
+  businessDocuments?: Prisma.BusinessDocumentUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMessagesInput = {
@@ -879,6 +915,7 @@ export type UserUncheckedUpdateWithoutMessagesInput = {
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutUserNestedInput
   journalEntries?: Prisma.JournalEntryUncheckedUpdateManyWithoutCreatedByNestedInput
+  businessDocuments?: Prisma.BusinessDocumentUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutJournalEntriesInput = {
@@ -896,6 +933,7 @@ export type UserCreateWithoutJournalEntriesInput = {
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   members?: Prisma.ChannelMemberCreateNestedManyWithoutUserInput
+  businessDocuments?: Prisma.BusinessDocumentCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutJournalEntriesInput = {
@@ -913,6 +951,7 @@ export type UserUncheckedCreateWithoutJournalEntriesInput = {
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutUserInput
+  businessDocuments?: Prisma.BusinessDocumentUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutJournalEntriesInput = {
@@ -946,6 +985,7 @@ export type UserUpdateWithoutJournalEntriesInput = {
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   members?: Prisma.ChannelMemberUpdateManyWithoutUserNestedInput
+  businessDocuments?: Prisma.BusinessDocumentUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutJournalEntriesInput = {
@@ -963,6 +1003,95 @@ export type UserUncheckedUpdateWithoutJournalEntriesInput = {
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutUserNestedInput
+  businessDocuments?: Prisma.BusinessDocumentUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutBusinessDocumentsInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  username?: string | null
+  displayUsername?: string | null
+  role?: $Enums.Role
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  messages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  members?: Prisma.ChannelMemberCreateNestedManyWithoutUserInput
+  journalEntries?: Prisma.JournalEntryCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserUncheckedCreateWithoutBusinessDocumentsInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  username?: string | null
+  displayUsername?: string | null
+  role?: $Enums.Role
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutUserInput
+  journalEntries?: Prisma.JournalEntryUncheckedCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserCreateOrConnectWithoutBusinessDocumentsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutBusinessDocumentsInput, Prisma.UserUncheckedCreateWithoutBusinessDocumentsInput>
+}
+
+export type UserUpsertWithoutBusinessDocumentsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutBusinessDocumentsInput, Prisma.UserUncheckedUpdateWithoutBusinessDocumentsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutBusinessDocumentsInput, Prisma.UserUncheckedCreateWithoutBusinessDocumentsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutBusinessDocumentsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutBusinessDocumentsInput, Prisma.UserUncheckedUpdateWithoutBusinessDocumentsInput>
+}
+
+export type UserUpdateWithoutBusinessDocumentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  members?: Prisma.ChannelMemberUpdateManyWithoutUserNestedInput
+  journalEntries?: Prisma.JournalEntryUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutBusinessDocumentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutUserNestedInput
+  journalEntries?: Prisma.JournalEntryUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 
@@ -976,6 +1105,7 @@ export type UserCountOutputType = {
   messages: number
   members: number
   journalEntries: number
+  businessDocuments: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -984,6 +1114,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   messages?: boolean | UserCountOutputTypeCountMessagesArgs
   members?: boolean | UserCountOutputTypeCountMembersArgs
   journalEntries?: boolean | UserCountOutputTypeCountJournalEntriesArgs
+  businessDocuments?: boolean | UserCountOutputTypeCountBusinessDocumentsArgs
 }
 
 /**
@@ -1031,6 +1162,13 @@ export type UserCountOutputTypeCountJournalEntriesArgs<ExtArgs extends runtime.T
   where?: Prisma.JournalEntryWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountBusinessDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BusinessDocumentWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1048,6 +1186,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   messages?: boolean | Prisma.User$messagesArgs<ExtArgs>
   members?: boolean | Prisma.User$membersArgs<ExtArgs>
   journalEntries?: boolean | Prisma.User$journalEntriesArgs<ExtArgs>
+  businessDocuments?: boolean | Prisma.User$businessDocumentsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1097,6 +1236,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   messages?: boolean | Prisma.User$messagesArgs<ExtArgs>
   members?: boolean | Prisma.User$membersArgs<ExtArgs>
   journalEntries?: boolean | Prisma.User$journalEntriesArgs<ExtArgs>
+  businessDocuments?: boolean | Prisma.User$businessDocumentsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1110,6 +1250,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     messages: Prisma.$MessagePayload<ExtArgs>[]
     members: Prisma.$ChannelMemberPayload<ExtArgs>[]
     journalEntries: Prisma.$JournalEntryPayload<ExtArgs>[]
+    businessDocuments: Prisma.$BusinessDocumentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1521,6 +1662,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   messages<T extends Prisma.User$messagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   members<T extends Prisma.User$membersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$membersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ChannelMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   journalEntries<T extends Prisma.User$journalEntriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$journalEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  businessDocuments<T extends Prisma.User$businessDocumentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$businessDocumentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BusinessDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2070,6 +2212,30 @@ export type User$journalEntriesArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.JournalEntryScalarFieldEnum | Prisma.JournalEntryScalarFieldEnum[]
+}
+
+/**
+ * User.businessDocuments
+ */
+export type User$businessDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the BusinessDocument
+   */
+  select?: Prisma.BusinessDocumentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the BusinessDocument
+   */
+  omit?: Prisma.BusinessDocumentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BusinessDocumentInclude<ExtArgs> | null
+  where?: Prisma.BusinessDocumentWhereInput
+  orderBy?: Prisma.BusinessDocumentOrderByWithRelationInput | Prisma.BusinessDocumentOrderByWithRelationInput[]
+  cursor?: Prisma.BusinessDocumentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BusinessDocumentScalarFieldEnum | Prisma.BusinessDocumentScalarFieldEnum[]
 }
 
 /**

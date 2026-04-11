@@ -31,3 +31,8 @@ export function formatDateDivider(date: string | Date): string {
   if (isThisYear(d)) return format(d, 'd MMM')        // January 5
   return format(d, 'd MMM, yyyy')                     // January 5, 2023
 }
+
+export function formatDate(date: string | Date): string {
+  const d = new Date(date)
+  return format(d, 'd MMM yyyy')
+}

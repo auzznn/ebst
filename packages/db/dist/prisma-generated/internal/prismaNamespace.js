@@ -48,7 +48,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.defineExtension = exports.NullsOrder = exports.QueryMode = exports.SortOrder = exports.FixedAssetScalarFieldEnum = exports.JournalLineScalarFieldEnum = exports.JournalEntryScalarFieldEnum = exports.ChartOfAccountScalarFieldEnum = exports.MessageScalarFieldEnum = exports.ChannelMemberScalarFieldEnum = exports.ChannelScalarFieldEnum = exports.VerificationScalarFieldEnum = exports.AccountScalarFieldEnum = exports.SessionScalarFieldEnum = exports.UserScalarFieldEnum = exports.TransactionIsolationLevel = exports.ModelName = exports.AnyNull = exports.JsonNull = exports.DbNull = exports.NullTypes = exports.prismaVersion = exports.getExtensionContext = exports.Decimal = exports.Sql = exports.raw = exports.join = exports.empty = exports.sql = exports.PrismaClientValidationError = exports.PrismaClientInitializationError = exports.PrismaClientRustPanicError = exports.PrismaClientUnknownRequestError = exports.PrismaClientKnownRequestError = void 0;
+exports.defineExtension = exports.JsonNullValueFilter = exports.NullsOrder = exports.QueryMode = exports.NullableJsonNullValueInput = exports.SortOrder = exports.BusinessDocumentScalarFieldEnum = exports.FixedAssetScalarFieldEnum = exports.JournalLineScalarFieldEnum = exports.JournalEntryScalarFieldEnum = exports.ChartOfAccountScalarFieldEnum = exports.MessageScalarFieldEnum = exports.ChannelMemberScalarFieldEnum = exports.ChannelScalarFieldEnum = exports.VerificationScalarFieldEnum = exports.AccountScalarFieldEnum = exports.SessionScalarFieldEnum = exports.UserScalarFieldEnum = exports.TransactionIsolationLevel = exports.ModelName = exports.AnyNull = exports.JsonNull = exports.DbNull = exports.NullTypes = exports.prismaVersion = exports.getExtensionContext = exports.Decimal = exports.Sql = exports.raw = exports.join = exports.empty = exports.sql = exports.PrismaClientValidationError = exports.PrismaClientInitializationError = exports.PrismaClientRustPanicError = exports.PrismaClientUnknownRequestError = exports.PrismaClientKnownRequestError = void 0;
 const runtime = __importStar(require("@prisma/client/runtime/client"));
 /**
  * Prisma Errors
@@ -113,7 +113,8 @@ exports.ModelName = {
     ChartOfAccount: 'ChartOfAccount',
     JournalEntry: 'JournalEntry',
     JournalLine: 'JournalLine',
-    FixedAsset: 'FixedAsset'
+    FixedAsset: 'FixedAsset',
+    BusinessDocument: 'BusinessDocument'
 };
 /**
  * Enums
@@ -228,9 +229,25 @@ exports.FixedAssetScalarFieldEnum = {
     bookValue: 'bookValue',
     createdAt: 'createdAt'
 };
+exports.BusinessDocumentScalarFieldEnum = {
+    id: 'id',
+    key: 'key',
+    fileName: 'fileName',
+    fileType: 'fileType',
+    size: 'size',
+    documentType: 'documentType',
+    metadata: 'metadata',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    userId: 'userId'
+};
 exports.SortOrder = {
     asc: 'asc',
     desc: 'desc'
+};
+exports.NullableJsonNullValueInput = {
+    DbNull: exports.DbNull,
+    JsonNull: exports.JsonNull
 };
 exports.QueryMode = {
     default: 'default',
@@ -239,5 +256,10 @@ exports.QueryMode = {
 exports.NullsOrder = {
     first: 'first',
     last: 'last'
+};
+exports.JsonNullValueFilter = {
+    DbNull: exports.DbNull,
+    JsonNull: exports.JsonNull,
+    AnyNull: exports.AnyNull
 };
 exports.defineExtension = runtime.Extensions.defineExtension;

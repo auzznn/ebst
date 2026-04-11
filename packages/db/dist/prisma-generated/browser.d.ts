@@ -57,3 +57,8 @@ export type JournalLine = Prisma.JournalLineModel;
  *
  */
 export type FixedAsset = Prisma.FixedAssetModel;
+/**
+ * Model BusinessDocument
+ *
+ */
+export type BusinessDocument = Prisma.BusinessDocumentModel;

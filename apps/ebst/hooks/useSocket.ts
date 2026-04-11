@@ -15,6 +15,14 @@ export function useSocket(channelId: string) {
   const typingTimeout = useRef<NodeJS.Timeout | undefined>(undefined)
 
   useEffect(() => {
+    queryClient.setQueryData<InfiniteData<MessagesResponse, unknown>>(
+      ['messages', channelId],
+      (old) => old ?? {
+        pages: [{ messages: [], nextCursor: null }],
+        pageParams: [null],
+      }
+    )
+
     socket.connect()
 
     socket.on('connect', () => {
@@ -30,7 +38,7 @@ export function useSocket(channelId: string) {
         ['messages', channelId],
         (old) => {
           if (!old) return old;
-          
+
           return {
             ...old,
             pages: [
@@ -51,20 +59,20 @@ export function useSocket(channelId: string) {
           old?.map((ch) =>
             ch.id === channelId
               ? {
-                  ...ch,
-                  messages: [
-                    {
-                      id: message.id,
-                      content: message.content,
-                      createdAt: message.createdAt,
-                    },
-                  ],
-                }
+                ...ch,
+                messages: [
+                  {
+                    id: message.id,
+                    content: message.content,
+                    createdAt: message.createdAt,
+                  },
+                ],
+              }
               : ch,
           ) ?? [],
       )
 
-      queryClient.invalidateQueries({queryKey: ['channels']})
+      queryClient.invalidateQueries({ queryKey: ['channels'] })
     })
 
     socket.on('user_typing', ({ userId }: { userId: string }) => {

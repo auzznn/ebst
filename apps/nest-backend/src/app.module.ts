@@ -7,10 +7,11 @@ import { UsersModule } from './users/users.module';
 import { EncryptionService } from './encryption/encryption.service';
 import { EncryptionModule } from './encryption/encryption.module';
 import { AccountingModule } from './accounting/accounting.module';
+import { FilesModule } from './files/files.module';
 
 @Module({
-  imports: [PrismaModule, CommunicationModule, UsersModule, EncryptionModule, AccountingModule],
+  imports: [PrismaModule, CommunicationModule, UsersModule, EncryptionModule, AccountingModule, FilesModule],
   controllers: [AppController],
   providers: [AppService, EncryptionService],
 })
-export class AppModule {}
+export class AppModule { }

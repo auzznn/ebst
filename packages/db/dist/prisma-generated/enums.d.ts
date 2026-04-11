@@ -13,3 +13,10 @@ export declare const AccountType: {
     readonly EXPENSE: "EXPENSE";
 };
 export type AccountType = (typeof AccountType)[keyof typeof AccountType];
+export declare const DocumentType: {
+    readonly INVOICE: "INVOICE";
+    readonly PURCHASE_ORDER: "PURCHASE_ORDER";
+    readonly DELIVERY_NOTE: "DELIVERY_NOTE";
+    readonly OTHER: "OTHER";
+};
+export type DocumentType = (typeof DocumentType)[keyof typeof DocumentType];

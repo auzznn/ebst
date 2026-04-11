@@ -242,6 +242,7 @@ export declare const ModelName: {
     readonly JournalEntry: "JournalEntry";
     readonly JournalLine: "JournalLine";
     readonly FixedAsset: "FixedAsset";
+    readonly BusinessDocument: "BusinessDocument";
 };
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
 export interface TypeMapCb<GlobalOmitOptions = {}> extends runtime.Types.Utils.Fn<{
@@ -254,7 +255,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         omit: GlobalOmitOptions;
     };
     meta: {
-        modelProps: "user" | "session" | "account" | "verification" | "channel" | "channelMember" | "message" | "chartOfAccount" | "journalEntry" | "journalLine" | "fixedAsset";
+        modelProps: "user" | "session" | "account" | "verification" | "channel" | "channelMember" | "message" | "chartOfAccount" | "journalEntry" | "journalLine" | "fixedAsset" | "businessDocument";
         txIsolationLevel: TransactionIsolationLevel;
     };
     model: {
@@ -1072,6 +1073,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
                 };
             };
         };
+        BusinessDocument: {
+            payload: Prisma.$BusinessDocumentPayload<ExtArgs>;
+            fields: Prisma.BusinessDocumentFieldRefs;
+            operations: {
+                findUnique: {
+                    args: Prisma.BusinessDocumentFindUniqueArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BusinessDocumentPayload> | null;
+                };
+                findUniqueOrThrow: {
+                    args: Prisma.BusinessDocumentFindUniqueOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BusinessDocumentPayload>;
+                };
+                findFirst: {
+                    args: Prisma.BusinessDocumentFindFirstArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BusinessDocumentPayload> | null;
+                };
+                findFirstOrThrow: {
+                    args: Prisma.BusinessDocumentFindFirstOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BusinessDocumentPayload>;
+                };
+                findMany: {
+                    args: Prisma.BusinessDocumentFindManyArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BusinessDocumentPayload>[];
+                };
+                create: {
+                    args: Prisma.BusinessDocumentCreateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BusinessDocumentPayload>;
+                };
+                createMany: {
+                    args: Prisma.BusinessDocumentCreateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                createManyAndReturn: {
+                    args: Prisma.BusinessDocumentCreateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BusinessDocumentPayload>[];
+                };
+                delete: {
+                    args: Prisma.BusinessDocumentDeleteArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BusinessDocumentPayload>;
+                };
+                update: {
+                    args: Prisma.BusinessDocumentUpdateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BusinessDocumentPayload>;
+                };
+                deleteMany: {
+                    args: Prisma.BusinessDocumentDeleteManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateMany: {
+                    args: Prisma.BusinessDocumentUpdateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateManyAndReturn: {
+                    args: Prisma.BusinessDocumentUpdateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BusinessDocumentPayload>[];
+                };
+                upsert: {
+                    args: Prisma.BusinessDocumentUpsertArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BusinessDocumentPayload>;
+                };
+                aggregate: {
+                    args: Prisma.BusinessDocumentAggregateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.AggregateBusinessDocument>;
+                };
+                groupBy: {
+                    args: Prisma.BusinessDocumentGroupByArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.BusinessDocumentGroupByOutputType>[];
+                };
+                count: {
+                    args: Prisma.BusinessDocumentCountArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.BusinessDocumentCountAggregateOutputType> | number;
+                };
+            };
+        };
     };
 } & {
     other: {
@@ -1221,11 +1296,29 @@ export declare const FixedAssetScalarFieldEnum: {
     readonly createdAt: "createdAt";
 };
 export type FixedAssetScalarFieldEnum = (typeof FixedAssetScalarFieldEnum)[keyof typeof FixedAssetScalarFieldEnum];
+export declare const BusinessDocumentScalarFieldEnum: {
+    readonly id: "id";
+    readonly key: "key";
+    readonly fileName: "fileName";
+    readonly fileType: "fileType";
+    readonly size: "size";
+    readonly documentType: "documentType";
+    readonly metadata: "metadata";
+    readonly createdAt: "createdAt";
+    readonly updatedAt: "updatedAt";
+    readonly userId: "userId";
+};
+export type BusinessDocumentScalarFieldEnum = (typeof BusinessDocumentScalarFieldEnum)[keyof typeof BusinessDocumentScalarFieldEnum];
 export declare const SortOrder: {
     readonly asc: "asc";
     readonly desc: "desc";
 };
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder];
+export declare const NullableJsonNullValueInput: {
+    readonly DbNull: runtime.DbNullClass;
+    readonly JsonNull: runtime.JsonNullClass;
+};
+export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput];
 export declare const QueryMode: {
     readonly default: "default";
     readonly insensitive: "insensitive";
@@ -1236,6 +1329,12 @@ export declare const NullsOrder: {
     readonly last: "last";
 };
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder];
+export declare const JsonNullValueFilter: {
+    readonly DbNull: runtime.DbNullClass;
+    readonly JsonNull: runtime.JsonNullClass;
+    readonly AnyNull: runtime.AnyNullClass;
+};
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter];
 /**
  * Field references
  */
@@ -1291,6 +1390,22 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>;
+/**
+ * Reference to a field of type 'DocumentType'
+ */
+export type EnumDocumentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DocumentType'>;
+/**
+ * Reference to a field of type 'DocumentType[]'
+ */
+export type ListEnumDocumentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DocumentType[]'>;
+/**
+ * Reference to a field of type 'Json'
+ */
+export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>;
+/**
+ * Reference to a field of type 'QueryMode'
+ */
+export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>;
 /**
  * Batch Payload for updateMany & deleteMany & createMany
  */
@@ -1396,6 +1511,7 @@ export type GlobalOmitConfig = {
     journalEntry?: Prisma.JournalEntryOmit;
     journalLine?: Prisma.JournalLineOmit;
     fixedAsset?: Prisma.FixedAssetOmit;
+    businessDocument?: Prisma.BusinessDocumentOmit;
 };
 export type LogLevel = 'info' | 'query' | 'warn' | 'error';
 export type LogDefinition = {

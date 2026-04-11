@@ -24,6 +24,7 @@ model User {
   members         ChannelMember[]
   role            Role            @default(FINANCE)
   journalEntries  JournalEntry[]
+  businessDocuments BusinessDocument[]
 
   @@unique([email])
   @@map("user")
@@ -180,4 +181,29 @@ model FixedAsset {
   createdAt               DateTime @default(now())
 
   @@map("fixed_asset")
+}
+
+// ─── Business Documents ────────────────────────────────────────
+
+enum DocumentType {
+  INVOICE
+  PURCHASE_ORDER
+  DELIVERY_NOTE
+  OTHER
+}
+
+model BusinessDocument {
+  id           String       @id @default(uuid())
+  key          String       @unique
+  fileName     String
+  fileType     String?
+  size         Int?
+  documentType DocumentType
+  metadata     Json?        @default("{}")
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  userId       String
+  user         User         @relation(fields: [userId], references: [id])
+
+  @@map("business_document")
 }

@@ -13,7 +13,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Home, User, Settings, MessageSquare, Shield, Calculator } from "lucide-react";
+import { Home, User, Settings, MessageSquare, Shield, Calculator, FileText, Folder } from "lucide-react";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import { useEffect, useState } from "react";
@@ -21,7 +21,8 @@ import SignOutBtn from "../SignOutBtn";
 
 const menuItems = [
   { title: "Dashboard", url: "/dashboard", icon: Home },
-  { title: "Communication", url: "/communication/channel", icon:  MessageSquare},
+  { title: "Files", url: "/files", icon: Folder },
+  { title: "Communication", url: "/communication/channel", icon: MessageSquare },
 ];
 
 export function AppSidebar() {
