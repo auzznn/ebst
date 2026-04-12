@@ -21,8 +21,9 @@ import SignOutBtn from "../SignOutBtn";
 
 const menuItems = [
   { title: "Dashboard", url: "/dashboard", icon: Home },
-  { title: "Files", url: "/files", icon: Folder },
   { title: "Communication", url: "/communication/channel", icon: MessageSquare },
+  { title: "Files", url: "/files", icon: Folder },
+
 ];
 
 export function AppSidebar() {
@@ -58,22 +59,30 @@ export function AppSidebar() {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
-              {session?.user.role === "ADMIN" && (
-                <SidebarMenuItem key="Admin">
-                  <SidebarMenuButton asChild>
-                    <Link href="/admin">
-                      <Shield />
-                      <span>Admin Settings</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              )}
               {(session?.user.role === "ADMIN" || session?.user.role === "FINANCE") && (
                 <SidebarMenuItem key="Accounting">
                   <SidebarMenuButton asChild>
                     <Link href="/accounting">
                       <Calculator />
                       <span>Accounting</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              )}
+              <SidebarMenuItem key="Invoices">
+                <SidebarMenuButton asChild>
+                  <Link href="/documents">
+                    <FileText />
+                    <span>Documents</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              {session?.user.role === "ADMIN" && (
+                <SidebarMenuItem key="Admin">
+                  <SidebarMenuButton asChild>
+                    <Link href="/admin">
+                      <Shield />
+                      <span>Admin Settings</span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
