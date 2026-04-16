@@ -30,7 +30,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.useGlobalGuards(new HttpAuthGuard());
-  app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
   app.enableCors({ origin: process.env.CLIENT_URL, credentials: true });
 
   const redisIoAdapter = new RedisIoAdapter(app);

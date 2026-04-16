@@ -15,8 +15,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {// required for DB access
-  matcher: ["/dashboard/:path*", 
-    "/profile/:path*", 
-    "/communication/:path*"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|sign-in|public).*)"],
 };
-32

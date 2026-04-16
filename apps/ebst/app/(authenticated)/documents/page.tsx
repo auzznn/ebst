@@ -78,7 +78,7 @@ export default function InvoiceGeneratorPage() {
   };
 
   return (
-    <div className="p-6 space-y-6 max-w-7xl mx-auto">
+    <div className="p-6 space-y-6 w-full">
       <div className="flex flex-row items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Invoice</h1>

@@ -1,10 +1,10 @@
-import { Injectable, BadRequestException, NotFoundException } from '@nestjs/common';
+import { Injectable, BadRequestException, NotFoundException, ForbiddenException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateJournalEntryDto } from './dto/create-journal-entry.dto';
 
 @Injectable()
 export class JournalService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) { }
 
   async findAll(period?: string) {
     return this.prisma.journalEntry.findMany({
@@ -97,10 +97,14 @@ export class JournalService {
     });
   }
 
-  async delete(id: string) {
+  async delete(id: string, userId: string) {
     const entry = await this.prisma.journalEntry.findUnique({ where: { id } });
     if (!entry) {
       throw new NotFoundException(`Journal entry ${id} not found`);
+    }
+
+    if (entry.createdById !== userId) {
+      throw new ForbiddenException('Security Violation: You can only delete your own entries.');
     }
 
     await this.prisma.journalEntry.delete({ where: { id } });

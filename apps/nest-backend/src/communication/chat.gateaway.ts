@@ -18,11 +18,12 @@ import { WsAuthGuard } from './guards/ws-auth.guard'
   cors: { origin: process.env.CLIENT_URL, credentials: true },
   namespace: '/chat',
 })
+
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer()
   server: Server
 
-  constructor(private messagesService: MessagesService) {}
+  constructor(private messagesService: MessagesService) { }
 
   handleConnection(client: Socket) {
     console.log(`Client connected: ${client.id}`)

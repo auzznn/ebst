@@ -8,7 +8,12 @@ import {
   IsOptional,
   ArrayMinSize,
 } from 'class-validator';
-import { Type } from 'class-transformer';
+import { Type, Transform } from 'class-transformer';
+
+const sanitize = (value: any) => {
+  if (typeof value !== 'string') return value;
+  return value.replace(/<[^>]*>?/gm, '').trim();
+};
 
 export class JournalLineDto {
   @IsString()
@@ -22,6 +27,7 @@ export class JournalLineDto {
 
   @IsOptional()
   @IsString()
+  @Transform(({ value }) => sanitize(value))
   description?: string;
 }
 
@@ -30,6 +36,7 @@ export class CreateJournalEntryDto {
   date: string;
 
   @IsString()
+  @Transform(({ value }) => sanitize(value))
   description: string;
 
   @IsString()

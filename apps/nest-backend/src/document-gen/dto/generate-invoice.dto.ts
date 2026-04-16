@@ -1,14 +1,22 @@
 import { IsString, IsArray, ValidateNested, IsNumber, IsDateString } from 'class-validator';
-import { Type } from 'class-transformer';
+import { Type, Transform } from 'class-transformer';
+
+// Simple sanitization function to strip HTML tags and trim strings
+const sanitize = (value: any) => {
+  if (typeof value !== 'string') return value;
+  return value.replace(/<[^>]*>?/gm, '').trim();
+};
 
 export class InvoiceItemDto {
   @IsNumber()
   no: number;
 
   @IsString()
+  @Transform(({ value }) => sanitize(value))
   partNo: string;
 
   @IsString()
+  @Transform(({ value }) => sanitize(value))
   description: string;
 
   @IsNumber()
@@ -18,17 +26,21 @@ export class InvoiceItemDto {
   qty: number;
 
   @IsString()
+  @Transform(({ value }) => sanitize(value))
   qtyUnit: string;
 }
 
 export class GenerateInvoiceDto {
   @IsString()
+  @Transform(({ value }) => sanitize(value))
   invoiceNo: string;
 
   @IsString()
+  @Transform(({ value }) => sanitize(value))
   to: string;
 
   @IsString()
+  @Transform(({ value }) => sanitize(value))
   poNo: string;
 
   @IsDateString()

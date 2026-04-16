@@ -12,7 +12,7 @@ export class DocumentGenService {
   constructor(
     private configService: ConfigService,
     private filesService: FilesService,
-  ) {}
+  ) { }
 
   private getChromiumPath(): string {
     const envPath = this.configService.get<string>('CHROMIUM_PATH');
@@ -91,7 +91,7 @@ export class DocumentGenService {
       printBackground: true,
       margin: { top: '0', right: '0', bottom: '0', left: '0' },
     });
-    
+
     // Convert Uint8Array to Buffer properly
     const pdfBuffer = Buffer.from(pdfBufferView);
 
@@ -119,7 +119,7 @@ export class DocumentGenService {
     // To simplify, we return the document and a pre-signed download URL. For filesService.getDownloadUrl we need role.
     // Instead of passing role, we can fetch the user role or just assume they have access since they just created it.
     // Wait, let's just return the document object. The frontend can use `getDownloadUrl` mutation if needed, or we fetch role.
-    
+
     return {
       document,
       key, // We return key and let frontend use getDownloadUrl mutation

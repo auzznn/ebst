@@ -1,9 +1,11 @@
-import { Controller, Get, Delete, Param, Query, Req } from '@nestjs/common'
+import { Controller, Get, Delete, Param, Query, Req, UseGuards } from '@nestjs/common'
 import { MessagesService } from './messages.service'
+import { HttpAuthGuard } from './guards/http-auth.guard'
 
 @Controller('messages')
+@UseGuards(HttpAuthGuard)
 export class MessagesController {
-  constructor(private messagesService: MessagesService) {}
+  constructor(private messagesService: MessagesService) { }
 
   @Get(':channelId')
   findByChannel(

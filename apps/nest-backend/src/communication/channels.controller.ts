@@ -1,10 +1,12 @@
-import { Controller, Post, Get, Param, Body, Req } from '@nestjs/common'
+import { Controller, Post, Get, Param, Body, Req, UseGuards } from '@nestjs/common'
 import { ChannelsService } from './channels.service'
 import { CreateChannelDto } from './dto/create-channel.dto'
+import { HttpAuthGuard } from './guards/http-auth.guard'
 
 @Controller('channels')
+@UseGuards(HttpAuthGuard)
 export class ChannelsController {
-  constructor(private channelsService: ChannelsService) {}
+  constructor(private channelsService: ChannelsService) { }
 
   // better-auth attaches the user to req — adjust to your session shape
   @Post()
