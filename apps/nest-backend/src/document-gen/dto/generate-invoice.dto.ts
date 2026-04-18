@@ -41,6 +41,10 @@ export class GenerateInvoiceDto {
 
   @IsString()
   @Transform(({ value }) => sanitize(value))
+  customerId: string;
+
+  @IsString()
+  @Transform(({ value }) => sanitize(value))
   poNo: string;
 
   @IsDateString()

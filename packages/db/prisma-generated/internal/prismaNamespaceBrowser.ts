@@ -63,7 +63,9 @@ export const ModelName = {
   JournalLine: 'JournalLine',
   FixedAsset: 'FixedAsset',
   BusinessDocument: 'BusinessDocument',
-  Customers: 'Customers'
+  Customers: 'Customers',
+  Invoice: 'Invoice',
+  InvoiceItem: 'InvoiceItem'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -257,6 +259,41 @@ export const CustomersScalarFieldEnum = {
 } as const
 
 export type CustomersScalarFieldEnum = (typeof CustomersScalarFieldEnum)[keyof typeof CustomersScalarFieldEnum]
+
+
+export const InvoiceScalarFieldEnum = {
+  id: 'id',
+  invoiceNo: 'invoiceNo',
+  date: 'date',
+  poNo: 'poNo',
+  status: 'status',
+  dppHargaJual: 'dppHargaJual',
+  dppNilaiLain: 'dppNilaiLain',
+  ppn: 'ppn',
+  total: 'total',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  customerId: 'customerId',
+  createdById: 'createdById',
+  documentId: 'documentId'
+} as const
+
+export type InvoiceScalarFieldEnum = (typeof InvoiceScalarFieldEnum)[keyof typeof InvoiceScalarFieldEnum]
+
+
+export const InvoiceItemScalarFieldEnum = {
+  id: 'id',
+  no: 'no',
+  partNo: 'partNo',
+  description: 'description',
+  unitPrice: 'unitPrice',
+  qty: 'qty',
+  qtyUnit: 'qtyUnit',
+  amount: 'amount',
+  invoiceId: 'invoiceId'
+} as const
+
+export type InvoiceItemScalarFieldEnum = (typeof InvoiceItemScalarFieldEnum)[keyof typeof InvoiceItemScalarFieldEnum]
 
 
 export const SortOrder = {

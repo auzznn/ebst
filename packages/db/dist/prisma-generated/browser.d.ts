@@ -67,3 +67,13 @@ export type BusinessDocument = Prisma.BusinessDocumentModel;
  *
  */
 export type Customers = Prisma.CustomersModel;
+/**
+ * Model Invoice
+ *
+ */
+export type Invoice = Prisma.InvoiceModel;
+/**
+ * Model InvoiceItem
+ *
+ */
+export type InvoiceItem = Prisma.InvoiceItemModel;

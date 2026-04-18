@@ -39,6 +39,8 @@ export declare const ModelName: {
     readonly FixedAsset: "FixedAsset";
     readonly BusinessDocument: "BusinessDocument";
     readonly Customers: "Customers";
+    readonly Invoice: "Invoice";
+    readonly InvoiceItem: "InvoiceItem";
 };
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
 export declare const TransactionIsolationLevel: {
@@ -186,6 +188,35 @@ export declare const CustomersScalarFieldEnum: {
     readonly updatedAt: "updatedAt";
 };
 export type CustomersScalarFieldEnum = (typeof CustomersScalarFieldEnum)[keyof typeof CustomersScalarFieldEnum];
+export declare const InvoiceScalarFieldEnum: {
+    readonly id: "id";
+    readonly invoiceNo: "invoiceNo";
+    readonly date: "date";
+    readonly poNo: "poNo";
+    readonly status: "status";
+    readonly dppHargaJual: "dppHargaJual";
+    readonly dppNilaiLain: "dppNilaiLain";
+    readonly ppn: "ppn";
+    readonly total: "total";
+    readonly createdAt: "createdAt";
+    readonly updatedAt: "updatedAt";
+    readonly customerId: "customerId";
+    readonly createdById: "createdById";
+    readonly documentId: "documentId";
+};
+export type InvoiceScalarFieldEnum = (typeof InvoiceScalarFieldEnum)[keyof typeof InvoiceScalarFieldEnum];
+export declare const InvoiceItemScalarFieldEnum: {
+    readonly id: "id";
+    readonly no: "no";
+    readonly partNo: "partNo";
+    readonly description: "description";
+    readonly unitPrice: "unitPrice";
+    readonly qty: "qty";
+    readonly qtyUnit: "qtyUnit";
+    readonly amount: "amount";
+    readonly invoiceId: "invoiceId";
+};
+export type InvoiceItemScalarFieldEnum = (typeof InvoiceItemScalarFieldEnum)[keyof typeof InvoiceItemScalarFieldEnum];
 export declare const SortOrder: {
     readonly asc: "asc";
     readonly desc: "desc";

@@ -25,6 +25,7 @@ model User {
   role              Role               @default(FINANCE)
   journalEntries    JournalEntry[]
   businessDocuments BusinessDocument[]
+  invoices          Invoice[]
   // jobs              Job[]
 
   @@unique([email])
@@ -207,20 +208,72 @@ model BusinessDocument {
   userId       String
   user         User         @relation(fields: [userId], references: [id])
   // jobs         Job[]
+  invoice      Invoice?
 
   @@map("business_document")
 }
 
 model Customers {
-  id        String   @id @default(uuid())
+  id        String    @id @default(uuid())
   name      String
   email     String
   phone     String
   address   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  invoices  Invoice[]
 
   @@map("customers")
+}
+
+// ─── Invoice ────────────────────────────────────────────────────
+
+enum InvoiceStatus {
+  UNPAID
+  PAID
+  PARTIAL
+  CANCELLED
+}
+
+model Invoice {
+  id             String          @id @default(uuid())
+  invoiceNo      String          @unique
+  date           DateTime
+  poNo           String?
+  status         InvoiceStatus   @default(UNPAID)
+  dppHargaJual   Float
+  dppNilaiLain   Float
+  ppn            Float
+  total          Float
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  // Relations
+  customerId     String
+  customer       Customers       @relation(fields: [customerId], references: [id])
+  createdById    String
+  createdBy      User            @relation(fields: [createdById], references: [id])
+  documentId     String?         @unique
+  document       BusinessDocument? @relation(fields: [documentId], references: [id])
+  items          InvoiceItem[]
+
+  @@map("invoice")
+}
+
+model InvoiceItem {
+  id          String  @id @default(uuid())
+  no          Int
+  partNo      String?
+  description String
+  unitPrice   Float
+  qty         Float
+  qtyUnit     String
+  amount      Float
+
+  invoiceId   String
+  invoice     Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+
+  @@map("invoice_item")
 }
 
 // ─── Operation ────────────────────────────────────────

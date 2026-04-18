@@ -9,7 +9,7 @@
 * 🟢 You can import this file directly.
 */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DocumentType = exports.AccountType = exports.Role = void 0;
+exports.InvoiceStatus = exports.DocumentType = exports.AccountType = exports.Role = void 0;
 exports.Role = {
     ADMIN: 'ADMIN',
     FINANCE: 'FINANCE',
@@ -29,4 +29,10 @@ exports.DocumentType = {
     PURCHASE_ORDER: 'PURCHASE_ORDER',
     DELIVERY_NOTE: 'DELIVERY_NOTE',
     OTHER: 'OTHER'
+};
+exports.InvoiceStatus = {
+    UNPAID: 'UNPAID',
+    PAID: 'PAID',
+    PARTIAL: 'PARTIAL',
+    CANCELLED: 'CANCELLED'
 };

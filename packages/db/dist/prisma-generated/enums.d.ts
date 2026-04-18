@@ -21,3 +21,10 @@ export declare const DocumentType: {
     readonly OTHER: "OTHER";
 };
 export type DocumentType = (typeof DocumentType)[keyof typeof DocumentType];
+export declare const InvoiceStatus: {
+    readonly UNPAID: "UNPAID";
+    readonly PAID: "PAID";
+    readonly PARTIAL: "PARTIAL";
+    readonly CANCELLED: "CANCELLED";
+};
+export type InvoiceStatus = (typeof InvoiceStatus)[keyof typeof InvoiceStatus];

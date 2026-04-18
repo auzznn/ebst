@@ -2,6 +2,7 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as puppeteer from 'puppeteer-core';
 import { FilesService } from '../files/files.service';
+import { PrismaService } from '../prisma/prisma.service';
 import { GenerateInvoiceDto } from './dto/generate-invoice.dto';
 import { generateInvoiceHtml, InvoiceData } from './templates/invoice.template';
 import { generatePlaceholderHtml } from './templates/placeholder.template';
@@ -12,6 +13,7 @@ export class DocumentGenService {
   constructor(
     private configService: ConfigService,
     private filesService: FilesService,
+    private prisma: PrismaService,
   ) { }
 
   private getChromiumPath(): string {
@@ -74,7 +76,7 @@ export class DocumentGenService {
     // 2. Render HTML
     const html = generateInvoiceHtml(data);
 
-    // 3. Launch Puppeteer
+    // 3. Launch Puppeteer and generate PDF
     const executablePath = this.getChromiumPath();
     const browser = await puppeteer.launch({
       executablePath,
@@ -85,19 +87,16 @@ export class DocumentGenService {
     const page = await browser.newPage();
     await page.setContent(html, { waitUntil: 'networkidle0' });
 
-    // 4. Generate PDF
     const pdfBufferView = await page.pdf({
       format: 'A4',
       printBackground: true,
       margin: { top: '0', right: '0', bottom: '0', left: '0' },
     });
 
-    // Convert Uint8Array to Buffer properly
     const pdfBuffer = Buffer.from(pdfBufferView);
-
     await browser.close();
 
-    // 5. Upload to R2
+    // 4. Upload PDF to R2
     const filename = `Invoice_${dto.invoiceNo.replace(/[^a-z0-9]/gi, '_')}.pdf`;
     const { key } = await this.filesService.uploadFileDirect(
       filename,
@@ -105,25 +104,77 @@ export class DocumentGenService {
       pdfBuffer,
     );
 
-    // 6. Register document
-    const document = await this.filesService.registerDocument({
-      key,
-      fileName: filename,
-      fileType: 'application/pdf',
-      size: pdfBuffer.length,
-      documentType: 'INVOICE',
-      userId,
+    // 5. In a single transaction: create BusinessDocument + Invoice + InvoiceItems
+    const invoice = await this.prisma.$transaction(async (tx) => {
+      // 5a. Register the PDF snapshot in BusinessDocument
+      const businessDoc = await tx.businessDocument.create({
+        data: {
+          key,
+          fileName: filename,
+          fileType: 'application/pdf',
+          size: pdfBuffer.length,
+          documentType: 'INVOICE',
+          userId,
+        },
+      });
+
+      // 5b. Create the Invoice record (source of truth)
+      const createdInvoice = await tx.invoice.create({
+        data: {
+          invoiceNo: dto.invoiceNo,
+          date: new Date(dto.date),
+          poNo: dto.poNo || null,
+          status: 'UNPAID',
+          dppHargaJual,
+          dppNilaiLain,
+          ppn,
+          total,
+          customerId: dto.customerId,
+          createdById: userId,
+          documentId: businessDoc.id,
+          items: {
+            create: items.map((item) => ({
+              no: item.no,
+              partNo: item.partNo || null,
+              description: item.description,
+              unitPrice: item.unitPrice,
+              qty: item.qty,
+              qtyUnit: item.qtyUnit,
+              amount: item.amount,
+            })),
+          },
+        },
+        include: {
+          customer: true,
+          items: { orderBy: { no: 'asc' } },
+          document: true,
+          createdBy: { select: { id: true, name: true, role: true } },
+        },
+      });
+
+      return createdInvoice;
     });
 
-    // 7. Get download URL (Since we need a role to view it, let's just return the doc and the user can fetch the URL from the list, or we provide a short-lived link)
-    // To simplify, we return the document and a pre-signed download URL. For filesService.getDownloadUrl we need role.
-    // Instead of passing role, we can fetch the user role or just assume they have access since they just created it.
-    // Wait, let's just return the document object. The frontend can use `getDownloadUrl` mutation if needed, or we fetch role.
+    return { invoice, key };
+  }
 
-    return {
-      document,
-      key, // We return key and let frontend use getDownloadUrl mutation
-    };
+  async findAllInvoices() {
+    return this.prisma.invoice.findMany({
+      orderBy: { createdAt: 'desc' },
+      include: {
+        customer: { select: { id: true, name: true, email: true } },
+        items: { orderBy: { no: 'asc' } },
+        document: { select: { id: true, key: true, fileName: true } },
+        createdBy: { select: { id: true, name: true, role: true } },
+      },
+    });
+  }
+
+  async updateInvoiceStatus(invoiceId: string, status: 'UNPAID' | 'PAID' | 'PARTIAL' | 'CANCELLED') {
+    return this.prisma.invoice.update({
+      where: { id: invoiceId },
+      data: { status },
+    });
   }
 
   // Future templating method

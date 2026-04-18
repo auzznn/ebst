@@ -3,9 +3,10 @@ import { ConfigModule } from '@nestjs/config';
 import { DocumentGenController } from './document-gen.controller';
 import { DocumentGenService } from './document-gen.service';
 import { FilesModule } from '../files/files.module';
+import { PrismaModule } from '../prisma/prisma.module';
 
 @Module({
-  imports: [ConfigModule, FilesModule],
+  imports: [ConfigModule, FilesModule, PrismaModule],
   controllers: [DocumentGenController],
   providers: [DocumentGenService],
 })

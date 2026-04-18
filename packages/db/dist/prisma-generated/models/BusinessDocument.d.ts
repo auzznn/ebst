@@ -206,6 +206,7 @@ export type BusinessDocumentWhereInput = {
     updatedAt?: Prisma.DateTimeFilter<"BusinessDocument"> | Date | string;
     userId?: Prisma.StringFilter<"BusinessDocument"> | string;
     user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
+    invoice?: Prisma.XOR<Prisma.InvoiceNullableScalarRelationFilter, Prisma.InvoiceWhereInput> | null;
 };
 export type BusinessDocumentOrderByWithRelationInput = {
     id?: Prisma.SortOrder;
@@ -219,6 +220,7 @@ export type BusinessDocumentOrderByWithRelationInput = {
     updatedAt?: Prisma.SortOrder;
     userId?: Prisma.SortOrder;
     user?: Prisma.UserOrderByWithRelationInput;
+    invoice?: Prisma.InvoiceOrderByWithRelationInput;
 };
 export type BusinessDocumentWhereUniqueInput = Prisma.AtLeast<{
     id?: string;
@@ -235,6 +237,7 @@ export type BusinessDocumentWhereUniqueInput = Prisma.AtLeast<{
     updatedAt?: Prisma.DateTimeFilter<"BusinessDocument"> | Date | string;
     userId?: Prisma.StringFilter<"BusinessDocument"> | string;
     user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
+    invoice?: Prisma.XOR<Prisma.InvoiceNullableScalarRelationFilter, Prisma.InvoiceWhereInput> | null;
 }, "id" | "key">;
 export type BusinessDocumentOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
@@ -279,6 +282,7 @@ export type BusinessDocumentCreateInput = {
     createdAt?: Date | string;
     updatedAt?: Date | string;
     user: Prisma.UserCreateNestedOneWithoutBusinessDocumentsInput;
+    invoice?: Prisma.InvoiceCreateNestedOneWithoutDocumentInput;
 };
 export type BusinessDocumentUncheckedCreateInput = {
     id?: string;
@@ -291,6 +295,7 @@ export type BusinessDocumentUncheckedCreateInput = {
     createdAt?: Date | string;
     updatedAt?: Date | string;
     userId: string;
+    invoice?: Prisma.InvoiceUncheckedCreateNestedOneWithoutDocumentInput;
 };
 export type BusinessDocumentUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -303,6 +308,7 @@ export type BusinessDocumentUpdateInput = {
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     user?: Prisma.UserUpdateOneRequiredWithoutBusinessDocumentsNestedInput;
+    invoice?: Prisma.InvoiceUpdateOneWithoutDocumentNestedInput;
 };
 export type BusinessDocumentUncheckedUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -315,6 +321,7 @@ export type BusinessDocumentUncheckedUpdateInput = {
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     userId?: Prisma.StringFieldUpdateOperationsInput | string;
+    invoice?: Prisma.InvoiceUncheckedUpdateOneWithoutDocumentNestedInput;
 };
 export type BusinessDocumentCreateManyInput = {
     id?: string;
@@ -399,6 +406,10 @@ export type BusinessDocumentMinOrderByAggregateInput = {
 export type BusinessDocumentSumOrderByAggregateInput = {
     size?: Prisma.SortOrder;
 };
+export type BusinessDocumentNullableScalarRelationFilter = {
+    is?: Prisma.BusinessDocumentWhereInput | null;
+    isNot?: Prisma.BusinessDocumentWhereInput | null;
+};
 export type BusinessDocumentCreateNestedManyWithoutUserInput = {
     create?: Prisma.XOR<Prisma.BusinessDocumentCreateWithoutUserInput, Prisma.BusinessDocumentUncheckedCreateWithoutUserInput> | Prisma.BusinessDocumentCreateWithoutUserInput[] | Prisma.BusinessDocumentUncheckedCreateWithoutUserInput[];
     connectOrCreate?: Prisma.BusinessDocumentCreateOrConnectWithoutUserInput | Prisma.BusinessDocumentCreateOrConnectWithoutUserInput[];
@@ -447,6 +458,20 @@ export type NullableIntFieldUpdateOperationsInput = {
 export type EnumDocumentTypeFieldUpdateOperationsInput = {
     set?: $Enums.DocumentType;
 };
+export type BusinessDocumentCreateNestedOneWithoutInvoiceInput = {
+    create?: Prisma.XOR<Prisma.BusinessDocumentCreateWithoutInvoiceInput, Prisma.BusinessDocumentUncheckedCreateWithoutInvoiceInput>;
+    connectOrCreate?: Prisma.BusinessDocumentCreateOrConnectWithoutInvoiceInput;
+    connect?: Prisma.BusinessDocumentWhereUniqueInput;
+};
+export type BusinessDocumentUpdateOneWithoutInvoiceNestedInput = {
+    create?: Prisma.XOR<Prisma.BusinessDocumentCreateWithoutInvoiceInput, Prisma.BusinessDocumentUncheckedCreateWithoutInvoiceInput>;
+    connectOrCreate?: Prisma.BusinessDocumentCreateOrConnectWithoutInvoiceInput;
+    upsert?: Prisma.BusinessDocumentUpsertWithoutInvoiceInput;
+    disconnect?: Prisma.BusinessDocumentWhereInput | boolean;
+    delete?: Prisma.BusinessDocumentWhereInput | boolean;
+    connect?: Prisma.BusinessDocumentWhereUniqueInput;
+    update?: Prisma.XOR<Prisma.XOR<Prisma.BusinessDocumentUpdateToOneWithWhereWithoutInvoiceInput, Prisma.BusinessDocumentUpdateWithoutInvoiceInput>, Prisma.BusinessDocumentUncheckedUpdateWithoutInvoiceInput>;
+};
 export type BusinessDocumentCreateWithoutUserInput = {
     id?: string;
     key: string;
@@ -457,6 +482,7 @@ export type BusinessDocumentCreateWithoutUserInput = {
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     createdAt?: Date | string;
     updatedAt?: Date | string;
+    invoice?: Prisma.InvoiceCreateNestedOneWithoutDocumentInput;
 };
 export type BusinessDocumentUncheckedCreateWithoutUserInput = {
     id?: string;
@@ -468,6 +494,7 @@ export type BusinessDocumentUncheckedCreateWithoutUserInput = {
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     createdAt?: Date | string;
     updatedAt?: Date | string;
+    invoice?: Prisma.InvoiceUncheckedCreateNestedOneWithoutDocumentInput;
 };
 export type BusinessDocumentCreateOrConnectWithoutUserInput = {
     where: Prisma.BusinessDocumentWhereUniqueInput;
@@ -505,6 +532,67 @@ export type BusinessDocumentScalarWhereInput = {
     updatedAt?: Prisma.DateTimeFilter<"BusinessDocument"> | Date | string;
     userId?: Prisma.StringFilter<"BusinessDocument"> | string;
 };
+export type BusinessDocumentCreateWithoutInvoiceInput = {
+    id?: string;
+    key: string;
+    fileName: string;
+    fileType?: string | null;
+    size?: number | null;
+    documentType: $Enums.DocumentType;
+    metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    user: Prisma.UserCreateNestedOneWithoutBusinessDocumentsInput;
+};
+export type BusinessDocumentUncheckedCreateWithoutInvoiceInput = {
+    id?: string;
+    key: string;
+    fileName: string;
+    fileType?: string | null;
+    size?: number | null;
+    documentType: $Enums.DocumentType;
+    metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    userId: string;
+};
+export type BusinessDocumentCreateOrConnectWithoutInvoiceInput = {
+    where: Prisma.BusinessDocumentWhereUniqueInput;
+    create: Prisma.XOR<Prisma.BusinessDocumentCreateWithoutInvoiceInput, Prisma.BusinessDocumentUncheckedCreateWithoutInvoiceInput>;
+};
+export type BusinessDocumentUpsertWithoutInvoiceInput = {
+    update: Prisma.XOR<Prisma.BusinessDocumentUpdateWithoutInvoiceInput, Prisma.BusinessDocumentUncheckedUpdateWithoutInvoiceInput>;
+    create: Prisma.XOR<Prisma.BusinessDocumentCreateWithoutInvoiceInput, Prisma.BusinessDocumentUncheckedCreateWithoutInvoiceInput>;
+    where?: Prisma.BusinessDocumentWhereInput;
+};
+export type BusinessDocumentUpdateToOneWithWhereWithoutInvoiceInput = {
+    where?: Prisma.BusinessDocumentWhereInput;
+    data: Prisma.XOR<Prisma.BusinessDocumentUpdateWithoutInvoiceInput, Prisma.BusinessDocumentUncheckedUpdateWithoutInvoiceInput>;
+};
+export type BusinessDocumentUpdateWithoutInvoiceInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    key?: Prisma.StringFieldUpdateOperationsInput | string;
+    fileName?: Prisma.StringFieldUpdateOperationsInput | string;
+    fileType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    size?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    documentType?: Prisma.EnumDocumentTypeFieldUpdateOperationsInput | $Enums.DocumentType;
+    metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    user?: Prisma.UserUpdateOneRequiredWithoutBusinessDocumentsNestedInput;
+};
+export type BusinessDocumentUncheckedUpdateWithoutInvoiceInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    key?: Prisma.StringFieldUpdateOperationsInput | string;
+    fileName?: Prisma.StringFieldUpdateOperationsInput | string;
+    fileType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    size?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    documentType?: Prisma.EnumDocumentTypeFieldUpdateOperationsInput | $Enums.DocumentType;
+    metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    userId?: Prisma.StringFieldUpdateOperationsInput | string;
+};
 export type BusinessDocumentCreateManyUserInput = {
     id?: string;
     key: string;
@@ -526,6 +614,7 @@ export type BusinessDocumentUpdateWithoutUserInput = {
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    invoice?: Prisma.InvoiceUpdateOneWithoutDocumentNestedInput;
 };
 export type BusinessDocumentUncheckedUpdateWithoutUserInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -537,6 +626,7 @@ export type BusinessDocumentUncheckedUpdateWithoutUserInput = {
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    invoice?: Prisma.InvoiceUncheckedUpdateOneWithoutDocumentNestedInput;
 };
 export type BusinessDocumentUncheckedUpdateManyWithoutUserInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -561,6 +651,7 @@ export type BusinessDocumentSelect<ExtArgs extends runtime.Types.Extensions.Inte
     updatedAt?: boolean;
     userId?: boolean;
     user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    invoice?: boolean | Prisma.BusinessDocument$invoiceArgs<ExtArgs>;
 }, ExtArgs["result"]["businessDocument"]>;
 export type BusinessDocumentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
@@ -603,6 +694,7 @@ export type BusinessDocumentSelectScalar = {
 export type BusinessDocumentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "key" | "fileName" | "fileType" | "size" | "documentType" | "metadata" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["businessDocument"]>;
 export type BusinessDocumentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    invoice?: boolean | Prisma.BusinessDocument$invoiceArgs<ExtArgs>;
 };
 export type BusinessDocumentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
@@ -614,6 +706,7 @@ export type $BusinessDocumentPayload<ExtArgs extends runtime.Types.Extensions.In
     name: "BusinessDocument";
     objects: {
         user: Prisma.$UserPayload<ExtArgs>;
+        invoice: Prisma.$InvoicePayload<ExtArgs> | null;
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         id: string;
@@ -956,6 +1049,7 @@ export interface BusinessDocumentDelegate<ExtArgs extends runtime.Types.Extensio
 export interface Prisma__BusinessDocumentClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise";
     user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
+    invoice<T extends Prisma.BusinessDocument$invoiceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BusinessDocument$invoiceArgs<ExtArgs>>): Prisma.Prisma__InvoiceClient<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1373,6 +1467,24 @@ export type BusinessDocumentDeleteManyArgs<ExtArgs extends runtime.Types.Extensi
      * Limit how many BusinessDocuments to delete.
      */
     limit?: number;
+};
+/**
+ * BusinessDocument.invoice
+ */
+export type BusinessDocument$invoiceArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Invoice
+     */
+    select?: Prisma.InvoiceSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Invoice
+     */
+    omit?: Prisma.InvoiceOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.InvoiceInclude<ExtArgs> | null;
+    where?: Prisma.InvoiceWhereInput;
 };
 /**
  * BusinessDocument without action
