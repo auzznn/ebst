@@ -25,7 +25,7 @@ model User {
   role              Role               @default(FINANCE)
   journalEntries    JournalEntry[]
   businessDocuments BusinessDocument[]
-  jobs              Job[]
+  // jobs              Job[]
 
   @@unique([email])
   @@map("user")
@@ -206,67 +206,79 @@ model BusinessDocument {
   updatedAt    DateTime     @updatedAt
   userId       String
   user         User         @relation(fields: [userId], references: [id])
-  jobs         Job[]
+  // jobs         Job[]
 
   @@map("business_document")
 }
 
+model Customers {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  phone     String
+  address   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("customers")
+}
+
 // ─── Operation ────────────────────────────────────────
 
-model Job {
-  id              String         @id @default(uuid())
-  purchaseOrderId String
-  machineId       String
-  operatorId      String
-  startedAt       DateTime       @default(now())
-  completedAt     DateTime
-  materials       JobMaterials[]
+// model Job {
+//   id              String         @id @default(uuid())
+//   purchaseOrderId String
+//   machineId       String
+//   operatorId      String
+//   startedAt       DateTime       @default(now())
+//   completedAt     DateTime
+//   materials       JobMaterials[]
 
-  purchaseOrder BusinessDocument @relation(fields: [purchaseOrderId], references: [id])
-  machine       Machine          @relation(fields: [machineId], references: [id])
-  operator      User             @relation(fields: [operatorId], references: [id])
+//   purchaseOrder BusinessDocument @relation(fields: [purchaseOrderId], references: [id])
+//   machine       Machine          @relation(fields: [machineId], references: [id])
+//   operator      User             @relation(fields: [operatorId], references: [id])
 
-  @@map("job")
-}
+//   @@map("job")
+// }
 
-enum MachineStatus {
-  IDLE
-  MAINTENANCE
-  IN_USE
-}
+// enum MachineStatus {
+//   IDLE
+//   MAINTENANCE
+//   IN_USE
+// }
 
-enum MachineType {
-  MILLING
-  INDUCTION
-}
+// enum MachineType {
+//   MILLING
+//   INDUCTION
+// }
 
-model Machine {
-  id     String        @id @default(uuid())
-  name   String
-  type   String
-  status MachineStatus
-  jobs   Job[]
+// model Machine {
+//   id     String        @id @default(uuid())
+//   name   String
+//   type   String
+//   status MachineStatus
+//   jobs   Job[]
 
-  @@map("machines")
-}
+//   @@map("machines")
+// }
 
-model JobMaterials {
-  id         String @id @default(uuid())
-  jobId      String
-  materialId String
-  quantity   Int
+// model JobMaterials {
+//   id         String @id @default(uuid())
+//   jobId      String
+//   materialId String
+//   quantity   Int
 
-  job      Job      @relation(fields: [jobId], references: [id])
-  material Material @relation(fields: [materialId], references: [id])
+//   job      Job      @relation(fields: [jobId], references: [id])
+//   material Material @relation(fields: [materialId], references: [id])
 
-  @@map("job_materials")
-}
+//   @@map("job_materials")
+// }
 
-model Material {
-  id           String         @id @default(uuid())
-  name         String
-  quantity     Int
-  jobMaterials JobMaterials[]
+// model Material {
+//   id           String         @id @default(uuid())
+//   name         String
+//   quantity     Int
+//   jobMaterials JobMaterials[]
 
-  @@map("material")
-}
+//   @@map("material")
+// }

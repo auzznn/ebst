@@ -9,9 +9,10 @@ import { EncryptionModule } from './encryption/encryption.module';
 import { AccountingModule } from './accounting/accounting.module';
 import { FilesModule } from './files/files.module';
 import { DocumentGenModule } from './document-gen/document-gen.module';
+import { CustomersModule } from './customers/customers.module';
 
 @Module({
-  imports: [PrismaModule, CommunicationModule, UsersModule, EncryptionModule, AccountingModule, FilesModule, DocumentGenModule],
+  imports: [PrismaModule, CommunicationModule, UsersModule, EncryptionModule, AccountingModule, FilesModule, DocumentGenModule, CustomersModule],
   controllers: [AppController],
   providers: [AppService, EncryptionService],
 })

@@ -1,20 +1,265 @@
 "use client";
+import { createPortal } from "react-dom";
 
-import { useState } from "react";
-import { Plus, Trash2, FileText, Loader2, Save, Eye } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { Plus, Trash2, FileText, Loader2, Save, Eye, Search, X, UserPlus } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { useDocumentGen, InvoiceItemData, GenerateInvoiceData } from "@/hooks/useDocumentGen";
 import { InvoicePreview } from "@/components/document-gen/invoice-preview";
+import { useCustomerSearch, useCreateCustomer, CustomersResult, CreateCustomerData } from "@/hooks/useCustomers";
+import { useDebounce } from "@/hooks/useDebounce";
+import { toast } from "sonner";
+
+// ─── Add Customer Dialog ─────────────────────────────────────────────────────
+
+function AddCustomerDialog({ onCreated }: { onCreated: (customer: CustomersResult) => void }) {
+  const [open, setOpen] = useState(false);
+  const createCustomer = useCreateCustomer();
+
+  const [form, setForm] = useState<CreateCustomerData>({
+    name: "",
+    email: "",
+    phone: "",
+    address: "",
+  });
+
+  function handleField(field: keyof CreateCustomerData, value: string) {
+    setForm((prev) => ({ ...prev, [field]: value }));
+  }
+
+  function handleSubmit() {
+    if (!form.name.trim()) {
+      toast.error("Customer name is required.");
+      return;
+    }
+    createCustomer.mutate(form, {
+      onSuccess: (data) => {
+        toast.success(`Customer "${data.name}" created.`);
+        onCreated(data);
+        setOpen(false);
+        setForm({ name: "", email: "", phone: "", address: "" });
+      },
+      onError: () => {
+        toast.error("Failed to create customer.");
+      },
+    });
+  }
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button type="button" variant="outline" size="icon" title="Add new customer">
+          <UserPlus className="h-4 w-4" />
+        </Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Add New Customer</DialogTitle>
+        </DialogHeader>
+        <div className="space-y-4 pt-2">
+          <div className="space-y-1">
+            <label className="text-sm font-medium">Name <span className="text-destructive">*</span></label>
+            <Input
+              placeholder="e.g. PT Maju Bersama"
+              value={form.name}
+              onChange={(e) => handleField("name", e.target.value)}
+            />
+          </div>
+          <div className="space-y-1">
+            <label className="text-sm font-medium">Email</label>
+            <Input
+              type="email"
+              placeholder="customer@company.com"
+              value={form.email}
+              onChange={(e) => handleField("email", e.target.value)}
+            />
+          </div>
+          <div className="space-y-1">
+            <label className="text-sm font-medium">Phone</label>
+            <Input
+              placeholder="+62 21 ..."
+              value={form.phone}
+              onChange={(e) => handleField("phone", e.target.value)}
+            />
+          </div>
+          <div className="space-y-1">
+            <label className="text-sm font-medium">Address</label>
+            <Input
+              placeholder="Street, City, Country"
+              value={form.address}
+              onChange={(e) => handleField("address", e.target.value)}
+            />
+          </div>
+          <Button
+            className="w-full"
+            onClick={handleSubmit}
+            disabled={createCustomer.isPending}
+          >
+            {createCustomer.isPending ? (
+              <>
+                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                Creating...
+              </>
+            ) : (
+              <>
+                <Plus className="h-4 w-4 mr-2" />
+                Create Customer
+              </>
+            )}
+          </Button>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+// ─── Customer Searchable Field ─────────────────────────────────────────────
+
+function CustomerSearchField({
+  selected,
+  onSelect,
+}: {
+  selected: CustomersResult | null;
+  onSelect: (customer: CustomersResult) => void;
+}) {
+  const [query, setQuery] = useState("");
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [dropdownRect, setDropdownRect] = useState<DOMRect | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const portalRef = useRef<HTMLDivElement | null>(null);
+
+  const debouncedQuery = useDebounce(query, 400);
+  const { data: searchResults, isFetching } = useCustomerSearch(debouncedQuery);
+
+  // Close dropdown on outside click — exclude both the input container and the portal div
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      const target = e.target as Node;
+      const inContainer = containerRef.current?.contains(target);
+      const inPortal = portalRef.current?.contains(target);
+      if (!inContainer && !inPortal) {
+        setShowDropdown(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
+
+  // Update dropdown position when shown
+  useEffect(() => {
+    if (showDropdown && inputRef.current) {
+      setDropdownRect(inputRef.current.getBoundingClientRect());
+    }
+  }, [showDropdown, debouncedQuery]);
+
+  function handleSelect(customer: CustomersResult) {
+    onSelect(customer);
+    setQuery("");
+    setShowDropdown(false);
+  }
+
+  function handleClear() {
+    onSelect({ id: "", name: "", email: "", phone: "", address: "" });
+    setQuery("");
+  }
+
+  return (
+    <div ref={containerRef} className="relative flex-1">
+      {selected && selected.id ? (
+        // Show selected chip
+        <div className="flex items-center gap-2 h-9 px-3 border rounded-md bg-muted/50">
+          <span className="flex-1 text-sm font-medium truncate">{selected.name}</span>
+          <button
+            type="button"
+            onClick={handleClear}
+            className="text-muted-foreground hover:text-destructive shrink-0"
+          >
+            <X className="h-3.5 w-3.5" />
+          </button>
+        </div>
+      ) : (
+        <>
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              ref={inputRef}
+              id="to"
+              placeholder="Search customer by name, email or phone..."
+              value={query}
+              onChange={(e) => {
+                setQuery(e.target.value);
+                setShowDropdown(true);
+              }}
+              onFocus={() => {
+                setShowDropdown(true);
+                if (inputRef.current) setDropdownRect(inputRef.current.getBoundingClientRect());
+              }}
+              className="pl-9"
+            />
+          </div>
+
+          {showDropdown && debouncedQuery.length > 1 && dropdownRect && createPortal(
+            <div
+              ref={portalRef}
+              style={{
+                position: "fixed",
+                top: dropdownRect.bottom + 4,
+                left: dropdownRect.left,
+                width: dropdownRect.width,
+                zIndex: 9999,
+              }}
+              className="border rounded-lg overflow-hidden shadow-lg bg-popover text-popover-foreground"
+            >
+              {isFetching && (
+                <p className="text-xs text-muted-foreground px-3 py-2 flex items-center gap-2">
+                  <Loader2 className="h-3 w-3 animate-spin" /> Searching...
+                </p>
+              )}
+              {!isFetching && searchResults?.length === 0 && (
+                <p className="text-xs text-muted-foreground px-3 py-2">No customers found</p>
+              )}
+              {searchResults?.map((customer) => (
+                <button
+                  key={customer.id}
+                  type="button"
+                  onMouseDown={(e) => e.preventDefault()} // prevent blur before click
+                  onClick={() => handleSelect(customer)}
+                  className="w-full flex flex-col items-start px-3 py-2.5 hover:bg-accent text-left transition-colors"
+                >
+                  <p className="text-sm font-medium">{customer.name}</p>
+                  {customer.email && (
+                    <p className="text-xs text-muted-foreground">{customer.email}</p>
+                  )}
+                </button>
+              ))}
+            </div>,
+            document.body
+          )}
+        </>
+      )}
+    </div>
+  );
+}
+
+// ─── Main Page ───────────────────────────────────────────────────────────────
 
 export default function InvoiceGeneratorPage() {
   const { generateInvoice } = useDocumentGen();
 
   const [invoiceNo, setInvoiceNo] = useState("");
-  const [to, setTo] = useState("");
+  const [selectedCustomer, setSelectedCustomer] = useState<CustomersResult | null>(null);
   const [poNo, setPoNo] = useState("");
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
@@ -56,7 +301,7 @@ export default function InvoiceGeneratorPage() {
 
   const getPreviewData = () => ({
     invoiceNo: invoiceNo || "INV/YYYY/XXX",
-    to: to || "Customer Name",
+    to: selectedCustomer?.name || "Customer Name",
     poNo: poNo || "-",
     date,
     items,
@@ -68,9 +313,13 @@ export default function InvoiceGeneratorPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!selectedCustomer?.id) {
+      toast.error("Please select a customer.");
+      return;
+    }
     generateInvoice.mutate({
       invoiceNo,
-      to,
+      to: selectedCustomer.name,
       poNo,
       date,
       items
@@ -113,15 +362,17 @@ export default function InvoiceGeneratorPage() {
                 onChange={(e) => setDate(e.target.value)}
               />
             </div>
-            <div className="space-y-2">
+            <div className="space-y-2 md:col-span-1">
               <Label htmlFor="to">To (Customer)</Label>
-              <Input
-                id="to"
-                required
-                value={to}
-                onChange={(e) => setTo(e.target.value)}
-                placeholder="Customer Name / Company"
-              />
+              <div className="flex items-center gap-2">
+                <CustomerSearchField
+                  selected={selectedCustomer}
+                  onSelect={setSelectedCustomer}
+                />
+                <AddCustomerDialog
+                  onCreated={(customer) => setSelectedCustomer(customer)}
+                />
+              </div>
             </div>
             <div className="space-y-2">
               <Label htmlFor="poNo">PO No.</Label>

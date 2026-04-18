@@ -82,7 +82,7 @@ export function useSocket(channelId: string) {
       clearTimeout(typingTimeout.current)
       typingTimeout.current = setTimeout(() => {
         setTypingUsers((prev) => prev.filter((id) => id !== userId))
-      }, 2000)
+      }, 1000)
     })
 
     return () => {

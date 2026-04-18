@@ -13,7 +13,8 @@ exports.DocumentType = exports.AccountType = exports.Role = void 0;
 exports.Role = {
     ADMIN: 'ADMIN',
     FINANCE: 'FINANCE',
-    EXECUTIVE: 'EXECUTIVE'
+    EXECUTIVE: 'EXECUTIVE',
+    OPERATOR: 'OPERATOR'
 };
 exports.AccountType = {
     ASSET: 'ASSET',

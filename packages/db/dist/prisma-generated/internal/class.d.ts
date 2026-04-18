@@ -247,5 +247,16 @@ export interface PrismaClient<in LogOpts extends Prisma.LogLevel = never, in out
     get businessDocument(): Prisma.BusinessDocumentDelegate<ExtArgs, {
         omit: OmitOpts;
     }>;
+    /**
+     * `prisma.customers`: Exposes CRUD operations for the **Customers** model.
+      * Example usage:
+      * ```ts
+      * // Fetch zero or more Customers
+      * const customers = await prisma.customers.findMany()
+      * ```
+      */
+    get customers(): Prisma.CustomersDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
 }
 export declare function getPrismaClientClass(): PrismaClientConstructor;

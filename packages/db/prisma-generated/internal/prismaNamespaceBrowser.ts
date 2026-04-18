@@ -62,7 +62,8 @@ export const ModelName = {
   JournalEntry: 'JournalEntry',
   JournalLine: 'JournalLine',
   FixedAsset: 'FixedAsset',
-  BusinessDocument: 'BusinessDocument'
+  BusinessDocument: 'BusinessDocument',
+  Customers: 'Customers'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -243,6 +244,19 @@ export const BusinessDocumentScalarFieldEnum = {
 } as const
 
 export type BusinessDocumentScalarFieldEnum = (typeof BusinessDocumentScalarFieldEnum)[keyof typeof BusinessDocumentScalarFieldEnum]
+
+
+export const CustomersScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  phone: 'phone',
+  address: 'address',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CustomersScalarFieldEnum = (typeof CustomersScalarFieldEnum)[keyof typeof CustomersScalarFieldEnum]
 
 
 export const SortOrder = {

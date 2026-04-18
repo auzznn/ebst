@@ -38,6 +38,7 @@ export declare const ModelName: {
     readonly JournalLine: "JournalLine";
     readonly FixedAsset: "FixedAsset";
     readonly BusinessDocument: "BusinessDocument";
+    readonly Customers: "Customers";
 };
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
 export declare const TransactionIsolationLevel: {
@@ -175,6 +176,16 @@ export declare const BusinessDocumentScalarFieldEnum: {
     readonly userId: "userId";
 };
 export type BusinessDocumentScalarFieldEnum = (typeof BusinessDocumentScalarFieldEnum)[keyof typeof BusinessDocumentScalarFieldEnum];
+export declare const CustomersScalarFieldEnum: {
+    readonly id: "id";
+    readonly name: "name";
+    readonly email: "email";
+    readonly phone: "phone";
+    readonly address: "address";
+    readonly createdAt: "createdAt";
+    readonly updatedAt: "updatedAt";
+};
+export type CustomersScalarFieldEnum = (typeof CustomersScalarFieldEnum)[keyof typeof CustomersScalarFieldEnum];
 export declare const SortOrder: {
     readonly asc: "asc";
     readonly desc: "desc";

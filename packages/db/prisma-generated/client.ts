@@ -99,3 +99,8 @@ export type FixedAsset = Prisma.FixedAssetModel
  * 
  */
 export type BusinessDocument = Prisma.BusinessDocumentModel
+/**
+ * Model Customers
+ * 
+ */
+export type Customers = Prisma.CustomersModel

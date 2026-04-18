@@ -48,7 +48,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.JsonNullValueFilter = exports.NullsOrder = exports.QueryMode = exports.NullableJsonNullValueInput = exports.SortOrder = exports.BusinessDocumentScalarFieldEnum = exports.FixedAssetScalarFieldEnum = exports.JournalLineScalarFieldEnum = exports.JournalEntryScalarFieldEnum = exports.ChartOfAccountScalarFieldEnum = exports.MessageScalarFieldEnum = exports.ChannelMemberScalarFieldEnum = exports.ChannelScalarFieldEnum = exports.VerificationScalarFieldEnum = exports.AccountScalarFieldEnum = exports.SessionScalarFieldEnum = exports.UserScalarFieldEnum = exports.TransactionIsolationLevel = exports.ModelName = exports.AnyNull = exports.JsonNull = exports.DbNull = exports.NullTypes = exports.Decimal = void 0;
+exports.JsonNullValueFilter = exports.NullsOrder = exports.QueryMode = exports.NullableJsonNullValueInput = exports.SortOrder = exports.CustomersScalarFieldEnum = exports.BusinessDocumentScalarFieldEnum = exports.FixedAssetScalarFieldEnum = exports.JournalLineScalarFieldEnum = exports.JournalEntryScalarFieldEnum = exports.ChartOfAccountScalarFieldEnum = exports.MessageScalarFieldEnum = exports.ChannelMemberScalarFieldEnum = exports.ChannelScalarFieldEnum = exports.VerificationScalarFieldEnum = exports.AccountScalarFieldEnum = exports.SessionScalarFieldEnum = exports.UserScalarFieldEnum = exports.TransactionIsolationLevel = exports.ModelName = exports.AnyNull = exports.JsonNull = exports.DbNull = exports.NullTypes = exports.Decimal = void 0;
 const runtime = __importStar(require("@prisma/client/runtime/index-browser"));
 exports.Decimal = runtime.Decimal;
 exports.NullTypes = {
@@ -86,7 +86,8 @@ exports.ModelName = {
     JournalEntry: 'JournalEntry',
     JournalLine: 'JournalLine',
     FixedAsset: 'FixedAsset',
-    BusinessDocument: 'BusinessDocument'
+    BusinessDocument: 'BusinessDocument',
+    Customers: 'Customers'
 };
 /*
  * Enums
@@ -212,6 +213,15 @@ exports.BusinessDocumentScalarFieldEnum = {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     userId: 'userId'
+};
+exports.CustomersScalarFieldEnum = {
+    id: 'id',
+    name: 'name',
+    email: 'email',
+    phone: 'phone',
+    address: 'address',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
 };
 exports.SortOrder = {
     asc: 'asc',
