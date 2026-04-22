@@ -78,10 +78,10 @@ export type FixedAsset = Prisma.FixedAssetModel
  */
 export type BusinessDocument = Prisma.BusinessDocumentModel
 /**
- * Model Customers
+ * Model Customer
  * 
  */
-export type Customers = Prisma.CustomersModel
+export type Customer = Prisma.CustomerModel
 /**
  * Model Invoice
  * 
@@ -92,3 +92,93 @@ export type Invoice = Prisma.InvoiceModel
  * 
  */
 export type InvoiceItem = Prisma.InvoiceItemModel
+/**
+ * Model PurchaseOrder
+ * 
+ */
+export type PurchaseOrder = Prisma.PurchaseOrderModel
+/**
+ * Model PoLineItem
+ * 
+ */
+export type PoLineItem = Prisma.PoLineItemModel
+/**
+ * Model Part
+ * 
+ */
+export type Part = Prisma.PartModel
+/**
+ * Model RoutingTemplate
+ * 
+ */
+export type RoutingTemplate = Prisma.RoutingTemplateModel
+/**
+ * Model RoutingStep
+ * 
+ */
+export type RoutingStep = Prisma.RoutingStepModel
+/**
+ * Model Machine
+ * 
+ */
+export type Machine = Prisma.MachineModel
+/**
+ * Model JobCard
+ * 
+ */
+export type JobCard = Prisma.JobCardModel
+/**
+ * Model JobList
+ * 
+ */
+export type JobList = Prisma.JobListModel
+/**
+ * Model JobMaterial
+ * 
+ */
+export type JobMaterial = Prisma.JobMaterialModel
+/**
+ * Model Operation
+ * 
+ */
+export type Operation = Prisma.OperationModel
+/**
+ * Model QcLog
+ * 
+ */
+export type QcLog = Prisma.QcLogModel
+/**
+ * Model QcFinding
+ * 
+ */
+export type QcFinding = Prisma.QcFindingModel
+/**
+ * Model CheckSheet
+ * 
+ */
+export type CheckSheet = Prisma.CheckSheetModel
+/**
+ * Model CheckSheetRow
+ * 
+ */
+export type CheckSheetRow = Prisma.CheckSheetRowModel
+/**
+ * Model Material
+ * 
+ */
+export type Material = Prisma.MaterialModel
+/**
+ * Model MaterialUsage
+ * 
+ */
+export type MaterialUsage = Prisma.MaterialUsageModel
+/**
+ * Model StockAdjustment
+ * 
+ */
+export type StockAdjustment = Prisma.StockAdjustmentModel
+/**
+ * Model Supplier
+ * 
+ */
+export type Supplier = Prisma.SupplierModel

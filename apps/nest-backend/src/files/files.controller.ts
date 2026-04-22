@@ -38,6 +38,11 @@ export class FilesController {
         return { url };
     }
 
+    @Get('asset/:key')
+    async getSignedUrlDirect(@Param('key') key: string) {
+        return this.filesService.getSignedUrlDirect(decodeURIComponent(key));
+    }
+
     @Delete(':key')
     async deleteFile(@Param('key') key: string, @Req() req: any) {
         return this.filesService.deleteFile(decodeURIComponent(key), req.user.id);

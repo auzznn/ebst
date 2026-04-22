@@ -9,7 +9,7 @@
 * 🟢 You can import this file directly.
 */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.InvoiceStatus = exports.DocumentType = exports.AccountType = exports.Role = void 0;
+exports.CheckSheetType = exports.FindingCategory = exports.MaterialUnit = exports.QcResult = exports.OperationStatus = exports.JobCardStatus = exports.CastingType = exports.InvoiceStatus = exports.DocumentType = exports.AccountType = exports.Role = void 0;
 exports.Role = {
     ADMIN: 'ADMIN',
     FINANCE: 'FINANCE',
@@ -35,4 +35,46 @@ exports.InvoiceStatus = {
     PAID: 'PAID',
     PARTIAL: 'PARTIAL',
     CANCELLED: 'CANCELLED'
+};
+exports.CastingType = {
+    INVESTMENT: 'INVESTMENT',
+    SAND: 'SAND'
+};
+exports.JobCardStatus = {
+    PENDING: 'PENDING',
+    IN_PROGRESS: 'IN_PROGRESS',
+    COMPLETED: 'COMPLETED',
+    ON_HOLD: 'ON_HOLD',
+    CANCELLED: 'CANCELLED'
+};
+exports.OperationStatus = {
+    WAITING: 'WAITING',
+    QUEUED: 'QUEUED',
+    IN_PROGRESS: 'IN_PROGRESS',
+    COMPLETED: 'COMPLETED',
+    REJECTED: 'REJECTED'
+};
+exports.QcResult = {
+    PASS: 'PASS',
+    REPAIR: 'REPAIR',
+    REJECT: 'REJECT'
+};
+exports.MaterialUnit = {
+    KG: 'KG',
+    GRAM: 'GRAM',
+    LITRE: 'LITRE',
+    PIECE: 'PIECE',
+    METRE: 'METRE'
+};
+exports.FindingCategory = {
+    DIMENSION: 'DIMENSION',
+    SURFACE: 'SURFACE',
+    CHEMICAL: 'CHEMICAL',
+    VISUAL: 'VISUAL',
+    FUNCTIONAL: 'FUNCTIONAL',
+    OTHER: 'OTHER'
+};
+exports.CheckSheetType = {
+    MELTING: 'MELTING',
+    FINISHING: 'FINISHING'
 };

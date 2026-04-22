@@ -346,10 +346,10 @@ function InvoiceListTab({ onCreateNew }: { onCreateNew: () => void }) {
             />
           </div>
 
-          { (statusFilter !== "ALL" || periodFilter) && (
-            <Button 
-              variant="ghost" 
-              size="sm" 
+          {(statusFilter !== "ALL" || periodFilter) && (
+            <Button
+              variant="ghost"
+              size="sm"
               className="mt-6 text-muted-foreground h-9"
               onClick={() => {
                 setStatusFilter("ALL");
@@ -366,10 +366,6 @@ function InvoiceListTab({ onCreateNew }: { onCreateNew: () => void }) {
           <p className="text-sm text-muted-foreground">
             {filteredInvoices?.length ?? 0} invoice{filteredInvoices?.length !== 1 ? "s" : ""} found
           </p>
-          <Button size="sm" onClick={onCreateNew}>
-            <Plus className="h-4 w-4 mr-2" />
-            New Invoice
-          </Button>
         </div>
       </div>
 

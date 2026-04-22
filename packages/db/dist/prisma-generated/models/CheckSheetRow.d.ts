@@ -1,0 +1,1334 @@
+import type * as runtime from "@prisma/client/runtime/client";
+import type * as Prisma from "../internal/prismaNamespace.js";
+/**
+ * Model CheckSheetRow
+ *
+ */
+export type CheckSheetRowModel = runtime.Types.Result.DefaultSelection<Prisma.$CheckSheetRowPayload>;
+export type AggregateCheckSheetRow = {
+    _count: CheckSheetRowCountAggregateOutputType | null;
+    _avg: CheckSheetRowAvgAggregateOutputType | null;
+    _sum: CheckSheetRowSumAggregateOutputType | null;
+    _min: CheckSheetRowMinAggregateOutputType | null;
+    _max: CheckSheetRowMaxAggregateOutputType | null;
+};
+export type CheckSheetRowAvgAggregateOutputType = {
+    minTolerance: runtime.Decimal | null;
+    maxTolerance: runtime.Decimal | null;
+};
+export type CheckSheetRowSumAggregateOutputType = {
+    minTolerance: runtime.Decimal | null;
+    maxTolerance: runtime.Decimal | null;
+};
+export type CheckSheetRowMinAggregateOutputType = {
+    id: string | null;
+    checkSheetId: string | null;
+    parameterName: string | null;
+    targetValue: string | null;
+    actualValue: string | null;
+    minTolerance: runtime.Decimal | null;
+    maxTolerance: runtime.Decimal | null;
+    isPass: boolean | null;
+};
+export type CheckSheetRowMaxAggregateOutputType = {
+    id: string | null;
+    checkSheetId: string | null;
+    parameterName: string | null;
+    targetValue: string | null;
+    actualValue: string | null;
+    minTolerance: runtime.Decimal | null;
+    maxTolerance: runtime.Decimal | null;
+    isPass: boolean | null;
+};
+export type CheckSheetRowCountAggregateOutputType = {
+    id: number;
+    checkSheetId: number;
+    parameterName: number;
+    targetValue: number;
+    actualValue: number;
+    minTolerance: number;
+    maxTolerance: number;
+    isPass: number;
+    _all: number;
+};
+export type CheckSheetRowAvgAggregateInputType = {
+    minTolerance?: true;
+    maxTolerance?: true;
+};
+export type CheckSheetRowSumAggregateInputType = {
+    minTolerance?: true;
+    maxTolerance?: true;
+};
+export type CheckSheetRowMinAggregateInputType = {
+    id?: true;
+    checkSheetId?: true;
+    parameterName?: true;
+    targetValue?: true;
+    actualValue?: true;
+    minTolerance?: true;
+    maxTolerance?: true;
+    isPass?: true;
+};
+export type CheckSheetRowMaxAggregateInputType = {
+    id?: true;
+    checkSheetId?: true;
+    parameterName?: true;
+    targetValue?: true;
+    actualValue?: true;
+    minTolerance?: true;
+    maxTolerance?: true;
+    isPass?: true;
+};
+export type CheckSheetRowCountAggregateInputType = {
+    id?: true;
+    checkSheetId?: true;
+    parameterName?: true;
+    targetValue?: true;
+    actualValue?: true;
+    minTolerance?: true;
+    maxTolerance?: true;
+    isPass?: true;
+    _all?: true;
+};
+export type CheckSheetRowAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Filter which CheckSheetRow to aggregate.
+     */
+    where?: Prisma.CheckSheetRowWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of CheckSheetRows to fetch.
+     */
+    orderBy?: Prisma.CheckSheetRowOrderByWithRelationInput | Prisma.CheckSheetRowOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the start position
+     */
+    cursor?: Prisma.CheckSheetRowWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` CheckSheetRows from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` CheckSheetRows.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Count returned CheckSheetRows
+    **/
+    _count?: true | CheckSheetRowCountAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to average
+    **/
+    _avg?: CheckSheetRowAvgAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to sum
+    **/
+    _sum?: CheckSheetRowSumAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the minimum value
+    **/
+    _min?: CheckSheetRowMinAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the maximum value
+    **/
+    _max?: CheckSheetRowMaxAggregateInputType;
+};
+export type GetCheckSheetRowAggregateType<T extends CheckSheetRowAggregateArgs> = {
+    [P in keyof T & keyof AggregateCheckSheetRow]: P extends '_count' | 'count' ? T[P] extends true ? number : Prisma.GetScalarType<T[P], AggregateCheckSheetRow[P]> : Prisma.GetScalarType<T[P], AggregateCheckSheetRow[P]>;
+};
+export type CheckSheetRowGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.CheckSheetRowWhereInput;
+    orderBy?: Prisma.CheckSheetRowOrderByWithAggregationInput | Prisma.CheckSheetRowOrderByWithAggregationInput[];
+    by: Prisma.CheckSheetRowScalarFieldEnum[] | Prisma.CheckSheetRowScalarFieldEnum;
+    having?: Prisma.CheckSheetRowScalarWhereWithAggregatesInput;
+    take?: number;
+    skip?: number;
+    _count?: CheckSheetRowCountAggregateInputType | true;
+    _avg?: CheckSheetRowAvgAggregateInputType;
+    _sum?: CheckSheetRowSumAggregateInputType;
+    _min?: CheckSheetRowMinAggregateInputType;
+    _max?: CheckSheetRowMaxAggregateInputType;
+};
+export type CheckSheetRowGroupByOutputType = {
+    id: string;
+    checkSheetId: string;
+    parameterName: string;
+    targetValue: string | null;
+    actualValue: string | null;
+    minTolerance: runtime.Decimal | null;
+    maxTolerance: runtime.Decimal | null;
+    isPass: boolean | null;
+    _count: CheckSheetRowCountAggregateOutputType | null;
+    _avg: CheckSheetRowAvgAggregateOutputType | null;
+    _sum: CheckSheetRowSumAggregateOutputType | null;
+    _min: CheckSheetRowMinAggregateOutputType | null;
+    _max: CheckSheetRowMaxAggregateOutputType | null;
+};
+export type GetCheckSheetRowGroupByPayload<T extends CheckSheetRowGroupByArgs> = Prisma.PrismaPromise<Array<Prisma.PickEnumerable<CheckSheetRowGroupByOutputType, T['by']> & {
+    [P in ((keyof T) & (keyof CheckSheetRowGroupByOutputType))]: P extends '_count' ? T[P] extends boolean ? number : Prisma.GetScalarType<T[P], CheckSheetRowGroupByOutputType[P]> : Prisma.GetScalarType<T[P], CheckSheetRowGroupByOutputType[P]>;
+}>>;
+export type CheckSheetRowWhereInput = {
+    AND?: Prisma.CheckSheetRowWhereInput | Prisma.CheckSheetRowWhereInput[];
+    OR?: Prisma.CheckSheetRowWhereInput[];
+    NOT?: Prisma.CheckSheetRowWhereInput | Prisma.CheckSheetRowWhereInput[];
+    id?: Prisma.StringFilter<"CheckSheetRow"> | string;
+    checkSheetId?: Prisma.StringFilter<"CheckSheetRow"> | string;
+    parameterName?: Prisma.StringFilter<"CheckSheetRow"> | string;
+    targetValue?: Prisma.StringNullableFilter<"CheckSheetRow"> | string | null;
+    actualValue?: Prisma.StringNullableFilter<"CheckSheetRow"> | string | null;
+    minTolerance?: Prisma.DecimalNullableFilter<"CheckSheetRow"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    maxTolerance?: Prisma.DecimalNullableFilter<"CheckSheetRow"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    isPass?: Prisma.BoolNullableFilter<"CheckSheetRow"> | boolean | null;
+    checkSheet?: Prisma.XOR<Prisma.CheckSheetScalarRelationFilter, Prisma.CheckSheetWhereInput>;
+};
+export type CheckSheetRowOrderByWithRelationInput = {
+    id?: Prisma.SortOrder;
+    checkSheetId?: Prisma.SortOrder;
+    parameterName?: Prisma.SortOrder;
+    targetValue?: Prisma.SortOrderInput | Prisma.SortOrder;
+    actualValue?: Prisma.SortOrderInput | Prisma.SortOrder;
+    minTolerance?: Prisma.SortOrderInput | Prisma.SortOrder;
+    maxTolerance?: Prisma.SortOrderInput | Prisma.SortOrder;
+    isPass?: Prisma.SortOrderInput | Prisma.SortOrder;
+    checkSheet?: Prisma.CheckSheetOrderByWithRelationInput;
+};
+export type CheckSheetRowWhereUniqueInput = Prisma.AtLeast<{
+    id?: string;
+    AND?: Prisma.CheckSheetRowWhereInput | Prisma.CheckSheetRowWhereInput[];
+    OR?: Prisma.CheckSheetRowWhereInput[];
+    NOT?: Prisma.CheckSheetRowWhereInput | Prisma.CheckSheetRowWhereInput[];
+    checkSheetId?: Prisma.StringFilter<"CheckSheetRow"> | string;
+    parameterName?: Prisma.StringFilter<"CheckSheetRow"> | string;
+    targetValue?: Prisma.StringNullableFilter<"CheckSheetRow"> | string | null;
+    actualValue?: Prisma.StringNullableFilter<"CheckSheetRow"> | string | null;
+    minTolerance?: Prisma.DecimalNullableFilter<"CheckSheetRow"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    maxTolerance?: Prisma.DecimalNullableFilter<"CheckSheetRow"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    isPass?: Prisma.BoolNullableFilter<"CheckSheetRow"> | boolean | null;
+    checkSheet?: Prisma.XOR<Prisma.CheckSheetScalarRelationFilter, Prisma.CheckSheetWhereInput>;
+}, "id">;
+export type CheckSheetRowOrderByWithAggregationInput = {
+    id?: Prisma.SortOrder;
+    checkSheetId?: Prisma.SortOrder;
+    parameterName?: Prisma.SortOrder;
+    targetValue?: Prisma.SortOrderInput | Prisma.SortOrder;
+    actualValue?: Prisma.SortOrderInput | Prisma.SortOrder;
+    minTolerance?: Prisma.SortOrderInput | Prisma.SortOrder;
+    maxTolerance?: Prisma.SortOrderInput | Prisma.SortOrder;
+    isPass?: Prisma.SortOrderInput | Prisma.SortOrder;
+    _count?: Prisma.CheckSheetRowCountOrderByAggregateInput;
+    _avg?: Prisma.CheckSheetRowAvgOrderByAggregateInput;
+    _max?: Prisma.CheckSheetRowMaxOrderByAggregateInput;
+    _min?: Prisma.CheckSheetRowMinOrderByAggregateInput;
+    _sum?: Prisma.CheckSheetRowSumOrderByAggregateInput;
+};
+export type CheckSheetRowScalarWhereWithAggregatesInput = {
+    AND?: Prisma.CheckSheetRowScalarWhereWithAggregatesInput | Prisma.CheckSheetRowScalarWhereWithAggregatesInput[];
+    OR?: Prisma.CheckSheetRowScalarWhereWithAggregatesInput[];
+    NOT?: Prisma.CheckSheetRowScalarWhereWithAggregatesInput | Prisma.CheckSheetRowScalarWhereWithAggregatesInput[];
+    id?: Prisma.StringWithAggregatesFilter<"CheckSheetRow"> | string;
+    checkSheetId?: Prisma.StringWithAggregatesFilter<"CheckSheetRow"> | string;
+    parameterName?: Prisma.StringWithAggregatesFilter<"CheckSheetRow"> | string;
+    targetValue?: Prisma.StringNullableWithAggregatesFilter<"CheckSheetRow"> | string | null;
+    actualValue?: Prisma.StringNullableWithAggregatesFilter<"CheckSheetRow"> | string | null;
+    minTolerance?: Prisma.DecimalNullableWithAggregatesFilter<"CheckSheetRow"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    maxTolerance?: Prisma.DecimalNullableWithAggregatesFilter<"CheckSheetRow"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    isPass?: Prisma.BoolNullableWithAggregatesFilter<"CheckSheetRow"> | boolean | null;
+};
+export type CheckSheetRowCreateInput = {
+    id?: string;
+    parameterName: string;
+    targetValue?: string | null;
+    actualValue?: string | null;
+    minTolerance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    maxTolerance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    isPass?: boolean | null;
+    checkSheet: Prisma.CheckSheetCreateNestedOneWithoutRowsInput;
+};
+export type CheckSheetRowUncheckedCreateInput = {
+    id?: string;
+    checkSheetId: string;
+    parameterName: string;
+    targetValue?: string | null;
+    actualValue?: string | null;
+    minTolerance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    maxTolerance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    isPass?: boolean | null;
+};
+export type CheckSheetRowUpdateInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    parameterName?: Prisma.StringFieldUpdateOperationsInput | string;
+    targetValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    actualValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    minTolerance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    maxTolerance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    isPass?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null;
+    checkSheet?: Prisma.CheckSheetUpdateOneRequiredWithoutRowsNestedInput;
+};
+export type CheckSheetRowUncheckedUpdateInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    checkSheetId?: Prisma.StringFieldUpdateOperationsInput | string;
+    parameterName?: Prisma.StringFieldUpdateOperationsInput | string;
+    targetValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    actualValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    minTolerance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    maxTolerance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    isPass?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null;
+};
+export type CheckSheetRowCreateManyInput = {
+    id?: string;
+    checkSheetId: string;
+    parameterName: string;
+    targetValue?: string | null;
+    actualValue?: string | null;
+    minTolerance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    maxTolerance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    isPass?: boolean | null;
+};
+export type CheckSheetRowUpdateManyMutationInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    parameterName?: Prisma.StringFieldUpdateOperationsInput | string;
+    targetValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    actualValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    minTolerance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    maxTolerance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    isPass?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null;
+};
+export type CheckSheetRowUncheckedUpdateManyInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    checkSheetId?: Prisma.StringFieldUpdateOperationsInput | string;
+    parameterName?: Prisma.StringFieldUpdateOperationsInput | string;
+    targetValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    actualValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    minTolerance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    maxTolerance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    isPass?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null;
+};
+export type CheckSheetRowListRelationFilter = {
+    every?: Prisma.CheckSheetRowWhereInput;
+    some?: Prisma.CheckSheetRowWhereInput;
+    none?: Prisma.CheckSheetRowWhereInput;
+};
+export type CheckSheetRowOrderByRelationAggregateInput = {
+    _count?: Prisma.SortOrder;
+};
+export type CheckSheetRowCountOrderByAggregateInput = {
+    id?: Prisma.SortOrder;
+    checkSheetId?: Prisma.SortOrder;
+    parameterName?: Prisma.SortOrder;
+    targetValue?: Prisma.SortOrder;
+    actualValue?: Prisma.SortOrder;
+    minTolerance?: Prisma.SortOrder;
+    maxTolerance?: Prisma.SortOrder;
+    isPass?: Prisma.SortOrder;
+};
+export type CheckSheetRowAvgOrderByAggregateInput = {
+    minTolerance?: Prisma.SortOrder;
+    maxTolerance?: Prisma.SortOrder;
+};
+export type CheckSheetRowMaxOrderByAggregateInput = {
+    id?: Prisma.SortOrder;
+    checkSheetId?: Prisma.SortOrder;
+    parameterName?: Prisma.SortOrder;
+    targetValue?: Prisma.SortOrder;
+    actualValue?: Prisma.SortOrder;
+    minTolerance?: Prisma.SortOrder;
+    maxTolerance?: Prisma.SortOrder;
+    isPass?: Prisma.SortOrder;
+};
+export type CheckSheetRowMinOrderByAggregateInput = {
+    id?: Prisma.SortOrder;
+    checkSheetId?: Prisma.SortOrder;
+    parameterName?: Prisma.SortOrder;
+    targetValue?: Prisma.SortOrder;
+    actualValue?: Prisma.SortOrder;
+    minTolerance?: Prisma.SortOrder;
+    maxTolerance?: Prisma.SortOrder;
+    isPass?: Prisma.SortOrder;
+};
+export type CheckSheetRowSumOrderByAggregateInput = {
+    minTolerance?: Prisma.SortOrder;
+    maxTolerance?: Prisma.SortOrder;
+};
+export type CheckSheetRowCreateNestedManyWithoutCheckSheetInput = {
+    create?: Prisma.XOR<Prisma.CheckSheetRowCreateWithoutCheckSheetInput, Prisma.CheckSheetRowUncheckedCreateWithoutCheckSheetInput> | Prisma.CheckSheetRowCreateWithoutCheckSheetInput[] | Prisma.CheckSheetRowUncheckedCreateWithoutCheckSheetInput[];
+    connectOrCreate?: Prisma.CheckSheetRowCreateOrConnectWithoutCheckSheetInput | Prisma.CheckSheetRowCreateOrConnectWithoutCheckSheetInput[];
+    createMany?: Prisma.CheckSheetRowCreateManyCheckSheetInputEnvelope;
+    connect?: Prisma.CheckSheetRowWhereUniqueInput | Prisma.CheckSheetRowWhereUniqueInput[];
+};
+export type CheckSheetRowUncheckedCreateNestedManyWithoutCheckSheetInput = {
+    create?: Prisma.XOR<Prisma.CheckSheetRowCreateWithoutCheckSheetInput, Prisma.CheckSheetRowUncheckedCreateWithoutCheckSheetInput> | Prisma.CheckSheetRowCreateWithoutCheckSheetInput[] | Prisma.CheckSheetRowUncheckedCreateWithoutCheckSheetInput[];
+    connectOrCreate?: Prisma.CheckSheetRowCreateOrConnectWithoutCheckSheetInput | Prisma.CheckSheetRowCreateOrConnectWithoutCheckSheetInput[];
+    createMany?: Prisma.CheckSheetRowCreateManyCheckSheetInputEnvelope;
+    connect?: Prisma.CheckSheetRowWhereUniqueInput | Prisma.CheckSheetRowWhereUniqueInput[];
+};
+export type CheckSheetRowUpdateManyWithoutCheckSheetNestedInput = {
+    create?: Prisma.XOR<Prisma.CheckSheetRowCreateWithoutCheckSheetInput, Prisma.CheckSheetRowUncheckedCreateWithoutCheckSheetInput> | Prisma.CheckSheetRowCreateWithoutCheckSheetInput[] | Prisma.CheckSheetRowUncheckedCreateWithoutCheckSheetInput[];
+    connectOrCreate?: Prisma.CheckSheetRowCreateOrConnectWithoutCheckSheetInput | Prisma.CheckSheetRowCreateOrConnectWithoutCheckSheetInput[];
+    upsert?: Prisma.CheckSheetRowUpsertWithWhereUniqueWithoutCheckSheetInput | Prisma.CheckSheetRowUpsertWithWhereUniqueWithoutCheckSheetInput[];
+    createMany?: Prisma.CheckSheetRowCreateManyCheckSheetInputEnvelope;
+    set?: Prisma.CheckSheetRowWhereUniqueInput | Prisma.CheckSheetRowWhereUniqueInput[];
+    disconnect?: Prisma.CheckSheetRowWhereUniqueInput | Prisma.CheckSheetRowWhereUniqueInput[];
+    delete?: Prisma.CheckSheetRowWhereUniqueInput | Prisma.CheckSheetRowWhereUniqueInput[];
+    connect?: Prisma.CheckSheetRowWhereUniqueInput | Prisma.CheckSheetRowWhereUniqueInput[];
+    update?: Prisma.CheckSheetRowUpdateWithWhereUniqueWithoutCheckSheetInput | Prisma.CheckSheetRowUpdateWithWhereUniqueWithoutCheckSheetInput[];
+    updateMany?: Prisma.CheckSheetRowUpdateManyWithWhereWithoutCheckSheetInput | Prisma.CheckSheetRowUpdateManyWithWhereWithoutCheckSheetInput[];
+    deleteMany?: Prisma.CheckSheetRowScalarWhereInput | Prisma.CheckSheetRowScalarWhereInput[];
+};
+export type CheckSheetRowUncheckedUpdateManyWithoutCheckSheetNestedInput = {
+    create?: Prisma.XOR<Prisma.CheckSheetRowCreateWithoutCheckSheetInput, Prisma.CheckSheetRowUncheckedCreateWithoutCheckSheetInput> | Prisma.CheckSheetRowCreateWithoutCheckSheetInput[] | Prisma.CheckSheetRowUncheckedCreateWithoutCheckSheetInput[];
+    connectOrCreate?: Prisma.CheckSheetRowCreateOrConnectWithoutCheckSheetInput | Prisma.CheckSheetRowCreateOrConnectWithoutCheckSheetInput[];
+    upsert?: Prisma.CheckSheetRowUpsertWithWhereUniqueWithoutCheckSheetInput | Prisma.CheckSheetRowUpsertWithWhereUniqueWithoutCheckSheetInput[];
+    createMany?: Prisma.CheckSheetRowCreateManyCheckSheetInputEnvelope;
+    set?: Prisma.CheckSheetRowWhereUniqueInput | Prisma.CheckSheetRowWhereUniqueInput[];
+    disconnect?: Prisma.CheckSheetRowWhereUniqueInput | Prisma.CheckSheetRowWhereUniqueInput[];
+    delete?: Prisma.CheckSheetRowWhereUniqueInput | Prisma.CheckSheetRowWhereUniqueInput[];
+    connect?: Prisma.CheckSheetRowWhereUniqueInput | Prisma.CheckSheetRowWhereUniqueInput[];
+    update?: Prisma.CheckSheetRowUpdateWithWhereUniqueWithoutCheckSheetInput | Prisma.CheckSheetRowUpdateWithWhereUniqueWithoutCheckSheetInput[];
+    updateMany?: Prisma.CheckSheetRowUpdateManyWithWhereWithoutCheckSheetInput | Prisma.CheckSheetRowUpdateManyWithWhereWithoutCheckSheetInput[];
+    deleteMany?: Prisma.CheckSheetRowScalarWhereInput | Prisma.CheckSheetRowScalarWhereInput[];
+};
+export type NullableDecimalFieldUpdateOperationsInput = {
+    set?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    increment?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    divide?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+};
+export type NullableBoolFieldUpdateOperationsInput = {
+    set?: boolean | null;
+};
+export type CheckSheetRowCreateWithoutCheckSheetInput = {
+    id?: string;
+    parameterName: string;
+    targetValue?: string | null;
+    actualValue?: string | null;
+    minTolerance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    maxTolerance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    isPass?: boolean | null;
+};
+export type CheckSheetRowUncheckedCreateWithoutCheckSheetInput = {
+    id?: string;
+    parameterName: string;
+    targetValue?: string | null;
+    actualValue?: string | null;
+    minTolerance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    maxTolerance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    isPass?: boolean | null;
+};
+export type CheckSheetRowCreateOrConnectWithoutCheckSheetInput = {
+    where: Prisma.CheckSheetRowWhereUniqueInput;
+    create: Prisma.XOR<Prisma.CheckSheetRowCreateWithoutCheckSheetInput, Prisma.CheckSheetRowUncheckedCreateWithoutCheckSheetInput>;
+};
+export type CheckSheetRowCreateManyCheckSheetInputEnvelope = {
+    data: Prisma.CheckSheetRowCreateManyCheckSheetInput | Prisma.CheckSheetRowCreateManyCheckSheetInput[];
+    skipDuplicates?: boolean;
+};
+export type CheckSheetRowUpsertWithWhereUniqueWithoutCheckSheetInput = {
+    where: Prisma.CheckSheetRowWhereUniqueInput;
+    update: Prisma.XOR<Prisma.CheckSheetRowUpdateWithoutCheckSheetInput, Prisma.CheckSheetRowUncheckedUpdateWithoutCheckSheetInput>;
+    create: Prisma.XOR<Prisma.CheckSheetRowCreateWithoutCheckSheetInput, Prisma.CheckSheetRowUncheckedCreateWithoutCheckSheetInput>;
+};
+export type CheckSheetRowUpdateWithWhereUniqueWithoutCheckSheetInput = {
+    where: Prisma.CheckSheetRowWhereUniqueInput;
+    data: Prisma.XOR<Prisma.CheckSheetRowUpdateWithoutCheckSheetInput, Prisma.CheckSheetRowUncheckedUpdateWithoutCheckSheetInput>;
+};
+export type CheckSheetRowUpdateManyWithWhereWithoutCheckSheetInput = {
+    where: Prisma.CheckSheetRowScalarWhereInput;
+    data: Prisma.XOR<Prisma.CheckSheetRowUpdateManyMutationInput, Prisma.CheckSheetRowUncheckedUpdateManyWithoutCheckSheetInput>;
+};
+export type CheckSheetRowScalarWhereInput = {
+    AND?: Prisma.CheckSheetRowScalarWhereInput | Prisma.CheckSheetRowScalarWhereInput[];
+    OR?: Prisma.CheckSheetRowScalarWhereInput[];
+    NOT?: Prisma.CheckSheetRowScalarWhereInput | Prisma.CheckSheetRowScalarWhereInput[];
+    id?: Prisma.StringFilter<"CheckSheetRow"> | string;
+    checkSheetId?: Prisma.StringFilter<"CheckSheetRow"> | string;
+    parameterName?: Prisma.StringFilter<"CheckSheetRow"> | string;
+    targetValue?: Prisma.StringNullableFilter<"CheckSheetRow"> | string | null;
+    actualValue?: Prisma.StringNullableFilter<"CheckSheetRow"> | string | null;
+    minTolerance?: Prisma.DecimalNullableFilter<"CheckSheetRow"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    maxTolerance?: Prisma.DecimalNullableFilter<"CheckSheetRow"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    isPass?: Prisma.BoolNullableFilter<"CheckSheetRow"> | boolean | null;
+};
+export type CheckSheetRowCreateManyCheckSheetInput = {
+    id?: string;
+    parameterName: string;
+    targetValue?: string | null;
+    actualValue?: string | null;
+    minTolerance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    maxTolerance?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    isPass?: boolean | null;
+};
+export type CheckSheetRowUpdateWithoutCheckSheetInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    parameterName?: Prisma.StringFieldUpdateOperationsInput | string;
+    targetValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    actualValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    minTolerance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    maxTolerance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    isPass?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null;
+};
+export type CheckSheetRowUncheckedUpdateWithoutCheckSheetInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    parameterName?: Prisma.StringFieldUpdateOperationsInput | string;
+    targetValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    actualValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    minTolerance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    maxTolerance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    isPass?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null;
+};
+export type CheckSheetRowUncheckedUpdateManyWithoutCheckSheetInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    parameterName?: Prisma.StringFieldUpdateOperationsInput | string;
+    targetValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    actualValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    minTolerance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    maxTolerance?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    isPass?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null;
+};
+export type CheckSheetRowSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+    id?: boolean;
+    checkSheetId?: boolean;
+    parameterName?: boolean;
+    targetValue?: boolean;
+    actualValue?: boolean;
+    minTolerance?: boolean;
+    maxTolerance?: boolean;
+    isPass?: boolean;
+    checkSheet?: boolean | Prisma.CheckSheetDefaultArgs<ExtArgs>;
+}, ExtArgs["result"]["checkSheetRow"]>;
+export type CheckSheetRowSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+    id?: boolean;
+    checkSheetId?: boolean;
+    parameterName?: boolean;
+    targetValue?: boolean;
+    actualValue?: boolean;
+    minTolerance?: boolean;
+    maxTolerance?: boolean;
+    isPass?: boolean;
+    checkSheet?: boolean | Prisma.CheckSheetDefaultArgs<ExtArgs>;
+}, ExtArgs["result"]["checkSheetRow"]>;
+export type CheckSheetRowSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+    id?: boolean;
+    checkSheetId?: boolean;
+    parameterName?: boolean;
+    targetValue?: boolean;
+    actualValue?: boolean;
+    minTolerance?: boolean;
+    maxTolerance?: boolean;
+    isPass?: boolean;
+    checkSheet?: boolean | Prisma.CheckSheetDefaultArgs<ExtArgs>;
+}, ExtArgs["result"]["checkSheetRow"]>;
+export type CheckSheetRowSelectScalar = {
+    id?: boolean;
+    checkSheetId?: boolean;
+    parameterName?: boolean;
+    targetValue?: boolean;
+    actualValue?: boolean;
+    minTolerance?: boolean;
+    maxTolerance?: boolean;
+    isPass?: boolean;
+};
+export type CheckSheetRowOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "checkSheetId" | "parameterName" | "targetValue" | "actualValue" | "minTolerance" | "maxTolerance" | "isPass", ExtArgs["result"]["checkSheetRow"]>;
+export type CheckSheetRowInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    checkSheet?: boolean | Prisma.CheckSheetDefaultArgs<ExtArgs>;
+};
+export type CheckSheetRowIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    checkSheet?: boolean | Prisma.CheckSheetDefaultArgs<ExtArgs>;
+};
+export type CheckSheetRowIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    checkSheet?: boolean | Prisma.CheckSheetDefaultArgs<ExtArgs>;
+};
+export type $CheckSheetRowPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    name: "CheckSheetRow";
+    objects: {
+        checkSheet: Prisma.$CheckSheetPayload<ExtArgs>;
+    };
+    scalars: runtime.Types.Extensions.GetPayloadResult<{
+        id: string;
+        checkSheetId: string;
+        parameterName: string;
+        targetValue: string | null;
+        actualValue: string | null;
+        minTolerance: runtime.Decimal | null;
+        maxTolerance: runtime.Decimal | null;
+        isPass: boolean | null;
+    }, ExtArgs["result"]["checkSheetRow"]>;
+    composites: {};
+};
+export type CheckSheetRowGetPayload<S extends boolean | null | undefined | CheckSheetRowDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$CheckSheetRowPayload, S>;
+export type CheckSheetRowCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = Omit<CheckSheetRowFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+    select?: CheckSheetRowCountAggregateInputType | true;
+};
+export interface CheckSheetRowDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: {
+        types: Prisma.TypeMap<ExtArgs>['model']['CheckSheetRow'];
+        meta: {
+            name: 'CheckSheetRow';
+        };
+    };
+    /**
+     * Find zero or one CheckSheetRow that matches the filter.
+     * @param {CheckSheetRowFindUniqueArgs} args - Arguments to find a CheckSheetRow
+     * @example
+     * // Get one CheckSheetRow
+     * const checkSheetRow = await prisma.checkSheetRow.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CheckSheetRowFindUniqueArgs>(args: Prisma.SelectSubset<T, CheckSheetRowFindUniqueArgs<ExtArgs>>): Prisma.Prisma__CheckSheetRowClient<runtime.Types.Result.GetResult<Prisma.$CheckSheetRowPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find one CheckSheetRow that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CheckSheetRowFindUniqueOrThrowArgs} args - Arguments to find a CheckSheetRow
+     * @example
+     * // Get one CheckSheetRow
+     * const checkSheetRow = await prisma.checkSheetRow.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CheckSheetRowFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, CheckSheetRowFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__CheckSheetRowClient<runtime.Types.Result.GetResult<Prisma.$CheckSheetRowPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find the first CheckSheetRow that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CheckSheetRowFindFirstArgs} args - Arguments to find a CheckSheetRow
+     * @example
+     * // Get one CheckSheetRow
+     * const checkSheetRow = await prisma.checkSheetRow.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CheckSheetRowFindFirstArgs>(args?: Prisma.SelectSubset<T, CheckSheetRowFindFirstArgs<ExtArgs>>): Prisma.Prisma__CheckSheetRowClient<runtime.Types.Result.GetResult<Prisma.$CheckSheetRowPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find the first CheckSheetRow that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CheckSheetRowFindFirstOrThrowArgs} args - Arguments to find a CheckSheetRow
+     * @example
+     * // Get one CheckSheetRow
+     * const checkSheetRow = await prisma.checkSheetRow.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CheckSheetRowFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, CheckSheetRowFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__CheckSheetRowClient<runtime.Types.Result.GetResult<Prisma.$CheckSheetRowPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find zero or more CheckSheetRows that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CheckSheetRowFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CheckSheetRows
+     * const checkSheetRows = await prisma.checkSheetRow.findMany()
+     *
+     * // Get first 10 CheckSheetRows
+     * const checkSheetRows = await prisma.checkSheetRow.findMany({ take: 10 })
+     *
+     * // Only select the `id`
+     * const checkSheetRowWithIdOnly = await prisma.checkSheetRow.findMany({ select: { id: true } })
+     *
+     */
+    findMany<T extends CheckSheetRowFindManyArgs>(args?: Prisma.SelectSubset<T, CheckSheetRowFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CheckSheetRowPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>;
+    /**
+     * Create a CheckSheetRow.
+     * @param {CheckSheetRowCreateArgs} args - Arguments to create a CheckSheetRow.
+     * @example
+     * // Create one CheckSheetRow
+     * const CheckSheetRow = await prisma.checkSheetRow.create({
+     *   data: {
+     *     // ... data to create a CheckSheetRow
+     *   }
+     * })
+     *
+     */
+    create<T extends CheckSheetRowCreateArgs>(args: Prisma.SelectSubset<T, CheckSheetRowCreateArgs<ExtArgs>>): Prisma.Prisma__CheckSheetRowClient<runtime.Types.Result.GetResult<Prisma.$CheckSheetRowPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Create many CheckSheetRows.
+     * @param {CheckSheetRowCreateManyArgs} args - Arguments to create many CheckSheetRows.
+     * @example
+     * // Create many CheckSheetRows
+     * const checkSheetRow = await prisma.checkSheetRow.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     */
+    createMany<T extends CheckSheetRowCreateManyArgs>(args?: Prisma.SelectSubset<T, CheckSheetRowCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Create many CheckSheetRows and returns the data saved in the database.
+     * @param {CheckSheetRowCreateManyAndReturnArgs} args - Arguments to create many CheckSheetRows.
+     * @example
+     * // Create many CheckSheetRows
+     * const checkSheetRow = await prisma.checkSheetRow.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Create many CheckSheetRows and only return the `id`
+     * const checkSheetRowWithIdOnly = await prisma.checkSheetRow.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    createManyAndReturn<T extends CheckSheetRowCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, CheckSheetRowCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CheckSheetRowPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>;
+    /**
+     * Delete a CheckSheetRow.
+     * @param {CheckSheetRowDeleteArgs} args - Arguments to delete one CheckSheetRow.
+     * @example
+     * // Delete one CheckSheetRow
+     * const CheckSheetRow = await prisma.checkSheetRow.delete({
+     *   where: {
+     *     // ... filter to delete one CheckSheetRow
+     *   }
+     * })
+     *
+     */
+    delete<T extends CheckSheetRowDeleteArgs>(args: Prisma.SelectSubset<T, CheckSheetRowDeleteArgs<ExtArgs>>): Prisma.Prisma__CheckSheetRowClient<runtime.Types.Result.GetResult<Prisma.$CheckSheetRowPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Update one CheckSheetRow.
+     * @param {CheckSheetRowUpdateArgs} args - Arguments to update one CheckSheetRow.
+     * @example
+     * // Update one CheckSheetRow
+     * const checkSheetRow = await prisma.checkSheetRow.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    update<T extends CheckSheetRowUpdateArgs>(args: Prisma.SelectSubset<T, CheckSheetRowUpdateArgs<ExtArgs>>): Prisma.Prisma__CheckSheetRowClient<runtime.Types.Result.GetResult<Prisma.$CheckSheetRowPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Delete zero or more CheckSheetRows.
+     * @param {CheckSheetRowDeleteManyArgs} args - Arguments to filter CheckSheetRows to delete.
+     * @example
+     * // Delete a few CheckSheetRows
+     * const { count } = await prisma.checkSheetRow.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     *
+     */
+    deleteMany<T extends CheckSheetRowDeleteManyArgs>(args?: Prisma.SelectSubset<T, CheckSheetRowDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Update zero or more CheckSheetRows.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CheckSheetRowUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CheckSheetRows
+     * const checkSheetRow = await prisma.checkSheetRow.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    updateMany<T extends CheckSheetRowUpdateManyArgs>(args: Prisma.SelectSubset<T, CheckSheetRowUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Update zero or more CheckSheetRows and returns the data updated in the database.
+     * @param {CheckSheetRowUpdateManyAndReturnArgs} args - Arguments to update many CheckSheetRows.
+     * @example
+     * // Update many CheckSheetRows
+     * const checkSheetRow = await prisma.checkSheetRow.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Update zero or more CheckSheetRows and only return the `id`
+     * const checkSheetRowWithIdOnly = await prisma.checkSheetRow.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    updateManyAndReturn<T extends CheckSheetRowUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, CheckSheetRowUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CheckSheetRowPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>;
+    /**
+     * Create or update one CheckSheetRow.
+     * @param {CheckSheetRowUpsertArgs} args - Arguments to update or create a CheckSheetRow.
+     * @example
+     * // Update or create a CheckSheetRow
+     * const checkSheetRow = await prisma.checkSheetRow.upsert({
+     *   create: {
+     *     // ... data to create a CheckSheetRow
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CheckSheetRow we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CheckSheetRowUpsertArgs>(args: Prisma.SelectSubset<T, CheckSheetRowUpsertArgs<ExtArgs>>): Prisma.Prisma__CheckSheetRowClient<runtime.Types.Result.GetResult<Prisma.$CheckSheetRowPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Count the number of CheckSheetRows.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CheckSheetRowCountArgs} args - Arguments to filter CheckSheetRows to count.
+     * @example
+     * // Count the number of CheckSheetRows
+     * const count = await prisma.checkSheetRow.count({
+     *   where: {
+     *     // ... the filter for the CheckSheetRows we want to count
+     *   }
+     * })
+    **/
+    count<T extends CheckSheetRowCountArgs>(args?: Prisma.Subset<T, CheckSheetRowCountArgs>): Prisma.PrismaPromise<T extends runtime.Types.Utils.Record<'select', any> ? T['select'] extends true ? number : Prisma.GetScalarType<T['select'], CheckSheetRowCountAggregateOutputType> : number>;
+    /**
+     * Allows you to perform aggregations operations on a CheckSheetRow.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CheckSheetRowAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CheckSheetRowAggregateArgs>(args: Prisma.Subset<T, CheckSheetRowAggregateArgs>): Prisma.PrismaPromise<GetCheckSheetRowAggregateType<T>>;
+    /**
+     * Group by CheckSheetRow.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CheckSheetRowGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     *
+    **/
+    groupBy<T extends CheckSheetRowGroupByArgs, HasSelectOrTake extends Prisma.Or<Prisma.Extends<'skip', Prisma.Keys<T>>, Prisma.Extends<'take', Prisma.Keys<T>>>, OrderByArg extends Prisma.True extends HasSelectOrTake ? {
+        orderBy: CheckSheetRowGroupByArgs['orderBy'];
+    } : {
+        orderBy?: CheckSheetRowGroupByArgs['orderBy'];
+    }, OrderFields extends Prisma.ExcludeUnderscoreKeys<Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>>, ByFields extends Prisma.MaybeTupleToUnion<T['by']>, ByValid extends Prisma.Has<ByFields, OrderFields>, HavingFields extends Prisma.GetHavingFields<T['having']>, HavingValid extends Prisma.Has<ByFields, HavingFields>, ByEmpty extends T['by'] extends never[] ? Prisma.True : Prisma.False, InputErrors extends ByEmpty extends Prisma.True ? `Error: "by" must not be empty.` : HavingValid extends Prisma.False ? {
+        [P in HavingFields]: P extends ByFields ? never : P extends string ? `Error: Field "${P}" used in "having" needs to be provided in "by".` : [
+            Error,
+            'Field ',
+            P,
+            ` in "having" needs to be provided in "by"`
+        ];
+    }[HavingFields] : 'take' extends Prisma.Keys<T> ? 'orderBy' extends Prisma.Keys<T> ? ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields] : 'Error: If you provide "take", you also need to provide "orderBy"' : 'skip' extends Prisma.Keys<T> ? 'orderBy' extends Prisma.Keys<T> ? ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields] : 'Error: If you provide "skip", you also need to provide "orderBy"' : ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields]>(args: Prisma.SubsetIntersection<T, CheckSheetRowGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCheckSheetRowGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>;
+    /**
+     * Fields of the CheckSheetRow model
+     */
+    readonly fields: CheckSheetRowFieldRefs;
+}
+/**
+ * The delegate class that acts as a "Promise-like" for CheckSheetRow.
+ * Why is this prefixed with `Prisma__`?
+ * Because we want to prevent naming conflicts as mentioned in
+ * https://github.com/prisma/prisma-client-js/issues/707
+ */
+export interface Prisma__CheckSheetRowClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise";
+    checkSheet<T extends Prisma.CheckSheetDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CheckSheetDefaultArgs<ExtArgs>>): Prisma.Prisma__CheckSheetClient<runtime.Types.Result.GetResult<Prisma.$CheckSheetPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): runtime.Types.Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): runtime.Types.Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): runtime.Types.Utils.JsPromise<T>;
+}
+/**
+ * Fields of the CheckSheetRow model
+ */
+export interface CheckSheetRowFieldRefs {
+    readonly id: Prisma.FieldRef<"CheckSheetRow", 'String'>;
+    readonly checkSheetId: Prisma.FieldRef<"CheckSheetRow", 'String'>;
+    readonly parameterName: Prisma.FieldRef<"CheckSheetRow", 'String'>;
+    readonly targetValue: Prisma.FieldRef<"CheckSheetRow", 'String'>;
+    readonly actualValue: Prisma.FieldRef<"CheckSheetRow", 'String'>;
+    readonly minTolerance: Prisma.FieldRef<"CheckSheetRow", 'Decimal'>;
+    readonly maxTolerance: Prisma.FieldRef<"CheckSheetRow", 'Decimal'>;
+    readonly isPass: Prisma.FieldRef<"CheckSheetRow", 'Boolean'>;
+}
+/**
+ * CheckSheetRow findUnique
+ */
+export type CheckSheetRowFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CheckSheetRow
+     */
+    select?: Prisma.CheckSheetRowSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CheckSheetRow
+     */
+    omit?: Prisma.CheckSheetRowOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.CheckSheetRowInclude<ExtArgs> | null;
+    /**
+     * Filter, which CheckSheetRow to fetch.
+     */
+    where: Prisma.CheckSheetRowWhereUniqueInput;
+};
+/**
+ * CheckSheetRow findUniqueOrThrow
+ */
+export type CheckSheetRowFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CheckSheetRow
+     */
+    select?: Prisma.CheckSheetRowSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CheckSheetRow
+     */
+    omit?: Prisma.CheckSheetRowOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.CheckSheetRowInclude<ExtArgs> | null;
+    /**
+     * Filter, which CheckSheetRow to fetch.
+     */
+    where: Prisma.CheckSheetRowWhereUniqueInput;
+};
+/**
+ * CheckSheetRow findFirst
+ */
+export type CheckSheetRowFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CheckSheetRow
+     */
+    select?: Prisma.CheckSheetRowSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CheckSheetRow
+     */
+    omit?: Prisma.CheckSheetRowOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.CheckSheetRowInclude<ExtArgs> | null;
+    /**
+     * Filter, which CheckSheetRow to fetch.
+     */
+    where?: Prisma.CheckSheetRowWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of CheckSheetRows to fetch.
+     */
+    orderBy?: Prisma.CheckSheetRowOrderByWithRelationInput | Prisma.CheckSheetRowOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for CheckSheetRows.
+     */
+    cursor?: Prisma.CheckSheetRowWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` CheckSheetRows from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` CheckSheetRows.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of CheckSheetRows.
+     */
+    distinct?: Prisma.CheckSheetRowScalarFieldEnum | Prisma.CheckSheetRowScalarFieldEnum[];
+};
+/**
+ * CheckSheetRow findFirstOrThrow
+ */
+export type CheckSheetRowFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CheckSheetRow
+     */
+    select?: Prisma.CheckSheetRowSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CheckSheetRow
+     */
+    omit?: Prisma.CheckSheetRowOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.CheckSheetRowInclude<ExtArgs> | null;
+    /**
+     * Filter, which CheckSheetRow to fetch.
+     */
+    where?: Prisma.CheckSheetRowWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of CheckSheetRows to fetch.
+     */
+    orderBy?: Prisma.CheckSheetRowOrderByWithRelationInput | Prisma.CheckSheetRowOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for CheckSheetRows.
+     */
+    cursor?: Prisma.CheckSheetRowWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` CheckSheetRows from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` CheckSheetRows.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of CheckSheetRows.
+     */
+    distinct?: Prisma.CheckSheetRowScalarFieldEnum | Prisma.CheckSheetRowScalarFieldEnum[];
+};
+/**
+ * CheckSheetRow findMany
+ */
+export type CheckSheetRowFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CheckSheetRow
+     */
+    select?: Prisma.CheckSheetRowSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CheckSheetRow
+     */
+    omit?: Prisma.CheckSheetRowOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.CheckSheetRowInclude<ExtArgs> | null;
+    /**
+     * Filter, which CheckSheetRows to fetch.
+     */
+    where?: Prisma.CheckSheetRowWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of CheckSheetRows to fetch.
+     */
+    orderBy?: Prisma.CheckSheetRowOrderByWithRelationInput | Prisma.CheckSheetRowOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for listing CheckSheetRows.
+     */
+    cursor?: Prisma.CheckSheetRowWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` CheckSheetRows from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` CheckSheetRows.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of CheckSheetRows.
+     */
+    distinct?: Prisma.CheckSheetRowScalarFieldEnum | Prisma.CheckSheetRowScalarFieldEnum[];
+};
+/**
+ * CheckSheetRow create
+ */
+export type CheckSheetRowCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CheckSheetRow
+     */
+    select?: Prisma.CheckSheetRowSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CheckSheetRow
+     */
+    omit?: Prisma.CheckSheetRowOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.CheckSheetRowInclude<ExtArgs> | null;
+    /**
+     * The data needed to create a CheckSheetRow.
+     */
+    data: Prisma.XOR<Prisma.CheckSheetRowCreateInput, Prisma.CheckSheetRowUncheckedCreateInput>;
+};
+/**
+ * CheckSheetRow createMany
+ */
+export type CheckSheetRowCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CheckSheetRows.
+     */
+    data: Prisma.CheckSheetRowCreateManyInput | Prisma.CheckSheetRowCreateManyInput[];
+    skipDuplicates?: boolean;
+};
+/**
+ * CheckSheetRow createManyAndReturn
+ */
+export type CheckSheetRowCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CheckSheetRow
+     */
+    select?: Prisma.CheckSheetRowSelectCreateManyAndReturn<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CheckSheetRow
+     */
+    omit?: Prisma.CheckSheetRowOmit<ExtArgs> | null;
+    /**
+     * The data used to create many CheckSheetRows.
+     */
+    data: Prisma.CheckSheetRowCreateManyInput | Prisma.CheckSheetRowCreateManyInput[];
+    skipDuplicates?: boolean;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.CheckSheetRowIncludeCreateManyAndReturn<ExtArgs> | null;
+};
+/**
+ * CheckSheetRow update
+ */
+export type CheckSheetRowUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CheckSheetRow
+     */
+    select?: Prisma.CheckSheetRowSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CheckSheetRow
+     */
+    omit?: Prisma.CheckSheetRowOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.CheckSheetRowInclude<ExtArgs> | null;
+    /**
+     * The data needed to update a CheckSheetRow.
+     */
+    data: Prisma.XOR<Prisma.CheckSheetRowUpdateInput, Prisma.CheckSheetRowUncheckedUpdateInput>;
+    /**
+     * Choose, which CheckSheetRow to update.
+     */
+    where: Prisma.CheckSheetRowWhereUniqueInput;
+};
+/**
+ * CheckSheetRow updateMany
+ */
+export type CheckSheetRowUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CheckSheetRows.
+     */
+    data: Prisma.XOR<Prisma.CheckSheetRowUpdateManyMutationInput, Prisma.CheckSheetRowUncheckedUpdateManyInput>;
+    /**
+     * Filter which CheckSheetRows to update
+     */
+    where?: Prisma.CheckSheetRowWhereInput;
+    /**
+     * Limit how many CheckSheetRows to update.
+     */
+    limit?: number;
+};
+/**
+ * CheckSheetRow updateManyAndReturn
+ */
+export type CheckSheetRowUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CheckSheetRow
+     */
+    select?: Prisma.CheckSheetRowSelectUpdateManyAndReturn<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CheckSheetRow
+     */
+    omit?: Prisma.CheckSheetRowOmit<ExtArgs> | null;
+    /**
+     * The data used to update CheckSheetRows.
+     */
+    data: Prisma.XOR<Prisma.CheckSheetRowUpdateManyMutationInput, Prisma.CheckSheetRowUncheckedUpdateManyInput>;
+    /**
+     * Filter which CheckSheetRows to update
+     */
+    where?: Prisma.CheckSheetRowWhereInput;
+    /**
+     * Limit how many CheckSheetRows to update.
+     */
+    limit?: number;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.CheckSheetRowIncludeUpdateManyAndReturn<ExtArgs> | null;
+};
+/**
+ * CheckSheetRow upsert
+ */
+export type CheckSheetRowUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CheckSheetRow
+     */
+    select?: Prisma.CheckSheetRowSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CheckSheetRow
+     */
+    omit?: Prisma.CheckSheetRowOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.CheckSheetRowInclude<ExtArgs> | null;
+    /**
+     * The filter to search for the CheckSheetRow to update in case it exists.
+     */
+    where: Prisma.CheckSheetRowWhereUniqueInput;
+    /**
+     * In case the CheckSheetRow found by the `where` argument doesn't exist, create a new CheckSheetRow with this data.
+     */
+    create: Prisma.XOR<Prisma.CheckSheetRowCreateInput, Prisma.CheckSheetRowUncheckedCreateInput>;
+    /**
+     * In case the CheckSheetRow was found with the provided `where` argument, update it with this data.
+     */
+    update: Prisma.XOR<Prisma.CheckSheetRowUpdateInput, Prisma.CheckSheetRowUncheckedUpdateInput>;
+};
+/**
+ * CheckSheetRow delete
+ */
+export type CheckSheetRowDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CheckSheetRow
+     */
+    select?: Prisma.CheckSheetRowSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CheckSheetRow
+     */
+    omit?: Prisma.CheckSheetRowOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.CheckSheetRowInclude<ExtArgs> | null;
+    /**
+     * Filter which CheckSheetRow to delete.
+     */
+    where: Prisma.CheckSheetRowWhereUniqueInput;
+};
+/**
+ * CheckSheetRow deleteMany
+ */
+export type CheckSheetRowDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Filter which CheckSheetRows to delete
+     */
+    where?: Prisma.CheckSheetRowWhereInput;
+    /**
+     * Limit how many CheckSheetRows to delete.
+     */
+    limit?: number;
+};
+/**
+ * CheckSheetRow without action
+ */
+export type CheckSheetRowDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CheckSheetRow
+     */
+    select?: Prisma.CheckSheetRowSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CheckSheetRow
+     */
+    omit?: Prisma.CheckSheetRowOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.CheckSheetRowInclude<ExtArgs> | null;
+};

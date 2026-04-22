@@ -26,7 +26,11 @@ model User {
   journalEntries    JournalEntry[]
   businessDocuments BusinessDocument[]
   invoices          Invoice[]
-  // jobs              Job[]
+
+  createdJobCards    JobCard[]         @relation("JobCardCreatedBy")
+  assignedOperations Operation[]       @relation("OperationOperator")
+  qcLogs             QcLog[]           @relation("QcInspector")
+  stockAdjustments   StockAdjustment[] @relation("StockAdjustedBy")
 
   @@unique([email])
   @@map("user")
@@ -87,6 +91,8 @@ model Verification {
   @@map("verification")
 }
 
+//1. ─── Chat Module ──────────────────────────────────────────
+
 model Channel {
   id          String          @id @default(uuid())
   name        String?
@@ -96,6 +102,8 @@ model Channel {
   lastMessage DateTime        @default(now())
   messages    Message[]
   members     ChannelMember[]
+
+  @@map("channel")
 }
 
 model ChannelMember {
@@ -106,6 +114,7 @@ model ChannelMember {
   channel   Channel  @relation(fields: [channelId], references: [id])
 
   @@id([userId, channelId])
+  @@map("channel_member")
 }
 
 model Message {
@@ -118,9 +127,11 @@ model Message {
   channelId String
   sender    User     @relation(fields: [senderId], references: [id])
   channel   Channel  @relation(fields: [channelId], references: [id])
+
+  @@map("message")
 }
 
-// ─── Accounting Module ──────────────────────────────────────────
+//2. ─── Accounting Module ──────────────────────────────────────────
 
 enum AccountType {
   ASSET
@@ -186,7 +197,7 @@ model FixedAsset {
   @@map("fixed_asset")
 }
 
-// ─── Business Documents ────────────────────────────────────────
+//3. ─── Business Documents ────────────────────────────────────────
 
 enum DocumentType {
   INVOICE
@@ -206,27 +217,31 @@ model BusinessDocument {
   createdAt    DateTime     @default(now())
   updatedAt    DateTime     @updatedAt
   userId       String
-  user         User         @relation(fields: [userId], references: [id])
-  // jobs         Job[]
-  invoice      Invoice?
+
+  user       User        @relation(fields: [userId], references: [id])
+  invoice    Invoice?
+  checkSheet CheckSheet?
+  qcFinding  QcFinding?
 
   @@map("business_document")
 }
 
-model Customers {
-  id        String    @id @default(uuid())
+model Customer {
+  id        String   @id @default(uuid())
   name      String
   email     String
   phone     String
   address   String
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  invoices  Invoice[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  @@map("customers")
+  invoices      Invoice[]
+  purchaseOrder PurchaseOrder[]
+
+  @@map("customer")
 }
 
-// ─── Invoice ────────────────────────────────────────────────────
+//4. ─── Invoice ────────────────────────────────────────────────────
 
 enum InvoiceStatus {
   UNPAID
@@ -236,26 +251,29 @@ enum InvoiceStatus {
 }
 
 model Invoice {
-  id             String          @id @default(uuid())
-  invoiceNo      String          @unique
-  date           DateTime
-  poNo           String?
-  status         InvoiceStatus   @default(UNPAID)
-  dppHargaJual   Float
-  dppNilaiLain   Float
-  ppn            Float
-  total          Float
-  createdAt      DateTime        @default(now())
-  updatedAt      DateTime        @updatedAt
+  id              String        @id @default(uuid())
+  invoiceNo       String        @unique
+  date            DateTime
+  poNo            String?
+  status          InvoiceStatus @default(UNPAID)
+  dppHargaJual    Decimal       @db.Decimal(15, 0)
+  dppNilaiLain    Decimal       @db.Decimal(15, 0)
+  ppn             Decimal       @db.Decimal(15, 0)
+  total           Decimal       @db.Decimal(15, 0)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  purchaseOrderId String?       @unique
 
   // Relations
-  customerId     String
-  customer       Customers       @relation(fields: [customerId], references: [id])
-  createdById    String
-  createdBy      User            @relation(fields: [createdById], references: [id])
-  documentId     String?         @unique
-  document       BusinessDocument? @relation(fields: [documentId], references: [id])
-  items          InvoiceItem[]
+  customerId    String
+  customer      Customer          @relation(fields: [customerId], references: [id])
+  createdById   String
+  createdBy     User              @relation(fields: [createdById], references: [id])
+  documentId    String?           @unique
+  document      BusinessDocument? @relation(fields: [documentId], references: [id])
+  purchaseOrder PurchaseOrder?    @relation(fields: [purchaseOrderId], references: [id])
+
+  items InvoiceItem[]
 
   @@map("invoice")
 }
@@ -265,73 +283,371 @@ model InvoiceItem {
   no          Int
   partNo      String?
   description String
-  unitPrice   Float
-  qty         Float
+  unitPrice   Decimal @db.Decimal(15, 0)
+  qty         Decimal @db.Decimal(15, 0)
   qtyUnit     String
-  amount      Float
+  amount      Decimal @db.Decimal(15, 0)
 
-  invoiceId   String
-  invoice     Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  invoiceId String
+  invoice   Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
 
   @@map("invoice_item")
 }
 
-// ─── Operation ────────────────────────────────────────
+//5. ––– Purchase Order –––––––––––––––––––––––––––––––––––
 
-// model Job {
-//   id              String         @id @default(uuid())
-//   purchaseOrderId String
-//   machineId       String
-//   operatorId      String
-//   startedAt       DateTime       @default(now())
-//   completedAt     DateTime
-//   materials       JobMaterials[]
+model PurchaseOrder {
+  id         String   @id @default(cuid())
+  poNumber   String   @unique
+  customer   Customer @relation(fields: [customerId], references: [id])
+  customerId String
+  dueDate    DateTime
+  notes      String?
+  createdAt  DateTime @default(now())
 
-//   purchaseOrder BusinessDocument @relation(fields: [purchaseOrderId], references: [id])
-//   machine       Machine          @relation(fields: [machineId], references: [id])
-//   operator      User             @relation(fields: [operatorId], references: [id])
+  lineItems PoLineItem[]
+  jobCards  JobCard[]
+  invoice   Invoice?
 
-//   @@map("job")
-// }
+  @@map("purchase_order")
+}
 
-// enum MachineStatus {
-//   IDLE
-//   MAINTENANCE
-//   IN_USE
-// }
+model PoLineItem {
+  id              String  @id @default(cuid())
+  purchaseOrderId String
+  partId          String
+  quantity        Int
+  unitPrice       Decimal @db.Decimal(15, 0)
 
-// enum MachineType {
-//   MILLING
-//   INDUCTION
-// }
+  purchaseOrder PurchaseOrder @relation(fields: [purchaseOrderId], references: [id])
+  part          Part          @relation(fields: [partId], references: [id])
+  jobList       JobList?
 
-// model Machine {
-//   id     String        @id @default(uuid())
-//   name   String
-//   type   String
-//   status MachineStatus
-//   jobs   Job[]
+  @@map("po_line_item")
+}
 
-//   @@map("machines")
-// }
+//6. ––– Part & Routing Step –––––––––––––––––––––––––––––––––––
 
-// model JobMaterials {
-//   id         String @id @default(uuid())
-//   jobId      String
-//   materialId String
-//   quantity   Int
+enum CastingType {
+  INVESTMENT
+  SAND
+}
 
-//   job      Job      @relation(fields: [jobId], references: [id])
-//   material Material @relation(fields: [materialId], references: [id])
+model Part {
+  id          String      @id @default(cuid())
+  partNo      String      @unique
+  description String
+  castingType CastingType
+  materialId  String?
+  material    Material?   @relation(fields: [materialId], references: [id])
+  drawingRef  String? // drawing or spec reference image URL
+  createdAt   DateTime    @default(now())
 
-//   @@map("job_materials")
-// }
+  routing   RoutingTemplate?
+  lineItems PoLineItem[]
+  jobLists  JobList[]
 
-// model Material {
-//   id           String         @id @default(uuid())
-//   name         String
-//   quantity     Int
-//   jobMaterials JobMaterials[]
+  @@map("part")
+}
 
-//   @@map("material")
-// }
+// One routing template per part — defines the standard operation sequence
+model RoutingTemplate {
+  id        String   @id @default(cuid())
+  part      Part     @relation(fields: [partId], references: [id])
+  partId    String   @unique
+  createdAt DateTime @default(now())
+
+  steps RoutingStep[]
+
+  @@map("routing_template")
+}
+
+// Each step in the routing — ordered, reusable definition
+model RoutingStep {
+  id                 String  @id @default(cuid())
+  routingTemplateId  String
+  stepOrder          Int // 1, 2, 3... enforces sequence
+  operationName      String // "Pattern Making", "Moulding", "Pouring", etc.
+  defaultMachineType String? // hint for assignment, e.g. "CNC Lathe"
+  estimatedMinutes   Int? // optional time estimate
+
+  operations Operation[]
+  routing    RoutingTemplate @relation(fields: [routingTemplateId], references: [id])
+
+  @@unique([routingTemplateId, stepOrder])
+  @@map("routing_step")
+}
+
+//7. ––– Machine ––––––––––––––––––––––––––––––––––––––––––
+
+model Machine {
+  id          String  @id @default(cuid())
+  name        String
+  machineType String // "CNC Lathe", "Sand Moulder", "Furnace", etc.
+  isActive    Boolean @default(true)
+
+  // Future: opcuaEndpoint String? — plug OPC-UA in here later
+  operations Operation[]
+
+  @@map("machine")
+}
+
+//8. ─── Job Card & Operations ────────────────────────────────────────
+enum JobCardStatus {
+  PENDING // created, not started
+  IN_PROGRESS // at least one operation started
+  COMPLETED // all operations done, passed QC
+  ON_HOLD // blocked for some reason
+  CANCELLED
+}
+
+enum OperationStatus {
+  WAITING // previous step not yet complete
+  QUEUED // ready to start
+  IN_PROGRESS
+  COMPLETED
+  REJECTED // failed QC, cannot continue
+}
+
+enum QcResult {
+  PASS
+  REPAIR
+  REJECT
+}
+
+enum MaterialUnit {
+  KG
+  GRAM
+  LITRE
+  PIECE
+  METRE
+}
+
+// one
+model JobCard {
+  id              String        @id @default(cuid())
+  jobNo           String        @unique
+  purchaseOrderId String?       @unique // one card per PO
+  status          JobCardStatus @default(PENDING) // derived
+  createdById     String
+  createdAt       DateTime      @default(now())
+  completedAt     DateTime?
+
+  jobLists      JobList[]
+  purchaseOrder PurchaseOrder? @relation(fields: [purchaseOrderId], references: [id])
+  createdBy     User           @relation("JobCardCreatedBy", fields: [createdById], references: [id])
+
+  @@map("job_card")
+}
+
+model JobList {
+  id         String        @id @default(cuid())
+  jobCardId  String
+  partId     String?
+  lineItemId String?       @unique // one joblist per line item
+  quantity   Int
+  status     JobCardStatus @default(PENDING) // derived
+
+  operations   Operation[]
+  jobMaterials JobMaterial[]
+  jobCard      JobCard       @relation(fields: [jobCardId], references: [id])
+  part         Part?         @relation(fields: [partId], references: [id])
+  lineItem     PoLineItem?   @relation(fields: [lineItemId], references: [id])
+
+  @@map("job_list")
+}
+
+model JobMaterial {
+  id         String   @id @default(cuid())
+  jobListId  String
+  materialId String
+  quantity   Decimal  @db.Decimal(10, 3)
+  
+  jobList  JobList  @relation(fields: [jobListId], references: [id])
+  material Material @relation(fields: [materialId], references: [id])
+
+  @@map("job_material")
+}
+
+model Operation {
+  id            String          @id @default(cuid())
+  jobListId     String
+  routingStepId String
+  stepOrder     Int
+  operationName String
+  machineId     String?
+  operatorId    String?
+  status        OperationStatus @default(WAITING)
+  startedAt     DateTime?
+  completedAt   DateTime?
+  notes         String?
+
+  materialsUsed MaterialUsage[]
+  qcLog         QcLog?
+  checkSheet    CheckSheet?
+
+  jobList     JobList     @relation(fields: [jobListId], references: [id])
+  routingStep RoutingStep @relation(fields: [routingStepId], references: [id])
+  machine     Machine?    @relation(fields: [machineId], references: [id])
+  operator    User?       @relation("OperationOperator", fields: [operatorId], references: [id])
+
+  @@unique([jobListId, stepOrder])
+  @@map("operation")
+}
+
+model QcLog {
+  id           String    @id @default(cuid())
+  operation    Operation @relation(fields: [operationId], references: [id])
+  operationId  String    @unique
+  result       QcResult
+  reason       String? // required if REPAIR or REJECT
+  inspector    User      @relation("QcInspector", fields: [inspectorId], references: [id])
+  inspectorId  String
+  loggedAt     DateTime  @default(now())
+
+  // Detailed quality scoring
+  totalScore     Int?   // sum of all finding severity scores
+  actionRequired String? // recommended action derived from total score
+  findings       QcFinding[]
+
+  @@map("qc_log")
+}
+
+enum FindingCategory {
+  DIMENSION    // Linear/geometric measurements
+  SURFACE      // Surface finish, smoothness, roughness
+  CHEMICAL     // Chemical composition, material properties
+  VISUAL       // Visual defects, appearance
+  FUNCTIONAL   // Functional / performance test
+  OTHER
+}
+
+model QcFinding {
+  id          String          @id @default(cuid())
+  qcLog       QcLog           @relation(fields: [qcLogId], references: [id], onDelete: Cascade)
+  qcLogId     String
+
+  category      FindingCategory @default(OTHER)
+  parameter     String          // e.g. "Outer Diameter", "Surface Roughness Ra"
+  specification String?         // Expected spec / tolerance
+  measuredValue String?         // Actual measured value
+  unit          String?         // "mm", "µm", "Rc", etc.
+  description   String?         // Free-text finding description
+  severity      Int             @default(0) // 0-10: 0=OK, 5=minor, 10=critical
+  isConforming  Boolean         @default(true)
+
+  // Optional supporting document (e.g. scan from external machine)
+  documentId String?           @unique
+  document   BusinessDocument? @relation(fields: [documentId], references: [id])
+
+  @@map("qc_finding")
+}
+
+enum CheckSheetType {
+  MELTING
+  FINISHING
+}
+
+model CheckSheet {
+  id          String         @id @default(cuid())
+  type        CheckSheetType
+  operation   Operation      @relation(fields: [operationId], references: [id])
+  operationId String         @unique
+
+  // Link to a file (e.g. melting machine report)
+  documentId String?           @unique
+  document   BusinessDocument? @relation(fields: [documentId], references: [id])
+
+  rows CheckSheetRow[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("check_sheet")
+}
+
+model CheckSheetRow {
+  id           String     @id @default(cuid())
+  checkSheetId String
+  checkSheet   CheckSheet @relation(fields: [checkSheetId], references: [id], onDelete: Cascade)
+
+  parameterName String // e.g. "Carbon", "Outer Diameter"
+  targetValue   String? // Expected value/spec
+  actualValue   String? // Measured value
+  minTolerance  Decimal? @db.Decimal(10, 4)
+  maxTolerance  Decimal? @db.Decimal(10, 4)
+  isPass        Boolean?
+
+  @@map("check_sheet_row")
+}
+
+model CheckSheetConfig {
+
+  @@map("check_sheet_config")
+  @@ignore
+}
+
+// 9. ––– Material & Stock –––––––––––––––––––––––––––––––––––
+
+model Material {
+  id               String       @id @default(cuid())
+  name             String
+  code             String       @unique // e.g. "ALU-380", "SAND-SIL"
+  description      String?
+  unit             MaterialUnit
+  stockQty         Decimal      @default(0) @db.Decimal(10, 3)
+  reorderThreshold Decimal      @db.Decimal(10, 3) // alert fires below this
+  reorderQty       Decimal      @db.Decimal(10, 3) // suggested order quantity
+  supplier         Supplier?    @relation(fields: [supplierId], references: [id])
+  supplierId       String?
+  unitCost         Decimal?     @db.Decimal(15, 0)
+  createdAt        DateTime     @default(now())
+
+  usages       MaterialUsage[]
+  adjustments  StockAdjustment[]
+  parts        Part[]
+  jobMaterials JobMaterial[]
+
+  @@map("material")
+}
+
+// Records how much of a material an operation consumed
+// Automatically deducted from Material.stockQty when operation starts
+model MaterialUsage {
+  id          String    @id @default(cuid())
+  operation   Operation @relation(fields: [operationId], references: [id])
+  operationId String
+  material    Material  @relation(fields: [materialId], references: [id])
+  materialId  String
+  qtyUsed     Decimal   @db.Decimal(10, 3)
+  loggedAt    DateTime  @default(now())
+
+  @@map("material_usage")
+}
+
+// Manual stock adjustments — receipts, corrections, write-offs
+model StockAdjustment {
+  id           String   @id @default(cuid())
+  material     Material @relation(fields: [materialId], references: [id])
+  materialId   String
+  qty          Decimal  @db.Decimal(10, 3) // positive = in, negative = out
+  reason       String // "Goods received", "Stock count correction", etc.
+  adjustedBy   User     @relation("StockAdjustedBy", fields: [adjustedById], references: [id])
+  adjustedById String
+  adjustedAt   DateTime @default(now())
+
+  @@map("stock_adjustment")
+}
+
+model Supplier {
+  id        String   @id @default(cuid())
+  name      String
+  phone     String?
+  email     String?
+  address   String?
+  createdAt DateTime @default(now())
+
+  materials Material[]
+
+  @@map("supplier")
+}

@@ -9,10 +9,10 @@ async function main() {
     try {
         const res = await auth.api.signUpEmail({
             body: {
-                email: "novinadri.bst@gmail.com",
-                password: "fjw123456",
-                name: "Noviandri",
-                username: "noviandri",
+                email: "admin@gmail.com",
+                password: "admin123",
+                name: "Admin",
+                username: "admin",
             },
         });
 
@@ -27,7 +27,7 @@ async function main() {
         const prisma = new PrismaClient({ adapter });
         await prisma.user.update({
             where: { id: res.user.id },
-            data: { role: "EXECUTIVE" },
+            data: { role: "ADMIN" },
         });
         console.log("Role updated to ADMIN.");
         await prisma.$disconnect();

@@ -1,0 +1,1548 @@
+import type * as runtime from "@prisma/client/runtime/client";
+import type * as $Enums from "../enums.js";
+import type * as Prisma from "../internal/prismaNamespace.js";
+/**
+ * Model QcFinding
+ *
+ */
+export type QcFindingModel = runtime.Types.Result.DefaultSelection<Prisma.$QcFindingPayload>;
+export type AggregateQcFinding = {
+    _count: QcFindingCountAggregateOutputType | null;
+    _avg: QcFindingAvgAggregateOutputType | null;
+    _sum: QcFindingSumAggregateOutputType | null;
+    _min: QcFindingMinAggregateOutputType | null;
+    _max: QcFindingMaxAggregateOutputType | null;
+};
+export type QcFindingAvgAggregateOutputType = {
+    severity: number | null;
+};
+export type QcFindingSumAggregateOutputType = {
+    severity: number | null;
+};
+export type QcFindingMinAggregateOutputType = {
+    id: string | null;
+    qcLogId: string | null;
+    category: $Enums.FindingCategory | null;
+    parameter: string | null;
+    specification: string | null;
+    measuredValue: string | null;
+    unit: string | null;
+    description: string | null;
+    severity: number | null;
+    isConforming: boolean | null;
+    documentId: string | null;
+};
+export type QcFindingMaxAggregateOutputType = {
+    id: string | null;
+    qcLogId: string | null;
+    category: $Enums.FindingCategory | null;
+    parameter: string | null;
+    specification: string | null;
+    measuredValue: string | null;
+    unit: string | null;
+    description: string | null;
+    severity: number | null;
+    isConforming: boolean | null;
+    documentId: string | null;
+};
+export type QcFindingCountAggregateOutputType = {
+    id: number;
+    qcLogId: number;
+    category: number;
+    parameter: number;
+    specification: number;
+    measuredValue: number;
+    unit: number;
+    description: number;
+    severity: number;
+    isConforming: number;
+    documentId: number;
+    _all: number;
+};
+export type QcFindingAvgAggregateInputType = {
+    severity?: true;
+};
+export type QcFindingSumAggregateInputType = {
+    severity?: true;
+};
+export type QcFindingMinAggregateInputType = {
+    id?: true;
+    qcLogId?: true;
+    category?: true;
+    parameter?: true;
+    specification?: true;
+    measuredValue?: true;
+    unit?: true;
+    description?: true;
+    severity?: true;
+    isConforming?: true;
+    documentId?: true;
+};
+export type QcFindingMaxAggregateInputType = {
+    id?: true;
+    qcLogId?: true;
+    category?: true;
+    parameter?: true;
+    specification?: true;
+    measuredValue?: true;
+    unit?: true;
+    description?: true;
+    severity?: true;
+    isConforming?: true;
+    documentId?: true;
+};
+export type QcFindingCountAggregateInputType = {
+    id?: true;
+    qcLogId?: true;
+    category?: true;
+    parameter?: true;
+    specification?: true;
+    measuredValue?: true;
+    unit?: true;
+    description?: true;
+    severity?: true;
+    isConforming?: true;
+    documentId?: true;
+    _all?: true;
+};
+export type QcFindingAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Filter which QcFinding to aggregate.
+     */
+    where?: Prisma.QcFindingWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of QcFindings to fetch.
+     */
+    orderBy?: Prisma.QcFindingOrderByWithRelationInput | Prisma.QcFindingOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the start position
+     */
+    cursor?: Prisma.QcFindingWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` QcFindings from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` QcFindings.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Count returned QcFindings
+    **/
+    _count?: true | QcFindingCountAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to average
+    **/
+    _avg?: QcFindingAvgAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to sum
+    **/
+    _sum?: QcFindingSumAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the minimum value
+    **/
+    _min?: QcFindingMinAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the maximum value
+    **/
+    _max?: QcFindingMaxAggregateInputType;
+};
+export type GetQcFindingAggregateType<T extends QcFindingAggregateArgs> = {
+    [P in keyof T & keyof AggregateQcFinding]: P extends '_count' | 'count' ? T[P] extends true ? number : Prisma.GetScalarType<T[P], AggregateQcFinding[P]> : Prisma.GetScalarType<T[P], AggregateQcFinding[P]>;
+};
+export type QcFindingGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.QcFindingWhereInput;
+    orderBy?: Prisma.QcFindingOrderByWithAggregationInput | Prisma.QcFindingOrderByWithAggregationInput[];
+    by: Prisma.QcFindingScalarFieldEnum[] | Prisma.QcFindingScalarFieldEnum;
+    having?: Prisma.QcFindingScalarWhereWithAggregatesInput;
+    take?: number;
+    skip?: number;
+    _count?: QcFindingCountAggregateInputType | true;
+    _avg?: QcFindingAvgAggregateInputType;
+    _sum?: QcFindingSumAggregateInputType;
+    _min?: QcFindingMinAggregateInputType;
+    _max?: QcFindingMaxAggregateInputType;
+};
+export type QcFindingGroupByOutputType = {
+    id: string;
+    qcLogId: string;
+    category: $Enums.FindingCategory;
+    parameter: string;
+    specification: string | null;
+    measuredValue: string | null;
+    unit: string | null;
+    description: string | null;
+    severity: number;
+    isConforming: boolean;
+    documentId: string | null;
+    _count: QcFindingCountAggregateOutputType | null;
+    _avg: QcFindingAvgAggregateOutputType | null;
+    _sum: QcFindingSumAggregateOutputType | null;
+    _min: QcFindingMinAggregateOutputType | null;
+    _max: QcFindingMaxAggregateOutputType | null;
+};
+export type GetQcFindingGroupByPayload<T extends QcFindingGroupByArgs> = Prisma.PrismaPromise<Array<Prisma.PickEnumerable<QcFindingGroupByOutputType, T['by']> & {
+    [P in ((keyof T) & (keyof QcFindingGroupByOutputType))]: P extends '_count' ? T[P] extends boolean ? number : Prisma.GetScalarType<T[P], QcFindingGroupByOutputType[P]> : Prisma.GetScalarType<T[P], QcFindingGroupByOutputType[P]>;
+}>>;
+export type QcFindingWhereInput = {
+    AND?: Prisma.QcFindingWhereInput | Prisma.QcFindingWhereInput[];
+    OR?: Prisma.QcFindingWhereInput[];
+    NOT?: Prisma.QcFindingWhereInput | Prisma.QcFindingWhereInput[];
+    id?: Prisma.StringFilter<"QcFinding"> | string;
+    qcLogId?: Prisma.StringFilter<"QcFinding"> | string;
+    category?: Prisma.EnumFindingCategoryFilter<"QcFinding"> | $Enums.FindingCategory;
+    parameter?: Prisma.StringFilter<"QcFinding"> | string;
+    specification?: Prisma.StringNullableFilter<"QcFinding"> | string | null;
+    measuredValue?: Prisma.StringNullableFilter<"QcFinding"> | string | null;
+    unit?: Prisma.StringNullableFilter<"QcFinding"> | string | null;
+    description?: Prisma.StringNullableFilter<"QcFinding"> | string | null;
+    severity?: Prisma.IntFilter<"QcFinding"> | number;
+    isConforming?: Prisma.BoolFilter<"QcFinding"> | boolean;
+    documentId?: Prisma.StringNullableFilter<"QcFinding"> | string | null;
+    qcLog?: Prisma.XOR<Prisma.QcLogScalarRelationFilter, Prisma.QcLogWhereInput>;
+    document?: Prisma.XOR<Prisma.BusinessDocumentNullableScalarRelationFilter, Prisma.BusinessDocumentWhereInput> | null;
+};
+export type QcFindingOrderByWithRelationInput = {
+    id?: Prisma.SortOrder;
+    qcLogId?: Prisma.SortOrder;
+    category?: Prisma.SortOrder;
+    parameter?: Prisma.SortOrder;
+    specification?: Prisma.SortOrderInput | Prisma.SortOrder;
+    measuredValue?: Prisma.SortOrderInput | Prisma.SortOrder;
+    unit?: Prisma.SortOrderInput | Prisma.SortOrder;
+    description?: Prisma.SortOrderInput | Prisma.SortOrder;
+    severity?: Prisma.SortOrder;
+    isConforming?: Prisma.SortOrder;
+    documentId?: Prisma.SortOrderInput | Prisma.SortOrder;
+    qcLog?: Prisma.QcLogOrderByWithRelationInput;
+    document?: Prisma.BusinessDocumentOrderByWithRelationInput;
+};
+export type QcFindingWhereUniqueInput = Prisma.AtLeast<{
+    id?: string;
+    documentId?: string;
+    AND?: Prisma.QcFindingWhereInput | Prisma.QcFindingWhereInput[];
+    OR?: Prisma.QcFindingWhereInput[];
+    NOT?: Prisma.QcFindingWhereInput | Prisma.QcFindingWhereInput[];
+    qcLogId?: Prisma.StringFilter<"QcFinding"> | string;
+    category?: Prisma.EnumFindingCategoryFilter<"QcFinding"> | $Enums.FindingCategory;
+    parameter?: Prisma.StringFilter<"QcFinding"> | string;
+    specification?: Prisma.StringNullableFilter<"QcFinding"> | string | null;
+    measuredValue?: Prisma.StringNullableFilter<"QcFinding"> | string | null;
+    unit?: Prisma.StringNullableFilter<"QcFinding"> | string | null;
+    description?: Prisma.StringNullableFilter<"QcFinding"> | string | null;
+    severity?: Prisma.IntFilter<"QcFinding"> | number;
+    isConforming?: Prisma.BoolFilter<"QcFinding"> | boolean;
+    qcLog?: Prisma.XOR<Prisma.QcLogScalarRelationFilter, Prisma.QcLogWhereInput>;
+    document?: Prisma.XOR<Prisma.BusinessDocumentNullableScalarRelationFilter, Prisma.BusinessDocumentWhereInput> | null;
+}, "id" | "documentId">;
+export type QcFindingOrderByWithAggregationInput = {
+    id?: Prisma.SortOrder;
+    qcLogId?: Prisma.SortOrder;
+    category?: Prisma.SortOrder;
+    parameter?: Prisma.SortOrder;
+    specification?: Prisma.SortOrderInput | Prisma.SortOrder;
+    measuredValue?: Prisma.SortOrderInput | Prisma.SortOrder;
+    unit?: Prisma.SortOrderInput | Prisma.SortOrder;
+    description?: Prisma.SortOrderInput | Prisma.SortOrder;
+    severity?: Prisma.SortOrder;
+    isConforming?: Prisma.SortOrder;
+    documentId?: Prisma.SortOrderInput | Prisma.SortOrder;
+    _count?: Prisma.QcFindingCountOrderByAggregateInput;
+    _avg?: Prisma.QcFindingAvgOrderByAggregateInput;
+    _max?: Prisma.QcFindingMaxOrderByAggregateInput;
+    _min?: Prisma.QcFindingMinOrderByAggregateInput;
+    _sum?: Prisma.QcFindingSumOrderByAggregateInput;
+};
+export type QcFindingScalarWhereWithAggregatesInput = {
+    AND?: Prisma.QcFindingScalarWhereWithAggregatesInput | Prisma.QcFindingScalarWhereWithAggregatesInput[];
+    OR?: Prisma.QcFindingScalarWhereWithAggregatesInput[];
+    NOT?: Prisma.QcFindingScalarWhereWithAggregatesInput | Prisma.QcFindingScalarWhereWithAggregatesInput[];
+    id?: Prisma.StringWithAggregatesFilter<"QcFinding"> | string;
+    qcLogId?: Prisma.StringWithAggregatesFilter<"QcFinding"> | string;
+    category?: Prisma.EnumFindingCategoryWithAggregatesFilter<"QcFinding"> | $Enums.FindingCategory;
+    parameter?: Prisma.StringWithAggregatesFilter<"QcFinding"> | string;
+    specification?: Prisma.StringNullableWithAggregatesFilter<"QcFinding"> | string | null;
+    measuredValue?: Prisma.StringNullableWithAggregatesFilter<"QcFinding"> | string | null;
+    unit?: Prisma.StringNullableWithAggregatesFilter<"QcFinding"> | string | null;
+    description?: Prisma.StringNullableWithAggregatesFilter<"QcFinding"> | string | null;
+    severity?: Prisma.IntWithAggregatesFilter<"QcFinding"> | number;
+    isConforming?: Prisma.BoolWithAggregatesFilter<"QcFinding"> | boolean;
+    documentId?: Prisma.StringNullableWithAggregatesFilter<"QcFinding"> | string | null;
+};
+export type QcFindingCreateInput = {
+    id?: string;
+    category?: $Enums.FindingCategory;
+    parameter: string;
+    specification?: string | null;
+    measuredValue?: string | null;
+    unit?: string | null;
+    description?: string | null;
+    severity?: number;
+    isConforming?: boolean;
+    qcLog: Prisma.QcLogCreateNestedOneWithoutFindingsInput;
+    document?: Prisma.BusinessDocumentCreateNestedOneWithoutQcFindingInput;
+};
+export type QcFindingUncheckedCreateInput = {
+    id?: string;
+    qcLogId: string;
+    category?: $Enums.FindingCategory;
+    parameter: string;
+    specification?: string | null;
+    measuredValue?: string | null;
+    unit?: string | null;
+    description?: string | null;
+    severity?: number;
+    isConforming?: boolean;
+    documentId?: string | null;
+};
+export type QcFindingUpdateInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    category?: Prisma.EnumFindingCategoryFieldUpdateOperationsInput | $Enums.FindingCategory;
+    parameter?: Prisma.StringFieldUpdateOperationsInput | string;
+    specification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    measuredValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    severity?: Prisma.IntFieldUpdateOperationsInput | number;
+    isConforming?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    qcLog?: Prisma.QcLogUpdateOneRequiredWithoutFindingsNestedInput;
+    document?: Prisma.BusinessDocumentUpdateOneWithoutQcFindingNestedInput;
+};
+export type QcFindingUncheckedUpdateInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    qcLogId?: Prisma.StringFieldUpdateOperationsInput | string;
+    category?: Prisma.EnumFindingCategoryFieldUpdateOperationsInput | $Enums.FindingCategory;
+    parameter?: Prisma.StringFieldUpdateOperationsInput | string;
+    specification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    measuredValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    severity?: Prisma.IntFieldUpdateOperationsInput | number;
+    isConforming?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    documentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+};
+export type QcFindingCreateManyInput = {
+    id?: string;
+    qcLogId: string;
+    category?: $Enums.FindingCategory;
+    parameter: string;
+    specification?: string | null;
+    measuredValue?: string | null;
+    unit?: string | null;
+    description?: string | null;
+    severity?: number;
+    isConforming?: boolean;
+    documentId?: string | null;
+};
+export type QcFindingUpdateManyMutationInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    category?: Prisma.EnumFindingCategoryFieldUpdateOperationsInput | $Enums.FindingCategory;
+    parameter?: Prisma.StringFieldUpdateOperationsInput | string;
+    specification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    measuredValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    severity?: Prisma.IntFieldUpdateOperationsInput | number;
+    isConforming?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+};
+export type QcFindingUncheckedUpdateManyInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    qcLogId?: Prisma.StringFieldUpdateOperationsInput | string;
+    category?: Prisma.EnumFindingCategoryFieldUpdateOperationsInput | $Enums.FindingCategory;
+    parameter?: Prisma.StringFieldUpdateOperationsInput | string;
+    specification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    measuredValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    severity?: Prisma.IntFieldUpdateOperationsInput | number;
+    isConforming?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    documentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+};
+export type QcFindingNullableScalarRelationFilter = {
+    is?: Prisma.QcFindingWhereInput | null;
+    isNot?: Prisma.QcFindingWhereInput | null;
+};
+export type QcFindingListRelationFilter = {
+    every?: Prisma.QcFindingWhereInput;
+    some?: Prisma.QcFindingWhereInput;
+    none?: Prisma.QcFindingWhereInput;
+};
+export type QcFindingOrderByRelationAggregateInput = {
+    _count?: Prisma.SortOrder;
+};
+export type QcFindingCountOrderByAggregateInput = {
+    id?: Prisma.SortOrder;
+    qcLogId?: Prisma.SortOrder;
+    category?: Prisma.SortOrder;
+    parameter?: Prisma.SortOrder;
+    specification?: Prisma.SortOrder;
+    measuredValue?: Prisma.SortOrder;
+    unit?: Prisma.SortOrder;
+    description?: Prisma.SortOrder;
+    severity?: Prisma.SortOrder;
+    isConforming?: Prisma.SortOrder;
+    documentId?: Prisma.SortOrder;
+};
+export type QcFindingAvgOrderByAggregateInput = {
+    severity?: Prisma.SortOrder;
+};
+export type QcFindingMaxOrderByAggregateInput = {
+    id?: Prisma.SortOrder;
+    qcLogId?: Prisma.SortOrder;
+    category?: Prisma.SortOrder;
+    parameter?: Prisma.SortOrder;
+    specification?: Prisma.SortOrder;
+    measuredValue?: Prisma.SortOrder;
+    unit?: Prisma.SortOrder;
+    description?: Prisma.SortOrder;
+    severity?: Prisma.SortOrder;
+    isConforming?: Prisma.SortOrder;
+    documentId?: Prisma.SortOrder;
+};
+export type QcFindingMinOrderByAggregateInput = {
+    id?: Prisma.SortOrder;
+    qcLogId?: Prisma.SortOrder;
+    category?: Prisma.SortOrder;
+    parameter?: Prisma.SortOrder;
+    specification?: Prisma.SortOrder;
+    measuredValue?: Prisma.SortOrder;
+    unit?: Prisma.SortOrder;
+    description?: Prisma.SortOrder;
+    severity?: Prisma.SortOrder;
+    isConforming?: Prisma.SortOrder;
+    documentId?: Prisma.SortOrder;
+};
+export type QcFindingSumOrderByAggregateInput = {
+    severity?: Prisma.SortOrder;
+};
+export type QcFindingCreateNestedOneWithoutDocumentInput = {
+    create?: Prisma.XOR<Prisma.QcFindingCreateWithoutDocumentInput, Prisma.QcFindingUncheckedCreateWithoutDocumentInput>;
+    connectOrCreate?: Prisma.QcFindingCreateOrConnectWithoutDocumentInput;
+    connect?: Prisma.QcFindingWhereUniqueInput;
+};
+export type QcFindingUncheckedCreateNestedOneWithoutDocumentInput = {
+    create?: Prisma.XOR<Prisma.QcFindingCreateWithoutDocumentInput, Prisma.QcFindingUncheckedCreateWithoutDocumentInput>;
+    connectOrCreate?: Prisma.QcFindingCreateOrConnectWithoutDocumentInput;
+    connect?: Prisma.QcFindingWhereUniqueInput;
+};
+export type QcFindingUpdateOneWithoutDocumentNestedInput = {
+    create?: Prisma.XOR<Prisma.QcFindingCreateWithoutDocumentInput, Prisma.QcFindingUncheckedCreateWithoutDocumentInput>;
+    connectOrCreate?: Prisma.QcFindingCreateOrConnectWithoutDocumentInput;
+    upsert?: Prisma.QcFindingUpsertWithoutDocumentInput;
+    disconnect?: Prisma.QcFindingWhereInput | boolean;
+    delete?: Prisma.QcFindingWhereInput | boolean;
+    connect?: Prisma.QcFindingWhereUniqueInput;
+    update?: Prisma.XOR<Prisma.XOR<Prisma.QcFindingUpdateToOneWithWhereWithoutDocumentInput, Prisma.QcFindingUpdateWithoutDocumentInput>, Prisma.QcFindingUncheckedUpdateWithoutDocumentInput>;
+};
+export type QcFindingUncheckedUpdateOneWithoutDocumentNestedInput = {
+    create?: Prisma.XOR<Prisma.QcFindingCreateWithoutDocumentInput, Prisma.QcFindingUncheckedCreateWithoutDocumentInput>;
+    connectOrCreate?: Prisma.QcFindingCreateOrConnectWithoutDocumentInput;
+    upsert?: Prisma.QcFindingUpsertWithoutDocumentInput;
+    disconnect?: Prisma.QcFindingWhereInput | boolean;
+    delete?: Prisma.QcFindingWhereInput | boolean;
+    connect?: Prisma.QcFindingWhereUniqueInput;
+    update?: Prisma.XOR<Prisma.XOR<Prisma.QcFindingUpdateToOneWithWhereWithoutDocumentInput, Prisma.QcFindingUpdateWithoutDocumentInput>, Prisma.QcFindingUncheckedUpdateWithoutDocumentInput>;
+};
+export type QcFindingCreateNestedManyWithoutQcLogInput = {
+    create?: Prisma.XOR<Prisma.QcFindingCreateWithoutQcLogInput, Prisma.QcFindingUncheckedCreateWithoutQcLogInput> | Prisma.QcFindingCreateWithoutQcLogInput[] | Prisma.QcFindingUncheckedCreateWithoutQcLogInput[];
+    connectOrCreate?: Prisma.QcFindingCreateOrConnectWithoutQcLogInput | Prisma.QcFindingCreateOrConnectWithoutQcLogInput[];
+    createMany?: Prisma.QcFindingCreateManyQcLogInputEnvelope;
+    connect?: Prisma.QcFindingWhereUniqueInput | Prisma.QcFindingWhereUniqueInput[];
+};
+export type QcFindingUncheckedCreateNestedManyWithoutQcLogInput = {
+    create?: Prisma.XOR<Prisma.QcFindingCreateWithoutQcLogInput, Prisma.QcFindingUncheckedCreateWithoutQcLogInput> | Prisma.QcFindingCreateWithoutQcLogInput[] | Prisma.QcFindingUncheckedCreateWithoutQcLogInput[];
+    connectOrCreate?: Prisma.QcFindingCreateOrConnectWithoutQcLogInput | Prisma.QcFindingCreateOrConnectWithoutQcLogInput[];
+    createMany?: Prisma.QcFindingCreateManyQcLogInputEnvelope;
+    connect?: Prisma.QcFindingWhereUniqueInput | Prisma.QcFindingWhereUniqueInput[];
+};
+export type QcFindingUpdateManyWithoutQcLogNestedInput = {
+    create?: Prisma.XOR<Prisma.QcFindingCreateWithoutQcLogInput, Prisma.QcFindingUncheckedCreateWithoutQcLogInput> | Prisma.QcFindingCreateWithoutQcLogInput[] | Prisma.QcFindingUncheckedCreateWithoutQcLogInput[];
+    connectOrCreate?: Prisma.QcFindingCreateOrConnectWithoutQcLogInput | Prisma.QcFindingCreateOrConnectWithoutQcLogInput[];
+    upsert?: Prisma.QcFindingUpsertWithWhereUniqueWithoutQcLogInput | Prisma.QcFindingUpsertWithWhereUniqueWithoutQcLogInput[];
+    createMany?: Prisma.QcFindingCreateManyQcLogInputEnvelope;
+    set?: Prisma.QcFindingWhereUniqueInput | Prisma.QcFindingWhereUniqueInput[];
+    disconnect?: Prisma.QcFindingWhereUniqueInput | Prisma.QcFindingWhereUniqueInput[];
+    delete?: Prisma.QcFindingWhereUniqueInput | Prisma.QcFindingWhereUniqueInput[];
+    connect?: Prisma.QcFindingWhereUniqueInput | Prisma.QcFindingWhereUniqueInput[];
+    update?: Prisma.QcFindingUpdateWithWhereUniqueWithoutQcLogInput | Prisma.QcFindingUpdateWithWhereUniqueWithoutQcLogInput[];
+    updateMany?: Prisma.QcFindingUpdateManyWithWhereWithoutQcLogInput | Prisma.QcFindingUpdateManyWithWhereWithoutQcLogInput[];
+    deleteMany?: Prisma.QcFindingScalarWhereInput | Prisma.QcFindingScalarWhereInput[];
+};
+export type QcFindingUncheckedUpdateManyWithoutQcLogNestedInput = {
+    create?: Prisma.XOR<Prisma.QcFindingCreateWithoutQcLogInput, Prisma.QcFindingUncheckedCreateWithoutQcLogInput> | Prisma.QcFindingCreateWithoutQcLogInput[] | Prisma.QcFindingUncheckedCreateWithoutQcLogInput[];
+    connectOrCreate?: Prisma.QcFindingCreateOrConnectWithoutQcLogInput | Prisma.QcFindingCreateOrConnectWithoutQcLogInput[];
+    upsert?: Prisma.QcFindingUpsertWithWhereUniqueWithoutQcLogInput | Prisma.QcFindingUpsertWithWhereUniqueWithoutQcLogInput[];
+    createMany?: Prisma.QcFindingCreateManyQcLogInputEnvelope;
+    set?: Prisma.QcFindingWhereUniqueInput | Prisma.QcFindingWhereUniqueInput[];
+    disconnect?: Prisma.QcFindingWhereUniqueInput | Prisma.QcFindingWhereUniqueInput[];
+    delete?: Prisma.QcFindingWhereUniqueInput | Prisma.QcFindingWhereUniqueInput[];
+    connect?: Prisma.QcFindingWhereUniqueInput | Prisma.QcFindingWhereUniqueInput[];
+    update?: Prisma.QcFindingUpdateWithWhereUniqueWithoutQcLogInput | Prisma.QcFindingUpdateWithWhereUniqueWithoutQcLogInput[];
+    updateMany?: Prisma.QcFindingUpdateManyWithWhereWithoutQcLogInput | Prisma.QcFindingUpdateManyWithWhereWithoutQcLogInput[];
+    deleteMany?: Prisma.QcFindingScalarWhereInput | Prisma.QcFindingScalarWhereInput[];
+};
+export type EnumFindingCategoryFieldUpdateOperationsInput = {
+    set?: $Enums.FindingCategory;
+};
+export type QcFindingCreateWithoutDocumentInput = {
+    id?: string;
+    category?: $Enums.FindingCategory;
+    parameter: string;
+    specification?: string | null;
+    measuredValue?: string | null;
+    unit?: string | null;
+    description?: string | null;
+    severity?: number;
+    isConforming?: boolean;
+    qcLog: Prisma.QcLogCreateNestedOneWithoutFindingsInput;
+};
+export type QcFindingUncheckedCreateWithoutDocumentInput = {
+    id?: string;
+    qcLogId: string;
+    category?: $Enums.FindingCategory;
+    parameter: string;
+    specification?: string | null;
+    measuredValue?: string | null;
+    unit?: string | null;
+    description?: string | null;
+    severity?: number;
+    isConforming?: boolean;
+};
+export type QcFindingCreateOrConnectWithoutDocumentInput = {
+    where: Prisma.QcFindingWhereUniqueInput;
+    create: Prisma.XOR<Prisma.QcFindingCreateWithoutDocumentInput, Prisma.QcFindingUncheckedCreateWithoutDocumentInput>;
+};
+export type QcFindingUpsertWithoutDocumentInput = {
+    update: Prisma.XOR<Prisma.QcFindingUpdateWithoutDocumentInput, Prisma.QcFindingUncheckedUpdateWithoutDocumentInput>;
+    create: Prisma.XOR<Prisma.QcFindingCreateWithoutDocumentInput, Prisma.QcFindingUncheckedCreateWithoutDocumentInput>;
+    where?: Prisma.QcFindingWhereInput;
+};
+export type QcFindingUpdateToOneWithWhereWithoutDocumentInput = {
+    where?: Prisma.QcFindingWhereInput;
+    data: Prisma.XOR<Prisma.QcFindingUpdateWithoutDocumentInput, Prisma.QcFindingUncheckedUpdateWithoutDocumentInput>;
+};
+export type QcFindingUpdateWithoutDocumentInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    category?: Prisma.EnumFindingCategoryFieldUpdateOperationsInput | $Enums.FindingCategory;
+    parameter?: Prisma.StringFieldUpdateOperationsInput | string;
+    specification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    measuredValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    severity?: Prisma.IntFieldUpdateOperationsInput | number;
+    isConforming?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    qcLog?: Prisma.QcLogUpdateOneRequiredWithoutFindingsNestedInput;
+};
+export type QcFindingUncheckedUpdateWithoutDocumentInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    qcLogId?: Prisma.StringFieldUpdateOperationsInput | string;
+    category?: Prisma.EnumFindingCategoryFieldUpdateOperationsInput | $Enums.FindingCategory;
+    parameter?: Prisma.StringFieldUpdateOperationsInput | string;
+    specification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    measuredValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    severity?: Prisma.IntFieldUpdateOperationsInput | number;
+    isConforming?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+};
+export type QcFindingCreateWithoutQcLogInput = {
+    id?: string;
+    category?: $Enums.FindingCategory;
+    parameter: string;
+    specification?: string | null;
+    measuredValue?: string | null;
+    unit?: string | null;
+    description?: string | null;
+    severity?: number;
+    isConforming?: boolean;
+    document?: Prisma.BusinessDocumentCreateNestedOneWithoutQcFindingInput;
+};
+export type QcFindingUncheckedCreateWithoutQcLogInput = {
+    id?: string;
+    category?: $Enums.FindingCategory;
+    parameter: string;
+    specification?: string | null;
+    measuredValue?: string | null;
+    unit?: string | null;
+    description?: string | null;
+    severity?: number;
+    isConforming?: boolean;
+    documentId?: string | null;
+};
+export type QcFindingCreateOrConnectWithoutQcLogInput = {
+    where: Prisma.QcFindingWhereUniqueInput;
+    create: Prisma.XOR<Prisma.QcFindingCreateWithoutQcLogInput, Prisma.QcFindingUncheckedCreateWithoutQcLogInput>;
+};
+export type QcFindingCreateManyQcLogInputEnvelope = {
+    data: Prisma.QcFindingCreateManyQcLogInput | Prisma.QcFindingCreateManyQcLogInput[];
+    skipDuplicates?: boolean;
+};
+export type QcFindingUpsertWithWhereUniqueWithoutQcLogInput = {
+    where: Prisma.QcFindingWhereUniqueInput;
+    update: Prisma.XOR<Prisma.QcFindingUpdateWithoutQcLogInput, Prisma.QcFindingUncheckedUpdateWithoutQcLogInput>;
+    create: Prisma.XOR<Prisma.QcFindingCreateWithoutQcLogInput, Prisma.QcFindingUncheckedCreateWithoutQcLogInput>;
+};
+export type QcFindingUpdateWithWhereUniqueWithoutQcLogInput = {
+    where: Prisma.QcFindingWhereUniqueInput;
+    data: Prisma.XOR<Prisma.QcFindingUpdateWithoutQcLogInput, Prisma.QcFindingUncheckedUpdateWithoutQcLogInput>;
+};
+export type QcFindingUpdateManyWithWhereWithoutQcLogInput = {
+    where: Prisma.QcFindingScalarWhereInput;
+    data: Prisma.XOR<Prisma.QcFindingUpdateManyMutationInput, Prisma.QcFindingUncheckedUpdateManyWithoutQcLogInput>;
+};
+export type QcFindingScalarWhereInput = {
+    AND?: Prisma.QcFindingScalarWhereInput | Prisma.QcFindingScalarWhereInput[];
+    OR?: Prisma.QcFindingScalarWhereInput[];
+    NOT?: Prisma.QcFindingScalarWhereInput | Prisma.QcFindingScalarWhereInput[];
+    id?: Prisma.StringFilter<"QcFinding"> | string;
+    qcLogId?: Prisma.StringFilter<"QcFinding"> | string;
+    category?: Prisma.EnumFindingCategoryFilter<"QcFinding"> | $Enums.FindingCategory;
+    parameter?: Prisma.StringFilter<"QcFinding"> | string;
+    specification?: Prisma.StringNullableFilter<"QcFinding"> | string | null;
+    measuredValue?: Prisma.StringNullableFilter<"QcFinding"> | string | null;
+    unit?: Prisma.StringNullableFilter<"QcFinding"> | string | null;
+    description?: Prisma.StringNullableFilter<"QcFinding"> | string | null;
+    severity?: Prisma.IntFilter<"QcFinding"> | number;
+    isConforming?: Prisma.BoolFilter<"QcFinding"> | boolean;
+    documentId?: Prisma.StringNullableFilter<"QcFinding"> | string | null;
+};
+export type QcFindingCreateManyQcLogInput = {
+    id?: string;
+    category?: $Enums.FindingCategory;
+    parameter: string;
+    specification?: string | null;
+    measuredValue?: string | null;
+    unit?: string | null;
+    description?: string | null;
+    severity?: number;
+    isConforming?: boolean;
+    documentId?: string | null;
+};
+export type QcFindingUpdateWithoutQcLogInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    category?: Prisma.EnumFindingCategoryFieldUpdateOperationsInput | $Enums.FindingCategory;
+    parameter?: Prisma.StringFieldUpdateOperationsInput | string;
+    specification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    measuredValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    severity?: Prisma.IntFieldUpdateOperationsInput | number;
+    isConforming?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    document?: Prisma.BusinessDocumentUpdateOneWithoutQcFindingNestedInput;
+};
+export type QcFindingUncheckedUpdateWithoutQcLogInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    category?: Prisma.EnumFindingCategoryFieldUpdateOperationsInput | $Enums.FindingCategory;
+    parameter?: Prisma.StringFieldUpdateOperationsInput | string;
+    specification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    measuredValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    severity?: Prisma.IntFieldUpdateOperationsInput | number;
+    isConforming?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    documentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+};
+export type QcFindingUncheckedUpdateManyWithoutQcLogInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    category?: Prisma.EnumFindingCategoryFieldUpdateOperationsInput | $Enums.FindingCategory;
+    parameter?: Prisma.StringFieldUpdateOperationsInput | string;
+    specification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    measuredValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    severity?: Prisma.IntFieldUpdateOperationsInput | number;
+    isConforming?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    documentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+};
+export type QcFindingSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+    id?: boolean;
+    qcLogId?: boolean;
+    category?: boolean;
+    parameter?: boolean;
+    specification?: boolean;
+    measuredValue?: boolean;
+    unit?: boolean;
+    description?: boolean;
+    severity?: boolean;
+    isConforming?: boolean;
+    documentId?: boolean;
+    qcLog?: boolean | Prisma.QcLogDefaultArgs<ExtArgs>;
+    document?: boolean | Prisma.QcFinding$documentArgs<ExtArgs>;
+}, ExtArgs["result"]["qcFinding"]>;
+export type QcFindingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+    id?: boolean;
+    qcLogId?: boolean;
+    category?: boolean;
+    parameter?: boolean;
+    specification?: boolean;
+    measuredValue?: boolean;
+    unit?: boolean;
+    description?: boolean;
+    severity?: boolean;
+    isConforming?: boolean;
+    documentId?: boolean;
+    qcLog?: boolean | Prisma.QcLogDefaultArgs<ExtArgs>;
+    document?: boolean | Prisma.QcFinding$documentArgs<ExtArgs>;
+}, ExtArgs["result"]["qcFinding"]>;
+export type QcFindingSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+    id?: boolean;
+    qcLogId?: boolean;
+    category?: boolean;
+    parameter?: boolean;
+    specification?: boolean;
+    measuredValue?: boolean;
+    unit?: boolean;
+    description?: boolean;
+    severity?: boolean;
+    isConforming?: boolean;
+    documentId?: boolean;
+    qcLog?: boolean | Prisma.QcLogDefaultArgs<ExtArgs>;
+    document?: boolean | Prisma.QcFinding$documentArgs<ExtArgs>;
+}, ExtArgs["result"]["qcFinding"]>;
+export type QcFindingSelectScalar = {
+    id?: boolean;
+    qcLogId?: boolean;
+    category?: boolean;
+    parameter?: boolean;
+    specification?: boolean;
+    measuredValue?: boolean;
+    unit?: boolean;
+    description?: boolean;
+    severity?: boolean;
+    isConforming?: boolean;
+    documentId?: boolean;
+};
+export type QcFindingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "qcLogId" | "category" | "parameter" | "specification" | "measuredValue" | "unit" | "description" | "severity" | "isConforming" | "documentId", ExtArgs["result"]["qcFinding"]>;
+export type QcFindingInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    qcLog?: boolean | Prisma.QcLogDefaultArgs<ExtArgs>;
+    document?: boolean | Prisma.QcFinding$documentArgs<ExtArgs>;
+};
+export type QcFindingIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    qcLog?: boolean | Prisma.QcLogDefaultArgs<ExtArgs>;
+    document?: boolean | Prisma.QcFinding$documentArgs<ExtArgs>;
+};
+export type QcFindingIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    qcLog?: boolean | Prisma.QcLogDefaultArgs<ExtArgs>;
+    document?: boolean | Prisma.QcFinding$documentArgs<ExtArgs>;
+};
+export type $QcFindingPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    name: "QcFinding";
+    objects: {
+        qcLog: Prisma.$QcLogPayload<ExtArgs>;
+        document: Prisma.$BusinessDocumentPayload<ExtArgs> | null;
+    };
+    scalars: runtime.Types.Extensions.GetPayloadResult<{
+        id: string;
+        qcLogId: string;
+        category: $Enums.FindingCategory;
+        parameter: string;
+        specification: string | null;
+        measuredValue: string | null;
+        unit: string | null;
+        description: string | null;
+        severity: number;
+        isConforming: boolean;
+        documentId: string | null;
+    }, ExtArgs["result"]["qcFinding"]>;
+    composites: {};
+};
+export type QcFindingGetPayload<S extends boolean | null | undefined | QcFindingDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$QcFindingPayload, S>;
+export type QcFindingCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = Omit<QcFindingFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+    select?: QcFindingCountAggregateInputType | true;
+};
+export interface QcFindingDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: {
+        types: Prisma.TypeMap<ExtArgs>['model']['QcFinding'];
+        meta: {
+            name: 'QcFinding';
+        };
+    };
+    /**
+     * Find zero or one QcFinding that matches the filter.
+     * @param {QcFindingFindUniqueArgs} args - Arguments to find a QcFinding
+     * @example
+     * // Get one QcFinding
+     * const qcFinding = await prisma.qcFinding.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends QcFindingFindUniqueArgs>(args: Prisma.SelectSubset<T, QcFindingFindUniqueArgs<ExtArgs>>): Prisma.Prisma__QcFindingClient<runtime.Types.Result.GetResult<Prisma.$QcFindingPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find one QcFinding that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {QcFindingFindUniqueOrThrowArgs} args - Arguments to find a QcFinding
+     * @example
+     * // Get one QcFinding
+     * const qcFinding = await prisma.qcFinding.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends QcFindingFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, QcFindingFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__QcFindingClient<runtime.Types.Result.GetResult<Prisma.$QcFindingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find the first QcFinding that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QcFindingFindFirstArgs} args - Arguments to find a QcFinding
+     * @example
+     * // Get one QcFinding
+     * const qcFinding = await prisma.qcFinding.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends QcFindingFindFirstArgs>(args?: Prisma.SelectSubset<T, QcFindingFindFirstArgs<ExtArgs>>): Prisma.Prisma__QcFindingClient<runtime.Types.Result.GetResult<Prisma.$QcFindingPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find the first QcFinding that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QcFindingFindFirstOrThrowArgs} args - Arguments to find a QcFinding
+     * @example
+     * // Get one QcFinding
+     * const qcFinding = await prisma.qcFinding.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends QcFindingFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, QcFindingFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__QcFindingClient<runtime.Types.Result.GetResult<Prisma.$QcFindingPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find zero or more QcFindings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QcFindingFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all QcFindings
+     * const qcFindings = await prisma.qcFinding.findMany()
+     *
+     * // Get first 10 QcFindings
+     * const qcFindings = await prisma.qcFinding.findMany({ take: 10 })
+     *
+     * // Only select the `id`
+     * const qcFindingWithIdOnly = await prisma.qcFinding.findMany({ select: { id: true } })
+     *
+     */
+    findMany<T extends QcFindingFindManyArgs>(args?: Prisma.SelectSubset<T, QcFindingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QcFindingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>;
+    /**
+     * Create a QcFinding.
+     * @param {QcFindingCreateArgs} args - Arguments to create a QcFinding.
+     * @example
+     * // Create one QcFinding
+     * const QcFinding = await prisma.qcFinding.create({
+     *   data: {
+     *     // ... data to create a QcFinding
+     *   }
+     * })
+     *
+     */
+    create<T extends QcFindingCreateArgs>(args: Prisma.SelectSubset<T, QcFindingCreateArgs<ExtArgs>>): Prisma.Prisma__QcFindingClient<runtime.Types.Result.GetResult<Prisma.$QcFindingPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Create many QcFindings.
+     * @param {QcFindingCreateManyArgs} args - Arguments to create many QcFindings.
+     * @example
+     * // Create many QcFindings
+     * const qcFinding = await prisma.qcFinding.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     */
+    createMany<T extends QcFindingCreateManyArgs>(args?: Prisma.SelectSubset<T, QcFindingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Create many QcFindings and returns the data saved in the database.
+     * @param {QcFindingCreateManyAndReturnArgs} args - Arguments to create many QcFindings.
+     * @example
+     * // Create many QcFindings
+     * const qcFinding = await prisma.qcFinding.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Create many QcFindings and only return the `id`
+     * const qcFindingWithIdOnly = await prisma.qcFinding.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    createManyAndReturn<T extends QcFindingCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, QcFindingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QcFindingPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>;
+    /**
+     * Delete a QcFinding.
+     * @param {QcFindingDeleteArgs} args - Arguments to delete one QcFinding.
+     * @example
+     * // Delete one QcFinding
+     * const QcFinding = await prisma.qcFinding.delete({
+     *   where: {
+     *     // ... filter to delete one QcFinding
+     *   }
+     * })
+     *
+     */
+    delete<T extends QcFindingDeleteArgs>(args: Prisma.SelectSubset<T, QcFindingDeleteArgs<ExtArgs>>): Prisma.Prisma__QcFindingClient<runtime.Types.Result.GetResult<Prisma.$QcFindingPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Update one QcFinding.
+     * @param {QcFindingUpdateArgs} args - Arguments to update one QcFinding.
+     * @example
+     * // Update one QcFinding
+     * const qcFinding = await prisma.qcFinding.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    update<T extends QcFindingUpdateArgs>(args: Prisma.SelectSubset<T, QcFindingUpdateArgs<ExtArgs>>): Prisma.Prisma__QcFindingClient<runtime.Types.Result.GetResult<Prisma.$QcFindingPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Delete zero or more QcFindings.
+     * @param {QcFindingDeleteManyArgs} args - Arguments to filter QcFindings to delete.
+     * @example
+     * // Delete a few QcFindings
+     * const { count } = await prisma.qcFinding.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     *
+     */
+    deleteMany<T extends QcFindingDeleteManyArgs>(args?: Prisma.SelectSubset<T, QcFindingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Update zero or more QcFindings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QcFindingUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many QcFindings
+     * const qcFinding = await prisma.qcFinding.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    updateMany<T extends QcFindingUpdateManyArgs>(args: Prisma.SelectSubset<T, QcFindingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Update zero or more QcFindings and returns the data updated in the database.
+     * @param {QcFindingUpdateManyAndReturnArgs} args - Arguments to update many QcFindings.
+     * @example
+     * // Update many QcFindings
+     * const qcFinding = await prisma.qcFinding.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Update zero or more QcFindings and only return the `id`
+     * const qcFindingWithIdOnly = await prisma.qcFinding.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    updateManyAndReturn<T extends QcFindingUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, QcFindingUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QcFindingPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>;
+    /**
+     * Create or update one QcFinding.
+     * @param {QcFindingUpsertArgs} args - Arguments to update or create a QcFinding.
+     * @example
+     * // Update or create a QcFinding
+     * const qcFinding = await prisma.qcFinding.upsert({
+     *   create: {
+     *     // ... data to create a QcFinding
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the QcFinding we want to update
+     *   }
+     * })
+     */
+    upsert<T extends QcFindingUpsertArgs>(args: Prisma.SelectSubset<T, QcFindingUpsertArgs<ExtArgs>>): Prisma.Prisma__QcFindingClient<runtime.Types.Result.GetResult<Prisma.$QcFindingPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Count the number of QcFindings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QcFindingCountArgs} args - Arguments to filter QcFindings to count.
+     * @example
+     * // Count the number of QcFindings
+     * const count = await prisma.qcFinding.count({
+     *   where: {
+     *     // ... the filter for the QcFindings we want to count
+     *   }
+     * })
+    **/
+    count<T extends QcFindingCountArgs>(args?: Prisma.Subset<T, QcFindingCountArgs>): Prisma.PrismaPromise<T extends runtime.Types.Utils.Record<'select', any> ? T['select'] extends true ? number : Prisma.GetScalarType<T['select'], QcFindingCountAggregateOutputType> : number>;
+    /**
+     * Allows you to perform aggregations operations on a QcFinding.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QcFindingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends QcFindingAggregateArgs>(args: Prisma.Subset<T, QcFindingAggregateArgs>): Prisma.PrismaPromise<GetQcFindingAggregateType<T>>;
+    /**
+     * Group by QcFinding.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QcFindingGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     *
+    **/
+    groupBy<T extends QcFindingGroupByArgs, HasSelectOrTake extends Prisma.Or<Prisma.Extends<'skip', Prisma.Keys<T>>, Prisma.Extends<'take', Prisma.Keys<T>>>, OrderByArg extends Prisma.True extends HasSelectOrTake ? {
+        orderBy: QcFindingGroupByArgs['orderBy'];
+    } : {
+        orderBy?: QcFindingGroupByArgs['orderBy'];
+    }, OrderFields extends Prisma.ExcludeUnderscoreKeys<Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>>, ByFields extends Prisma.MaybeTupleToUnion<T['by']>, ByValid extends Prisma.Has<ByFields, OrderFields>, HavingFields extends Prisma.GetHavingFields<T['having']>, HavingValid extends Prisma.Has<ByFields, HavingFields>, ByEmpty extends T['by'] extends never[] ? Prisma.True : Prisma.False, InputErrors extends ByEmpty extends Prisma.True ? `Error: "by" must not be empty.` : HavingValid extends Prisma.False ? {
+        [P in HavingFields]: P extends ByFields ? never : P extends string ? `Error: Field "${P}" used in "having" needs to be provided in "by".` : [
+            Error,
+            'Field ',
+            P,
+            ` in "having" needs to be provided in "by"`
+        ];
+    }[HavingFields] : 'take' extends Prisma.Keys<T> ? 'orderBy' extends Prisma.Keys<T> ? ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields] : 'Error: If you provide "take", you also need to provide "orderBy"' : 'skip' extends Prisma.Keys<T> ? 'orderBy' extends Prisma.Keys<T> ? ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields] : 'Error: If you provide "skip", you also need to provide "orderBy"' : ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields]>(args: Prisma.SubsetIntersection<T, QcFindingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetQcFindingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>;
+    /**
+     * Fields of the QcFinding model
+     */
+    readonly fields: QcFindingFieldRefs;
+}
+/**
+ * The delegate class that acts as a "Promise-like" for QcFinding.
+ * Why is this prefixed with `Prisma__`?
+ * Because we want to prevent naming conflicts as mentioned in
+ * https://github.com/prisma/prisma-client-js/issues/707
+ */
+export interface Prisma__QcFindingClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise";
+    qcLog<T extends Prisma.QcLogDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QcLogDefaultArgs<ExtArgs>>): Prisma.Prisma__QcLogClient<runtime.Types.Result.GetResult<Prisma.$QcLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
+    document<T extends Prisma.QcFinding$documentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QcFinding$documentArgs<ExtArgs>>): Prisma.Prisma__BusinessDocumentClient<runtime.Types.Result.GetResult<Prisma.$BusinessDocumentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): runtime.Types.Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): runtime.Types.Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): runtime.Types.Utils.JsPromise<T>;
+}
+/**
+ * Fields of the QcFinding model
+ */
+export interface QcFindingFieldRefs {
+    readonly id: Prisma.FieldRef<"QcFinding", 'String'>;
+    readonly qcLogId: Prisma.FieldRef<"QcFinding", 'String'>;
+    readonly category: Prisma.FieldRef<"QcFinding", 'FindingCategory'>;
+    readonly parameter: Prisma.FieldRef<"QcFinding", 'String'>;
+    readonly specification: Prisma.FieldRef<"QcFinding", 'String'>;
+    readonly measuredValue: Prisma.FieldRef<"QcFinding", 'String'>;
+    readonly unit: Prisma.FieldRef<"QcFinding", 'String'>;
+    readonly description: Prisma.FieldRef<"QcFinding", 'String'>;
+    readonly severity: Prisma.FieldRef<"QcFinding", 'Int'>;
+    readonly isConforming: Prisma.FieldRef<"QcFinding", 'Boolean'>;
+    readonly documentId: Prisma.FieldRef<"QcFinding", 'String'>;
+}
+/**
+ * QcFinding findUnique
+ */
+export type QcFindingFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QcFinding
+     */
+    select?: Prisma.QcFindingSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the QcFinding
+     */
+    omit?: Prisma.QcFindingOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.QcFindingInclude<ExtArgs> | null;
+    /**
+     * Filter, which QcFinding to fetch.
+     */
+    where: Prisma.QcFindingWhereUniqueInput;
+};
+/**
+ * QcFinding findUniqueOrThrow
+ */
+export type QcFindingFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QcFinding
+     */
+    select?: Prisma.QcFindingSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the QcFinding
+     */
+    omit?: Prisma.QcFindingOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.QcFindingInclude<ExtArgs> | null;
+    /**
+     * Filter, which QcFinding to fetch.
+     */
+    where: Prisma.QcFindingWhereUniqueInput;
+};
+/**
+ * QcFinding findFirst
+ */
+export type QcFindingFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QcFinding
+     */
+    select?: Prisma.QcFindingSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the QcFinding
+     */
+    omit?: Prisma.QcFindingOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.QcFindingInclude<ExtArgs> | null;
+    /**
+     * Filter, which QcFinding to fetch.
+     */
+    where?: Prisma.QcFindingWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of QcFindings to fetch.
+     */
+    orderBy?: Prisma.QcFindingOrderByWithRelationInput | Prisma.QcFindingOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for QcFindings.
+     */
+    cursor?: Prisma.QcFindingWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` QcFindings from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` QcFindings.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of QcFindings.
+     */
+    distinct?: Prisma.QcFindingScalarFieldEnum | Prisma.QcFindingScalarFieldEnum[];
+};
+/**
+ * QcFinding findFirstOrThrow
+ */
+export type QcFindingFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QcFinding
+     */
+    select?: Prisma.QcFindingSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the QcFinding
+     */
+    omit?: Prisma.QcFindingOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.QcFindingInclude<ExtArgs> | null;
+    /**
+     * Filter, which QcFinding to fetch.
+     */
+    where?: Prisma.QcFindingWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of QcFindings to fetch.
+     */
+    orderBy?: Prisma.QcFindingOrderByWithRelationInput | Prisma.QcFindingOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for QcFindings.
+     */
+    cursor?: Prisma.QcFindingWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` QcFindings from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` QcFindings.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of QcFindings.
+     */
+    distinct?: Prisma.QcFindingScalarFieldEnum | Prisma.QcFindingScalarFieldEnum[];
+};
+/**
+ * QcFinding findMany
+ */
+export type QcFindingFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QcFinding
+     */
+    select?: Prisma.QcFindingSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the QcFinding
+     */
+    omit?: Prisma.QcFindingOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.QcFindingInclude<ExtArgs> | null;
+    /**
+     * Filter, which QcFindings to fetch.
+     */
+    where?: Prisma.QcFindingWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of QcFindings to fetch.
+     */
+    orderBy?: Prisma.QcFindingOrderByWithRelationInput | Prisma.QcFindingOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for listing QcFindings.
+     */
+    cursor?: Prisma.QcFindingWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` QcFindings from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` QcFindings.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of QcFindings.
+     */
+    distinct?: Prisma.QcFindingScalarFieldEnum | Prisma.QcFindingScalarFieldEnum[];
+};
+/**
+ * QcFinding create
+ */
+export type QcFindingCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QcFinding
+     */
+    select?: Prisma.QcFindingSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the QcFinding
+     */
+    omit?: Prisma.QcFindingOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.QcFindingInclude<ExtArgs> | null;
+    /**
+     * The data needed to create a QcFinding.
+     */
+    data: Prisma.XOR<Prisma.QcFindingCreateInput, Prisma.QcFindingUncheckedCreateInput>;
+};
+/**
+ * QcFinding createMany
+ */
+export type QcFindingCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many QcFindings.
+     */
+    data: Prisma.QcFindingCreateManyInput | Prisma.QcFindingCreateManyInput[];
+    skipDuplicates?: boolean;
+};
+/**
+ * QcFinding createManyAndReturn
+ */
+export type QcFindingCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QcFinding
+     */
+    select?: Prisma.QcFindingSelectCreateManyAndReturn<ExtArgs> | null;
+    /**
+     * Omit specific fields from the QcFinding
+     */
+    omit?: Prisma.QcFindingOmit<ExtArgs> | null;
+    /**
+     * The data used to create many QcFindings.
+     */
+    data: Prisma.QcFindingCreateManyInput | Prisma.QcFindingCreateManyInput[];
+    skipDuplicates?: boolean;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.QcFindingIncludeCreateManyAndReturn<ExtArgs> | null;
+};
+/**
+ * QcFinding update
+ */
+export type QcFindingUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QcFinding
+     */
+    select?: Prisma.QcFindingSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the QcFinding
+     */
+    omit?: Prisma.QcFindingOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.QcFindingInclude<ExtArgs> | null;
+    /**
+     * The data needed to update a QcFinding.
+     */
+    data: Prisma.XOR<Prisma.QcFindingUpdateInput, Prisma.QcFindingUncheckedUpdateInput>;
+    /**
+     * Choose, which QcFinding to update.
+     */
+    where: Prisma.QcFindingWhereUniqueInput;
+};
+/**
+ * QcFinding updateMany
+ */
+export type QcFindingUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * The data used to update QcFindings.
+     */
+    data: Prisma.XOR<Prisma.QcFindingUpdateManyMutationInput, Prisma.QcFindingUncheckedUpdateManyInput>;
+    /**
+     * Filter which QcFindings to update
+     */
+    where?: Prisma.QcFindingWhereInput;
+    /**
+     * Limit how many QcFindings to update.
+     */
+    limit?: number;
+};
+/**
+ * QcFinding updateManyAndReturn
+ */
+export type QcFindingUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QcFinding
+     */
+    select?: Prisma.QcFindingSelectUpdateManyAndReturn<ExtArgs> | null;
+    /**
+     * Omit specific fields from the QcFinding
+     */
+    omit?: Prisma.QcFindingOmit<ExtArgs> | null;
+    /**
+     * The data used to update QcFindings.
+     */
+    data: Prisma.XOR<Prisma.QcFindingUpdateManyMutationInput, Prisma.QcFindingUncheckedUpdateManyInput>;
+    /**
+     * Filter which QcFindings to update
+     */
+    where?: Prisma.QcFindingWhereInput;
+    /**
+     * Limit how many QcFindings to update.
+     */
+    limit?: number;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.QcFindingIncludeUpdateManyAndReturn<ExtArgs> | null;
+};
+/**
+ * QcFinding upsert
+ */
+export type QcFindingUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QcFinding
+     */
+    select?: Prisma.QcFindingSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the QcFinding
+     */
+    omit?: Prisma.QcFindingOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.QcFindingInclude<ExtArgs> | null;
+    /**
+     * The filter to search for the QcFinding to update in case it exists.
+     */
+    where: Prisma.QcFindingWhereUniqueInput;
+    /**
+     * In case the QcFinding found by the `where` argument doesn't exist, create a new QcFinding with this data.
+     */
+    create: Prisma.XOR<Prisma.QcFindingCreateInput, Prisma.QcFindingUncheckedCreateInput>;
+    /**
+     * In case the QcFinding was found with the provided `where` argument, update it with this data.
+     */
+    update: Prisma.XOR<Prisma.QcFindingUpdateInput, Prisma.QcFindingUncheckedUpdateInput>;
+};
+/**
+ * QcFinding delete
+ */
+export type QcFindingDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QcFinding
+     */
+    select?: Prisma.QcFindingSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the QcFinding
+     */
+    omit?: Prisma.QcFindingOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.QcFindingInclude<ExtArgs> | null;
+    /**
+     * Filter which QcFinding to delete.
+     */
+    where: Prisma.QcFindingWhereUniqueInput;
+};
+/**
+ * QcFinding deleteMany
+ */
+export type QcFindingDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Filter which QcFindings to delete
+     */
+    where?: Prisma.QcFindingWhereInput;
+    /**
+     * Limit how many QcFindings to delete.
+     */
+    limit?: number;
+};
+/**
+ * QcFinding.document
+ */
+export type QcFinding$documentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BusinessDocument
+     */
+    select?: Prisma.BusinessDocumentSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the BusinessDocument
+     */
+    omit?: Prisma.BusinessDocumentOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.BusinessDocumentInclude<ExtArgs> | null;
+    where?: Prisma.BusinessDocumentWhereInput;
+};
+/**
+ * QcFinding without action
+ */
+export type QcFindingDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QcFinding
+     */
+    select?: Prisma.QcFindingSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the QcFinding
+     */
+    omit?: Prisma.QcFindingOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.QcFindingInclude<ExtArgs> | null;
+};

@@ -12,6 +12,7 @@ import {
 
 const navItems = [
     { title: "Invoice", href: "/documents", icon: BarChart3 },
+    { title: "Purchase Order", href: "/documents/purchase-orders", icon: BarChart3 },
 ];
 
 export default function DocumentsLayout({

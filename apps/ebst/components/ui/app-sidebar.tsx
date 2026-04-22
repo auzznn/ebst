@@ -14,7 +14,7 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
-import { Home, User, ShelvingUnit, MessageSquare, Shield, Calculator, FileText, Folder, ChevronDown } from "lucide-react";
+import { Home, User, ShelvingUnit, MessageSquare, Shield, Calculator, FileText, Folder, ChevronDown, Hammer, Cpu, Layers, ListChecks, ShoppingCart, Package } from "lucide-react";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import { useEffect, useState } from "react";
@@ -26,6 +26,58 @@ const menuItems = [
   { title: "Communication", url: "/communication/channel", icon: MessageSquare },
   { title: "Files", url: "/files", icon: Folder },
 ];
+
+const ManufacturingItems = ({ session }: { session: any }) => {
+  return (
+    <Collapsible defaultOpen className="group/collapsible">
+      <SidebarMenuItem>
+        <CollapsibleTrigger asChild>
+          <SidebarMenuButton tooltip="Manufacturing">
+            <Hammer />
+            <span>Manufacturing</span>
+            <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+          </SidebarMenuButton>
+        </CollapsibleTrigger>
+        <CollapsibleContent>
+          <SidebarMenuSub>
+            <SidebarMenuSubItem key="Jobs">
+              <SidebarMenuSubButton asChild>
+                <Link href="/manufacturing/jobs">
+                  <ListChecks />
+                  <span>Job Cards</span>
+                </Link>
+              </SidebarMenuSubButton>
+            </SidebarMenuSubItem>
+            <SidebarMenuSubItem key="Parts">
+              <SidebarMenuSubButton asChild>
+                <Link href="/manufacturing/parts">
+                  <Cpu />
+                  <span>Parts Catalog</span>
+                </Link>
+              </SidebarMenuSubButton>
+            </SidebarMenuSubItem>
+            <SidebarMenuSubItem key="Machines">
+              <SidebarMenuSubButton asChild>
+                <Link href="/manufacturing/machines">
+                  <ShelvingUnit />
+                  <span>Machines</span>
+                </Link>
+              </SidebarMenuSubButton>
+            </SidebarMenuSubItem>
+            <SidebarMenuSubItem key="Inventory">
+              <SidebarMenuSubButton asChild>
+                <Link href="/manufacturing/inventory">
+                  <Package />
+                  <span>Inventory</span>
+                </Link>
+              </SidebarMenuSubButton>
+            </SidebarMenuSubItem>
+          </SidebarMenuSub>
+        </CollapsibleContent>
+      </SidebarMenuItem>
+    </Collapsible>
+  )
+}
 
 const AdministrativeItems = ({ session }: { session: any }) => {
   return (
@@ -60,7 +112,7 @@ const AdministrativeItems = ({ session }: { session: any }) => {
                 </SidebarMenuSubButton>
               </SidebarMenuSubItem>
             )}
-            <SidebarMenuSubItem key="Invoices">
+            <SidebarMenuSubItem key="Documents">
               <SidebarMenuSubButton asChild>
                 <Link href="/documents">
                   <FileText />
@@ -97,6 +149,7 @@ export function AppSidebar() {
         <SidebarGroup>
           <SidebarGroupLabel>Navigation</SidebarGroupLabel>
           <SidebarMenu>
+            <ManufacturingItems session={session} />
             {session?.user.role !== "OPERATOR" && (
               <AdministrativeItems session={session} />
             )}

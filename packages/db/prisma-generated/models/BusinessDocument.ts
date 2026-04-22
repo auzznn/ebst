@@ -254,6 +254,8 @@ export type BusinessDocumentWhereInput = {
   userId?: Prisma.StringFilter<"BusinessDocument"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   invoice?: Prisma.XOR<Prisma.InvoiceNullableScalarRelationFilter, Prisma.InvoiceWhereInput> | null
+  checkSheet?: Prisma.XOR<Prisma.CheckSheetNullableScalarRelationFilter, Prisma.CheckSheetWhereInput> | null
+  qcFinding?: Prisma.XOR<Prisma.QcFindingNullableScalarRelationFilter, Prisma.QcFindingWhereInput> | null
 }
 
 export type BusinessDocumentOrderByWithRelationInput = {
@@ -269,6 +271,8 @@ export type BusinessDocumentOrderByWithRelationInput = {
   userId?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   invoice?: Prisma.InvoiceOrderByWithRelationInput
+  checkSheet?: Prisma.CheckSheetOrderByWithRelationInput
+  qcFinding?: Prisma.QcFindingOrderByWithRelationInput
 }
 
 export type BusinessDocumentWhereUniqueInput = Prisma.AtLeast<{
@@ -287,6 +291,8 @@ export type BusinessDocumentWhereUniqueInput = Prisma.AtLeast<{
   userId?: Prisma.StringFilter<"BusinessDocument"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   invoice?: Prisma.XOR<Prisma.InvoiceNullableScalarRelationFilter, Prisma.InvoiceWhereInput> | null
+  checkSheet?: Prisma.XOR<Prisma.CheckSheetNullableScalarRelationFilter, Prisma.CheckSheetWhereInput> | null
+  qcFinding?: Prisma.XOR<Prisma.QcFindingNullableScalarRelationFilter, Prisma.QcFindingWhereInput> | null
 }, "id" | "key">
 
 export type BusinessDocumentOrderByWithAggregationInput = {
@@ -335,6 +341,8 @@ export type BusinessDocumentCreateInput = {
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutBusinessDocumentsInput
   invoice?: Prisma.InvoiceCreateNestedOneWithoutDocumentInput
+  checkSheet?: Prisma.CheckSheetCreateNestedOneWithoutDocumentInput
+  qcFinding?: Prisma.QcFindingCreateNestedOneWithoutDocumentInput
 }
 
 export type BusinessDocumentUncheckedCreateInput = {
@@ -349,6 +357,8 @@ export type BusinessDocumentUncheckedCreateInput = {
   updatedAt?: Date | string
   userId: string
   invoice?: Prisma.InvoiceUncheckedCreateNestedOneWithoutDocumentInput
+  checkSheet?: Prisma.CheckSheetUncheckedCreateNestedOneWithoutDocumentInput
+  qcFinding?: Prisma.QcFindingUncheckedCreateNestedOneWithoutDocumentInput
 }
 
 export type BusinessDocumentUpdateInput = {
@@ -363,6 +373,8 @@ export type BusinessDocumentUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutBusinessDocumentsNestedInput
   invoice?: Prisma.InvoiceUpdateOneWithoutDocumentNestedInput
+  checkSheet?: Prisma.CheckSheetUpdateOneWithoutDocumentNestedInput
+  qcFinding?: Prisma.QcFindingUpdateOneWithoutDocumentNestedInput
 }
 
 export type BusinessDocumentUncheckedUpdateInput = {
@@ -377,6 +389,8 @@ export type BusinessDocumentUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   invoice?: Prisma.InvoiceUncheckedUpdateOneWithoutDocumentNestedInput
+  checkSheet?: Prisma.CheckSheetUncheckedUpdateOneWithoutDocumentNestedInput
+  qcFinding?: Prisma.QcFindingUncheckedUpdateOneWithoutDocumentNestedInput
 }
 
 export type BusinessDocumentCreateManyInput = {
@@ -547,6 +561,38 @@ export type BusinessDocumentUpdateOneWithoutInvoiceNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.BusinessDocumentUpdateToOneWithWhereWithoutInvoiceInput, Prisma.BusinessDocumentUpdateWithoutInvoiceInput>, Prisma.BusinessDocumentUncheckedUpdateWithoutInvoiceInput>
 }
 
+export type BusinessDocumentCreateNestedOneWithoutQcFindingInput = {
+  create?: Prisma.XOR<Prisma.BusinessDocumentCreateWithoutQcFindingInput, Prisma.BusinessDocumentUncheckedCreateWithoutQcFindingInput>
+  connectOrCreate?: Prisma.BusinessDocumentCreateOrConnectWithoutQcFindingInput
+  connect?: Prisma.BusinessDocumentWhereUniqueInput
+}
+
+export type BusinessDocumentUpdateOneWithoutQcFindingNestedInput = {
+  create?: Prisma.XOR<Prisma.BusinessDocumentCreateWithoutQcFindingInput, Prisma.BusinessDocumentUncheckedCreateWithoutQcFindingInput>
+  connectOrCreate?: Prisma.BusinessDocumentCreateOrConnectWithoutQcFindingInput
+  upsert?: Prisma.BusinessDocumentUpsertWithoutQcFindingInput
+  disconnect?: Prisma.BusinessDocumentWhereInput | boolean
+  delete?: Prisma.BusinessDocumentWhereInput | boolean
+  connect?: Prisma.BusinessDocumentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.BusinessDocumentUpdateToOneWithWhereWithoutQcFindingInput, Prisma.BusinessDocumentUpdateWithoutQcFindingInput>, Prisma.BusinessDocumentUncheckedUpdateWithoutQcFindingInput>
+}
+
+export type BusinessDocumentCreateNestedOneWithoutCheckSheetInput = {
+  create?: Prisma.XOR<Prisma.BusinessDocumentCreateWithoutCheckSheetInput, Prisma.BusinessDocumentUncheckedCreateWithoutCheckSheetInput>
+  connectOrCreate?: Prisma.BusinessDocumentCreateOrConnectWithoutCheckSheetInput
+  connect?: Prisma.BusinessDocumentWhereUniqueInput
+}
+
+export type BusinessDocumentUpdateOneWithoutCheckSheetNestedInput = {
+  create?: Prisma.XOR<Prisma.BusinessDocumentCreateWithoutCheckSheetInput, Prisma.BusinessDocumentUncheckedCreateWithoutCheckSheetInput>
+  connectOrCreate?: Prisma.BusinessDocumentCreateOrConnectWithoutCheckSheetInput
+  upsert?: Prisma.BusinessDocumentUpsertWithoutCheckSheetInput
+  disconnect?: Prisma.BusinessDocumentWhereInput | boolean
+  delete?: Prisma.BusinessDocumentWhereInput | boolean
+  connect?: Prisma.BusinessDocumentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.BusinessDocumentUpdateToOneWithWhereWithoutCheckSheetInput, Prisma.BusinessDocumentUpdateWithoutCheckSheetInput>, Prisma.BusinessDocumentUncheckedUpdateWithoutCheckSheetInput>
+}
+
 export type BusinessDocumentCreateWithoutUserInput = {
   id?: string
   key: string
@@ -558,6 +604,8 @@ export type BusinessDocumentCreateWithoutUserInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   invoice?: Prisma.InvoiceCreateNestedOneWithoutDocumentInput
+  checkSheet?: Prisma.CheckSheetCreateNestedOneWithoutDocumentInput
+  qcFinding?: Prisma.QcFindingCreateNestedOneWithoutDocumentInput
 }
 
 export type BusinessDocumentUncheckedCreateWithoutUserInput = {
@@ -571,6 +619,8 @@ export type BusinessDocumentUncheckedCreateWithoutUserInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   invoice?: Prisma.InvoiceUncheckedCreateNestedOneWithoutDocumentInput
+  checkSheet?: Prisma.CheckSheetUncheckedCreateNestedOneWithoutDocumentInput
+  qcFinding?: Prisma.QcFindingUncheckedCreateNestedOneWithoutDocumentInput
 }
 
 export type BusinessDocumentCreateOrConnectWithoutUserInput = {
@@ -626,6 +676,8 @@ export type BusinessDocumentCreateWithoutInvoiceInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutBusinessDocumentsInput
+  checkSheet?: Prisma.CheckSheetCreateNestedOneWithoutDocumentInput
+  qcFinding?: Prisma.QcFindingCreateNestedOneWithoutDocumentInput
 }
 
 export type BusinessDocumentUncheckedCreateWithoutInvoiceInput = {
@@ -639,6 +691,8 @@ export type BusinessDocumentUncheckedCreateWithoutInvoiceInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   userId: string
+  checkSheet?: Prisma.CheckSheetUncheckedCreateNestedOneWithoutDocumentInput
+  qcFinding?: Prisma.QcFindingUncheckedCreateNestedOneWithoutDocumentInput
 }
 
 export type BusinessDocumentCreateOrConnectWithoutInvoiceInput = {
@@ -668,6 +722,8 @@ export type BusinessDocumentUpdateWithoutInvoiceInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutBusinessDocumentsNestedInput
+  checkSheet?: Prisma.CheckSheetUpdateOneWithoutDocumentNestedInput
+  qcFinding?: Prisma.QcFindingUpdateOneWithoutDocumentNestedInput
 }
 
 export type BusinessDocumentUncheckedUpdateWithoutInvoiceInput = {
@@ -681,6 +737,160 @@ export type BusinessDocumentUncheckedUpdateWithoutInvoiceInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  checkSheet?: Prisma.CheckSheetUncheckedUpdateOneWithoutDocumentNestedInput
+  qcFinding?: Prisma.QcFindingUncheckedUpdateOneWithoutDocumentNestedInput
+}
+
+export type BusinessDocumentCreateWithoutQcFindingInput = {
+  id?: string
+  key: string
+  fileName: string
+  fileType?: string | null
+  size?: number | null
+  documentType: $Enums.DocumentType
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutBusinessDocumentsInput
+  invoice?: Prisma.InvoiceCreateNestedOneWithoutDocumentInput
+  checkSheet?: Prisma.CheckSheetCreateNestedOneWithoutDocumentInput
+}
+
+export type BusinessDocumentUncheckedCreateWithoutQcFindingInput = {
+  id?: string
+  key: string
+  fileName: string
+  fileType?: string | null
+  size?: number | null
+  documentType: $Enums.DocumentType
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  userId: string
+  invoice?: Prisma.InvoiceUncheckedCreateNestedOneWithoutDocumentInput
+  checkSheet?: Prisma.CheckSheetUncheckedCreateNestedOneWithoutDocumentInput
+}
+
+export type BusinessDocumentCreateOrConnectWithoutQcFindingInput = {
+  where: Prisma.BusinessDocumentWhereUniqueInput
+  create: Prisma.XOR<Prisma.BusinessDocumentCreateWithoutQcFindingInput, Prisma.BusinessDocumentUncheckedCreateWithoutQcFindingInput>
+}
+
+export type BusinessDocumentUpsertWithoutQcFindingInput = {
+  update: Prisma.XOR<Prisma.BusinessDocumentUpdateWithoutQcFindingInput, Prisma.BusinessDocumentUncheckedUpdateWithoutQcFindingInput>
+  create: Prisma.XOR<Prisma.BusinessDocumentCreateWithoutQcFindingInput, Prisma.BusinessDocumentUncheckedCreateWithoutQcFindingInput>
+  where?: Prisma.BusinessDocumentWhereInput
+}
+
+export type BusinessDocumentUpdateToOneWithWhereWithoutQcFindingInput = {
+  where?: Prisma.BusinessDocumentWhereInput
+  data: Prisma.XOR<Prisma.BusinessDocumentUpdateWithoutQcFindingInput, Prisma.BusinessDocumentUncheckedUpdateWithoutQcFindingInput>
+}
+
+export type BusinessDocumentUpdateWithoutQcFindingInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  key?: Prisma.StringFieldUpdateOperationsInput | string
+  fileName?: Prisma.StringFieldUpdateOperationsInput | string
+  fileType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  size?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  documentType?: Prisma.EnumDocumentTypeFieldUpdateOperationsInput | $Enums.DocumentType
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutBusinessDocumentsNestedInput
+  invoice?: Prisma.InvoiceUpdateOneWithoutDocumentNestedInput
+  checkSheet?: Prisma.CheckSheetUpdateOneWithoutDocumentNestedInput
+}
+
+export type BusinessDocumentUncheckedUpdateWithoutQcFindingInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  key?: Prisma.StringFieldUpdateOperationsInput | string
+  fileName?: Prisma.StringFieldUpdateOperationsInput | string
+  fileType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  size?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  documentType?: Prisma.EnumDocumentTypeFieldUpdateOperationsInput | $Enums.DocumentType
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  invoice?: Prisma.InvoiceUncheckedUpdateOneWithoutDocumentNestedInput
+  checkSheet?: Prisma.CheckSheetUncheckedUpdateOneWithoutDocumentNestedInput
+}
+
+export type BusinessDocumentCreateWithoutCheckSheetInput = {
+  id?: string
+  key: string
+  fileName: string
+  fileType?: string | null
+  size?: number | null
+  documentType: $Enums.DocumentType
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutBusinessDocumentsInput
+  invoice?: Prisma.InvoiceCreateNestedOneWithoutDocumentInput
+  qcFinding?: Prisma.QcFindingCreateNestedOneWithoutDocumentInput
+}
+
+export type BusinessDocumentUncheckedCreateWithoutCheckSheetInput = {
+  id?: string
+  key: string
+  fileName: string
+  fileType?: string | null
+  size?: number | null
+  documentType: $Enums.DocumentType
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  userId: string
+  invoice?: Prisma.InvoiceUncheckedCreateNestedOneWithoutDocumentInput
+  qcFinding?: Prisma.QcFindingUncheckedCreateNestedOneWithoutDocumentInput
+}
+
+export type BusinessDocumentCreateOrConnectWithoutCheckSheetInput = {
+  where: Prisma.BusinessDocumentWhereUniqueInput
+  create: Prisma.XOR<Prisma.BusinessDocumentCreateWithoutCheckSheetInput, Prisma.BusinessDocumentUncheckedCreateWithoutCheckSheetInput>
+}
+
+export type BusinessDocumentUpsertWithoutCheckSheetInput = {
+  update: Prisma.XOR<Prisma.BusinessDocumentUpdateWithoutCheckSheetInput, Prisma.BusinessDocumentUncheckedUpdateWithoutCheckSheetInput>
+  create: Prisma.XOR<Prisma.BusinessDocumentCreateWithoutCheckSheetInput, Prisma.BusinessDocumentUncheckedCreateWithoutCheckSheetInput>
+  where?: Prisma.BusinessDocumentWhereInput
+}
+
+export type BusinessDocumentUpdateToOneWithWhereWithoutCheckSheetInput = {
+  where?: Prisma.BusinessDocumentWhereInput
+  data: Prisma.XOR<Prisma.BusinessDocumentUpdateWithoutCheckSheetInput, Prisma.BusinessDocumentUncheckedUpdateWithoutCheckSheetInput>
+}
+
+export type BusinessDocumentUpdateWithoutCheckSheetInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  key?: Prisma.StringFieldUpdateOperationsInput | string
+  fileName?: Prisma.StringFieldUpdateOperationsInput | string
+  fileType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  size?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  documentType?: Prisma.EnumDocumentTypeFieldUpdateOperationsInput | $Enums.DocumentType
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutBusinessDocumentsNestedInput
+  invoice?: Prisma.InvoiceUpdateOneWithoutDocumentNestedInput
+  qcFinding?: Prisma.QcFindingUpdateOneWithoutDocumentNestedInput
+}
+
+export type BusinessDocumentUncheckedUpdateWithoutCheckSheetInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  key?: Prisma.StringFieldUpdateOperationsInput | string
+  fileName?: Prisma.StringFieldUpdateOperationsInput | string
+  fileType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  size?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  documentType?: Prisma.EnumDocumentTypeFieldUpdateOperationsInput | $Enums.DocumentType
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  invoice?: Prisma.InvoiceUncheckedUpdateOneWithoutDocumentNestedInput
+  qcFinding?: Prisma.QcFindingUncheckedUpdateOneWithoutDocumentNestedInput
 }
 
 export type BusinessDocumentCreateManyUserInput = {
@@ -706,6 +916,8 @@ export type BusinessDocumentUpdateWithoutUserInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   invoice?: Prisma.InvoiceUpdateOneWithoutDocumentNestedInput
+  checkSheet?: Prisma.CheckSheetUpdateOneWithoutDocumentNestedInput
+  qcFinding?: Prisma.QcFindingUpdateOneWithoutDocumentNestedInput
 }
 
 export type BusinessDocumentUncheckedUpdateWithoutUserInput = {
@@ -719,6 +931,8 @@ export type BusinessDocumentUncheckedUpdateWithoutUserInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   invoice?: Prisma.InvoiceUncheckedUpdateOneWithoutDocumentNestedInput
+  checkSheet?: Prisma.CheckSheetUncheckedUpdateOneWithoutDocumentNestedInput
+  qcFinding?: Prisma.QcFindingUncheckedUpdateOneWithoutDocumentNestedInput
 }
 
 export type BusinessDocumentUncheckedUpdateManyWithoutUserInput = {
@@ -748,6 +962,8 @@ export type BusinessDocumentSelect<ExtArgs extends runtime.Types.Extensions.Inte
   userId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   invoice?: boolean | Prisma.BusinessDocument$invoiceArgs<ExtArgs>
+  checkSheet?: boolean | Prisma.BusinessDocument$checkSheetArgs<ExtArgs>
+  qcFinding?: boolean | Prisma.BusinessDocument$qcFindingArgs<ExtArgs>
 }, ExtArgs["result"]["businessDocument"]>
 
 export type BusinessDocumentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -795,6 +1011,8 @@ export type BusinessDocumentOmit<ExtArgs extends runtime.Types.Extensions.Intern
 export type BusinessDocumentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   invoice?: boolean | Prisma.BusinessDocument$invoiceArgs<ExtArgs>
+  checkSheet?: boolean | Prisma.BusinessDocument$checkSheetArgs<ExtArgs>
+  qcFinding?: boolean | Prisma.BusinessDocument$qcFindingArgs<ExtArgs>
 }
 export type BusinessDocumentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -808,6 +1026,8 @@ export type $BusinessDocumentPayload<ExtArgs extends runtime.Types.Extensions.In
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
     invoice: Prisma.$InvoicePayload<ExtArgs> | null
+    checkSheet: Prisma.$CheckSheetPayload<ExtArgs> | null
+    qcFinding: Prisma.$QcFindingPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1216,6 +1436,8 @@ export interface Prisma__BusinessDocumentClient<T, Null = never, ExtArgs extends
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   invoice<T extends Prisma.BusinessDocument$invoiceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BusinessDocument$invoiceArgs<ExtArgs>>): Prisma.Prisma__InvoiceClient<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  checkSheet<T extends Prisma.BusinessDocument$checkSheetArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BusinessDocument$checkSheetArgs<ExtArgs>>): Prisma.Prisma__CheckSheetClient<runtime.Types.Result.GetResult<Prisma.$CheckSheetPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  qcFinding<T extends Prisma.BusinessDocument$qcFindingArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BusinessDocument$qcFindingArgs<ExtArgs>>): Prisma.Prisma__QcFindingClient<runtime.Types.Result.GetResult<Prisma.$QcFindingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1672,6 +1894,44 @@ export type BusinessDocument$invoiceArgs<ExtArgs extends runtime.Types.Extension
    */
   include?: Prisma.InvoiceInclude<ExtArgs> | null
   where?: Prisma.InvoiceWhereInput
+}
+
+/**
+ * BusinessDocument.checkSheet
+ */
+export type BusinessDocument$checkSheetArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CheckSheet
+   */
+  select?: Prisma.CheckSheetSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CheckSheet
+   */
+  omit?: Prisma.CheckSheetOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CheckSheetInclude<ExtArgs> | null
+  where?: Prisma.CheckSheetWhereInput
+}
+
+/**
+ * BusinessDocument.qcFinding
+ */
+export type BusinessDocument$qcFindingArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the QcFinding
+   */
+  select?: Prisma.QcFindingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the QcFinding
+   */
+  omit?: Prisma.QcFindingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QcFindingInclude<ExtArgs> | null
+  where?: Prisma.QcFindingWhereInput
 }
 
 /**

@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { FilesController } from './files.controller';
 import { FilesService } from './files.service';
-import { createR2Client } from '../../r2.config';
+import { createR2Client } from '../r2.config';
 
 @Module({
     imports: [ConfigModule.forRoot()],

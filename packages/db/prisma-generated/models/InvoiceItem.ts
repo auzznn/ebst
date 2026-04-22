@@ -28,16 +28,16 @@ export type AggregateInvoiceItem = {
 
 export type InvoiceItemAvgAggregateOutputType = {
   no: number | null
-  unitPrice: number | null
-  qty: number | null
-  amount: number | null
+  unitPrice: runtime.Decimal | null
+  qty: runtime.Decimal | null
+  amount: runtime.Decimal | null
 }
 
 export type InvoiceItemSumAggregateOutputType = {
   no: number | null
-  unitPrice: number | null
-  qty: number | null
-  amount: number | null
+  unitPrice: runtime.Decimal | null
+  qty: runtime.Decimal | null
+  amount: runtime.Decimal | null
 }
 
 export type InvoiceItemMinAggregateOutputType = {
@@ -45,10 +45,10 @@ export type InvoiceItemMinAggregateOutputType = {
   no: number | null
   partNo: string | null
   description: string | null
-  unitPrice: number | null
-  qty: number | null
+  unitPrice: runtime.Decimal | null
+  qty: runtime.Decimal | null
   qtyUnit: string | null
-  amount: number | null
+  amount: runtime.Decimal | null
   invoiceId: string | null
 }
 
@@ -57,10 +57,10 @@ export type InvoiceItemMaxAggregateOutputType = {
   no: number | null
   partNo: string | null
   description: string | null
-  unitPrice: number | null
-  qty: number | null
+  unitPrice: runtime.Decimal | null
+  qty: runtime.Decimal | null
   qtyUnit: string | null
-  amount: number | null
+  amount: runtime.Decimal | null
   invoiceId: string | null
 }
 
@@ -220,10 +220,10 @@ export type InvoiceItemGroupByOutputType = {
   no: number
   partNo: string | null
   description: string
-  unitPrice: number
-  qty: number
+  unitPrice: runtime.Decimal
+  qty: runtime.Decimal
   qtyUnit: string
-  amount: number
+  amount: runtime.Decimal
   invoiceId: string
   _count: InvoiceItemCountAggregateOutputType | null
   _avg: InvoiceItemAvgAggregateOutputType | null
@@ -255,10 +255,10 @@ export type InvoiceItemWhereInput = {
   no?: Prisma.IntFilter<"InvoiceItem"> | number
   partNo?: Prisma.StringNullableFilter<"InvoiceItem"> | string | null
   description?: Prisma.StringFilter<"InvoiceItem"> | string
-  unitPrice?: Prisma.FloatFilter<"InvoiceItem"> | number
-  qty?: Prisma.FloatFilter<"InvoiceItem"> | number
+  unitPrice?: Prisma.DecimalFilter<"InvoiceItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  qty?: Prisma.DecimalFilter<"InvoiceItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   qtyUnit?: Prisma.StringFilter<"InvoiceItem"> | string
-  amount?: Prisma.FloatFilter<"InvoiceItem"> | number
+  amount?: Prisma.DecimalFilter<"InvoiceItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   invoiceId?: Prisma.StringFilter<"InvoiceItem"> | string
   invoice?: Prisma.XOR<Prisma.InvoiceScalarRelationFilter, Prisma.InvoiceWhereInput>
 }
@@ -284,10 +284,10 @@ export type InvoiceItemWhereUniqueInput = Prisma.AtLeast<{
   no?: Prisma.IntFilter<"InvoiceItem"> | number
   partNo?: Prisma.StringNullableFilter<"InvoiceItem"> | string | null
   description?: Prisma.StringFilter<"InvoiceItem"> | string
-  unitPrice?: Prisma.FloatFilter<"InvoiceItem"> | number
-  qty?: Prisma.FloatFilter<"InvoiceItem"> | number
+  unitPrice?: Prisma.DecimalFilter<"InvoiceItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  qty?: Prisma.DecimalFilter<"InvoiceItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   qtyUnit?: Prisma.StringFilter<"InvoiceItem"> | string
-  amount?: Prisma.FloatFilter<"InvoiceItem"> | number
+  amount?: Prisma.DecimalFilter<"InvoiceItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   invoiceId?: Prisma.StringFilter<"InvoiceItem"> | string
   invoice?: Prisma.XOR<Prisma.InvoiceScalarRelationFilter, Prisma.InvoiceWhereInput>
 }, "id">
@@ -317,10 +317,10 @@ export type InvoiceItemScalarWhereWithAggregatesInput = {
   no?: Prisma.IntWithAggregatesFilter<"InvoiceItem"> | number
   partNo?: Prisma.StringNullableWithAggregatesFilter<"InvoiceItem"> | string | null
   description?: Prisma.StringWithAggregatesFilter<"InvoiceItem"> | string
-  unitPrice?: Prisma.FloatWithAggregatesFilter<"InvoiceItem"> | number
-  qty?: Prisma.FloatWithAggregatesFilter<"InvoiceItem"> | number
+  unitPrice?: Prisma.DecimalWithAggregatesFilter<"InvoiceItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  qty?: Prisma.DecimalWithAggregatesFilter<"InvoiceItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   qtyUnit?: Prisma.StringWithAggregatesFilter<"InvoiceItem"> | string
-  amount?: Prisma.FloatWithAggregatesFilter<"InvoiceItem"> | number
+  amount?: Prisma.DecimalWithAggregatesFilter<"InvoiceItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   invoiceId?: Prisma.StringWithAggregatesFilter<"InvoiceItem"> | string
 }
 
@@ -329,10 +329,10 @@ export type InvoiceItemCreateInput = {
   no: number
   partNo?: string | null
   description: string
-  unitPrice: number
-  qty: number
+  unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   qtyUnit: string
-  amount: number
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   invoice: Prisma.InvoiceCreateNestedOneWithoutItemsInput
 }
 
@@ -341,10 +341,10 @@ export type InvoiceItemUncheckedCreateInput = {
   no: number
   partNo?: string | null
   description: string
-  unitPrice: number
-  qty: number
+  unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   qtyUnit: string
-  amount: number
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   invoiceId: string
 }
 
@@ -353,10 +353,10 @@ export type InvoiceItemUpdateInput = {
   no?: Prisma.IntFieldUpdateOperationsInput | number
   partNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  unitPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  qty?: Prisma.FloatFieldUpdateOperationsInput | number
+  unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   qtyUnit?: Prisma.StringFieldUpdateOperationsInput | string
-  amount?: Prisma.FloatFieldUpdateOperationsInput | number
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   invoice?: Prisma.InvoiceUpdateOneRequiredWithoutItemsNestedInput
 }
 
@@ -365,10 +365,10 @@ export type InvoiceItemUncheckedUpdateInput = {
   no?: Prisma.IntFieldUpdateOperationsInput | number
   partNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  unitPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  qty?: Prisma.FloatFieldUpdateOperationsInput | number
+  unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   qtyUnit?: Prisma.StringFieldUpdateOperationsInput | string
-  amount?: Prisma.FloatFieldUpdateOperationsInput | number
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   invoiceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -377,10 +377,10 @@ export type InvoiceItemCreateManyInput = {
   no: number
   partNo?: string | null
   description: string
-  unitPrice: number
-  qty: number
+  unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   qtyUnit: string
-  amount: number
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   invoiceId: string
 }
 
@@ -389,10 +389,10 @@ export type InvoiceItemUpdateManyMutationInput = {
   no?: Prisma.IntFieldUpdateOperationsInput | number
   partNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  unitPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  qty?: Prisma.FloatFieldUpdateOperationsInput | number
+  unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   qtyUnit?: Prisma.StringFieldUpdateOperationsInput | string
-  amount?: Prisma.FloatFieldUpdateOperationsInput | number
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type InvoiceItemUncheckedUpdateManyInput = {
@@ -400,10 +400,10 @@ export type InvoiceItemUncheckedUpdateManyInput = {
   no?: Prisma.IntFieldUpdateOperationsInput | number
   partNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  unitPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  qty?: Prisma.FloatFieldUpdateOperationsInput | number
+  unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   qtyUnit?: Prisma.StringFieldUpdateOperationsInput | string
-  amount?: Prisma.FloatFieldUpdateOperationsInput | number
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   invoiceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -514,10 +514,10 @@ export type InvoiceItemCreateWithoutInvoiceInput = {
   no: number
   partNo?: string | null
   description: string
-  unitPrice: number
-  qty: number
+  unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   qtyUnit: string
-  amount: number
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type InvoiceItemUncheckedCreateWithoutInvoiceInput = {
@@ -525,10 +525,10 @@ export type InvoiceItemUncheckedCreateWithoutInvoiceInput = {
   no: number
   partNo?: string | null
   description: string
-  unitPrice: number
-  qty: number
+  unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   qtyUnit: string
-  amount: number
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type InvoiceItemCreateOrConnectWithoutInvoiceInput = {
@@ -565,10 +565,10 @@ export type InvoiceItemScalarWhereInput = {
   no?: Prisma.IntFilter<"InvoiceItem"> | number
   partNo?: Prisma.StringNullableFilter<"InvoiceItem"> | string | null
   description?: Prisma.StringFilter<"InvoiceItem"> | string
-  unitPrice?: Prisma.FloatFilter<"InvoiceItem"> | number
-  qty?: Prisma.FloatFilter<"InvoiceItem"> | number
+  unitPrice?: Prisma.DecimalFilter<"InvoiceItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  qty?: Prisma.DecimalFilter<"InvoiceItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   qtyUnit?: Prisma.StringFilter<"InvoiceItem"> | string
-  amount?: Prisma.FloatFilter<"InvoiceItem"> | number
+  amount?: Prisma.DecimalFilter<"InvoiceItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   invoiceId?: Prisma.StringFilter<"InvoiceItem"> | string
 }
 
@@ -577,10 +577,10 @@ export type InvoiceItemCreateManyInvoiceInput = {
   no: number
   partNo?: string | null
   description: string
-  unitPrice: number
-  qty: number
+  unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   qtyUnit: string
-  amount: number
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type InvoiceItemUpdateWithoutInvoiceInput = {
@@ -588,10 +588,10 @@ export type InvoiceItemUpdateWithoutInvoiceInput = {
   no?: Prisma.IntFieldUpdateOperationsInput | number
   partNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  unitPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  qty?: Prisma.FloatFieldUpdateOperationsInput | number
+  unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   qtyUnit?: Prisma.StringFieldUpdateOperationsInput | string
-  amount?: Prisma.FloatFieldUpdateOperationsInput | number
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type InvoiceItemUncheckedUpdateWithoutInvoiceInput = {
@@ -599,10 +599,10 @@ export type InvoiceItemUncheckedUpdateWithoutInvoiceInput = {
   no?: Prisma.IntFieldUpdateOperationsInput | number
   partNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  unitPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  qty?: Prisma.FloatFieldUpdateOperationsInput | number
+  unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   qtyUnit?: Prisma.StringFieldUpdateOperationsInput | string
-  amount?: Prisma.FloatFieldUpdateOperationsInput | number
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type InvoiceItemUncheckedUpdateManyWithoutInvoiceInput = {
@@ -610,10 +610,10 @@ export type InvoiceItemUncheckedUpdateManyWithoutInvoiceInput = {
   no?: Prisma.IntFieldUpdateOperationsInput | number
   partNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  unitPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  qty?: Prisma.FloatFieldUpdateOperationsInput | number
+  unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   qtyUnit?: Prisma.StringFieldUpdateOperationsInput | string
-  amount?: Prisma.FloatFieldUpdateOperationsInput | number
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 
@@ -690,10 +690,10 @@ export type $InvoiceItemPayload<ExtArgs extends runtime.Types.Extensions.Interna
     no: number
     partNo: string | null
     description: string
-    unitPrice: number
-    qty: number
+    unitPrice: runtime.Decimal
+    qty: runtime.Decimal
     qtyUnit: string
-    amount: number
+    amount: runtime.Decimal
     invoiceId: string
   }, ExtArgs["result"]["invoiceItem"]>
   composites: {}
@@ -1123,10 +1123,10 @@ export interface InvoiceItemFieldRefs {
   readonly no: Prisma.FieldRef<"InvoiceItem", 'Int'>
   readonly partNo: Prisma.FieldRef<"InvoiceItem", 'String'>
   readonly description: Prisma.FieldRef<"InvoiceItem", 'String'>
-  readonly unitPrice: Prisma.FieldRef<"InvoiceItem", 'Float'>
-  readonly qty: Prisma.FieldRef<"InvoiceItem", 'Float'>
+  readonly unitPrice: Prisma.FieldRef<"InvoiceItem", 'Decimal'>
+  readonly qty: Prisma.FieldRef<"InvoiceItem", 'Decimal'>
   readonly qtyUnit: Prisma.FieldRef<"InvoiceItem", 'String'>
-  readonly amount: Prisma.FieldRef<"InvoiceItem", 'Float'>
+  readonly amount: Prisma.FieldRef<"InvoiceItem", 'Decimal'>
   readonly invoiceId: Prisma.FieldRef<"InvoiceItem", 'String'>
 }
     

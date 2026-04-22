@@ -7,7 +7,7 @@ export class CustomersService {
     constructor(private prisma: PrismaService) { }
 
     async findAll() {
-        return this.prisma.customers.findMany({
+        return this.prisma.customer.findMany({
             select: {
                 id: true,
                 name: true,
@@ -20,7 +20,7 @@ export class CustomersService {
     }
 
     async search(query: string) {
-        return this.prisma.customers.findMany({
+        return this.prisma.customer.findMany({
             where: {
                 OR: [
                     { name: { contains: query, mode: 'insensitive' } },
@@ -38,7 +38,7 @@ export class CustomersService {
     }
 
     async create(data: createCustomerDto) {
-        return this.prisma.customers.create({
+        return this.prisma.customer.create({
             data: {
                 name: data.name,
                 email: data.email,

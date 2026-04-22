@@ -38,6 +38,13 @@ export function useDocuments() {
     },
   });
 
+  const getSignedUrlDirect = useMutation({
+    mutationFn: async (key: string) => {
+      const res = await api.get(`/files/asset/${encodeURIComponent(key)}`);
+      return res.data.url as string;
+    },
+  });
+
   const registerDocument = useMutation({
     mutationFn: async (data: Omit<BusinessDocument, "id" | "createdAt" | "updatedAt" | "userId">) => {
       const res = await api.post("/files/register", data);
@@ -78,6 +85,7 @@ export function useDocuments() {
     uploadFileDirect,
     registerDocument,
     getDownloadUrl,
+    getSignedUrlDirect,
     deleteDocument,
   };
 }

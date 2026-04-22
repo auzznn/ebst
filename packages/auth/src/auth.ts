@@ -2,10 +2,12 @@ import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { PrismaClient } from "@ebst/db";
 import { PrismaPg } from "@prisma/adapter-pg";
+import { Pool } from "pg";
 import { username } from "better-auth/plugins";
 
+const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({
-  adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL }),
+  adapter: new PrismaPg(pool),
 });
 
 export const auth = betterAuth({

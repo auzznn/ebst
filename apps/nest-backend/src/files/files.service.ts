@@ -25,6 +25,18 @@ export class FilesService {
         return { key };
     }
 
+    /**
+     * Generate a signed download URL directly from a key, without requiring
+     * a BusinessDocument record. Used for internal assets like part drawing refs.
+     */
+    async getSignedUrlDirect(key: string) {
+        const command = new GetObjectCommand({
+            Bucket: this.config.get('R2_BUCKET_NAME'),
+            Key: key,
+        });
+        return { url: await getSignedUrl(this.s3, command, { expiresIn: 3600 }) };
+    }
+
     async registerDocument(data: {
         key: string;
         fileName: string;

@@ -49,3 +49,73 @@ export const InvoiceStatus = {
 } as const
 
 export type InvoiceStatus = (typeof InvoiceStatus)[keyof typeof InvoiceStatus]
+
+
+export const CastingType = {
+  INVESTMENT: 'INVESTMENT',
+  SAND: 'SAND'
+} as const
+
+export type CastingType = (typeof CastingType)[keyof typeof CastingType]
+
+
+export const JobCardStatus = {
+  PENDING: 'PENDING',
+  IN_PROGRESS: 'IN_PROGRESS',
+  COMPLETED: 'COMPLETED',
+  ON_HOLD: 'ON_HOLD',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type JobCardStatus = (typeof JobCardStatus)[keyof typeof JobCardStatus]
+
+
+export const OperationStatus = {
+  WAITING: 'WAITING',
+  QUEUED: 'QUEUED',
+  IN_PROGRESS: 'IN_PROGRESS',
+  COMPLETED: 'COMPLETED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type OperationStatus = (typeof OperationStatus)[keyof typeof OperationStatus]
+
+
+export const QcResult = {
+  PASS: 'PASS',
+  REPAIR: 'REPAIR',
+  REJECT: 'REJECT'
+} as const
+
+export type QcResult = (typeof QcResult)[keyof typeof QcResult]
+
+
+export const MaterialUnit = {
+  KG: 'KG',
+  GRAM: 'GRAM',
+  LITRE: 'LITRE',
+  PIECE: 'PIECE',
+  METRE: 'METRE'
+} as const
+
+export type MaterialUnit = (typeof MaterialUnit)[keyof typeof MaterialUnit]
+
+
+export const FindingCategory = {
+  DIMENSION: 'DIMENSION',
+  SURFACE: 'SURFACE',
+  CHEMICAL: 'CHEMICAL',
+  VISUAL: 'VISUAL',
+  FUNCTIONAL: 'FUNCTIONAL',
+  OTHER: 'OTHER'
+} as const
+
+export type FindingCategory = (typeof FindingCategory)[keyof typeof FindingCategory]
+
+
+export const CheckSheetType = {
+  MELTING: 'MELTING',
+  FINISHING: 'FINISHING'
+} as const
+
+export type CheckSheetType = (typeof CheckSheetType)[keyof typeof CheckSheetType]

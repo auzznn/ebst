@@ -48,7 +48,8 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.defineExtension = exports.JsonNullValueFilter = exports.NullsOrder = exports.QueryMode = exports.NullableJsonNullValueInput = exports.SortOrder = exports.InvoiceItemScalarFieldEnum = exports.InvoiceScalarFieldEnum = exports.CustomersScalarFieldEnum = exports.BusinessDocumentScalarFieldEnum = exports.FixedAssetScalarFieldEnum = exports.JournalLineScalarFieldEnum = exports.JournalEntryScalarFieldEnum = exports.ChartOfAccountScalarFieldEnum = exports.MessageScalarFieldEnum = exports.ChannelMemberScalarFieldEnum = exports.ChannelScalarFieldEnum = exports.VerificationScalarFieldEnum = exports.AccountScalarFieldEnum = exports.SessionScalarFieldEnum = exports.UserScalarFieldEnum = exports.TransactionIsolationLevel = exports.ModelName = exports.AnyNull = exports.JsonNull = exports.DbNull = exports.NullTypes = exports.prismaVersion = exports.getExtensionContext = exports.Decimal = exports.Sql = exports.raw = exports.join = exports.empty = exports.sql = exports.PrismaClientValidationError = exports.PrismaClientInitializationError = exports.PrismaClientRustPanicError = exports.PrismaClientUnknownRequestError = exports.PrismaClientKnownRequestError = void 0;
+exports.MaterialUsageScalarFieldEnum = exports.MaterialScalarFieldEnum = exports.CheckSheetRowScalarFieldEnum = exports.CheckSheetScalarFieldEnum = exports.QcFindingScalarFieldEnum = exports.QcLogScalarFieldEnum = exports.OperationScalarFieldEnum = exports.JobMaterialScalarFieldEnum = exports.JobListScalarFieldEnum = exports.JobCardScalarFieldEnum = exports.MachineScalarFieldEnum = exports.RoutingStepScalarFieldEnum = exports.RoutingTemplateScalarFieldEnum = exports.PartScalarFieldEnum = exports.PoLineItemScalarFieldEnum = exports.PurchaseOrderScalarFieldEnum = exports.InvoiceItemScalarFieldEnum = exports.InvoiceScalarFieldEnum = exports.CustomerScalarFieldEnum = exports.BusinessDocumentScalarFieldEnum = exports.FixedAssetScalarFieldEnum = exports.JournalLineScalarFieldEnum = exports.JournalEntryScalarFieldEnum = exports.ChartOfAccountScalarFieldEnum = exports.MessageScalarFieldEnum = exports.ChannelMemberScalarFieldEnum = exports.ChannelScalarFieldEnum = exports.VerificationScalarFieldEnum = exports.AccountScalarFieldEnum = exports.SessionScalarFieldEnum = exports.UserScalarFieldEnum = exports.TransactionIsolationLevel = exports.ModelName = exports.AnyNull = exports.JsonNull = exports.DbNull = exports.NullTypes = exports.prismaVersion = exports.getExtensionContext = exports.Decimal = exports.Sql = exports.raw = exports.join = exports.empty = exports.sql = exports.PrismaClientValidationError = exports.PrismaClientInitializationError = exports.PrismaClientRustPanicError = exports.PrismaClientUnknownRequestError = exports.PrismaClientKnownRequestError = void 0;
+exports.defineExtension = exports.JsonNullValueFilter = exports.NullsOrder = exports.QueryMode = exports.NullableJsonNullValueInput = exports.SortOrder = exports.SupplierScalarFieldEnum = exports.StockAdjustmentScalarFieldEnum = void 0;
 const runtime = __importStar(require("@prisma/client/runtime/client"));
 /**
  * Prisma Errors
@@ -115,9 +116,27 @@ exports.ModelName = {
     JournalLine: 'JournalLine',
     FixedAsset: 'FixedAsset',
     BusinessDocument: 'BusinessDocument',
-    Customers: 'Customers',
+    Customer: 'Customer',
     Invoice: 'Invoice',
-    InvoiceItem: 'InvoiceItem'
+    InvoiceItem: 'InvoiceItem',
+    PurchaseOrder: 'PurchaseOrder',
+    PoLineItem: 'PoLineItem',
+    Part: 'Part',
+    RoutingTemplate: 'RoutingTemplate',
+    RoutingStep: 'RoutingStep',
+    Machine: 'Machine',
+    JobCard: 'JobCard',
+    JobList: 'JobList',
+    JobMaterial: 'JobMaterial',
+    Operation: 'Operation',
+    QcLog: 'QcLog',
+    QcFinding: 'QcFinding',
+    CheckSheet: 'CheckSheet',
+    CheckSheetRow: 'CheckSheetRow',
+    Material: 'Material',
+    MaterialUsage: 'MaterialUsage',
+    StockAdjustment: 'StockAdjustment',
+    Supplier: 'Supplier'
 };
 /**
  * Enums
@@ -244,7 +263,7 @@ exports.BusinessDocumentScalarFieldEnum = {
     updatedAt: 'updatedAt',
     userId: 'userId'
 };
-exports.CustomersScalarFieldEnum = {
+exports.CustomerScalarFieldEnum = {
     id: 'id',
     name: 'name',
     email: 'email',
@@ -265,6 +284,7 @@ exports.InvoiceScalarFieldEnum = {
     total: 'total',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
+    purchaseOrderId: 'purchaseOrderId',
     customerId: 'customerId',
     createdById: 'createdById',
     documentId: 'documentId'
@@ -279,6 +299,162 @@ exports.InvoiceItemScalarFieldEnum = {
     qtyUnit: 'qtyUnit',
     amount: 'amount',
     invoiceId: 'invoiceId'
+};
+exports.PurchaseOrderScalarFieldEnum = {
+    id: 'id',
+    poNumber: 'poNumber',
+    customerId: 'customerId',
+    dueDate: 'dueDate',
+    notes: 'notes',
+    createdAt: 'createdAt'
+};
+exports.PoLineItemScalarFieldEnum = {
+    id: 'id',
+    purchaseOrderId: 'purchaseOrderId',
+    partId: 'partId',
+    quantity: 'quantity',
+    unitPrice: 'unitPrice'
+};
+exports.PartScalarFieldEnum = {
+    id: 'id',
+    partNo: 'partNo',
+    description: 'description',
+    castingType: 'castingType',
+    materialId: 'materialId',
+    drawingRef: 'drawingRef',
+    createdAt: 'createdAt'
+};
+exports.RoutingTemplateScalarFieldEnum = {
+    id: 'id',
+    partId: 'partId',
+    createdAt: 'createdAt'
+};
+exports.RoutingStepScalarFieldEnum = {
+    id: 'id',
+    routingTemplateId: 'routingTemplateId',
+    stepOrder: 'stepOrder',
+    operationName: 'operationName',
+    defaultMachineType: 'defaultMachineType',
+    estimatedMinutes: 'estimatedMinutes'
+};
+exports.MachineScalarFieldEnum = {
+    id: 'id',
+    name: 'name',
+    machineType: 'machineType',
+    isActive: 'isActive'
+};
+exports.JobCardScalarFieldEnum = {
+    id: 'id',
+    jobNo: 'jobNo',
+    purchaseOrderId: 'purchaseOrderId',
+    status: 'status',
+    createdById: 'createdById',
+    createdAt: 'createdAt',
+    completedAt: 'completedAt'
+};
+exports.JobListScalarFieldEnum = {
+    id: 'id',
+    jobCardId: 'jobCardId',
+    partId: 'partId',
+    lineItemId: 'lineItemId',
+    quantity: 'quantity',
+    status: 'status'
+};
+exports.JobMaterialScalarFieldEnum = {
+    id: 'id',
+    jobListId: 'jobListId',
+    materialId: 'materialId',
+    quantity: 'quantity'
+};
+exports.OperationScalarFieldEnum = {
+    id: 'id',
+    jobListId: 'jobListId',
+    routingStepId: 'routingStepId',
+    stepOrder: 'stepOrder',
+    operationName: 'operationName',
+    machineId: 'machineId',
+    operatorId: 'operatorId',
+    status: 'status',
+    startedAt: 'startedAt',
+    completedAt: 'completedAt',
+    notes: 'notes'
+};
+exports.QcLogScalarFieldEnum = {
+    id: 'id',
+    operationId: 'operationId',
+    result: 'result',
+    reason: 'reason',
+    inspectorId: 'inspectorId',
+    loggedAt: 'loggedAt',
+    totalScore: 'totalScore',
+    actionRequired: 'actionRequired'
+};
+exports.QcFindingScalarFieldEnum = {
+    id: 'id',
+    qcLogId: 'qcLogId',
+    category: 'category',
+    parameter: 'parameter',
+    specification: 'specification',
+    measuredValue: 'measuredValue',
+    unit: 'unit',
+    description: 'description',
+    severity: 'severity',
+    isConforming: 'isConforming',
+    documentId: 'documentId'
+};
+exports.CheckSheetScalarFieldEnum = {
+    id: 'id',
+    type: 'type',
+    operationId: 'operationId',
+    documentId: 'documentId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+};
+exports.CheckSheetRowScalarFieldEnum = {
+    id: 'id',
+    checkSheetId: 'checkSheetId',
+    parameterName: 'parameterName',
+    targetValue: 'targetValue',
+    actualValue: 'actualValue',
+    minTolerance: 'minTolerance',
+    maxTolerance: 'maxTolerance',
+    isPass: 'isPass'
+};
+exports.MaterialScalarFieldEnum = {
+    id: 'id',
+    name: 'name',
+    code: 'code',
+    description: 'description',
+    unit: 'unit',
+    stockQty: 'stockQty',
+    reorderThreshold: 'reorderThreshold',
+    reorderQty: 'reorderQty',
+    supplierId: 'supplierId',
+    unitCost: 'unitCost',
+    createdAt: 'createdAt'
+};
+exports.MaterialUsageScalarFieldEnum = {
+    id: 'id',
+    operationId: 'operationId',
+    materialId: 'materialId',
+    qtyUsed: 'qtyUsed',
+    loggedAt: 'loggedAt'
+};
+exports.StockAdjustmentScalarFieldEnum = {
+    id: 'id',
+    materialId: 'materialId',
+    qty: 'qty',
+    reason: 'reason',
+    adjustedById: 'adjustedById',
+    adjustedAt: 'adjustedAt'
+};
+exports.SupplierScalarFieldEnum = {
+    id: 'id',
+    name: 'name',
+    phone: 'phone',
+    email: 'email',
+    address: 'address',
+    createdAt: 'createdAt'
 };
 exports.SortOrder = {
     asc: 'asc',

@@ -22,7 +22,7 @@ export class DocumentGenController {
 
   // ─── Generate Invoice PDF + save to DB ─────────────────────────
   @Post('invoice')
-  @Roles('FINANCE', 'EXECUTIVE')
+  @Roles('FINANCE', 'EXECUTIVE', 'ADMIN')
   async generateInvoice(@Body() dto: GenerateInvoiceDto, @Req() req: any) {
     const { invoice, key } = await this.documentGenService.generateInvoicePdf(
       dto,

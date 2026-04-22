@@ -38,9 +38,27 @@ export declare const ModelName: {
     readonly JournalLine: "JournalLine";
     readonly FixedAsset: "FixedAsset";
     readonly BusinessDocument: "BusinessDocument";
-    readonly Customers: "Customers";
+    readonly Customer: "Customer";
     readonly Invoice: "Invoice";
     readonly InvoiceItem: "InvoiceItem";
+    readonly PurchaseOrder: "PurchaseOrder";
+    readonly PoLineItem: "PoLineItem";
+    readonly Part: "Part";
+    readonly RoutingTemplate: "RoutingTemplate";
+    readonly RoutingStep: "RoutingStep";
+    readonly Machine: "Machine";
+    readonly JobCard: "JobCard";
+    readonly JobList: "JobList";
+    readonly JobMaterial: "JobMaterial";
+    readonly Operation: "Operation";
+    readonly QcLog: "QcLog";
+    readonly QcFinding: "QcFinding";
+    readonly CheckSheet: "CheckSheet";
+    readonly CheckSheetRow: "CheckSheetRow";
+    readonly Material: "Material";
+    readonly MaterialUsage: "MaterialUsage";
+    readonly StockAdjustment: "StockAdjustment";
+    readonly Supplier: "Supplier";
 };
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
 export declare const TransactionIsolationLevel: {
@@ -178,7 +196,7 @@ export declare const BusinessDocumentScalarFieldEnum: {
     readonly userId: "userId";
 };
 export type BusinessDocumentScalarFieldEnum = (typeof BusinessDocumentScalarFieldEnum)[keyof typeof BusinessDocumentScalarFieldEnum];
-export declare const CustomersScalarFieldEnum: {
+export declare const CustomerScalarFieldEnum: {
     readonly id: "id";
     readonly name: "name";
     readonly email: "email";
@@ -187,7 +205,7 @@ export declare const CustomersScalarFieldEnum: {
     readonly createdAt: "createdAt";
     readonly updatedAt: "updatedAt";
 };
-export type CustomersScalarFieldEnum = (typeof CustomersScalarFieldEnum)[keyof typeof CustomersScalarFieldEnum];
+export type CustomerScalarFieldEnum = (typeof CustomerScalarFieldEnum)[keyof typeof CustomerScalarFieldEnum];
 export declare const InvoiceScalarFieldEnum: {
     readonly id: "id";
     readonly invoiceNo: "invoiceNo";
@@ -200,6 +218,7 @@ export declare const InvoiceScalarFieldEnum: {
     readonly total: "total";
     readonly createdAt: "createdAt";
     readonly updatedAt: "updatedAt";
+    readonly purchaseOrderId: "purchaseOrderId";
     readonly customerId: "customerId";
     readonly createdById: "createdById";
     readonly documentId: "documentId";
@@ -217,6 +236,180 @@ export declare const InvoiceItemScalarFieldEnum: {
     readonly invoiceId: "invoiceId";
 };
 export type InvoiceItemScalarFieldEnum = (typeof InvoiceItemScalarFieldEnum)[keyof typeof InvoiceItemScalarFieldEnum];
+export declare const PurchaseOrderScalarFieldEnum: {
+    readonly id: "id";
+    readonly poNumber: "poNumber";
+    readonly customerId: "customerId";
+    readonly dueDate: "dueDate";
+    readonly notes: "notes";
+    readonly createdAt: "createdAt";
+};
+export type PurchaseOrderScalarFieldEnum = (typeof PurchaseOrderScalarFieldEnum)[keyof typeof PurchaseOrderScalarFieldEnum];
+export declare const PoLineItemScalarFieldEnum: {
+    readonly id: "id";
+    readonly purchaseOrderId: "purchaseOrderId";
+    readonly partId: "partId";
+    readonly quantity: "quantity";
+    readonly unitPrice: "unitPrice";
+};
+export type PoLineItemScalarFieldEnum = (typeof PoLineItemScalarFieldEnum)[keyof typeof PoLineItemScalarFieldEnum];
+export declare const PartScalarFieldEnum: {
+    readonly id: "id";
+    readonly partNo: "partNo";
+    readonly description: "description";
+    readonly castingType: "castingType";
+    readonly materialId: "materialId";
+    readonly drawingRef: "drawingRef";
+    readonly createdAt: "createdAt";
+};
+export type PartScalarFieldEnum = (typeof PartScalarFieldEnum)[keyof typeof PartScalarFieldEnum];
+export declare const RoutingTemplateScalarFieldEnum: {
+    readonly id: "id";
+    readonly partId: "partId";
+    readonly createdAt: "createdAt";
+};
+export type RoutingTemplateScalarFieldEnum = (typeof RoutingTemplateScalarFieldEnum)[keyof typeof RoutingTemplateScalarFieldEnum];
+export declare const RoutingStepScalarFieldEnum: {
+    readonly id: "id";
+    readonly routingTemplateId: "routingTemplateId";
+    readonly stepOrder: "stepOrder";
+    readonly operationName: "operationName";
+    readonly defaultMachineType: "defaultMachineType";
+    readonly estimatedMinutes: "estimatedMinutes";
+};
+export type RoutingStepScalarFieldEnum = (typeof RoutingStepScalarFieldEnum)[keyof typeof RoutingStepScalarFieldEnum];
+export declare const MachineScalarFieldEnum: {
+    readonly id: "id";
+    readonly name: "name";
+    readonly machineType: "machineType";
+    readonly isActive: "isActive";
+};
+export type MachineScalarFieldEnum = (typeof MachineScalarFieldEnum)[keyof typeof MachineScalarFieldEnum];
+export declare const JobCardScalarFieldEnum: {
+    readonly id: "id";
+    readonly jobNo: "jobNo";
+    readonly purchaseOrderId: "purchaseOrderId";
+    readonly status: "status";
+    readonly createdById: "createdById";
+    readonly createdAt: "createdAt";
+    readonly completedAt: "completedAt";
+};
+export type JobCardScalarFieldEnum = (typeof JobCardScalarFieldEnum)[keyof typeof JobCardScalarFieldEnum];
+export declare const JobListScalarFieldEnum: {
+    readonly id: "id";
+    readonly jobCardId: "jobCardId";
+    readonly partId: "partId";
+    readonly lineItemId: "lineItemId";
+    readonly quantity: "quantity";
+    readonly status: "status";
+};
+export type JobListScalarFieldEnum = (typeof JobListScalarFieldEnum)[keyof typeof JobListScalarFieldEnum];
+export declare const JobMaterialScalarFieldEnum: {
+    readonly id: "id";
+    readonly jobListId: "jobListId";
+    readonly materialId: "materialId";
+    readonly quantity: "quantity";
+};
+export type JobMaterialScalarFieldEnum = (typeof JobMaterialScalarFieldEnum)[keyof typeof JobMaterialScalarFieldEnum];
+export declare const OperationScalarFieldEnum: {
+    readonly id: "id";
+    readonly jobListId: "jobListId";
+    readonly routingStepId: "routingStepId";
+    readonly stepOrder: "stepOrder";
+    readonly operationName: "operationName";
+    readonly machineId: "machineId";
+    readonly operatorId: "operatorId";
+    readonly status: "status";
+    readonly startedAt: "startedAt";
+    readonly completedAt: "completedAt";
+    readonly notes: "notes";
+};
+export type OperationScalarFieldEnum = (typeof OperationScalarFieldEnum)[keyof typeof OperationScalarFieldEnum];
+export declare const QcLogScalarFieldEnum: {
+    readonly id: "id";
+    readonly operationId: "operationId";
+    readonly result: "result";
+    readonly reason: "reason";
+    readonly inspectorId: "inspectorId";
+    readonly loggedAt: "loggedAt";
+    readonly totalScore: "totalScore";
+    readonly actionRequired: "actionRequired";
+};
+export type QcLogScalarFieldEnum = (typeof QcLogScalarFieldEnum)[keyof typeof QcLogScalarFieldEnum];
+export declare const QcFindingScalarFieldEnum: {
+    readonly id: "id";
+    readonly qcLogId: "qcLogId";
+    readonly category: "category";
+    readonly parameter: "parameter";
+    readonly specification: "specification";
+    readonly measuredValue: "measuredValue";
+    readonly unit: "unit";
+    readonly description: "description";
+    readonly severity: "severity";
+    readonly isConforming: "isConforming";
+    readonly documentId: "documentId";
+};
+export type QcFindingScalarFieldEnum = (typeof QcFindingScalarFieldEnum)[keyof typeof QcFindingScalarFieldEnum];
+export declare const CheckSheetScalarFieldEnum: {
+    readonly id: "id";
+    readonly type: "type";
+    readonly operationId: "operationId";
+    readonly documentId: "documentId";
+    readonly createdAt: "createdAt";
+    readonly updatedAt: "updatedAt";
+};
+export type CheckSheetScalarFieldEnum = (typeof CheckSheetScalarFieldEnum)[keyof typeof CheckSheetScalarFieldEnum];
+export declare const CheckSheetRowScalarFieldEnum: {
+    readonly id: "id";
+    readonly checkSheetId: "checkSheetId";
+    readonly parameterName: "parameterName";
+    readonly targetValue: "targetValue";
+    readonly actualValue: "actualValue";
+    readonly minTolerance: "minTolerance";
+    readonly maxTolerance: "maxTolerance";
+    readonly isPass: "isPass";
+};
+export type CheckSheetRowScalarFieldEnum = (typeof CheckSheetRowScalarFieldEnum)[keyof typeof CheckSheetRowScalarFieldEnum];
+export declare const MaterialScalarFieldEnum: {
+    readonly id: "id";
+    readonly name: "name";
+    readonly code: "code";
+    readonly description: "description";
+    readonly unit: "unit";
+    readonly stockQty: "stockQty";
+    readonly reorderThreshold: "reorderThreshold";
+    readonly reorderQty: "reorderQty";
+    readonly supplierId: "supplierId";
+    readonly unitCost: "unitCost";
+    readonly createdAt: "createdAt";
+};
+export type MaterialScalarFieldEnum = (typeof MaterialScalarFieldEnum)[keyof typeof MaterialScalarFieldEnum];
+export declare const MaterialUsageScalarFieldEnum: {
+    readonly id: "id";
+    readonly operationId: "operationId";
+    readonly materialId: "materialId";
+    readonly qtyUsed: "qtyUsed";
+    readonly loggedAt: "loggedAt";
+};
+export type MaterialUsageScalarFieldEnum = (typeof MaterialUsageScalarFieldEnum)[keyof typeof MaterialUsageScalarFieldEnum];
+export declare const StockAdjustmentScalarFieldEnum: {
+    readonly id: "id";
+    readonly materialId: "materialId";
+    readonly qty: "qty";
+    readonly reason: "reason";
+    readonly adjustedById: "adjustedById";
+    readonly adjustedAt: "adjustedAt";
+};
+export type StockAdjustmentScalarFieldEnum = (typeof StockAdjustmentScalarFieldEnum)[keyof typeof StockAdjustmentScalarFieldEnum];
+export declare const SupplierScalarFieldEnum: {
+    readonly id: "id";
+    readonly name: "name";
+    readonly phone: "phone";
+    readonly email: "email";
+    readonly address: "address";
+    readonly createdAt: "createdAt";
+};
+export type SupplierScalarFieldEnum = (typeof SupplierScalarFieldEnum)[keyof typeof SupplierScalarFieldEnum];
 export declare const SortOrder: {
     readonly asc: "asc";
     readonly desc: "desc";

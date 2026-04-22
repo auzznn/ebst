@@ -14,16 +14,16 @@ export type AggregateInvoice = {
     _max: InvoiceMaxAggregateOutputType | null;
 };
 export type InvoiceAvgAggregateOutputType = {
-    dppHargaJual: number | null;
-    dppNilaiLain: number | null;
-    ppn: number | null;
-    total: number | null;
+    dppHargaJual: runtime.Decimal | null;
+    dppNilaiLain: runtime.Decimal | null;
+    ppn: runtime.Decimal | null;
+    total: runtime.Decimal | null;
 };
 export type InvoiceSumAggregateOutputType = {
-    dppHargaJual: number | null;
-    dppNilaiLain: number | null;
-    ppn: number | null;
-    total: number | null;
+    dppHargaJual: runtime.Decimal | null;
+    dppNilaiLain: runtime.Decimal | null;
+    ppn: runtime.Decimal | null;
+    total: runtime.Decimal | null;
 };
 export type InvoiceMinAggregateOutputType = {
     id: string | null;
@@ -31,12 +31,13 @@ export type InvoiceMinAggregateOutputType = {
     date: Date | null;
     poNo: string | null;
     status: $Enums.InvoiceStatus | null;
-    dppHargaJual: number | null;
-    dppNilaiLain: number | null;
-    ppn: number | null;
-    total: number | null;
+    dppHargaJual: runtime.Decimal | null;
+    dppNilaiLain: runtime.Decimal | null;
+    ppn: runtime.Decimal | null;
+    total: runtime.Decimal | null;
     createdAt: Date | null;
     updatedAt: Date | null;
+    purchaseOrderId: string | null;
     customerId: string | null;
     createdById: string | null;
     documentId: string | null;
@@ -47,12 +48,13 @@ export type InvoiceMaxAggregateOutputType = {
     date: Date | null;
     poNo: string | null;
     status: $Enums.InvoiceStatus | null;
-    dppHargaJual: number | null;
-    dppNilaiLain: number | null;
-    ppn: number | null;
-    total: number | null;
+    dppHargaJual: runtime.Decimal | null;
+    dppNilaiLain: runtime.Decimal | null;
+    ppn: runtime.Decimal | null;
+    total: runtime.Decimal | null;
     createdAt: Date | null;
     updatedAt: Date | null;
+    purchaseOrderId: string | null;
     customerId: string | null;
     createdById: string | null;
     documentId: string | null;
@@ -69,6 +71,7 @@ export type InvoiceCountAggregateOutputType = {
     total: number;
     createdAt: number;
     updatedAt: number;
+    purchaseOrderId: number;
     customerId: number;
     createdById: number;
     documentId: number;
@@ -98,6 +101,7 @@ export type InvoiceMinAggregateInputType = {
     total?: true;
     createdAt?: true;
     updatedAt?: true;
+    purchaseOrderId?: true;
     customerId?: true;
     createdById?: true;
     documentId?: true;
@@ -114,6 +118,7 @@ export type InvoiceMaxAggregateInputType = {
     total?: true;
     createdAt?: true;
     updatedAt?: true;
+    purchaseOrderId?: true;
     customerId?: true;
     createdById?: true;
     documentId?: true;
@@ -130,6 +135,7 @@ export type InvoiceCountAggregateInputType = {
     total?: true;
     createdAt?: true;
     updatedAt?: true;
+    purchaseOrderId?: true;
     customerId?: true;
     createdById?: true;
     documentId?: true;
@@ -217,12 +223,13 @@ export type InvoiceGroupByOutputType = {
     date: Date;
     poNo: string | null;
     status: $Enums.InvoiceStatus;
-    dppHargaJual: number;
-    dppNilaiLain: number;
-    ppn: number;
-    total: number;
+    dppHargaJual: runtime.Decimal;
+    dppNilaiLain: runtime.Decimal;
+    ppn: runtime.Decimal;
+    total: runtime.Decimal;
     createdAt: Date;
     updatedAt: Date;
+    purchaseOrderId: string | null;
     customerId: string;
     createdById: string;
     documentId: string | null;
@@ -244,18 +251,20 @@ export type InvoiceWhereInput = {
     date?: Prisma.DateTimeFilter<"Invoice"> | Date | string;
     poNo?: Prisma.StringNullableFilter<"Invoice"> | string | null;
     status?: Prisma.EnumInvoiceStatusFilter<"Invoice"> | $Enums.InvoiceStatus;
-    dppHargaJual?: Prisma.FloatFilter<"Invoice"> | number;
-    dppNilaiLain?: Prisma.FloatFilter<"Invoice"> | number;
-    ppn?: Prisma.FloatFilter<"Invoice"> | number;
-    total?: Prisma.FloatFilter<"Invoice"> | number;
+    dppHargaJual?: Prisma.DecimalFilter<"Invoice"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain?: Prisma.DecimalFilter<"Invoice"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn?: Prisma.DecimalFilter<"Invoice"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFilter<"Invoice"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string;
+    purchaseOrderId?: Prisma.StringNullableFilter<"Invoice"> | string | null;
     customerId?: Prisma.StringFilter<"Invoice"> | string;
     createdById?: Prisma.StringFilter<"Invoice"> | string;
     documentId?: Prisma.StringNullableFilter<"Invoice"> | string | null;
-    customer?: Prisma.XOR<Prisma.CustomersScalarRelationFilter, Prisma.CustomersWhereInput>;
+    customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>;
     createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
     document?: Prisma.XOR<Prisma.BusinessDocumentNullableScalarRelationFilter, Prisma.BusinessDocumentWhereInput> | null;
+    purchaseOrder?: Prisma.XOR<Prisma.PurchaseOrderNullableScalarRelationFilter, Prisma.PurchaseOrderWhereInput> | null;
     items?: Prisma.InvoiceItemListRelationFilter;
 };
 export type InvoiceOrderByWithRelationInput = {
@@ -270,17 +279,20 @@ export type InvoiceOrderByWithRelationInput = {
     total?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
     updatedAt?: Prisma.SortOrder;
+    purchaseOrderId?: Prisma.SortOrderInput | Prisma.SortOrder;
     customerId?: Prisma.SortOrder;
     createdById?: Prisma.SortOrder;
     documentId?: Prisma.SortOrderInput | Prisma.SortOrder;
-    customer?: Prisma.CustomersOrderByWithRelationInput;
+    customer?: Prisma.CustomerOrderByWithRelationInput;
     createdBy?: Prisma.UserOrderByWithRelationInput;
     document?: Prisma.BusinessDocumentOrderByWithRelationInput;
+    purchaseOrder?: Prisma.PurchaseOrderOrderByWithRelationInput;
     items?: Prisma.InvoiceItemOrderByRelationAggregateInput;
 };
 export type InvoiceWhereUniqueInput = Prisma.AtLeast<{
     id?: string;
     invoiceNo?: string;
+    purchaseOrderId?: string;
     documentId?: string;
     AND?: Prisma.InvoiceWhereInput | Prisma.InvoiceWhereInput[];
     OR?: Prisma.InvoiceWhereInput[];
@@ -288,19 +300,20 @@ export type InvoiceWhereUniqueInput = Prisma.AtLeast<{
     date?: Prisma.DateTimeFilter<"Invoice"> | Date | string;
     poNo?: Prisma.StringNullableFilter<"Invoice"> | string | null;
     status?: Prisma.EnumInvoiceStatusFilter<"Invoice"> | $Enums.InvoiceStatus;
-    dppHargaJual?: Prisma.FloatFilter<"Invoice"> | number;
-    dppNilaiLain?: Prisma.FloatFilter<"Invoice"> | number;
-    ppn?: Prisma.FloatFilter<"Invoice"> | number;
-    total?: Prisma.FloatFilter<"Invoice"> | number;
+    dppHargaJual?: Prisma.DecimalFilter<"Invoice"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain?: Prisma.DecimalFilter<"Invoice"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn?: Prisma.DecimalFilter<"Invoice"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFilter<"Invoice"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string;
     customerId?: Prisma.StringFilter<"Invoice"> | string;
     createdById?: Prisma.StringFilter<"Invoice"> | string;
-    customer?: Prisma.XOR<Prisma.CustomersScalarRelationFilter, Prisma.CustomersWhereInput>;
+    customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>;
     createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
     document?: Prisma.XOR<Prisma.BusinessDocumentNullableScalarRelationFilter, Prisma.BusinessDocumentWhereInput> | null;
+    purchaseOrder?: Prisma.XOR<Prisma.PurchaseOrderNullableScalarRelationFilter, Prisma.PurchaseOrderWhereInput> | null;
     items?: Prisma.InvoiceItemListRelationFilter;
-}, "id" | "invoiceNo" | "documentId">;
+}, "id" | "invoiceNo" | "purchaseOrderId" | "documentId">;
 export type InvoiceOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
     invoiceNo?: Prisma.SortOrder;
@@ -313,6 +326,7 @@ export type InvoiceOrderByWithAggregationInput = {
     total?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
     updatedAt?: Prisma.SortOrder;
+    purchaseOrderId?: Prisma.SortOrderInput | Prisma.SortOrder;
     customerId?: Prisma.SortOrder;
     createdById?: Prisma.SortOrder;
     documentId?: Prisma.SortOrderInput | Prisma.SortOrder;
@@ -331,12 +345,13 @@ export type InvoiceScalarWhereWithAggregatesInput = {
     date?: Prisma.DateTimeWithAggregatesFilter<"Invoice"> | Date | string;
     poNo?: Prisma.StringNullableWithAggregatesFilter<"Invoice"> | string | null;
     status?: Prisma.EnumInvoiceStatusWithAggregatesFilter<"Invoice"> | $Enums.InvoiceStatus;
-    dppHargaJual?: Prisma.FloatWithAggregatesFilter<"Invoice"> | number;
-    dppNilaiLain?: Prisma.FloatWithAggregatesFilter<"Invoice"> | number;
-    ppn?: Prisma.FloatWithAggregatesFilter<"Invoice"> | number;
-    total?: Prisma.FloatWithAggregatesFilter<"Invoice"> | number;
+    dppHargaJual?: Prisma.DecimalWithAggregatesFilter<"Invoice"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain?: Prisma.DecimalWithAggregatesFilter<"Invoice"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn?: Prisma.DecimalWithAggregatesFilter<"Invoice"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalWithAggregatesFilter<"Invoice"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeWithAggregatesFilter<"Invoice"> | Date | string;
     updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Invoice"> | Date | string;
+    purchaseOrderId?: Prisma.StringNullableWithAggregatesFilter<"Invoice"> | string | null;
     customerId?: Prisma.StringWithAggregatesFilter<"Invoice"> | string;
     createdById?: Prisma.StringWithAggregatesFilter<"Invoice"> | string;
     documentId?: Prisma.StringNullableWithAggregatesFilter<"Invoice"> | string | null;
@@ -347,15 +362,16 @@ export type InvoiceCreateInput = {
     date: Date | string;
     poNo?: string | null;
     status?: $Enums.InvoiceStatus;
-    dppHargaJual: number;
-    dppNilaiLain: number;
-    ppn: number;
-    total: number;
+    dppHargaJual: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total: runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    customer: Prisma.CustomersCreateNestedOneWithoutInvoicesInput;
+    customer: Prisma.CustomerCreateNestedOneWithoutInvoicesInput;
     createdBy: Prisma.UserCreateNestedOneWithoutInvoicesInput;
     document?: Prisma.BusinessDocumentCreateNestedOneWithoutInvoiceInput;
+    purchaseOrder?: Prisma.PurchaseOrderCreateNestedOneWithoutInvoiceInput;
     items?: Prisma.InvoiceItemCreateNestedManyWithoutInvoiceInput;
 };
 export type InvoiceUncheckedCreateInput = {
@@ -364,12 +380,13 @@ export type InvoiceUncheckedCreateInput = {
     date: Date | string;
     poNo?: string | null;
     status?: $Enums.InvoiceStatus;
-    dppHargaJual: number;
-    dppNilaiLain: number;
-    ppn: number;
-    total: number;
+    dppHargaJual: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total: runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
+    purchaseOrderId?: string | null;
     customerId: string;
     createdById: string;
     documentId?: string | null;
@@ -381,15 +398,16 @@ export type InvoiceUpdateInput = {
     date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     poNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus;
-    dppHargaJual?: Prisma.FloatFieldUpdateOperationsInput | number;
-    dppNilaiLain?: Prisma.FloatFieldUpdateOperationsInput | number;
-    ppn?: Prisma.FloatFieldUpdateOperationsInput | number;
-    total?: Prisma.FloatFieldUpdateOperationsInput | number;
+    dppHargaJual?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    customer?: Prisma.CustomersUpdateOneRequiredWithoutInvoicesNestedInput;
+    customer?: Prisma.CustomerUpdateOneRequiredWithoutInvoicesNestedInput;
     createdBy?: Prisma.UserUpdateOneRequiredWithoutInvoicesNestedInput;
     document?: Prisma.BusinessDocumentUpdateOneWithoutInvoiceNestedInput;
+    purchaseOrder?: Prisma.PurchaseOrderUpdateOneWithoutInvoiceNestedInput;
     items?: Prisma.InvoiceItemUpdateManyWithoutInvoiceNestedInput;
 };
 export type InvoiceUncheckedUpdateInput = {
@@ -398,12 +416,13 @@ export type InvoiceUncheckedUpdateInput = {
     date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     poNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus;
-    dppHargaJual?: Prisma.FloatFieldUpdateOperationsInput | number;
-    dppNilaiLain?: Prisma.FloatFieldUpdateOperationsInput | number;
-    ppn?: Prisma.FloatFieldUpdateOperationsInput | number;
-    total?: Prisma.FloatFieldUpdateOperationsInput | number;
+    dppHargaJual?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    purchaseOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     customerId?: Prisma.StringFieldUpdateOperationsInput | string;
     createdById?: Prisma.StringFieldUpdateOperationsInput | string;
     documentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -415,12 +434,13 @@ export type InvoiceCreateManyInput = {
     date: Date | string;
     poNo?: string | null;
     status?: $Enums.InvoiceStatus;
-    dppHargaJual: number;
-    dppNilaiLain: number;
-    ppn: number;
-    total: number;
+    dppHargaJual: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total: runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
+    purchaseOrderId?: string | null;
     customerId: string;
     createdById: string;
     documentId?: string | null;
@@ -431,10 +451,10 @@ export type InvoiceUpdateManyMutationInput = {
     date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     poNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus;
-    dppHargaJual?: Prisma.FloatFieldUpdateOperationsInput | number;
-    dppNilaiLain?: Prisma.FloatFieldUpdateOperationsInput | number;
-    ppn?: Prisma.FloatFieldUpdateOperationsInput | number;
-    total?: Prisma.FloatFieldUpdateOperationsInput | number;
+    dppHargaJual?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -444,12 +464,13 @@ export type InvoiceUncheckedUpdateManyInput = {
     date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     poNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus;
-    dppHargaJual?: Prisma.FloatFieldUpdateOperationsInput | number;
-    dppNilaiLain?: Prisma.FloatFieldUpdateOperationsInput | number;
-    ppn?: Prisma.FloatFieldUpdateOperationsInput | number;
-    total?: Prisma.FloatFieldUpdateOperationsInput | number;
+    dppHargaJual?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    purchaseOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     customerId?: Prisma.StringFieldUpdateOperationsInput | string;
     createdById?: Prisma.StringFieldUpdateOperationsInput | string;
     documentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -478,6 +499,7 @@ export type InvoiceCountOrderByAggregateInput = {
     total?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
     updatedAt?: Prisma.SortOrder;
+    purchaseOrderId?: Prisma.SortOrder;
     customerId?: Prisma.SortOrder;
     createdById?: Prisma.SortOrder;
     documentId?: Prisma.SortOrder;
@@ -500,6 +522,7 @@ export type InvoiceMaxOrderByAggregateInput = {
     total?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
     updatedAt?: Prisma.SortOrder;
+    purchaseOrderId?: Prisma.SortOrder;
     customerId?: Prisma.SortOrder;
     createdById?: Prisma.SortOrder;
     documentId?: Prisma.SortOrder;
@@ -516,6 +539,7 @@ export type InvoiceMinOrderByAggregateInput = {
     total?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
     updatedAt?: Prisma.SortOrder;
+    purchaseOrderId?: Prisma.SortOrder;
     customerId?: Prisma.SortOrder;
     createdById?: Prisma.SortOrder;
     documentId?: Prisma.SortOrder;
@@ -637,6 +661,13 @@ export type InvoiceUncheckedUpdateManyWithoutCustomerNestedInput = {
 export type EnumInvoiceStatusFieldUpdateOperationsInput = {
     set?: $Enums.InvoiceStatus;
 };
+export type DecimalFieldUpdateOperationsInput = {
+    set?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    increment?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    divide?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+};
 export type InvoiceCreateNestedOneWithoutItemsInput = {
     create?: Prisma.XOR<Prisma.InvoiceCreateWithoutItemsInput, Prisma.InvoiceUncheckedCreateWithoutItemsInput>;
     connectOrCreate?: Prisma.InvoiceCreateOrConnectWithoutItemsInput;
@@ -649,20 +680,49 @@ export type InvoiceUpdateOneRequiredWithoutItemsNestedInput = {
     connect?: Prisma.InvoiceWhereUniqueInput;
     update?: Prisma.XOR<Prisma.XOR<Prisma.InvoiceUpdateToOneWithWhereWithoutItemsInput, Prisma.InvoiceUpdateWithoutItemsInput>, Prisma.InvoiceUncheckedUpdateWithoutItemsInput>;
 };
+export type InvoiceCreateNestedOneWithoutPurchaseOrderInput = {
+    create?: Prisma.XOR<Prisma.InvoiceCreateWithoutPurchaseOrderInput, Prisma.InvoiceUncheckedCreateWithoutPurchaseOrderInput>;
+    connectOrCreate?: Prisma.InvoiceCreateOrConnectWithoutPurchaseOrderInput;
+    connect?: Prisma.InvoiceWhereUniqueInput;
+};
+export type InvoiceUncheckedCreateNestedOneWithoutPurchaseOrderInput = {
+    create?: Prisma.XOR<Prisma.InvoiceCreateWithoutPurchaseOrderInput, Prisma.InvoiceUncheckedCreateWithoutPurchaseOrderInput>;
+    connectOrCreate?: Prisma.InvoiceCreateOrConnectWithoutPurchaseOrderInput;
+    connect?: Prisma.InvoiceWhereUniqueInput;
+};
+export type InvoiceUpdateOneWithoutPurchaseOrderNestedInput = {
+    create?: Prisma.XOR<Prisma.InvoiceCreateWithoutPurchaseOrderInput, Prisma.InvoiceUncheckedCreateWithoutPurchaseOrderInput>;
+    connectOrCreate?: Prisma.InvoiceCreateOrConnectWithoutPurchaseOrderInput;
+    upsert?: Prisma.InvoiceUpsertWithoutPurchaseOrderInput;
+    disconnect?: Prisma.InvoiceWhereInput | boolean;
+    delete?: Prisma.InvoiceWhereInput | boolean;
+    connect?: Prisma.InvoiceWhereUniqueInput;
+    update?: Prisma.XOR<Prisma.XOR<Prisma.InvoiceUpdateToOneWithWhereWithoutPurchaseOrderInput, Prisma.InvoiceUpdateWithoutPurchaseOrderInput>, Prisma.InvoiceUncheckedUpdateWithoutPurchaseOrderInput>;
+};
+export type InvoiceUncheckedUpdateOneWithoutPurchaseOrderNestedInput = {
+    create?: Prisma.XOR<Prisma.InvoiceCreateWithoutPurchaseOrderInput, Prisma.InvoiceUncheckedCreateWithoutPurchaseOrderInput>;
+    connectOrCreate?: Prisma.InvoiceCreateOrConnectWithoutPurchaseOrderInput;
+    upsert?: Prisma.InvoiceUpsertWithoutPurchaseOrderInput;
+    disconnect?: Prisma.InvoiceWhereInput | boolean;
+    delete?: Prisma.InvoiceWhereInput | boolean;
+    connect?: Prisma.InvoiceWhereUniqueInput;
+    update?: Prisma.XOR<Prisma.XOR<Prisma.InvoiceUpdateToOneWithWhereWithoutPurchaseOrderInput, Prisma.InvoiceUpdateWithoutPurchaseOrderInput>, Prisma.InvoiceUncheckedUpdateWithoutPurchaseOrderInput>;
+};
 export type InvoiceCreateWithoutCreatedByInput = {
     id?: string;
     invoiceNo: string;
     date: Date | string;
     poNo?: string | null;
     status?: $Enums.InvoiceStatus;
-    dppHargaJual: number;
-    dppNilaiLain: number;
-    ppn: number;
-    total: number;
+    dppHargaJual: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total: runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    customer: Prisma.CustomersCreateNestedOneWithoutInvoicesInput;
+    customer: Prisma.CustomerCreateNestedOneWithoutInvoicesInput;
     document?: Prisma.BusinessDocumentCreateNestedOneWithoutInvoiceInput;
+    purchaseOrder?: Prisma.PurchaseOrderCreateNestedOneWithoutInvoiceInput;
     items?: Prisma.InvoiceItemCreateNestedManyWithoutInvoiceInput;
 };
 export type InvoiceUncheckedCreateWithoutCreatedByInput = {
@@ -671,12 +731,13 @@ export type InvoiceUncheckedCreateWithoutCreatedByInput = {
     date: Date | string;
     poNo?: string | null;
     status?: $Enums.InvoiceStatus;
-    dppHargaJual: number;
-    dppNilaiLain: number;
-    ppn: number;
-    total: number;
+    dppHargaJual: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total: runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
+    purchaseOrderId?: string | null;
     customerId: string;
     documentId?: string | null;
     items?: Prisma.InvoiceItemUncheckedCreateNestedManyWithoutInvoiceInput;
@@ -711,12 +772,13 @@ export type InvoiceScalarWhereInput = {
     date?: Prisma.DateTimeFilter<"Invoice"> | Date | string;
     poNo?: Prisma.StringNullableFilter<"Invoice"> | string | null;
     status?: Prisma.EnumInvoiceStatusFilter<"Invoice"> | $Enums.InvoiceStatus;
-    dppHargaJual?: Prisma.FloatFilter<"Invoice"> | number;
-    dppNilaiLain?: Prisma.FloatFilter<"Invoice"> | number;
-    ppn?: Prisma.FloatFilter<"Invoice"> | number;
-    total?: Prisma.FloatFilter<"Invoice"> | number;
+    dppHargaJual?: Prisma.DecimalFilter<"Invoice"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain?: Prisma.DecimalFilter<"Invoice"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn?: Prisma.DecimalFilter<"Invoice"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFilter<"Invoice"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string;
+    purchaseOrderId?: Prisma.StringNullableFilter<"Invoice"> | string | null;
     customerId?: Prisma.StringFilter<"Invoice"> | string;
     createdById?: Prisma.StringFilter<"Invoice"> | string;
     documentId?: Prisma.StringNullableFilter<"Invoice"> | string | null;
@@ -727,14 +789,15 @@ export type InvoiceCreateWithoutDocumentInput = {
     date: Date | string;
     poNo?: string | null;
     status?: $Enums.InvoiceStatus;
-    dppHargaJual: number;
-    dppNilaiLain: number;
-    ppn: number;
-    total: number;
+    dppHargaJual: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total: runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    customer: Prisma.CustomersCreateNestedOneWithoutInvoicesInput;
+    customer: Prisma.CustomerCreateNestedOneWithoutInvoicesInput;
     createdBy: Prisma.UserCreateNestedOneWithoutInvoicesInput;
+    purchaseOrder?: Prisma.PurchaseOrderCreateNestedOneWithoutInvoiceInput;
     items?: Prisma.InvoiceItemCreateNestedManyWithoutInvoiceInput;
 };
 export type InvoiceUncheckedCreateWithoutDocumentInput = {
@@ -743,12 +806,13 @@ export type InvoiceUncheckedCreateWithoutDocumentInput = {
     date: Date | string;
     poNo?: string | null;
     status?: $Enums.InvoiceStatus;
-    dppHargaJual: number;
-    dppNilaiLain: number;
-    ppn: number;
-    total: number;
+    dppHargaJual: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total: runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
+    purchaseOrderId?: string | null;
     customerId: string;
     createdById: string;
     items?: Prisma.InvoiceItemUncheckedCreateNestedManyWithoutInvoiceInput;
@@ -772,14 +836,15 @@ export type InvoiceUpdateWithoutDocumentInput = {
     date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     poNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus;
-    dppHargaJual?: Prisma.FloatFieldUpdateOperationsInput | number;
-    dppNilaiLain?: Prisma.FloatFieldUpdateOperationsInput | number;
-    ppn?: Prisma.FloatFieldUpdateOperationsInput | number;
-    total?: Prisma.FloatFieldUpdateOperationsInput | number;
+    dppHargaJual?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    customer?: Prisma.CustomersUpdateOneRequiredWithoutInvoicesNestedInput;
+    customer?: Prisma.CustomerUpdateOneRequiredWithoutInvoicesNestedInput;
     createdBy?: Prisma.UserUpdateOneRequiredWithoutInvoicesNestedInput;
+    purchaseOrder?: Prisma.PurchaseOrderUpdateOneWithoutInvoiceNestedInput;
     items?: Prisma.InvoiceItemUpdateManyWithoutInvoiceNestedInput;
 };
 export type InvoiceUncheckedUpdateWithoutDocumentInput = {
@@ -788,12 +853,13 @@ export type InvoiceUncheckedUpdateWithoutDocumentInput = {
     date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     poNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus;
-    dppHargaJual?: Prisma.FloatFieldUpdateOperationsInput | number;
-    dppNilaiLain?: Prisma.FloatFieldUpdateOperationsInput | number;
-    ppn?: Prisma.FloatFieldUpdateOperationsInput | number;
-    total?: Prisma.FloatFieldUpdateOperationsInput | number;
+    dppHargaJual?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    purchaseOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     customerId?: Prisma.StringFieldUpdateOperationsInput | string;
     createdById?: Prisma.StringFieldUpdateOperationsInput | string;
     items?: Prisma.InvoiceItemUncheckedUpdateManyWithoutInvoiceNestedInput;
@@ -804,14 +870,15 @@ export type InvoiceCreateWithoutCustomerInput = {
     date: Date | string;
     poNo?: string | null;
     status?: $Enums.InvoiceStatus;
-    dppHargaJual: number;
-    dppNilaiLain: number;
-    ppn: number;
-    total: number;
+    dppHargaJual: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total: runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     createdBy: Prisma.UserCreateNestedOneWithoutInvoicesInput;
     document?: Prisma.BusinessDocumentCreateNestedOneWithoutInvoiceInput;
+    purchaseOrder?: Prisma.PurchaseOrderCreateNestedOneWithoutInvoiceInput;
     items?: Prisma.InvoiceItemCreateNestedManyWithoutInvoiceInput;
 };
 export type InvoiceUncheckedCreateWithoutCustomerInput = {
@@ -820,12 +887,13 @@ export type InvoiceUncheckedCreateWithoutCustomerInput = {
     date: Date | string;
     poNo?: string | null;
     status?: $Enums.InvoiceStatus;
-    dppHargaJual: number;
-    dppNilaiLain: number;
-    ppn: number;
-    total: number;
+    dppHargaJual: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total: runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
+    purchaseOrderId?: string | null;
     createdById: string;
     documentId?: string | null;
     items?: Prisma.InvoiceItemUncheckedCreateNestedManyWithoutInvoiceInput;
@@ -857,15 +925,16 @@ export type InvoiceCreateWithoutItemsInput = {
     date: Date | string;
     poNo?: string | null;
     status?: $Enums.InvoiceStatus;
-    dppHargaJual: number;
-    dppNilaiLain: number;
-    ppn: number;
-    total: number;
+    dppHargaJual: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total: runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    customer: Prisma.CustomersCreateNestedOneWithoutInvoicesInput;
+    customer: Prisma.CustomerCreateNestedOneWithoutInvoicesInput;
     createdBy: Prisma.UserCreateNestedOneWithoutInvoicesInput;
     document?: Prisma.BusinessDocumentCreateNestedOneWithoutInvoiceInput;
+    purchaseOrder?: Prisma.PurchaseOrderCreateNestedOneWithoutInvoiceInput;
 };
 export type InvoiceUncheckedCreateWithoutItemsInput = {
     id?: string;
@@ -873,12 +942,13 @@ export type InvoiceUncheckedCreateWithoutItemsInput = {
     date: Date | string;
     poNo?: string | null;
     status?: $Enums.InvoiceStatus;
-    dppHargaJual: number;
-    dppNilaiLain: number;
-    ppn: number;
-    total: number;
+    dppHargaJual: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total: runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
+    purchaseOrderId?: string | null;
     customerId: string;
     createdById: string;
     documentId?: string | null;
@@ -902,15 +972,16 @@ export type InvoiceUpdateWithoutItemsInput = {
     date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     poNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus;
-    dppHargaJual?: Prisma.FloatFieldUpdateOperationsInput | number;
-    dppNilaiLain?: Prisma.FloatFieldUpdateOperationsInput | number;
-    ppn?: Prisma.FloatFieldUpdateOperationsInput | number;
-    total?: Prisma.FloatFieldUpdateOperationsInput | number;
+    dppHargaJual?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    customer?: Prisma.CustomersUpdateOneRequiredWithoutInvoicesNestedInput;
+    customer?: Prisma.CustomerUpdateOneRequiredWithoutInvoicesNestedInput;
     createdBy?: Prisma.UserUpdateOneRequiredWithoutInvoicesNestedInput;
     document?: Prisma.BusinessDocumentUpdateOneWithoutInvoiceNestedInput;
+    purchaseOrder?: Prisma.PurchaseOrderUpdateOneWithoutInvoiceNestedInput;
 };
 export type InvoiceUncheckedUpdateWithoutItemsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -918,15 +989,97 @@ export type InvoiceUncheckedUpdateWithoutItemsInput = {
     date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     poNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus;
-    dppHargaJual?: Prisma.FloatFieldUpdateOperationsInput | number;
-    dppNilaiLain?: Prisma.FloatFieldUpdateOperationsInput | number;
-    ppn?: Prisma.FloatFieldUpdateOperationsInput | number;
-    total?: Prisma.FloatFieldUpdateOperationsInput | number;
+    dppHargaJual?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    purchaseOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    customerId?: Prisma.StringFieldUpdateOperationsInput | string;
+    createdById?: Prisma.StringFieldUpdateOperationsInput | string;
+    documentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+};
+export type InvoiceCreateWithoutPurchaseOrderInput = {
+    id?: string;
+    invoiceNo: string;
+    date: Date | string;
+    poNo?: string | null;
+    status?: $Enums.InvoiceStatus;
+    dppHargaJual: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    customer: Prisma.CustomerCreateNestedOneWithoutInvoicesInput;
+    createdBy: Prisma.UserCreateNestedOneWithoutInvoicesInput;
+    document?: Prisma.BusinessDocumentCreateNestedOneWithoutInvoiceInput;
+    items?: Prisma.InvoiceItemCreateNestedManyWithoutInvoiceInput;
+};
+export type InvoiceUncheckedCreateWithoutPurchaseOrderInput = {
+    id?: string;
+    invoiceNo: string;
+    date: Date | string;
+    poNo?: string | null;
+    status?: $Enums.InvoiceStatus;
+    dppHargaJual: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    customerId: string;
+    createdById: string;
+    documentId?: string | null;
+    items?: Prisma.InvoiceItemUncheckedCreateNestedManyWithoutInvoiceInput;
+};
+export type InvoiceCreateOrConnectWithoutPurchaseOrderInput = {
+    where: Prisma.InvoiceWhereUniqueInput;
+    create: Prisma.XOR<Prisma.InvoiceCreateWithoutPurchaseOrderInput, Prisma.InvoiceUncheckedCreateWithoutPurchaseOrderInput>;
+};
+export type InvoiceUpsertWithoutPurchaseOrderInput = {
+    update: Prisma.XOR<Prisma.InvoiceUpdateWithoutPurchaseOrderInput, Prisma.InvoiceUncheckedUpdateWithoutPurchaseOrderInput>;
+    create: Prisma.XOR<Prisma.InvoiceCreateWithoutPurchaseOrderInput, Prisma.InvoiceUncheckedCreateWithoutPurchaseOrderInput>;
+    where?: Prisma.InvoiceWhereInput;
+};
+export type InvoiceUpdateToOneWithWhereWithoutPurchaseOrderInput = {
+    where?: Prisma.InvoiceWhereInput;
+    data: Prisma.XOR<Prisma.InvoiceUpdateWithoutPurchaseOrderInput, Prisma.InvoiceUncheckedUpdateWithoutPurchaseOrderInput>;
+};
+export type InvoiceUpdateWithoutPurchaseOrderInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    invoiceNo?: Prisma.StringFieldUpdateOperationsInput | string;
+    date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    poNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus;
+    dppHargaJual?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    customer?: Prisma.CustomerUpdateOneRequiredWithoutInvoicesNestedInput;
+    createdBy?: Prisma.UserUpdateOneRequiredWithoutInvoicesNestedInput;
+    document?: Prisma.BusinessDocumentUpdateOneWithoutInvoiceNestedInput;
+    items?: Prisma.InvoiceItemUpdateManyWithoutInvoiceNestedInput;
+};
+export type InvoiceUncheckedUpdateWithoutPurchaseOrderInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    invoiceNo?: Prisma.StringFieldUpdateOperationsInput | string;
+    date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    poNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus;
+    dppHargaJual?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     customerId?: Prisma.StringFieldUpdateOperationsInput | string;
     createdById?: Prisma.StringFieldUpdateOperationsInput | string;
     documentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    items?: Prisma.InvoiceItemUncheckedUpdateManyWithoutInvoiceNestedInput;
 };
 export type InvoiceCreateManyCreatedByInput = {
     id?: string;
@@ -934,12 +1087,13 @@ export type InvoiceCreateManyCreatedByInput = {
     date: Date | string;
     poNo?: string | null;
     status?: $Enums.InvoiceStatus;
-    dppHargaJual: number;
-    dppNilaiLain: number;
-    ppn: number;
-    total: number;
+    dppHargaJual: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total: runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
+    purchaseOrderId?: string | null;
     customerId: string;
     documentId?: string | null;
 };
@@ -949,14 +1103,15 @@ export type InvoiceUpdateWithoutCreatedByInput = {
     date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     poNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus;
-    dppHargaJual?: Prisma.FloatFieldUpdateOperationsInput | number;
-    dppNilaiLain?: Prisma.FloatFieldUpdateOperationsInput | number;
-    ppn?: Prisma.FloatFieldUpdateOperationsInput | number;
-    total?: Prisma.FloatFieldUpdateOperationsInput | number;
+    dppHargaJual?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    customer?: Prisma.CustomersUpdateOneRequiredWithoutInvoicesNestedInput;
+    customer?: Prisma.CustomerUpdateOneRequiredWithoutInvoicesNestedInput;
     document?: Prisma.BusinessDocumentUpdateOneWithoutInvoiceNestedInput;
+    purchaseOrder?: Prisma.PurchaseOrderUpdateOneWithoutInvoiceNestedInput;
     items?: Prisma.InvoiceItemUpdateManyWithoutInvoiceNestedInput;
 };
 export type InvoiceUncheckedUpdateWithoutCreatedByInput = {
@@ -965,12 +1120,13 @@ export type InvoiceUncheckedUpdateWithoutCreatedByInput = {
     date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     poNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus;
-    dppHargaJual?: Prisma.FloatFieldUpdateOperationsInput | number;
-    dppNilaiLain?: Prisma.FloatFieldUpdateOperationsInput | number;
-    ppn?: Prisma.FloatFieldUpdateOperationsInput | number;
-    total?: Prisma.FloatFieldUpdateOperationsInput | number;
+    dppHargaJual?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    purchaseOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     customerId?: Prisma.StringFieldUpdateOperationsInput | string;
     documentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     items?: Prisma.InvoiceItemUncheckedUpdateManyWithoutInvoiceNestedInput;
@@ -981,12 +1137,13 @@ export type InvoiceUncheckedUpdateManyWithoutCreatedByInput = {
     date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     poNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus;
-    dppHargaJual?: Prisma.FloatFieldUpdateOperationsInput | number;
-    dppNilaiLain?: Prisma.FloatFieldUpdateOperationsInput | number;
-    ppn?: Prisma.FloatFieldUpdateOperationsInput | number;
-    total?: Prisma.FloatFieldUpdateOperationsInput | number;
+    dppHargaJual?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    purchaseOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     customerId?: Prisma.StringFieldUpdateOperationsInput | string;
     documentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 };
@@ -996,12 +1153,13 @@ export type InvoiceCreateManyCustomerInput = {
     date: Date | string;
     poNo?: string | null;
     status?: $Enums.InvoiceStatus;
-    dppHargaJual: number;
-    dppNilaiLain: number;
-    ppn: number;
-    total: number;
+    dppHargaJual: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total: runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
+    purchaseOrderId?: string | null;
     createdById: string;
     documentId?: string | null;
 };
@@ -1011,14 +1169,15 @@ export type InvoiceUpdateWithoutCustomerInput = {
     date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     poNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus;
-    dppHargaJual?: Prisma.FloatFieldUpdateOperationsInput | number;
-    dppNilaiLain?: Prisma.FloatFieldUpdateOperationsInput | number;
-    ppn?: Prisma.FloatFieldUpdateOperationsInput | number;
-    total?: Prisma.FloatFieldUpdateOperationsInput | number;
+    dppHargaJual?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     createdBy?: Prisma.UserUpdateOneRequiredWithoutInvoicesNestedInput;
     document?: Prisma.BusinessDocumentUpdateOneWithoutInvoiceNestedInput;
+    purchaseOrder?: Prisma.PurchaseOrderUpdateOneWithoutInvoiceNestedInput;
     items?: Prisma.InvoiceItemUpdateManyWithoutInvoiceNestedInput;
 };
 export type InvoiceUncheckedUpdateWithoutCustomerInput = {
@@ -1027,12 +1186,13 @@ export type InvoiceUncheckedUpdateWithoutCustomerInput = {
     date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     poNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus;
-    dppHargaJual?: Prisma.FloatFieldUpdateOperationsInput | number;
-    dppNilaiLain?: Prisma.FloatFieldUpdateOperationsInput | number;
-    ppn?: Prisma.FloatFieldUpdateOperationsInput | number;
-    total?: Prisma.FloatFieldUpdateOperationsInput | number;
+    dppHargaJual?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    purchaseOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     createdById?: Prisma.StringFieldUpdateOperationsInput | string;
     documentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     items?: Prisma.InvoiceItemUncheckedUpdateManyWithoutInvoiceNestedInput;
@@ -1043,12 +1203,13 @@ export type InvoiceUncheckedUpdateManyWithoutCustomerInput = {
     date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     poNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus;
-    dppHargaJual?: Prisma.FloatFieldUpdateOperationsInput | number;
-    dppNilaiLain?: Prisma.FloatFieldUpdateOperationsInput | number;
-    ppn?: Prisma.FloatFieldUpdateOperationsInput | number;
-    total?: Prisma.FloatFieldUpdateOperationsInput | number;
+    dppHargaJual?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    dppNilaiLain?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ppn?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    purchaseOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     createdById?: Prisma.StringFieldUpdateOperationsInput | string;
     documentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 };
@@ -1088,12 +1249,14 @@ export type InvoiceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     total?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
+    purchaseOrderId?: boolean;
     customerId?: boolean;
     createdById?: boolean;
     documentId?: boolean;
-    customer?: boolean | Prisma.CustomersDefaultArgs<ExtArgs>;
+    customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>;
     createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     document?: boolean | Prisma.Invoice$documentArgs<ExtArgs>;
+    purchaseOrder?: boolean | Prisma.Invoice$purchaseOrderArgs<ExtArgs>;
     items?: boolean | Prisma.Invoice$itemsArgs<ExtArgs>;
     _count?: boolean | Prisma.InvoiceCountOutputTypeDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["invoice"]>;
@@ -1109,12 +1272,14 @@ export type InvoiceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
     total?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
+    purchaseOrderId?: boolean;
     customerId?: boolean;
     createdById?: boolean;
     documentId?: boolean;
-    customer?: boolean | Prisma.CustomersDefaultArgs<ExtArgs>;
+    customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>;
     createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     document?: boolean | Prisma.Invoice$documentArgs<ExtArgs>;
+    purchaseOrder?: boolean | Prisma.Invoice$purchaseOrderArgs<ExtArgs>;
 }, ExtArgs["result"]["invoice"]>;
 export type InvoiceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
@@ -1128,12 +1293,14 @@ export type InvoiceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
     total?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
+    purchaseOrderId?: boolean;
     customerId?: boolean;
     createdById?: boolean;
     documentId?: boolean;
-    customer?: boolean | Prisma.CustomersDefaultArgs<ExtArgs>;
+    customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>;
     createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     document?: boolean | Prisma.Invoice$documentArgs<ExtArgs>;
+    purchaseOrder?: boolean | Prisma.Invoice$purchaseOrderArgs<ExtArgs>;
 }, ExtArgs["result"]["invoice"]>;
 export type InvoiceSelectScalar = {
     id?: boolean;
@@ -1147,34 +1314,39 @@ export type InvoiceSelectScalar = {
     total?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
+    purchaseOrderId?: boolean;
     customerId?: boolean;
     createdById?: boolean;
     documentId?: boolean;
 };
-export type InvoiceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "invoiceNo" | "date" | "poNo" | "status" | "dppHargaJual" | "dppNilaiLain" | "ppn" | "total" | "createdAt" | "updatedAt" | "customerId" | "createdById" | "documentId", ExtArgs["result"]["invoice"]>;
+export type InvoiceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "invoiceNo" | "date" | "poNo" | "status" | "dppHargaJual" | "dppNilaiLain" | "ppn" | "total" | "createdAt" | "updatedAt" | "purchaseOrderId" | "customerId" | "createdById" | "documentId", ExtArgs["result"]["invoice"]>;
 export type InvoiceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    customer?: boolean | Prisma.CustomersDefaultArgs<ExtArgs>;
+    customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>;
     createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     document?: boolean | Prisma.Invoice$documentArgs<ExtArgs>;
+    purchaseOrder?: boolean | Prisma.Invoice$purchaseOrderArgs<ExtArgs>;
     items?: boolean | Prisma.Invoice$itemsArgs<ExtArgs>;
     _count?: boolean | Prisma.InvoiceCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type InvoiceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    customer?: boolean | Prisma.CustomersDefaultArgs<ExtArgs>;
+    customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>;
     createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     document?: boolean | Prisma.Invoice$documentArgs<ExtArgs>;
+    purchaseOrder?: boolean | Prisma.Invoice$purchaseOrderArgs<ExtArgs>;
 };
 export type InvoiceIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    customer?: boolean | Prisma.CustomersDefaultArgs<ExtArgs>;
+    customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>;
     createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     document?: boolean | Prisma.Invoice$documentArgs<ExtArgs>;
+    purchaseOrder?: boolean | Prisma.Invoice$purchaseOrderArgs<ExtArgs>;
 };
 export type $InvoicePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     name: "Invoice";
     objects: {
-        customer: Prisma.$CustomersPayload<ExtArgs>;
+        customer: Prisma.$CustomerPayload<ExtArgs>;
         createdBy: Prisma.$UserPayload<ExtArgs>;
         document: Prisma.$BusinessDocumentPayload<ExtArgs> | null;
+        purchaseOrder: Prisma.$PurchaseOrderPayload<ExtArgs> | null;
         items: Prisma.$InvoiceItemPayload<ExtArgs>[];
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1183,12 +1355,13 @@ export type $InvoicePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
         date: Date;
         poNo: string | null;
         status: $Enums.InvoiceStatus;
-        dppHargaJual: number;
-        dppNilaiLain: number;
-        ppn: number;
-        total: number;
+        dppHargaJual: runtime.Decimal;
+        dppNilaiLain: runtime.Decimal;
+        ppn: runtime.Decimal;
+        total: runtime.Decimal;
         createdAt: Date;
         updatedAt: Date;
+        purchaseOrderId: string | null;
         customerId: string;
         createdById: string;
         documentId: string | null;
@@ -1521,9 +1694,10 @@ export interface InvoiceDelegate<ExtArgs extends runtime.Types.Extensions.Intern
  */
 export interface Prisma__InvoiceClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise";
-    customer<T extends Prisma.CustomersDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CustomersDefaultArgs<ExtArgs>>): Prisma.Prisma__CustomersClient<runtime.Types.Result.GetResult<Prisma.$CustomersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
+    customer<T extends Prisma.CustomerDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CustomerDefaultArgs<ExtArgs>>): Prisma.Prisma__CustomerClient<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
     createdBy<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
     document<T extends Prisma.Invoice$documentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Invoice$documentArgs<ExtArgs>>): Prisma.Prisma__BusinessDocumentClient<runtime.Types.Result.GetResult<Prisma.$BusinessDocumentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    purchaseOrder<T extends Prisma.Invoice$purchaseOrderArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Invoice$purchaseOrderArgs<ExtArgs>>): Prisma.Prisma__PurchaseOrderClient<runtime.Types.Result.GetResult<Prisma.$PurchaseOrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
     items<T extends Prisma.Invoice$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Invoice$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoiceItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1555,12 +1729,13 @@ export interface InvoiceFieldRefs {
     readonly date: Prisma.FieldRef<"Invoice", 'DateTime'>;
     readonly poNo: Prisma.FieldRef<"Invoice", 'String'>;
     readonly status: Prisma.FieldRef<"Invoice", 'InvoiceStatus'>;
-    readonly dppHargaJual: Prisma.FieldRef<"Invoice", 'Float'>;
-    readonly dppNilaiLain: Prisma.FieldRef<"Invoice", 'Float'>;
-    readonly ppn: Prisma.FieldRef<"Invoice", 'Float'>;
-    readonly total: Prisma.FieldRef<"Invoice", 'Float'>;
+    readonly dppHargaJual: Prisma.FieldRef<"Invoice", 'Decimal'>;
+    readonly dppNilaiLain: Prisma.FieldRef<"Invoice", 'Decimal'>;
+    readonly ppn: Prisma.FieldRef<"Invoice", 'Decimal'>;
+    readonly total: Prisma.FieldRef<"Invoice", 'Decimal'>;
     readonly createdAt: Prisma.FieldRef<"Invoice", 'DateTime'>;
     readonly updatedAt: Prisma.FieldRef<"Invoice", 'DateTime'>;
+    readonly purchaseOrderId: Prisma.FieldRef<"Invoice", 'String'>;
     readonly customerId: Prisma.FieldRef<"Invoice", 'String'>;
     readonly createdById: Prisma.FieldRef<"Invoice", 'String'>;
     readonly documentId: Prisma.FieldRef<"Invoice", 'String'>;
@@ -1964,6 +2139,24 @@ export type Invoice$documentArgs<ExtArgs extends runtime.Types.Extensions.Intern
      */
     include?: Prisma.BusinessDocumentInclude<ExtArgs> | null;
     where?: Prisma.BusinessDocumentWhereInput;
+};
+/**
+ * Invoice.purchaseOrder
+ */
+export type Invoice$purchaseOrderArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PurchaseOrder
+     */
+    select?: Prisma.PurchaseOrderSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the PurchaseOrder
+     */
+    omit?: Prisma.PurchaseOrderOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.PurchaseOrderInclude<ExtArgs> | null;
+    where?: Prisma.PurchaseOrderWhereInput;
 };
 /**
  * Invoice.items
