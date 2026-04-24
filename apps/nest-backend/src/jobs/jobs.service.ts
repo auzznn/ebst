@@ -14,26 +14,97 @@ import { CreateCheckSheetDto } from './dto/create-checksheet.dto';
 export class JobsService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async findAll() {
-    return this.prisma.jobCard.findMany({
-      include: {
-        jobLists: {
-          include: {
-            operations: true,
-            part: true,
-            lineItem: {
-              include: {
-                part: true,
+  async findAll(
+    page: number = 1,
+    limit: number = 10,
+    startDate?: string,
+    endDate?: string,
+    status?: JobCardStatus,
+    search?: string,
+  ) {
+    const skip = (page - 1) * limit;
+
+    const where: any = {};
+    if (startDate || endDate) {
+      where.createdAt = {};
+      if (startDate) {
+        where.createdAt.gte = new Date(startDate);
+      }
+      if (endDate) {
+        const end = new Date(endDate);
+        end.setHours(23, 59, 59, 999);
+        where.createdAt.lte = end;
+      }
+    }
+
+    if (status) {
+      where.status = status;
+    }
+
+    if (search) {
+      where.OR = [
+        { jobNo: { contains: search, mode: 'insensitive' } },
+        {
+          purchaseOrder: {
+            poNumber: { contains: search, mode: 'insensitive' },
+          },
+        },
+        {
+          purchaseOrder: {
+            customer: { name: { contains: search, mode: 'insensitive' } },
+          },
+        },
+      ];
+    }
+
+    const [total, data] = await Promise.all([
+      this.prisma.jobCard.count({ where }),
+      this.prisma.jobCard.findMany({
+        skip,
+        take: limit,
+        where,
+        include: {
+          jobLists: {
+            include: {
+              operations: true,
+              part: {
+                include: {
+                  specifications: true,
+                  materials: {
+                    include: {
+                      material: true,
+                    },
+                  },
+                },
+              },
+              lineItem: {
+                include: {
+                  part: {
+                    include: {
+                      specifications: true,
+                      materials: {
+                        include: {
+                          material: true,
+                        },
+                      },
+                    },
+                  },
+                },
               },
             },
           },
+          purchaseOrder: {
+            include: { customer: true },
+          },
         },
-        purchaseOrder: {
-          include: { customer: true },
-        },
-      },
-      orderBy: { createdAt: 'desc' },
-    });
+        orderBy: { createdAt: 'desc' },
+      })
+    ]);
+
+    return { 
+      data, 
+      meta: { total, page, limit, totalPages: Math.ceil(total / limit) } 
+    };
   }
 
   async findOne(id: string) {
@@ -45,6 +116,12 @@ export class JobsService {
             part: {
               include: {
                 material: true,
+                specifications: true,
+                materials: {
+                  include: {
+                    material: true,
+                  },
+                },
               },
             },
             lineItem: {
@@ -52,6 +129,12 @@ export class JobsService {
                 part: {
                   include: {
                     material: true,
+                    specifications: true,
+                    materials: {
+                      include: {
+                        material: true,
+                      },
+                    },
                   },
                 },
               },
@@ -157,6 +240,7 @@ export class JobsService {
               routingStepId: step.id,
               stepOrder: step.stepOrder,
               operationName: step.operationName,
+              machineId: step.defaultMachineId || undefined,
               status: OperationStatus.WAITING,
             },
           });
@@ -334,21 +418,6 @@ export class JobsService {
 
   async submitQc(operationId: string, data: SubmitQcDto, inspectorId: string) {
     const findings = data.findings ?? [];
-    const totalScore = findings.reduce((sum, f) => sum + f.severity, 0);
-
-    // Derive action recommendation from score
-    let actionRequired: string | null = null;
-    if (totalScore === 0) {
-      actionRequired = 'No action required — all parameters within specification.';
-    } else if (totalScore <= 10) {
-      actionRequired = 'Minor non-conformances noted. Monitor and re-inspect at next interval.';
-    } else if (totalScore <= 25) {
-      actionRequired = 'Moderate issues detected. Schedule corrective maintenance. Re-inspect before release.';
-    } else if (totalScore <= 40) {
-      actionRequired = 'Significant defects found. Part must be repaired or reworked before proceeding.';
-    } else {
-      actionRequired = 'Critical failures detected. Part must be scrapped or escalated for review immediately.';
-    }
 
     return this.prisma.qcLog.create({
       data: {
@@ -356,8 +425,6 @@ export class JobsService {
         result: data.result,
         inspectorId,
         reason: data.reason || undefined,
-        totalScore: findings.length > 0 ? totalScore : undefined,
-        actionRequired: findings.length > 0 ? actionRequired : undefined,
         findings: {
           create: findings.map((f) => ({
             category: f.category,
@@ -366,7 +433,6 @@ export class JobsService {
             measuredValue: f.measuredValue || undefined,
             unit: f.unit || undefined,
             description: f.description || undefined,
-            severity: f.severity,
             isConforming: f.isConforming,
             documentId: f.documentId || undefined,
           })),

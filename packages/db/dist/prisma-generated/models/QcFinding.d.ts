@@ -8,16 +8,8 @@ import type * as Prisma from "../internal/prismaNamespace.js";
 export type QcFindingModel = runtime.Types.Result.DefaultSelection<Prisma.$QcFindingPayload>;
 export type AggregateQcFinding = {
     _count: QcFindingCountAggregateOutputType | null;
-    _avg: QcFindingAvgAggregateOutputType | null;
-    _sum: QcFindingSumAggregateOutputType | null;
     _min: QcFindingMinAggregateOutputType | null;
     _max: QcFindingMaxAggregateOutputType | null;
-};
-export type QcFindingAvgAggregateOutputType = {
-    severity: number | null;
-};
-export type QcFindingSumAggregateOutputType = {
-    severity: number | null;
 };
 export type QcFindingMinAggregateOutputType = {
     id: string | null;
@@ -28,7 +20,6 @@ export type QcFindingMinAggregateOutputType = {
     measuredValue: string | null;
     unit: string | null;
     description: string | null;
-    severity: number | null;
     isConforming: boolean | null;
     documentId: string | null;
 };
@@ -41,7 +32,6 @@ export type QcFindingMaxAggregateOutputType = {
     measuredValue: string | null;
     unit: string | null;
     description: string | null;
-    severity: number | null;
     isConforming: boolean | null;
     documentId: string | null;
 };
@@ -54,16 +44,9 @@ export type QcFindingCountAggregateOutputType = {
     measuredValue: number;
     unit: number;
     description: number;
-    severity: number;
     isConforming: number;
     documentId: number;
     _all: number;
-};
-export type QcFindingAvgAggregateInputType = {
-    severity?: true;
-};
-export type QcFindingSumAggregateInputType = {
-    severity?: true;
 };
 export type QcFindingMinAggregateInputType = {
     id?: true;
@@ -74,7 +57,6 @@ export type QcFindingMinAggregateInputType = {
     measuredValue?: true;
     unit?: true;
     description?: true;
-    severity?: true;
     isConforming?: true;
     documentId?: true;
 };
@@ -87,7 +69,6 @@ export type QcFindingMaxAggregateInputType = {
     measuredValue?: true;
     unit?: true;
     description?: true;
-    severity?: true;
     isConforming?: true;
     documentId?: true;
 };
@@ -100,7 +81,6 @@ export type QcFindingCountAggregateInputType = {
     measuredValue?: true;
     unit?: true;
     description?: true;
-    severity?: true;
     isConforming?: true;
     documentId?: true;
     _all?: true;
@@ -143,18 +123,6 @@ export type QcFindingAggregateArgs<ExtArgs extends runtime.Types.Extensions.Inte
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      *
-     * Select which fields to average
-    **/
-    _avg?: QcFindingAvgAggregateInputType;
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
-     * Select which fields to sum
-    **/
-    _sum?: QcFindingSumAggregateInputType;
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
      * Select which fields to find the minimum value
     **/
     _min?: QcFindingMinAggregateInputType;
@@ -176,8 +144,6 @@ export type QcFindingGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
     take?: number;
     skip?: number;
     _count?: QcFindingCountAggregateInputType | true;
-    _avg?: QcFindingAvgAggregateInputType;
-    _sum?: QcFindingSumAggregateInputType;
     _min?: QcFindingMinAggregateInputType;
     _max?: QcFindingMaxAggregateInputType;
 };
@@ -190,12 +156,9 @@ export type QcFindingGroupByOutputType = {
     measuredValue: string | null;
     unit: string | null;
     description: string | null;
-    severity: number;
     isConforming: boolean;
     documentId: string | null;
     _count: QcFindingCountAggregateOutputType | null;
-    _avg: QcFindingAvgAggregateOutputType | null;
-    _sum: QcFindingSumAggregateOutputType | null;
     _min: QcFindingMinAggregateOutputType | null;
     _max: QcFindingMaxAggregateOutputType | null;
 };
@@ -214,7 +177,6 @@ export type QcFindingWhereInput = {
     measuredValue?: Prisma.StringNullableFilter<"QcFinding"> | string | null;
     unit?: Prisma.StringNullableFilter<"QcFinding"> | string | null;
     description?: Prisma.StringNullableFilter<"QcFinding"> | string | null;
-    severity?: Prisma.IntFilter<"QcFinding"> | number;
     isConforming?: Prisma.BoolFilter<"QcFinding"> | boolean;
     documentId?: Prisma.StringNullableFilter<"QcFinding"> | string | null;
     qcLog?: Prisma.XOR<Prisma.QcLogScalarRelationFilter, Prisma.QcLogWhereInput>;
@@ -229,7 +191,6 @@ export type QcFindingOrderByWithRelationInput = {
     measuredValue?: Prisma.SortOrderInput | Prisma.SortOrder;
     unit?: Prisma.SortOrderInput | Prisma.SortOrder;
     description?: Prisma.SortOrderInput | Prisma.SortOrder;
-    severity?: Prisma.SortOrder;
     isConforming?: Prisma.SortOrder;
     documentId?: Prisma.SortOrderInput | Prisma.SortOrder;
     qcLog?: Prisma.QcLogOrderByWithRelationInput;
@@ -248,7 +209,6 @@ export type QcFindingWhereUniqueInput = Prisma.AtLeast<{
     measuredValue?: Prisma.StringNullableFilter<"QcFinding"> | string | null;
     unit?: Prisma.StringNullableFilter<"QcFinding"> | string | null;
     description?: Prisma.StringNullableFilter<"QcFinding"> | string | null;
-    severity?: Prisma.IntFilter<"QcFinding"> | number;
     isConforming?: Prisma.BoolFilter<"QcFinding"> | boolean;
     qcLog?: Prisma.XOR<Prisma.QcLogScalarRelationFilter, Prisma.QcLogWhereInput>;
     document?: Prisma.XOR<Prisma.BusinessDocumentNullableScalarRelationFilter, Prisma.BusinessDocumentWhereInput> | null;
@@ -262,14 +222,11 @@ export type QcFindingOrderByWithAggregationInput = {
     measuredValue?: Prisma.SortOrderInput | Prisma.SortOrder;
     unit?: Prisma.SortOrderInput | Prisma.SortOrder;
     description?: Prisma.SortOrderInput | Prisma.SortOrder;
-    severity?: Prisma.SortOrder;
     isConforming?: Prisma.SortOrder;
     documentId?: Prisma.SortOrderInput | Prisma.SortOrder;
     _count?: Prisma.QcFindingCountOrderByAggregateInput;
-    _avg?: Prisma.QcFindingAvgOrderByAggregateInput;
     _max?: Prisma.QcFindingMaxOrderByAggregateInput;
     _min?: Prisma.QcFindingMinOrderByAggregateInput;
-    _sum?: Prisma.QcFindingSumOrderByAggregateInput;
 };
 export type QcFindingScalarWhereWithAggregatesInput = {
     AND?: Prisma.QcFindingScalarWhereWithAggregatesInput | Prisma.QcFindingScalarWhereWithAggregatesInput[];
@@ -283,7 +240,6 @@ export type QcFindingScalarWhereWithAggregatesInput = {
     measuredValue?: Prisma.StringNullableWithAggregatesFilter<"QcFinding"> | string | null;
     unit?: Prisma.StringNullableWithAggregatesFilter<"QcFinding"> | string | null;
     description?: Prisma.StringNullableWithAggregatesFilter<"QcFinding"> | string | null;
-    severity?: Prisma.IntWithAggregatesFilter<"QcFinding"> | number;
     isConforming?: Prisma.BoolWithAggregatesFilter<"QcFinding"> | boolean;
     documentId?: Prisma.StringNullableWithAggregatesFilter<"QcFinding"> | string | null;
 };
@@ -295,7 +251,6 @@ export type QcFindingCreateInput = {
     measuredValue?: string | null;
     unit?: string | null;
     description?: string | null;
-    severity?: number;
     isConforming?: boolean;
     qcLog: Prisma.QcLogCreateNestedOneWithoutFindingsInput;
     document?: Prisma.BusinessDocumentCreateNestedOneWithoutQcFindingInput;
@@ -309,7 +264,6 @@ export type QcFindingUncheckedCreateInput = {
     measuredValue?: string | null;
     unit?: string | null;
     description?: string | null;
-    severity?: number;
     isConforming?: boolean;
     documentId?: string | null;
 };
@@ -321,7 +275,6 @@ export type QcFindingUpdateInput = {
     measuredValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    severity?: Prisma.IntFieldUpdateOperationsInput | number;
     isConforming?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     qcLog?: Prisma.QcLogUpdateOneRequiredWithoutFindingsNestedInput;
     document?: Prisma.BusinessDocumentUpdateOneWithoutQcFindingNestedInput;
@@ -335,7 +288,6 @@ export type QcFindingUncheckedUpdateInput = {
     measuredValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    severity?: Prisma.IntFieldUpdateOperationsInput | number;
     isConforming?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     documentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 };
@@ -348,7 +300,6 @@ export type QcFindingCreateManyInput = {
     measuredValue?: string | null;
     unit?: string | null;
     description?: string | null;
-    severity?: number;
     isConforming?: boolean;
     documentId?: string | null;
 };
@@ -360,7 +311,6 @@ export type QcFindingUpdateManyMutationInput = {
     measuredValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    severity?: Prisma.IntFieldUpdateOperationsInput | number;
     isConforming?: Prisma.BoolFieldUpdateOperationsInput | boolean;
 };
 export type QcFindingUncheckedUpdateManyInput = {
@@ -372,7 +322,6 @@ export type QcFindingUncheckedUpdateManyInput = {
     measuredValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    severity?: Prisma.IntFieldUpdateOperationsInput | number;
     isConforming?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     documentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 };
@@ -397,12 +346,8 @@ export type QcFindingCountOrderByAggregateInput = {
     measuredValue?: Prisma.SortOrder;
     unit?: Prisma.SortOrder;
     description?: Prisma.SortOrder;
-    severity?: Prisma.SortOrder;
     isConforming?: Prisma.SortOrder;
     documentId?: Prisma.SortOrder;
-};
-export type QcFindingAvgOrderByAggregateInput = {
-    severity?: Prisma.SortOrder;
 };
 export type QcFindingMaxOrderByAggregateInput = {
     id?: Prisma.SortOrder;
@@ -413,7 +358,6 @@ export type QcFindingMaxOrderByAggregateInput = {
     measuredValue?: Prisma.SortOrder;
     unit?: Prisma.SortOrder;
     description?: Prisma.SortOrder;
-    severity?: Prisma.SortOrder;
     isConforming?: Prisma.SortOrder;
     documentId?: Prisma.SortOrder;
 };
@@ -426,12 +370,8 @@ export type QcFindingMinOrderByAggregateInput = {
     measuredValue?: Prisma.SortOrder;
     unit?: Prisma.SortOrder;
     description?: Prisma.SortOrder;
-    severity?: Prisma.SortOrder;
     isConforming?: Prisma.SortOrder;
     documentId?: Prisma.SortOrder;
-};
-export type QcFindingSumOrderByAggregateInput = {
-    severity?: Prisma.SortOrder;
 };
 export type QcFindingCreateNestedOneWithoutDocumentInput = {
     create?: Prisma.XOR<Prisma.QcFindingCreateWithoutDocumentInput, Prisma.QcFindingUncheckedCreateWithoutDocumentInput>;
@@ -510,7 +450,6 @@ export type QcFindingCreateWithoutDocumentInput = {
     measuredValue?: string | null;
     unit?: string | null;
     description?: string | null;
-    severity?: number;
     isConforming?: boolean;
     qcLog: Prisma.QcLogCreateNestedOneWithoutFindingsInput;
 };
@@ -523,7 +462,6 @@ export type QcFindingUncheckedCreateWithoutDocumentInput = {
     measuredValue?: string | null;
     unit?: string | null;
     description?: string | null;
-    severity?: number;
     isConforming?: boolean;
 };
 export type QcFindingCreateOrConnectWithoutDocumentInput = {
@@ -547,7 +485,6 @@ export type QcFindingUpdateWithoutDocumentInput = {
     measuredValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    severity?: Prisma.IntFieldUpdateOperationsInput | number;
     isConforming?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     qcLog?: Prisma.QcLogUpdateOneRequiredWithoutFindingsNestedInput;
 };
@@ -560,7 +497,6 @@ export type QcFindingUncheckedUpdateWithoutDocumentInput = {
     measuredValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    severity?: Prisma.IntFieldUpdateOperationsInput | number;
     isConforming?: Prisma.BoolFieldUpdateOperationsInput | boolean;
 };
 export type QcFindingCreateWithoutQcLogInput = {
@@ -571,7 +507,6 @@ export type QcFindingCreateWithoutQcLogInput = {
     measuredValue?: string | null;
     unit?: string | null;
     description?: string | null;
-    severity?: number;
     isConforming?: boolean;
     document?: Prisma.BusinessDocumentCreateNestedOneWithoutQcFindingInput;
 };
@@ -583,7 +518,6 @@ export type QcFindingUncheckedCreateWithoutQcLogInput = {
     measuredValue?: string | null;
     unit?: string | null;
     description?: string | null;
-    severity?: number;
     isConforming?: boolean;
     documentId?: string | null;
 };
@@ -620,7 +554,6 @@ export type QcFindingScalarWhereInput = {
     measuredValue?: Prisma.StringNullableFilter<"QcFinding"> | string | null;
     unit?: Prisma.StringNullableFilter<"QcFinding"> | string | null;
     description?: Prisma.StringNullableFilter<"QcFinding"> | string | null;
-    severity?: Prisma.IntFilter<"QcFinding"> | number;
     isConforming?: Prisma.BoolFilter<"QcFinding"> | boolean;
     documentId?: Prisma.StringNullableFilter<"QcFinding"> | string | null;
 };
@@ -632,7 +565,6 @@ export type QcFindingCreateManyQcLogInput = {
     measuredValue?: string | null;
     unit?: string | null;
     description?: string | null;
-    severity?: number;
     isConforming?: boolean;
     documentId?: string | null;
 };
@@ -644,7 +576,6 @@ export type QcFindingUpdateWithoutQcLogInput = {
     measuredValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    severity?: Prisma.IntFieldUpdateOperationsInput | number;
     isConforming?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     document?: Prisma.BusinessDocumentUpdateOneWithoutQcFindingNestedInput;
 };
@@ -656,7 +587,6 @@ export type QcFindingUncheckedUpdateWithoutQcLogInput = {
     measuredValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    severity?: Prisma.IntFieldUpdateOperationsInput | number;
     isConforming?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     documentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 };
@@ -668,7 +598,6 @@ export type QcFindingUncheckedUpdateManyWithoutQcLogInput = {
     measuredValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    severity?: Prisma.IntFieldUpdateOperationsInput | number;
     isConforming?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     documentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 };
@@ -681,7 +610,6 @@ export type QcFindingSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
     measuredValue?: boolean;
     unit?: boolean;
     description?: boolean;
-    severity?: boolean;
     isConforming?: boolean;
     documentId?: boolean;
     qcLog?: boolean | Prisma.QcLogDefaultArgs<ExtArgs>;
@@ -696,7 +624,6 @@ export type QcFindingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
     measuredValue?: boolean;
     unit?: boolean;
     description?: boolean;
-    severity?: boolean;
     isConforming?: boolean;
     documentId?: boolean;
     qcLog?: boolean | Prisma.QcLogDefaultArgs<ExtArgs>;
@@ -711,7 +638,6 @@ export type QcFindingSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
     measuredValue?: boolean;
     unit?: boolean;
     description?: boolean;
-    severity?: boolean;
     isConforming?: boolean;
     documentId?: boolean;
     qcLog?: boolean | Prisma.QcLogDefaultArgs<ExtArgs>;
@@ -726,11 +652,10 @@ export type QcFindingSelectScalar = {
     measuredValue?: boolean;
     unit?: boolean;
     description?: boolean;
-    severity?: boolean;
     isConforming?: boolean;
     documentId?: boolean;
 };
-export type QcFindingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "qcLogId" | "category" | "parameter" | "specification" | "measuredValue" | "unit" | "description" | "severity" | "isConforming" | "documentId", ExtArgs["result"]["qcFinding"]>;
+export type QcFindingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "qcLogId" | "category" | "parameter" | "specification" | "measuredValue" | "unit" | "description" | "isConforming" | "documentId", ExtArgs["result"]["qcFinding"]>;
 export type QcFindingInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     qcLog?: boolean | Prisma.QcLogDefaultArgs<ExtArgs>;
     document?: boolean | Prisma.QcFinding$documentArgs<ExtArgs>;
@@ -758,7 +683,6 @@ export type $QcFindingPayload<ExtArgs extends runtime.Types.Extensions.InternalA
         measuredValue: string | null;
         unit: string | null;
         description: string | null;
-        severity: number;
         isConforming: boolean;
         documentId: string | null;
     }, ExtArgs["result"]["qcFinding"]>;
@@ -1125,7 +1049,6 @@ export interface QcFindingFieldRefs {
     readonly measuredValue: Prisma.FieldRef<"QcFinding", 'String'>;
     readonly unit: Prisma.FieldRef<"QcFinding", 'String'>;
     readonly description: Prisma.FieldRef<"QcFinding", 'String'>;
-    readonly severity: Prisma.FieldRef<"QcFinding", 'Int'>;
     readonly isConforming: Prisma.FieldRef<"QcFinding", 'Boolean'>;
     readonly documentId: Prisma.FieldRef<"QcFinding", 'String'>;
 }

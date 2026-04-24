@@ -8,7 +8,7 @@ export interface BusinessDocument {
   fileName: string;
   fileType: string;
   size: number;
-  documentType: "INVOICE" | "PURCHASE_ORDER" | "DELIVERY_NOTE" | "OTHER";
+  documentType: "INVOICE" | "PURCHASE_ORDER" | "DELIVERY_NOTE" | "CHECK_SHEET" | "DRAWING" | "OTHER";
   createdAt: string;
   updatedAt: string;
   metadata: any;
@@ -31,11 +31,13 @@ export function useDocuments() {
 
   const uploadFileDirect = useMutation({
     mutationFn: async (formData: FormData) => {
-      const res = await api.post("/files/upload-direct", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const res = await api.post("/files/upload-direct", formData);
       return res.data as { key: string };
     },
+    onError: (error: any) => {
+      console.error("Upload Error:", error);
+      toast.error(error.response?.data?.message || "Failed to upload file to storage");
+    }
   });
 
   const getSignedUrlDirect = useMutation({

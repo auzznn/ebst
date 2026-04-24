@@ -131,6 +131,7 @@ export type MachineWhereInput = {
     machineType?: Prisma.StringFilter<"Machine"> | string;
     isActive?: Prisma.BoolFilter<"Machine"> | boolean;
     operations?: Prisma.OperationListRelationFilter;
+    defaultSteps?: Prisma.RoutingStepListRelationFilter;
 };
 export type MachineOrderByWithRelationInput = {
     id?: Prisma.SortOrder;
@@ -138,6 +139,7 @@ export type MachineOrderByWithRelationInput = {
     machineType?: Prisma.SortOrder;
     isActive?: Prisma.SortOrder;
     operations?: Prisma.OperationOrderByRelationAggregateInput;
+    defaultSteps?: Prisma.RoutingStepOrderByRelationAggregateInput;
 };
 export type MachineWhereUniqueInput = Prisma.AtLeast<{
     id?: string;
@@ -148,6 +150,7 @@ export type MachineWhereUniqueInput = Prisma.AtLeast<{
     machineType?: Prisma.StringFilter<"Machine"> | string;
     isActive?: Prisma.BoolFilter<"Machine"> | boolean;
     operations?: Prisma.OperationListRelationFilter;
+    defaultSteps?: Prisma.RoutingStepListRelationFilter;
 }, "id">;
 export type MachineOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
@@ -173,6 +176,7 @@ export type MachineCreateInput = {
     machineType: string;
     isActive?: boolean;
     operations?: Prisma.OperationCreateNestedManyWithoutMachineInput;
+    defaultSteps?: Prisma.RoutingStepCreateNestedManyWithoutDefaultMachineInput;
 };
 export type MachineUncheckedCreateInput = {
     id?: string;
@@ -180,6 +184,7 @@ export type MachineUncheckedCreateInput = {
     machineType: string;
     isActive?: boolean;
     operations?: Prisma.OperationUncheckedCreateNestedManyWithoutMachineInput;
+    defaultSteps?: Prisma.RoutingStepUncheckedCreateNestedManyWithoutDefaultMachineInput;
 };
 export type MachineUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -187,6 +192,7 @@ export type MachineUpdateInput = {
     machineType?: Prisma.StringFieldUpdateOperationsInput | string;
     isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     operations?: Prisma.OperationUpdateManyWithoutMachineNestedInput;
+    defaultSteps?: Prisma.RoutingStepUpdateManyWithoutDefaultMachineNestedInput;
 };
 export type MachineUncheckedUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -194,6 +200,7 @@ export type MachineUncheckedUpdateInput = {
     machineType?: Prisma.StringFieldUpdateOperationsInput | string;
     isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     operations?: Prisma.OperationUncheckedUpdateManyWithoutMachineNestedInput;
+    defaultSteps?: Prisma.RoutingStepUncheckedUpdateManyWithoutDefaultMachineNestedInput;
 };
 export type MachineCreateManyInput = {
     id?: string;
@@ -213,6 +220,10 @@ export type MachineUncheckedUpdateManyInput = {
     machineType?: Prisma.StringFieldUpdateOperationsInput | string;
     isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
 };
+export type MachineNullableScalarRelationFilter = {
+    is?: Prisma.MachineWhereInput | null;
+    isNot?: Prisma.MachineWhereInput | null;
+};
 export type MachineCountOrderByAggregateInput = {
     id?: Prisma.SortOrder;
     name?: Prisma.SortOrder;
@@ -231,9 +242,19 @@ export type MachineMinOrderByAggregateInput = {
     machineType?: Prisma.SortOrder;
     isActive?: Prisma.SortOrder;
 };
-export type MachineNullableScalarRelationFilter = {
-    is?: Prisma.MachineWhereInput | null;
-    isNot?: Prisma.MachineWhereInput | null;
+export type MachineCreateNestedOneWithoutDefaultStepsInput = {
+    create?: Prisma.XOR<Prisma.MachineCreateWithoutDefaultStepsInput, Prisma.MachineUncheckedCreateWithoutDefaultStepsInput>;
+    connectOrCreate?: Prisma.MachineCreateOrConnectWithoutDefaultStepsInput;
+    connect?: Prisma.MachineWhereUniqueInput;
+};
+export type MachineUpdateOneWithoutDefaultStepsNestedInput = {
+    create?: Prisma.XOR<Prisma.MachineCreateWithoutDefaultStepsInput, Prisma.MachineUncheckedCreateWithoutDefaultStepsInput>;
+    connectOrCreate?: Prisma.MachineCreateOrConnectWithoutDefaultStepsInput;
+    upsert?: Prisma.MachineUpsertWithoutDefaultStepsInput;
+    disconnect?: Prisma.MachineWhereInput | boolean;
+    delete?: Prisma.MachineWhereInput | boolean;
+    connect?: Prisma.MachineWhereUniqueInput;
+    update?: Prisma.XOR<Prisma.XOR<Prisma.MachineUpdateToOneWithWhereWithoutDefaultStepsInput, Prisma.MachineUpdateWithoutDefaultStepsInput>, Prisma.MachineUncheckedUpdateWithoutDefaultStepsInput>;
 };
 export type MachineCreateNestedOneWithoutOperationsInput = {
     create?: Prisma.XOR<Prisma.MachineCreateWithoutOperationsInput, Prisma.MachineUncheckedCreateWithoutOperationsInput>;
@@ -249,17 +270,60 @@ export type MachineUpdateOneWithoutOperationsNestedInput = {
     connect?: Prisma.MachineWhereUniqueInput;
     update?: Prisma.XOR<Prisma.XOR<Prisma.MachineUpdateToOneWithWhereWithoutOperationsInput, Prisma.MachineUpdateWithoutOperationsInput>, Prisma.MachineUncheckedUpdateWithoutOperationsInput>;
 };
+export type MachineCreateWithoutDefaultStepsInput = {
+    id?: string;
+    name: string;
+    machineType: string;
+    isActive?: boolean;
+    operations?: Prisma.OperationCreateNestedManyWithoutMachineInput;
+};
+export type MachineUncheckedCreateWithoutDefaultStepsInput = {
+    id?: string;
+    name: string;
+    machineType: string;
+    isActive?: boolean;
+    operations?: Prisma.OperationUncheckedCreateNestedManyWithoutMachineInput;
+};
+export type MachineCreateOrConnectWithoutDefaultStepsInput = {
+    where: Prisma.MachineWhereUniqueInput;
+    create: Prisma.XOR<Prisma.MachineCreateWithoutDefaultStepsInput, Prisma.MachineUncheckedCreateWithoutDefaultStepsInput>;
+};
+export type MachineUpsertWithoutDefaultStepsInput = {
+    update: Prisma.XOR<Prisma.MachineUpdateWithoutDefaultStepsInput, Prisma.MachineUncheckedUpdateWithoutDefaultStepsInput>;
+    create: Prisma.XOR<Prisma.MachineCreateWithoutDefaultStepsInput, Prisma.MachineUncheckedCreateWithoutDefaultStepsInput>;
+    where?: Prisma.MachineWhereInput;
+};
+export type MachineUpdateToOneWithWhereWithoutDefaultStepsInput = {
+    where?: Prisma.MachineWhereInput;
+    data: Prisma.XOR<Prisma.MachineUpdateWithoutDefaultStepsInput, Prisma.MachineUncheckedUpdateWithoutDefaultStepsInput>;
+};
+export type MachineUpdateWithoutDefaultStepsInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    machineType?: Prisma.StringFieldUpdateOperationsInput | string;
+    isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    operations?: Prisma.OperationUpdateManyWithoutMachineNestedInput;
+};
+export type MachineUncheckedUpdateWithoutDefaultStepsInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    machineType?: Prisma.StringFieldUpdateOperationsInput | string;
+    isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    operations?: Prisma.OperationUncheckedUpdateManyWithoutMachineNestedInput;
+};
 export type MachineCreateWithoutOperationsInput = {
     id?: string;
     name: string;
     machineType: string;
     isActive?: boolean;
+    defaultSteps?: Prisma.RoutingStepCreateNestedManyWithoutDefaultMachineInput;
 };
 export type MachineUncheckedCreateWithoutOperationsInput = {
     id?: string;
     name: string;
     machineType: string;
     isActive?: boolean;
+    defaultSteps?: Prisma.RoutingStepUncheckedCreateNestedManyWithoutDefaultMachineInput;
 };
 export type MachineCreateOrConnectWithoutOperationsInput = {
     where: Prisma.MachineWhereUniqueInput;
@@ -279,21 +343,25 @@ export type MachineUpdateWithoutOperationsInput = {
     name?: Prisma.StringFieldUpdateOperationsInput | string;
     machineType?: Prisma.StringFieldUpdateOperationsInput | string;
     isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    defaultSteps?: Prisma.RoutingStepUpdateManyWithoutDefaultMachineNestedInput;
 };
 export type MachineUncheckedUpdateWithoutOperationsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     name?: Prisma.StringFieldUpdateOperationsInput | string;
     machineType?: Prisma.StringFieldUpdateOperationsInput | string;
     isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    defaultSteps?: Prisma.RoutingStepUncheckedUpdateManyWithoutDefaultMachineNestedInput;
 };
 /**
  * Count Type MachineCountOutputType
  */
 export type MachineCountOutputType = {
     operations: number;
+    defaultSteps: number;
 };
 export type MachineCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     operations?: boolean | MachineCountOutputTypeCountOperationsArgs;
+    defaultSteps?: boolean | MachineCountOutputTypeCountDefaultStepsArgs;
 };
 /**
  * MachineCountOutputType without action
@@ -310,12 +378,19 @@ export type MachineCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exte
 export type MachineCountOutputTypeCountOperationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     where?: Prisma.OperationWhereInput;
 };
+/**
+ * MachineCountOutputType without action
+ */
+export type MachineCountOutputTypeCountDefaultStepsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.RoutingStepWhereInput;
+};
 export type MachineSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
     name?: boolean;
     machineType?: boolean;
     isActive?: boolean;
     operations?: boolean | Prisma.Machine$operationsArgs<ExtArgs>;
+    defaultSteps?: boolean | Prisma.Machine$defaultStepsArgs<ExtArgs>;
     _count?: boolean | Prisma.MachineCountOutputTypeDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["machine"]>;
 export type MachineSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -339,6 +414,7 @@ export type MachineSelectScalar = {
 export type MachineOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "machineType" | "isActive", ExtArgs["result"]["machine"]>;
 export type MachineInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     operations?: boolean | Prisma.Machine$operationsArgs<ExtArgs>;
+    defaultSteps?: boolean | Prisma.Machine$defaultStepsArgs<ExtArgs>;
     _count?: boolean | Prisma.MachineCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type MachineIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {};
@@ -347,6 +423,7 @@ export type $MachinePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     name: "Machine";
     objects: {
         operations: Prisma.$OperationPayload<ExtArgs>[];
+        defaultSteps: Prisma.$RoutingStepPayload<ExtArgs>[];
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         id: string;
@@ -683,6 +760,7 @@ export interface MachineDelegate<ExtArgs extends runtime.Types.Extensions.Intern
 export interface Prisma__MachineClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise";
     operations<T extends Prisma.Machine$operationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Machine$operationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OperationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
+    defaultSteps<T extends Prisma.Machine$defaultStepsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Machine$defaultStepsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RoutingStepPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1109,6 +1187,29 @@ export type Machine$operationsArgs<ExtArgs extends runtime.Types.Extensions.Inte
     take?: number;
     skip?: number;
     distinct?: Prisma.OperationScalarFieldEnum | Prisma.OperationScalarFieldEnum[];
+};
+/**
+ * Machine.defaultSteps
+ */
+export type Machine$defaultStepsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoutingStep
+     */
+    select?: Prisma.RoutingStepSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the RoutingStep
+     */
+    omit?: Prisma.RoutingStepOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.RoutingStepInclude<ExtArgs> | null;
+    where?: Prisma.RoutingStepWhereInput;
+    orderBy?: Prisma.RoutingStepOrderByWithRelationInput | Prisma.RoutingStepOrderByWithRelationInput[];
+    cursor?: Prisma.RoutingStepWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: Prisma.RoutingStepScalarFieldEnum | Prisma.RoutingStepScalarFieldEnum[];
 };
 /**
  * Machine without action

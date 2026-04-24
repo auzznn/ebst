@@ -44,6 +44,8 @@ export declare const ModelName: {
     readonly PurchaseOrder: "PurchaseOrder";
     readonly PoLineItem: "PoLineItem";
     readonly Part: "Part";
+    readonly PartMaterial: "PartMaterial";
+    readonly PartSpecification: "PartSpecification";
     readonly RoutingTemplate: "RoutingTemplate";
     readonly RoutingStep: "RoutingStep";
     readonly Machine: "Machine";
@@ -258,11 +260,31 @@ export declare const PartScalarFieldEnum: {
     readonly partNo: "partNo";
     readonly description: "description";
     readonly castingType: "castingType";
-    readonly materialId: "materialId";
-    readonly drawingRef: "drawingRef";
+    readonly drawingId: "drawingId";
     readonly createdAt: "createdAt";
+    readonly materialId: "materialId";
 };
 export type PartScalarFieldEnum = (typeof PartScalarFieldEnum)[keyof typeof PartScalarFieldEnum];
+export declare const PartMaterialScalarFieldEnum: {
+    readonly id: "id";
+    readonly partId: "partId";
+    readonly materialId: "materialId";
+    readonly ratio: "ratio";
+};
+export type PartMaterialScalarFieldEnum = (typeof PartMaterialScalarFieldEnum)[keyof typeof PartMaterialScalarFieldEnum];
+export declare const PartSpecificationScalarFieldEnum: {
+    readonly id: "id";
+    readonly partId: "partId";
+    readonly length: "length";
+    readonly width: "width";
+    readonly height: "height";
+    readonly weight: "weight";
+    readonly unit: "unit";
+    readonly tolerance: "tolerance";
+    readonly surfaceFinish: "surfaceFinish";
+    readonly otherSpecs: "otherSpecs";
+};
+export type PartSpecificationScalarFieldEnum = (typeof PartSpecificationScalarFieldEnum)[keyof typeof PartSpecificationScalarFieldEnum];
 export declare const RoutingTemplateScalarFieldEnum: {
     readonly id: "id";
     readonly partId: "partId";
@@ -275,6 +297,7 @@ export declare const RoutingStepScalarFieldEnum: {
     readonly stepOrder: "stepOrder";
     readonly operationName: "operationName";
     readonly defaultMachineType: "defaultMachineType";
+    readonly defaultMachineId: "defaultMachineId";
     readonly estimatedMinutes: "estimatedMinutes";
 };
 export type RoutingStepScalarFieldEnum = (typeof RoutingStepScalarFieldEnum)[keyof typeof RoutingStepScalarFieldEnum];
@@ -332,8 +355,6 @@ export declare const QcLogScalarFieldEnum: {
     readonly reason: "reason";
     readonly inspectorId: "inspectorId";
     readonly loggedAt: "loggedAt";
-    readonly totalScore: "totalScore";
-    readonly actionRequired: "actionRequired";
 };
 export type QcLogScalarFieldEnum = (typeof QcLogScalarFieldEnum)[keyof typeof QcLogScalarFieldEnum];
 export declare const QcFindingScalarFieldEnum: {
@@ -345,7 +366,6 @@ export declare const QcFindingScalarFieldEnum: {
     readonly measuredValue: "measuredValue";
     readonly unit: "unit";
     readonly description: "description";
-    readonly severity: "severity";
     readonly isConforming: "isConforming";
     readonly documentId: "documentId";
 };

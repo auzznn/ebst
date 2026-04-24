@@ -28,6 +28,8 @@ exports.DocumentType = {
     INVOICE: 'INVOICE',
     PURCHASE_ORDER: 'PURCHASE_ORDER',
     DELIVERY_NOTE: 'DELIVERY_NOTE',
+    CHECK_SHEET: 'CHECK_SHEET',
+    DRAWING: 'DRAWING',
     OTHER: 'OTHER'
 };
 exports.InvoiceStatus = {

@@ -203,6 +203,8 @@ enum DocumentType {
   INVOICE
   PURCHASE_ORDER
   DELIVERY_NOTE
+  CHECK_SHEET
+  DRAWING
   OTHER
 }
 
@@ -222,6 +224,7 @@ model BusinessDocument {
   invoice    Invoice?
   checkSheet CheckSheet?
   qcFinding  QcFinding?
+  part       Part?
 
   @@map("business_document")
 }
@@ -334,20 +337,55 @@ enum CastingType {
 }
 
 model Part {
-  id          String      @id @default(cuid())
-  partNo      String      @unique
+  id          String            @id @default(cuid())
+  partNo      String            @unique
   description String
   castingType CastingType
-  materialId  String?
-  material    Material?   @relation(fields: [materialId], references: [id])
-  drawingRef  String? // drawing or spec reference image URL
-  createdAt   DateTime    @default(now())
+  drawingId   String?           @unique
+  drawing     BusinessDocument? @relation(fields: [drawingId], references: [id])
+  createdAt   DateTime          @default(now())
 
-  routing   RoutingTemplate?
-  lineItems PoLineItem[]
-  jobLists  JobList[]
+  routing        RoutingTemplate?
+  lineItems      PoLineItem[]
+  jobLists       JobList[]
+  materials      PartMaterial[]
+  specifications PartSpecification?
+  material       Material?          @relation(fields: [materialId], references: [id])
+  materialId     String?
 
   @@map("part")
+}
+
+model PartMaterial {
+  id         String   @id @default(cuid())
+  partId     String
+  materialId String
+  ratio      Decimal  @db.Decimal(5, 2) // Composition ratio, e.g., 60.00 for 60%
+  part       Part     @relation(fields: [partId], references: [id], onDelete: Cascade)
+  material   Material @relation(fields: [materialId], references: [id])
+
+  @@unique([partId, materialId])
+  @@map("part_material")
+}
+
+model PartSpecification {
+  id     String @id @default(cuid())
+  partId String @unique
+  part   Part   @relation(fields: [partId], references: [id], onDelete: Cascade)
+
+  // Dimensions
+  length Decimal? @db.Decimal(10, 2)
+  width  Decimal? @db.Decimal(10, 2)
+  height Decimal? @db.Decimal(10, 2)
+  weight Decimal? @db.Decimal(10, 2)
+  unit   String   @default("mm") // mm, inch, etc.
+
+  // Other specs
+  tolerance     String?
+  surfaceFinish String?
+  otherSpecs    Json?   @default("{}")
+
+  @@map("part_specification")
 }
 
 // One routing template per part — defines the standard operation sequence
@@ -369,10 +407,12 @@ model RoutingStep {
   stepOrder          Int // 1, 2, 3... enforces sequence
   operationName      String // "Pattern Making", "Moulding", "Pouring", etc.
   defaultMachineType String? // hint for assignment, e.g. "CNC Lathe"
+  defaultMachineId   String?
   estimatedMinutes   Int? // optional time estimate
 
-  operations Operation[]
-  routing    RoutingTemplate @relation(fields: [routingTemplateId], references: [id])
+  operations     Operation[]
+  routing        RoutingTemplate @relation(fields: [routingTemplateId], references: [id])
+  defaultMachine Machine?        @relation("DefaultMachine", fields: [defaultMachineId], references: [id])
 
   @@unique([routingTemplateId, stepOrder])
   @@map("routing_step")
@@ -387,7 +427,8 @@ model Machine {
   isActive    Boolean @default(true)
 
   // Future: opcuaEndpoint String? — plug OPC-UA in here later
-  operations Operation[]
+  operations   Operation[]
+  defaultSteps RoutingStep[] @relation("DefaultMachine")
 
   @@map("machine")
 }
@@ -458,11 +499,11 @@ model JobList {
 }
 
 model JobMaterial {
-  id         String   @id @default(cuid())
+  id         String  @id @default(cuid())
   jobListId  String
   materialId String
-  quantity   Decimal  @db.Decimal(10, 3)
-  
+  quantity   Decimal @db.Decimal(10, 3)
+
   jobList  JobList  @relation(fields: [jobListId], references: [id])
   material Material @relation(fields: [materialId], references: [id])
 
@@ -496,44 +537,40 @@ model Operation {
 }
 
 model QcLog {
-  id           String    @id @default(cuid())
-  operation    Operation @relation(fields: [operationId], references: [id])
-  operationId  String    @unique
-  result       QcResult
-  reason       String? // required if REPAIR or REJECT
-  inspector    User      @relation("QcInspector", fields: [inspectorId], references: [id])
-  inspectorId  String
-  loggedAt     DateTime  @default(now())
+  id          String    @id @default(cuid())
+  operation   Operation @relation(fields: [operationId], references: [id])
+  operationId String    @unique
+  result      QcResult
+  reason      String? // required if REPAIR or REJECT
+  inspector   User      @relation("QcInspector", fields: [inspectorId], references: [id])
+  inspectorId String
+  loggedAt    DateTime  @default(now())
 
-  // Detailed quality scoring
-  totalScore     Int?   // sum of all finding severity scores
-  actionRequired String? // recommended action derived from total score
-  findings       QcFinding[]
+  findings QcFinding[]
 
   @@map("qc_log")
 }
 
 enum FindingCategory {
-  DIMENSION    // Linear/geometric measurements
-  SURFACE      // Surface finish, smoothness, roughness
-  CHEMICAL     // Chemical composition, material properties
-  VISUAL       // Visual defects, appearance
-  FUNCTIONAL   // Functional / performance test
+  DIMENSION // Linear/geometric measurements
+  SURFACE // Surface finish, smoothness, roughness
+  CHEMICAL // Chemical composition, material properties
+  VISUAL // Visual defects, appearance
+  FUNCTIONAL // Functional / performance test
   OTHER
 }
 
 model QcFinding {
-  id          String          @id @default(cuid())
-  qcLog       QcLog           @relation(fields: [qcLogId], references: [id], onDelete: Cascade)
-  qcLogId     String
+  id      String @id @default(cuid())
+  qcLog   QcLog  @relation(fields: [qcLogId], references: [id], onDelete: Cascade)
+  qcLogId String
 
   category      FindingCategory @default(OTHER)
-  parameter     String          // e.g. "Outer Diameter", "Surface Roughness Ra"
-  specification String?         // Expected spec / tolerance
-  measuredValue String?         // Actual measured value
-  unit          String?         // "mm", "µm", "Rc", etc.
-  description   String?         // Free-text finding description
-  severity      Int             @default(0) // 0-10: 0=OK, 5=minor, 10=critical
+  parameter     String // e.g. "Outer Diameter", "Surface Roughness Ra"
+  specification String? // Expected spec / tolerance
+  measuredValue String? // Actual measured value
+  unit          String? // "mm", "µm", "Rc", etc.
+  description   String? // Free-text finding description
   isConforming  Boolean         @default(true)
 
   // Optional supporting document (e.g. scan from external machine)
@@ -603,10 +640,11 @@ model Material {
   unitCost         Decimal?     @db.Decimal(15, 0)
   createdAt        DateTime     @default(now())
 
-  usages       MaterialUsage[]
-  adjustments  StockAdjustment[]
-  parts        Part[]
-  jobMaterials JobMaterial[]
+  usages        MaterialUsage[]
+  adjustments   StockAdjustment[]
+  parts         Part[]
+  jobMaterials  JobMaterial[]
+  partMaterials PartMaterial[]
 
   @@map("material")
 }

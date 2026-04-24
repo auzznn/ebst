@@ -14,15 +14,20 @@ export class FilesService {
     ) { }
 
     async uploadFileDirect(filename: string, contentType: string, buffer: Buffer) {
-        const key = `business/${uuidv4()}/${filename}`;
-        const command = new PutObjectCommand({
-            Bucket: this.config.get('R2_BUCKET_NAME'),
-            Key: key,
-            ContentType: contentType,
-            Body: buffer,
-        });
-        await this.s3.send(command);
-        return { key };
+        try {
+            const key = `business/${uuidv4()}/${filename}`;
+            const command = new PutObjectCommand({
+                Bucket: this.config.get('R2_BUCKET_NAME'),
+                Key: key,
+                ContentType: contentType,
+                Body: buffer,
+            });
+            await this.s3.send(command);
+            return { key };
+        } catch (error) {
+            console.error('S3/R2 Upload Error:', error);
+            throw new Error(`Failed to upload file to storage: ${error.message}`);
+        }
     }
 
     /**
@@ -42,19 +47,26 @@ export class FilesService {
         fileName: string;
         fileType: string;
         size: number;
-        documentType: 'INVOICE' | 'PURCHASE_ORDER' | 'DELIVERY_NOTE' | 'OTHER';
+        documentType: 'INVOICE' | 'PURCHASE_ORDER' | 'DELIVERY_NOTE' | 'DRAWING' | 'OTHER';
         userId: string;
+        metadata?: any;
     }) {
-        return this.prisma.businessDocument.create({
-            data: {
-                key: data.key,
-                fileName: data.fileName,
-                fileType: data.fileType,
-                size: data.size,
-                documentType: data.documentType,
-                userId: data.userId,
-            }
-        });
+        try {
+            return await this.prisma.businessDocument.create({
+                data: {
+                    key: data.key,
+                    fileName: data.fileName,
+                    fileType: data.fileType,
+                    size: data.size,
+                    documentType: data.documentType,
+                    userId: data.userId,
+                    metadata: data.metadata || {},
+                }
+            });
+        } catch (error) {
+            console.error('Prisma Register Document Error:', error);
+            throw new Error(`Failed to register document in database: ${error.message}`);
+        }
     }
 
     async listDocuments(userId: string, role: string) {

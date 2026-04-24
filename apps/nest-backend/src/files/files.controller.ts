@@ -2,6 +2,7 @@ import { Controller, Post, Get, Delete, Body, Param, Req, UseGuards, UseIntercep
 import { FileInterceptor } from '@nestjs/platform-express';
 import { FilesService } from './files.service';
 import { HttpAuthGuard } from '../communication/guards/http-auth.guard';
+import { RegisterDocumentDto } from './dto/register-document.dto';
 import type { Express } from 'express';
 
 @Controller('files')
@@ -12,6 +13,9 @@ export class FilesController {
     @Post('upload-direct')
     @UseInterceptors(FileInterceptor('file'))
     async uploadFileDirect(@UploadedFile() file: Express.Multer.File) {
+        if (!file) {
+            throw new Error('File upload failed or no file provided');
+        }
         return this.filesService.uploadFileDirect(
             file.originalname,
             file.mimetype,
@@ -20,7 +24,7 @@ export class FilesController {
     }
 
     @Post('register')
-    async registerDocument(@Body() dto: any, @Req() req: any) {
+    async registerDocument(@Body() dto: RegisterDocumentDto, @Req() req: any) {
         return this.filesService.registerDocument({
             ...dto,
             userId: req.user.id,

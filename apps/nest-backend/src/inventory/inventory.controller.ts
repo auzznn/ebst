@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Patch, Param, Body, Req, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Patch, Param, Body, Req, UseGuards, Query } from '@nestjs/common';
 import { InventoryService } from './inventory.service';
 import { CreateMaterialDto, UpdateMaterialDto, StockAdjustmentDto, AddJobMaterialDto } from './dto/inventory.dto';
 
@@ -7,8 +7,13 @@ export class InventoryController {
   constructor(private readonly inventoryService: InventoryService) {}
 
   @Get('materials')
-  findAll() {
-    return this.inventoryService.findAll();
+  findAll(
+    @Query('page') page?: string,
+    @Query('limit') limit?: string
+  ) {
+    const pageNum = page ? parseInt(page, 10) : 1;
+    const limitNum = limit ? parseInt(limit, 10) : 10;
+    return this.inventoryService.findAll(pageNum, limitNum);
   }
 
   @Get('materials/:id')

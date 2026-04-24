@@ -3,12 +3,9 @@ import {
   IsNotEmpty,
   IsOptional,
   IsString,
-  IsInt,
   IsBoolean,
   IsArray,
   ValidateNested,
-  Min,
-  Max,
 } from 'class-validator';
 import { Type } from 'class-transformer';
 import { QcResult, FindingCategory } from '@ebst/db';
@@ -37,11 +34,6 @@ export class QcFindingDto {
   @IsString()
   @IsOptional()
   description?: string; // Free-text observation
-
-  @IsInt()
-  @Min(0)
-  @Max(10)
-  severity: number; // 0 = OK, 5 = minor, 10 = critical
 
   @IsBoolean()
   isConforming: boolean;

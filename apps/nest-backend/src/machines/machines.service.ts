@@ -7,14 +7,26 @@ import { UpdateMachineDto } from './dto/update-machine.dto';
 export class MachinesService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async findAll() {
-    return this.prisma.machine.findMany({
-      include: {
-        operations: {
-          where: { status: 'IN_PROGRESS' },
+  async findAll(page: number = 1, limit: number = 10) {
+    const skip = (page - 1) * limit;
+
+    const [total, data] = await Promise.all([
+      this.prisma.machine.count(),
+      this.prisma.machine.findMany({
+        skip,
+        take: limit,
+        include: {
+          operations: {
+            where: { status: 'IN_PROGRESS' },
+          },
         },
-      },
-    });
+      })
+    ]);
+
+    return { 
+      data, 
+      meta: { total, page, limit, totalPages: Math.ceil(total / limit) } 
+    };
   }
 
   async findOne(id: string) {

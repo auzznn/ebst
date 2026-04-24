@@ -6,16 +6,28 @@ import { CreateMaterialDto, UpdateMaterialDto, StockAdjustmentDto, AddJobMateria
 export class InventoryService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async findAll() {
-    return this.prisma.material.findMany({
-      include: {
-        supplier: true,
-        _count: {
-          select: { usages: true, adjustments: true },
+  async findAll(page: number = 1, limit: number = 10) {
+    const skip = (page - 1) * limit;
+
+    const [total, data] = await Promise.all([
+      this.prisma.material.count(),
+      this.prisma.material.findMany({
+        skip,
+        take: limit,
+        include: {
+          supplier: true,
+          _count: {
+            select: { usages: true, adjustments: true },
+          },
         },
-      },
-      orderBy: { name: 'asc' },
-    });
+        orderBy: { name: 'asc' },
+      })
+    ]);
+
+    return { 
+      data, 
+      meta: { total, page, limit, totalPages: Math.ceil(total / limit) } 
+    };
   }
 
   async findOne(id: string) {
@@ -51,8 +63,8 @@ export class InventoryService {
         description: data.description,
         unit: data.unit,
         reorderThreshold: data.reorderThreshold,
-        reorderQty: data.reorderQty,
-        supplierId: data.supplierId,
+        reorderQty: data.reorderQty ?? 0,
+        supplierId: data.supplierId || null,
         unitCost: data.unitCost,
       },
     });
@@ -67,8 +79,8 @@ export class InventoryService {
         description: data.description,
         unit: data.unit,
         reorderThreshold: data.reorderThreshold,
-        reorderQty: data.reorderQty,
-        supplierId: data.supplierId,
+        reorderQty: data.reorderQty ?? 0,
+        supplierId: data.supplierId || null,
         unitCost: data.unitCost,
       },
     });

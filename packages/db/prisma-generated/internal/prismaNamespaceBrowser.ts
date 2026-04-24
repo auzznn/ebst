@@ -69,6 +69,8 @@ export const ModelName = {
   PurchaseOrder: 'PurchaseOrder',
   PoLineItem: 'PoLineItem',
   Part: 'Part',
+  PartMaterial: 'PartMaterial',
+  PartSpecification: 'PartSpecification',
   RoutingTemplate: 'RoutingTemplate',
   RoutingStep: 'RoutingStep',
   Machine: 'Machine',
@@ -343,12 +345,38 @@ export const PartScalarFieldEnum = {
   partNo: 'partNo',
   description: 'description',
   castingType: 'castingType',
-  materialId: 'materialId',
-  drawingRef: 'drawingRef',
-  createdAt: 'createdAt'
+  drawingId: 'drawingId',
+  createdAt: 'createdAt',
+  materialId: 'materialId'
 } as const
 
 export type PartScalarFieldEnum = (typeof PartScalarFieldEnum)[keyof typeof PartScalarFieldEnum]
+
+
+export const PartMaterialScalarFieldEnum = {
+  id: 'id',
+  partId: 'partId',
+  materialId: 'materialId',
+  ratio: 'ratio'
+} as const
+
+export type PartMaterialScalarFieldEnum = (typeof PartMaterialScalarFieldEnum)[keyof typeof PartMaterialScalarFieldEnum]
+
+
+export const PartSpecificationScalarFieldEnum = {
+  id: 'id',
+  partId: 'partId',
+  length: 'length',
+  width: 'width',
+  height: 'height',
+  weight: 'weight',
+  unit: 'unit',
+  tolerance: 'tolerance',
+  surfaceFinish: 'surfaceFinish',
+  otherSpecs: 'otherSpecs'
+} as const
+
+export type PartSpecificationScalarFieldEnum = (typeof PartSpecificationScalarFieldEnum)[keyof typeof PartSpecificationScalarFieldEnum]
 
 
 export const RoutingTemplateScalarFieldEnum = {
@@ -366,6 +394,7 @@ export const RoutingStepScalarFieldEnum = {
   stepOrder: 'stepOrder',
   operationName: 'operationName',
   defaultMachineType: 'defaultMachineType',
+  defaultMachineId: 'defaultMachineId',
   estimatedMinutes: 'estimatedMinutes'
 } as const
 
@@ -440,9 +469,7 @@ export const QcLogScalarFieldEnum = {
   result: 'result',
   reason: 'reason',
   inspectorId: 'inspectorId',
-  loggedAt: 'loggedAt',
-  totalScore: 'totalScore',
-  actionRequired: 'actionRequired'
+  loggedAt: 'loggedAt'
 } as const
 
 export type QcLogScalarFieldEnum = (typeof QcLogScalarFieldEnum)[keyof typeof QcLogScalarFieldEnum]
@@ -457,7 +484,6 @@ export const QcFindingScalarFieldEnum = {
   measuredValue: 'measuredValue',
   unit: 'unit',
   description: 'description',
-  severity: 'severity',
   isConforming: 'isConforming',
   documentId: 'documentId'
 } as const

@@ -281,6 +281,7 @@ export type MaterialWhereInput = {
   adjustments?: Prisma.StockAdjustmentListRelationFilter
   parts?: Prisma.PartListRelationFilter
   jobMaterials?: Prisma.JobMaterialListRelationFilter
+  partMaterials?: Prisma.PartMaterialListRelationFilter
 }
 
 export type MaterialOrderByWithRelationInput = {
@@ -300,6 +301,7 @@ export type MaterialOrderByWithRelationInput = {
   adjustments?: Prisma.StockAdjustmentOrderByRelationAggregateInput
   parts?: Prisma.PartOrderByRelationAggregateInput
   jobMaterials?: Prisma.JobMaterialOrderByRelationAggregateInput
+  partMaterials?: Prisma.PartMaterialOrderByRelationAggregateInput
 }
 
 export type MaterialWhereUniqueInput = Prisma.AtLeast<{
@@ -322,6 +324,7 @@ export type MaterialWhereUniqueInput = Prisma.AtLeast<{
   adjustments?: Prisma.StockAdjustmentListRelationFilter
   parts?: Prisma.PartListRelationFilter
   jobMaterials?: Prisma.JobMaterialListRelationFilter
+  partMaterials?: Prisma.PartMaterialListRelationFilter
 }, "id" | "code">
 
 export type MaterialOrderByWithAggregationInput = {
@@ -376,6 +379,7 @@ export type MaterialCreateInput = {
   adjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutMaterialInput
   parts?: Prisma.PartCreateNestedManyWithoutMaterialInput
   jobMaterials?: Prisma.JobMaterialCreateNestedManyWithoutMaterialInput
+  partMaterials?: Prisma.PartMaterialCreateNestedManyWithoutMaterialInput
 }
 
 export type MaterialUncheckedCreateInput = {
@@ -394,6 +398,7 @@ export type MaterialUncheckedCreateInput = {
   adjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutMaterialInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutMaterialInput
   jobMaterials?: Prisma.JobMaterialUncheckedCreateNestedManyWithoutMaterialInput
+  partMaterials?: Prisma.PartMaterialUncheckedCreateNestedManyWithoutMaterialInput
 }
 
 export type MaterialUpdateInput = {
@@ -412,6 +417,7 @@ export type MaterialUpdateInput = {
   adjustments?: Prisma.StockAdjustmentUpdateManyWithoutMaterialNestedInput
   parts?: Prisma.PartUpdateManyWithoutMaterialNestedInput
   jobMaterials?: Prisma.JobMaterialUpdateManyWithoutMaterialNestedInput
+  partMaterials?: Prisma.PartMaterialUpdateManyWithoutMaterialNestedInput
 }
 
 export type MaterialUncheckedUpdateInput = {
@@ -430,6 +436,7 @@ export type MaterialUncheckedUpdateInput = {
   adjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutMaterialNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutMaterialNestedInput
   jobMaterials?: Prisma.JobMaterialUncheckedUpdateManyWithoutMaterialNestedInput
+  partMaterials?: Prisma.PartMaterialUncheckedUpdateManyWithoutMaterialNestedInput
 }
 
 export type MaterialCreateManyInput = {
@@ -565,6 +572,20 @@ export type MaterialUpdateOneWithoutPartsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.MaterialUpdateToOneWithWhereWithoutPartsInput, Prisma.MaterialUpdateWithoutPartsInput>, Prisma.MaterialUncheckedUpdateWithoutPartsInput>
 }
 
+export type MaterialCreateNestedOneWithoutPartMaterialsInput = {
+  create?: Prisma.XOR<Prisma.MaterialCreateWithoutPartMaterialsInput, Prisma.MaterialUncheckedCreateWithoutPartMaterialsInput>
+  connectOrCreate?: Prisma.MaterialCreateOrConnectWithoutPartMaterialsInput
+  connect?: Prisma.MaterialWhereUniqueInput
+}
+
+export type MaterialUpdateOneRequiredWithoutPartMaterialsNestedInput = {
+  create?: Prisma.XOR<Prisma.MaterialCreateWithoutPartMaterialsInput, Prisma.MaterialUncheckedCreateWithoutPartMaterialsInput>
+  connectOrCreate?: Prisma.MaterialCreateOrConnectWithoutPartMaterialsInput
+  upsert?: Prisma.MaterialUpsertWithoutPartMaterialsInput
+  connect?: Prisma.MaterialWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MaterialUpdateToOneWithWhereWithoutPartMaterialsInput, Prisma.MaterialUpdateWithoutPartMaterialsInput>, Prisma.MaterialUncheckedUpdateWithoutPartMaterialsInput>
+}
+
 export type MaterialCreateNestedOneWithoutJobMaterialsInput = {
   create?: Prisma.XOR<Prisma.MaterialCreateWithoutJobMaterialsInput, Prisma.MaterialUncheckedCreateWithoutJobMaterialsInput>
   connectOrCreate?: Prisma.MaterialCreateOrConnectWithoutJobMaterialsInput
@@ -668,6 +689,7 @@ export type MaterialCreateWithoutPartsInput = {
   usages?: Prisma.MaterialUsageCreateNestedManyWithoutMaterialInput
   adjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutMaterialInput
   jobMaterials?: Prisma.JobMaterialCreateNestedManyWithoutMaterialInput
+  partMaterials?: Prisma.PartMaterialCreateNestedManyWithoutMaterialInput
 }
 
 export type MaterialUncheckedCreateWithoutPartsInput = {
@@ -685,6 +707,7 @@ export type MaterialUncheckedCreateWithoutPartsInput = {
   usages?: Prisma.MaterialUsageUncheckedCreateNestedManyWithoutMaterialInput
   adjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutMaterialInput
   jobMaterials?: Prisma.JobMaterialUncheckedCreateNestedManyWithoutMaterialInput
+  partMaterials?: Prisma.PartMaterialUncheckedCreateNestedManyWithoutMaterialInput
 }
 
 export type MaterialCreateOrConnectWithoutPartsInput = {
@@ -718,6 +741,7 @@ export type MaterialUpdateWithoutPartsInput = {
   usages?: Prisma.MaterialUsageUpdateManyWithoutMaterialNestedInput
   adjustments?: Prisma.StockAdjustmentUpdateManyWithoutMaterialNestedInput
   jobMaterials?: Prisma.JobMaterialUpdateManyWithoutMaterialNestedInput
+  partMaterials?: Prisma.PartMaterialUpdateManyWithoutMaterialNestedInput
 }
 
 export type MaterialUncheckedUpdateWithoutPartsInput = {
@@ -734,6 +758,95 @@ export type MaterialUncheckedUpdateWithoutPartsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   usages?: Prisma.MaterialUsageUncheckedUpdateManyWithoutMaterialNestedInput
   adjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutMaterialNestedInput
+  jobMaterials?: Prisma.JobMaterialUncheckedUpdateManyWithoutMaterialNestedInput
+  partMaterials?: Prisma.PartMaterialUncheckedUpdateManyWithoutMaterialNestedInput
+}
+
+export type MaterialCreateWithoutPartMaterialsInput = {
+  id?: string
+  name: string
+  code: string
+  description?: string | null
+  unit: $Enums.MaterialUnit
+  stockQty?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  reorderThreshold: runtime.Decimal | runtime.DecimalJsLike | number | string
+  reorderQty: runtime.Decimal | runtime.DecimalJsLike | number | string
+  unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+  supplier?: Prisma.SupplierCreateNestedOneWithoutMaterialsInput
+  usages?: Prisma.MaterialUsageCreateNestedManyWithoutMaterialInput
+  adjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutMaterialInput
+  parts?: Prisma.PartCreateNestedManyWithoutMaterialInput
+  jobMaterials?: Prisma.JobMaterialCreateNestedManyWithoutMaterialInput
+}
+
+export type MaterialUncheckedCreateWithoutPartMaterialsInput = {
+  id?: string
+  name: string
+  code: string
+  description?: string | null
+  unit: $Enums.MaterialUnit
+  stockQty?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  reorderThreshold: runtime.Decimal | runtime.DecimalJsLike | number | string
+  reorderQty: runtime.Decimal | runtime.DecimalJsLike | number | string
+  supplierId?: string | null
+  unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+  usages?: Prisma.MaterialUsageUncheckedCreateNestedManyWithoutMaterialInput
+  adjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutMaterialInput
+  parts?: Prisma.PartUncheckedCreateNestedManyWithoutMaterialInput
+  jobMaterials?: Prisma.JobMaterialUncheckedCreateNestedManyWithoutMaterialInput
+}
+
+export type MaterialCreateOrConnectWithoutPartMaterialsInput = {
+  where: Prisma.MaterialWhereUniqueInput
+  create: Prisma.XOR<Prisma.MaterialCreateWithoutPartMaterialsInput, Prisma.MaterialUncheckedCreateWithoutPartMaterialsInput>
+}
+
+export type MaterialUpsertWithoutPartMaterialsInput = {
+  update: Prisma.XOR<Prisma.MaterialUpdateWithoutPartMaterialsInput, Prisma.MaterialUncheckedUpdateWithoutPartMaterialsInput>
+  create: Prisma.XOR<Prisma.MaterialCreateWithoutPartMaterialsInput, Prisma.MaterialUncheckedCreateWithoutPartMaterialsInput>
+  where?: Prisma.MaterialWhereInput
+}
+
+export type MaterialUpdateToOneWithWhereWithoutPartMaterialsInput = {
+  where?: Prisma.MaterialWhereInput
+  data: Prisma.XOR<Prisma.MaterialUpdateWithoutPartMaterialsInput, Prisma.MaterialUncheckedUpdateWithoutPartMaterialsInput>
+}
+
+export type MaterialUpdateWithoutPartMaterialsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unit?: Prisma.EnumMaterialUnitFieldUpdateOperationsInput | $Enums.MaterialUnit
+  stockQty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reorderThreshold?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reorderQty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  supplier?: Prisma.SupplierUpdateOneWithoutMaterialsNestedInput
+  usages?: Prisma.MaterialUsageUpdateManyWithoutMaterialNestedInput
+  adjustments?: Prisma.StockAdjustmentUpdateManyWithoutMaterialNestedInput
+  parts?: Prisma.PartUpdateManyWithoutMaterialNestedInput
+  jobMaterials?: Prisma.JobMaterialUpdateManyWithoutMaterialNestedInput
+}
+
+export type MaterialUncheckedUpdateWithoutPartMaterialsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unit?: Prisma.EnumMaterialUnitFieldUpdateOperationsInput | $Enums.MaterialUnit
+  stockQty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reorderThreshold?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reorderQty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  supplierId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  usages?: Prisma.MaterialUsageUncheckedUpdateManyWithoutMaterialNestedInput
+  adjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutMaterialNestedInput
+  parts?: Prisma.PartUncheckedUpdateManyWithoutMaterialNestedInput
   jobMaterials?: Prisma.JobMaterialUncheckedUpdateManyWithoutMaterialNestedInput
 }
 
@@ -752,6 +865,7 @@ export type MaterialCreateWithoutJobMaterialsInput = {
   usages?: Prisma.MaterialUsageCreateNestedManyWithoutMaterialInput
   adjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutMaterialInput
   parts?: Prisma.PartCreateNestedManyWithoutMaterialInput
+  partMaterials?: Prisma.PartMaterialCreateNestedManyWithoutMaterialInput
 }
 
 export type MaterialUncheckedCreateWithoutJobMaterialsInput = {
@@ -769,6 +883,7 @@ export type MaterialUncheckedCreateWithoutJobMaterialsInput = {
   usages?: Prisma.MaterialUsageUncheckedCreateNestedManyWithoutMaterialInput
   adjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutMaterialInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutMaterialInput
+  partMaterials?: Prisma.PartMaterialUncheckedCreateNestedManyWithoutMaterialInput
 }
 
 export type MaterialCreateOrConnectWithoutJobMaterialsInput = {
@@ -802,6 +917,7 @@ export type MaterialUpdateWithoutJobMaterialsInput = {
   usages?: Prisma.MaterialUsageUpdateManyWithoutMaterialNestedInput
   adjustments?: Prisma.StockAdjustmentUpdateManyWithoutMaterialNestedInput
   parts?: Prisma.PartUpdateManyWithoutMaterialNestedInput
+  partMaterials?: Prisma.PartMaterialUpdateManyWithoutMaterialNestedInput
 }
 
 export type MaterialUncheckedUpdateWithoutJobMaterialsInput = {
@@ -819,6 +935,7 @@ export type MaterialUncheckedUpdateWithoutJobMaterialsInput = {
   usages?: Prisma.MaterialUsageUncheckedUpdateManyWithoutMaterialNestedInput
   adjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutMaterialNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutMaterialNestedInput
+  partMaterials?: Prisma.PartMaterialUncheckedUpdateManyWithoutMaterialNestedInput
 }
 
 export type MaterialCreateWithoutUsagesInput = {
@@ -836,6 +953,7 @@ export type MaterialCreateWithoutUsagesInput = {
   adjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutMaterialInput
   parts?: Prisma.PartCreateNestedManyWithoutMaterialInput
   jobMaterials?: Prisma.JobMaterialCreateNestedManyWithoutMaterialInput
+  partMaterials?: Prisma.PartMaterialCreateNestedManyWithoutMaterialInput
 }
 
 export type MaterialUncheckedCreateWithoutUsagesInput = {
@@ -853,6 +971,7 @@ export type MaterialUncheckedCreateWithoutUsagesInput = {
   adjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutMaterialInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutMaterialInput
   jobMaterials?: Prisma.JobMaterialUncheckedCreateNestedManyWithoutMaterialInput
+  partMaterials?: Prisma.PartMaterialUncheckedCreateNestedManyWithoutMaterialInput
 }
 
 export type MaterialCreateOrConnectWithoutUsagesInput = {
@@ -886,6 +1005,7 @@ export type MaterialUpdateWithoutUsagesInput = {
   adjustments?: Prisma.StockAdjustmentUpdateManyWithoutMaterialNestedInput
   parts?: Prisma.PartUpdateManyWithoutMaterialNestedInput
   jobMaterials?: Prisma.JobMaterialUpdateManyWithoutMaterialNestedInput
+  partMaterials?: Prisma.PartMaterialUpdateManyWithoutMaterialNestedInput
 }
 
 export type MaterialUncheckedUpdateWithoutUsagesInput = {
@@ -903,6 +1023,7 @@ export type MaterialUncheckedUpdateWithoutUsagesInput = {
   adjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutMaterialNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutMaterialNestedInput
   jobMaterials?: Prisma.JobMaterialUncheckedUpdateManyWithoutMaterialNestedInput
+  partMaterials?: Prisma.PartMaterialUncheckedUpdateManyWithoutMaterialNestedInput
 }
 
 export type MaterialCreateWithoutAdjustmentsInput = {
@@ -920,6 +1041,7 @@ export type MaterialCreateWithoutAdjustmentsInput = {
   usages?: Prisma.MaterialUsageCreateNestedManyWithoutMaterialInput
   parts?: Prisma.PartCreateNestedManyWithoutMaterialInput
   jobMaterials?: Prisma.JobMaterialCreateNestedManyWithoutMaterialInput
+  partMaterials?: Prisma.PartMaterialCreateNestedManyWithoutMaterialInput
 }
 
 export type MaterialUncheckedCreateWithoutAdjustmentsInput = {
@@ -937,6 +1059,7 @@ export type MaterialUncheckedCreateWithoutAdjustmentsInput = {
   usages?: Prisma.MaterialUsageUncheckedCreateNestedManyWithoutMaterialInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutMaterialInput
   jobMaterials?: Prisma.JobMaterialUncheckedCreateNestedManyWithoutMaterialInput
+  partMaterials?: Prisma.PartMaterialUncheckedCreateNestedManyWithoutMaterialInput
 }
 
 export type MaterialCreateOrConnectWithoutAdjustmentsInput = {
@@ -970,6 +1093,7 @@ export type MaterialUpdateWithoutAdjustmentsInput = {
   usages?: Prisma.MaterialUsageUpdateManyWithoutMaterialNestedInput
   parts?: Prisma.PartUpdateManyWithoutMaterialNestedInput
   jobMaterials?: Prisma.JobMaterialUpdateManyWithoutMaterialNestedInput
+  partMaterials?: Prisma.PartMaterialUpdateManyWithoutMaterialNestedInput
 }
 
 export type MaterialUncheckedUpdateWithoutAdjustmentsInput = {
@@ -987,6 +1111,7 @@ export type MaterialUncheckedUpdateWithoutAdjustmentsInput = {
   usages?: Prisma.MaterialUsageUncheckedUpdateManyWithoutMaterialNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutMaterialNestedInput
   jobMaterials?: Prisma.JobMaterialUncheckedUpdateManyWithoutMaterialNestedInput
+  partMaterials?: Prisma.PartMaterialUncheckedUpdateManyWithoutMaterialNestedInput
 }
 
 export type MaterialCreateWithoutSupplierInput = {
@@ -1004,6 +1129,7 @@ export type MaterialCreateWithoutSupplierInput = {
   adjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutMaterialInput
   parts?: Prisma.PartCreateNestedManyWithoutMaterialInput
   jobMaterials?: Prisma.JobMaterialCreateNestedManyWithoutMaterialInput
+  partMaterials?: Prisma.PartMaterialCreateNestedManyWithoutMaterialInput
 }
 
 export type MaterialUncheckedCreateWithoutSupplierInput = {
@@ -1021,6 +1147,7 @@ export type MaterialUncheckedCreateWithoutSupplierInput = {
   adjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutMaterialInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutMaterialInput
   jobMaterials?: Prisma.JobMaterialUncheckedCreateNestedManyWithoutMaterialInput
+  partMaterials?: Prisma.PartMaterialUncheckedCreateNestedManyWithoutMaterialInput
 }
 
 export type MaterialCreateOrConnectWithoutSupplierInput = {
@@ -1094,6 +1221,7 @@ export type MaterialUpdateWithoutSupplierInput = {
   adjustments?: Prisma.StockAdjustmentUpdateManyWithoutMaterialNestedInput
   parts?: Prisma.PartUpdateManyWithoutMaterialNestedInput
   jobMaterials?: Prisma.JobMaterialUpdateManyWithoutMaterialNestedInput
+  partMaterials?: Prisma.PartMaterialUpdateManyWithoutMaterialNestedInput
 }
 
 export type MaterialUncheckedUpdateWithoutSupplierInput = {
@@ -1111,6 +1239,7 @@ export type MaterialUncheckedUpdateWithoutSupplierInput = {
   adjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutMaterialNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutMaterialNestedInput
   jobMaterials?: Prisma.JobMaterialUncheckedUpdateManyWithoutMaterialNestedInput
+  partMaterials?: Prisma.PartMaterialUncheckedUpdateManyWithoutMaterialNestedInput
 }
 
 export type MaterialUncheckedUpdateManyWithoutSupplierInput = {
@@ -1136,6 +1265,7 @@ export type MaterialCountOutputType = {
   adjustments: number
   parts: number
   jobMaterials: number
+  partMaterials: number
 }
 
 export type MaterialCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1143,6 +1273,7 @@ export type MaterialCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensio
   adjustments?: boolean | MaterialCountOutputTypeCountAdjustmentsArgs
   parts?: boolean | MaterialCountOutputTypeCountPartsArgs
   jobMaterials?: boolean | MaterialCountOutputTypeCountJobMaterialsArgs
+  partMaterials?: boolean | MaterialCountOutputTypeCountPartMaterialsArgs
 }
 
 /**
@@ -1183,6 +1314,13 @@ export type MaterialCountOutputTypeCountJobMaterialsArgs<ExtArgs extends runtime
   where?: Prisma.JobMaterialWhereInput
 }
 
+/**
+ * MaterialCountOutputType without action
+ */
+export type MaterialCountOutputTypeCountPartMaterialsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PartMaterialWhereInput
+}
+
 
 export type MaterialSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1201,6 +1339,7 @@ export type MaterialSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   adjustments?: boolean | Prisma.Material$adjustmentsArgs<ExtArgs>
   parts?: boolean | Prisma.Material$partsArgs<ExtArgs>
   jobMaterials?: boolean | Prisma.Material$jobMaterialsArgs<ExtArgs>
+  partMaterials?: boolean | Prisma.Material$partMaterialsArgs<ExtArgs>
   _count?: boolean | Prisma.MaterialCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["material"]>
 
@@ -1255,6 +1394,7 @@ export type MaterialInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   adjustments?: boolean | Prisma.Material$adjustmentsArgs<ExtArgs>
   parts?: boolean | Prisma.Material$partsArgs<ExtArgs>
   jobMaterials?: boolean | Prisma.Material$jobMaterialsArgs<ExtArgs>
+  partMaterials?: boolean | Prisma.Material$partMaterialsArgs<ExtArgs>
   _count?: boolean | Prisma.MaterialCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type MaterialIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1272,6 +1412,7 @@ export type $MaterialPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     adjustments: Prisma.$StockAdjustmentPayload<ExtArgs>[]
     parts: Prisma.$PartPayload<ExtArgs>[]
     jobMaterials: Prisma.$JobMaterialPayload<ExtArgs>[]
+    partMaterials: Prisma.$PartMaterialPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1684,6 +1825,7 @@ export interface Prisma__MaterialClient<T, Null = never, ExtArgs extends runtime
   adjustments<T extends Prisma.Material$adjustmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Material$adjustmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StockAdjustmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   parts<T extends Prisma.Material$partsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Material$partsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PartPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   jobMaterials<T extends Prisma.Material$jobMaterialsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Material$jobMaterialsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$JobMaterialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  partMaterials<T extends Prisma.Material$partMaterialsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Material$partMaterialsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PartMaterialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2237,6 +2379,30 @@ export type Material$jobMaterialsArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.JobMaterialScalarFieldEnum | Prisma.JobMaterialScalarFieldEnum[]
+}
+
+/**
+ * Material.partMaterials
+ */
+export type Material$partMaterialsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PartMaterial
+   */
+  select?: Prisma.PartMaterialSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PartMaterial
+   */
+  omit?: Prisma.PartMaterialOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PartMaterialInclude<ExtArgs> | null
+  where?: Prisma.PartMaterialWhereInput
+  orderBy?: Prisma.PartMaterialOrderByWithRelationInput | Prisma.PartMaterialOrderByWithRelationInput[]
+  cursor?: Prisma.PartMaterialWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PartMaterialScalarFieldEnum | Prisma.PartMaterialScalarFieldEnum[]
 }
 
 /**

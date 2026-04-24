@@ -14,7 +14,6 @@ export interface QcFinding {
   measuredValue?: string | null;
   unit?: string | null;
   description?: string | null;
-  severity: number; // 0-10
   isConforming: boolean;
   document?: { id: string; fileName: string; key: string } | null;
 }
@@ -23,8 +22,6 @@ export interface QcLog {
   result: QcResult;
   reason: string | null;
   loggedAt: string;
-  totalScore?: number | null;
-  actionRequired?: string | null;
   inspector: { name: string };
   findings: QcFinding[];
 }
@@ -36,7 +33,6 @@ export interface QcFindingInput {
   measuredValue?: string;
   unit?: string;
   description?: string;
-  severity: number;
   isConforming: boolean;
   documentId?: string;
 }
@@ -78,6 +74,37 @@ export interface JobMaterial {
   material: Material;
 }
 
+export interface PartMaterial {
+  id: string;
+  partId: string;
+  materialId: string;
+  ratio: number;
+  material: Material;
+}
+
+export interface PartSpecification {
+  id: string;
+  partId: string;
+  length?: number | null;
+  width?: number | null;
+  height?: number | null;
+  weight?: number | null;
+  unit: string;
+  tolerance?: string | null;
+  surfaceFinish?: string | null;
+  otherSpecs?: any;
+}
+
+export interface Part {
+  id: string;
+  partNo: string;
+  description: string;
+  drawingRef?: string | null;
+  material?: Material | null;
+  materials?: PartMaterial[];
+  specifications?: PartSpecification | null;
+}
+
 export interface JobList {
   id: string;
   jobCardId: string;
@@ -87,19 +114,9 @@ export interface JobList {
   status: JobCardStatus;
   operations: Operation[];
   jobMaterials: JobMaterial[];
-  part?: {
-    partNo: string;
-    description: string;
-    drawingRef?: string | null;
-    material?: Material | null;
-  };
+  part?: Part;
   lineItem?: {
-    part: {
-      partNo: string;
-      description: string;
-      drawingRef?: string | null;
-      material?: Material | null;
-    }
+    part: Part;
   };
 }
 
@@ -122,17 +139,25 @@ export interface CreateJobDto {
   materials?: { materialId: string; quantity: number }[];
 }
 
-export function useJobCards() {
+export function useJobCards(
+  page: number = 1,
+  limit: number = 10,
+  startDate?: string,
+  endDate?: string,
+  status?: JobCardStatus,
+  search?: string
+) {
   const query = useQuery({
-    queryKey: ["jobs"],
+    queryKey: ["jobs", page, limit, startDate, endDate, status, search],
     queryFn: async () => {
-      const res = await api.get("/jobs");
-      return res.data as JobCard[];
+      const res = await api.get("/jobs", { params: { page, limit, startDate, endDate, status, search } });
+      return res.data as { data: JobCard[], meta: { totalPages: number, page: number, total: number } };
     },
   });
 
   return {
-    jobs: query.data ?? [],
+    jobs: query.data?.data ?? [],
+    totalPages: query.data?.meta?.totalPages ?? 1,
     loading: query.isLoading,
     error: query.error,
     refetch: query.refetch,
@@ -265,3 +290,4 @@ export function useRemoveJobMaterial() {
     },
   });
 }
+

@@ -314,6 +314,28 @@ export interface PrismaClient<in LogOpts extends Prisma.LogLevel = never, in out
         omit: OmitOpts;
     }>;
     /**
+     * `prisma.partMaterial`: Exposes CRUD operations for the **PartMaterial** model.
+      * Example usage:
+      * ```ts
+      * // Fetch zero or more PartMaterials
+      * const partMaterials = await prisma.partMaterial.findMany()
+      * ```
+      */
+    get partMaterial(): Prisma.PartMaterialDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
+    /**
+     * `prisma.partSpecification`: Exposes CRUD operations for the **PartSpecification** model.
+      * Example usage:
+      * ```ts
+      * // Fetch zero or more PartSpecifications
+      * const partSpecifications = await prisma.partSpecification.findMany()
+      * ```
+      */
+    get partSpecification(): Prisma.PartSpecificationDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
+    /**
      * `prisma.routingTemplate`: Exposes CRUD operations for the **RoutingTemplate** model.
       * Example usage:
       * ```ts

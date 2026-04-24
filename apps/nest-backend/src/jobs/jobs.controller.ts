@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Patch, Param, Body, Req, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Patch, Param, Body, Req, Delete, Query } from '@nestjs/common';
 import { JobsService } from './jobs.service';
 import { JobCardStatus } from '@ebst/db';
 import { CreateJobDto } from './dto/create-job.dto';
@@ -12,8 +12,17 @@ export class JobsController {
   constructor(private readonly jobsService: JobsService) {}
 
   @Get()
-  findAll() {
-    return this.jobsService.findAll();
+  findAll(
+    @Query('page') page?: string,
+    @Query('limit') limit?: string,
+    @Query('startDate') startDate?: string,
+    @Query('endDate') endDate?: string,
+    @Query('status') status?: JobCardStatus,
+    @Query('search') search?: string
+  ) {
+    const pageNum = page ? parseInt(page, 10) : 1;
+    const limitNum = limit ? parseInt(limit, 10) : 10;
+    return this.jobsService.findAll(pageNum, limitNum, startDate, endDate, status, search);
   }
 
   @Get(':id')

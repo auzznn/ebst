@@ -13,16 +13,17 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Loader2, Plus, ArrowUpRight, Package, List, Save, Edit3, Phone, Mail, MapPin, Info, Tag, Hash, Scale, Building2, AlertCircle } from "lucide-react";
+import { Loader2, Plus, ArrowUpRight, Package, List, Save, Edit3, Phone, Mail, MapPin, Info, Tag, Hash, Scale, Building2, AlertCircle, ChevronLeft, ChevronRight } from "lucide-react";
 import { toast } from "sonner";
 
 export default function InventoryPage() {
-  const { materials, isLoading: isInventoryLoading, createMaterial, adjustStock, allocateMaterial } = useInventory();
+  const [page, setPage] = useState(1);
+  const { materials, isLoading: isInventoryLoading, totalPages, createMaterial, updateMaterial, adjustStock } = useInventory(page);
   const { suppliers, isLoading: isSuppliersLoading, createSupplier, updateSupplier } = useSuppliers();
   const { jobs } = useJobCards();
   const [activeTab, setActiveTab] = useState("list");
   const [isAdjustDialogOpen, setIsAdjustDialogOpen] = useState(false);
-  const [isAllocateDialogOpen, setIsAllocateDialogOpen] = useState(false);
+  const [isEditMaterialDialogOpen, setIsEditMaterialDialogOpen] = useState(false);
   const [isCreateSupplierDialogOpen, setIsCreateSupplierDialogOpen] = useState(false);
   const [isEditSupplierDialogOpen, setIsEditSupplierDialogOpen] = useState(false);
   const [selectedMaterial, setSelectedMaterial] = useState<Material | null>(null);
@@ -33,7 +34,15 @@ export default function InventoryPage() {
     code: "",
     unit: "KG",
     reorderThreshold: 0,
-    reorderQty: 0,
+    description: "",
+    supplierId: "none",
+  });
+
+  const [editMaterial, setEditMaterial] = useState({
+    name: "",
+    code: "",
+    unit: "KG",
+    reorderThreshold: 0,
     description: "",
     supplierId: "none",
   });
@@ -57,23 +66,36 @@ export default function InventoryPage() {
     reason: "Stock receipt",
   });
 
-  const [allocation, setAllocation] = useState({
-    jobListId: "",
-    qty: 0,
-  });
-
   const handleAddMaterial = async () => {
     try {
-      const payload: Record<string, string | number> = { ...newMaterial, unitCost: 0 };
-      if (payload.supplierId === "none") {
-        delete payload.supplierId;
-      }
+      const payload = {
+        ...newMaterial,
+        reorderThreshold: Number(newMaterial.reorderThreshold),
+        unitCost: 0,
+        supplierId: newMaterial.supplierId === "none" ? null : newMaterial.supplierId
+      };
       await createMaterial(payload);
       toast.success("Material added successfully");
-      setNewMaterial({ name: "", code: "", unit: "KG", reorderThreshold: 0, reorderQty: 0, description: "", supplierId: "none" });
+      setNewMaterial({ name: "", code: "", unit: "KG", reorderThreshold: 0, description: "", supplierId: "none" });
       setActiveTab("list");
     } catch (error) {
       toast.error("Failed to add material");
+    }
+  };
+
+  const handleUpdateMaterial = async () => {
+    if (!selectedMaterial) return;
+    try {
+      const payload = {
+        ...editMaterial,
+        reorderThreshold: Number(editMaterial.reorderThreshold),
+        supplierId: editMaterial.supplierId === "none" ? null : editMaterial.supplierId
+      };
+      await updateMaterial({ id: selectedMaterial.id, ...payload });
+      toast.success("Material updated successfully");
+      setIsEditMaterialDialogOpen(false);
+    } catch (error) {
+      toast.error("Failed to update material");
     }
   };
 
@@ -123,19 +145,17 @@ export default function InventoryPage() {
     }
   };
 
-  const handleAllocateMaterial = async () => {
-    if (!selectedMaterial) return;
-    try {
-      await allocateMaterial({
-        materialId: selectedMaterial.id,
-        jobListId: allocation.jobListId,
-        qty: allocation.qty,
-      });
-      setIsAllocateDialogOpen(false);
-      toast.success("Material allocated to job");
-    } catch (error) {
-      toast.error("Failed to allocate material");
-    }
+  const openEditMaterial = (material: Material) => {
+    setSelectedMaterial(material);
+    setEditMaterial({
+      name: material.name,
+      code: material.code,
+      unit: material.unit,
+      reorderThreshold: material.reorderThreshold,
+      description: material.description || "",
+      supplierId: material.supplierId || "none",
+    });
+    setIsEditMaterialDialogOpen(true);
   };
 
   const openEditSupplier = (supplier: Supplier) => {
@@ -166,7 +186,7 @@ export default function InventoryPage() {
           </div>
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-primary">Inventory Management</h1>
         </div>
-        <p className="text-muted-foreground text-lg ml-13">Manage raw materials, adjust stock, and allocate to job cards in real-time.</p>
+        <p className="text-muted-foreground text-lg ml-13">Manage raw materials, adjust stock, and update material details in real-time.</p>
       </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
@@ -219,14 +239,28 @@ export default function InventoryPage() {
                         <Button variant="outline" size="sm" onClick={() => { setSelectedMaterial(m); setIsAdjustDialogOpen(true); }} className="hover:bg-primary/5 hover:text-primary transition-colors">
                           <ArrowUpRight className="h-4 w-4 mr-1" /> Adjust
                         </Button>
-                        <Button variant="outline" size="sm" onClick={() => { setSelectedMaterial(m); setIsAllocateDialogOpen(true); }} className="hover:bg-primary/5 hover:text-primary transition-colors">
-                          <Package className="h-4 w-4 mr-1" /> Allocate
+                        <Button variant="outline" size="sm" onClick={() => openEditMaterial(m)} className="hover:bg-primary/5 hover:text-primary transition-colors">
+                          <Edit3 className="h-4 w-4 mr-1" /> Edit
                         </Button>
                       </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
               </Table>
+              
+              <div className="flex items-center justify-between px-4 py-4 border-t border-border/50 bg-muted/10">
+                <div className="text-sm text-muted-foreground">
+                  Showing page {page} of {totalPages}
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Button variant="outline" size="sm" onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page <= 1}>
+                    <ChevronLeft className="h-4 w-4 mr-1" /> Prev
+                  </Button>
+                  <Button variant="outline" size="sm" onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={page >= totalPages}>
+                    Next <ChevronRight className="h-4 w-4 ml-1" />
+                  </Button>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </TabsContent>
@@ -400,41 +434,65 @@ export default function InventoryPage() {
         </DialogContent>
       </Dialog>
 
-      {/* Allocate to Job Dialog */}
-      <Dialog open={isAllocateDialogOpen} onOpenChange={setIsAllocateDialogOpen}>
-        <DialogContent>
+      {/* Edit Material Dialog */}
+      <Dialog open={isEditMaterialDialogOpen} onOpenChange={setIsEditMaterialDialogOpen}>
+        <DialogContent className="sm:max-w-[600px]">
           <DialogHeader>
-            <DialogTitle>Allocate to Job: {selectedMaterial?.name}</DialogTitle>
-            <DialogDescription>Assign this material to an active job list for processing.</DialogDescription>
+            <DialogTitle className="flex items-center gap-2 text-primary font-bold">
+              <Edit3 className="h-5 w-5" /> Edit Material: {selectedMaterial?.name}
+            </DialogTitle>
+            <DialogDescription>Modify material details in the global inventory database.</DialogDescription>
           </DialogHeader>
-          <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="job" className="text-right">Job Card</Label>
-              <Select onValueChange={(v) => setAllocation({ ...allocation, jobListId: v })}>
-                <SelectTrigger className="col-span-3">
-                  <SelectValue placeholder="Select Job List" />
+          <div className="grid gap-6 py-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="edit-name" className="text-sm font-semibold">Material Name</Label>
+                <Input id="edit-name" value={editMaterial.name} onChange={(e) => setEditMaterial({ ...editMaterial, name: e.target.value })} className="h-10 bg-background/50 focus:bg-background transition-all" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="edit-code" className="text-sm font-semibold">Product Code</Label>
+                <Input id="edit-code" value={editMaterial.code} onChange={(e) => setEditMaterial({ ...editMaterial, code: e.target.value })} className="h-10 bg-background/50 focus:bg-background transition-all" />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="edit-unit" className="text-sm font-semibold">Measurement Unit</Label>
+                <Select value={editMaterial.unit} onValueChange={(v) => setEditMaterial({ ...editMaterial, unit: v })}>
+                  <SelectTrigger className="h-10 bg-background/50 focus:bg-background transition-all">
+                    <SelectValue placeholder="Select unit" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="KG">Kilogram (KG)</SelectItem>
+                    <SelectItem value="GRAM">Gram (GRAM)</SelectItem>
+                    <SelectItem value="LITRE">Litre (LITRE)</SelectItem>
+                    <SelectItem value="PIECE">Piece (PIECE)</SelectItem>
+                    <SelectItem value="METRE">Metre (METRE)</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="edit-threshold" className="text-sm font-semibold">Reorder Threshold</Label>
+                <Input id="edit-threshold" type="number" value={editMaterial.reorderThreshold} onChange={(e) => setEditMaterial({ ...editMaterial, reorderThreshold: Number(e.target.value) })} className="h-10 bg-background/50 focus:bg-background transition-all" />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="edit-supplier" className="text-sm font-semibold">Primary Supplier</Label>
+              <Select value={editMaterial.supplierId} onValueChange={(v) => setEditMaterial({ ...editMaterial, supplierId: v })}>
+                <SelectTrigger className="h-10 bg-background/50 focus:bg-background transition-all">
+                  <SelectValue placeholder="Select supplier" />
                 </SelectTrigger>
                 <SelectContent>
-                  {jobs.filter(j => j.status !== 'COMPLETED' && j.status !== 'CANCELLED').flatMap(j =>
-                    j.jobLists.map(jl => {
-                      const partNo = jl.lineItem?.part?.partNo || jl.part?.partNo || "Unknown Part";
-                      return (
-                        <SelectItem key={jl.id} value={jl.id}>
-                          {j.jobNo} - {partNo} (Qty: {jl.quantity})
-                        </SelectItem>
-                      );
-                    })
-                  )}
+                  <SelectItem value="none">No Supplier Assigned</SelectItem>
+                  {suppliers.map(s => (
+                    <SelectItem key={s.id} value={s.id}>{s.name}</SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="alloc-qty" className="text-right">Quantity</Label>
-              <Input id="alloc-qty" type="number" value={allocation.qty} onChange={(e) => setAllocation({ ...allocation, qty: Number(e.target.value) })} className="col-span-3" />
-            </div>
           </div>
-          <DialogFooter>
-            <Button onClick={handleAllocateMaterial} className="w-full">Allocate Material</Button>
+          <DialogFooter className="gap-2 pt-2 border-t mt-4">
+            <Button variant="outline" onClick={() => setIsEditMaterialDialogOpen(false)} className="flex-1">Cancel</Button>
+            <Button onClick={handleUpdateMaterial} className="flex-1 shadow-lg shadow-primary/20">Save Changes</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

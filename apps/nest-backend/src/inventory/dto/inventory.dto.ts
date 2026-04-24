@@ -18,8 +18,9 @@ export class CreateMaterialDto {
   @IsNumber()
   reorderThreshold: number;
 
+  @IsOptional()
   @IsNumber()
-  reorderQty: number;
+  reorderQty?: number;
 
   @IsOptional()
   @IsString()

@@ -13,9 +13,10 @@ import {
   File as FileIcon,
   MoreVertical,
   Filter,
-  Loader2
+  Loader2,
+  Component
 } from "lucide-react";
-import { useDocuments, BusinessDocument } from "@/hooks/useDocuments";
+import { useDocuments } from "@/hooks/useDocuments";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -146,6 +147,8 @@ export default function DocumentsPage() {
         return <FileSpreadsheet className="h-4 w-4 text-emerald-500" />;
       case "DELIVERY_NOTE":
         return <FileIcon className="h-4 w-4 text-amber-500" />;
+      case "DRAWING":
+        return <Component className="h-4 w-4 text-purple-500" />;
       default:
         return <FileIcon className="h-4 w-4 text-gray-500" />;
     }
@@ -157,7 +160,7 @@ export default function DocumentsPage() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Files Management</h1>
-          <p className="text-muted-foreground">Manage your invoices, POs, and delivery notes.</p>
+          <p className="text-muted-foreground">Manage your invoices, POs, drawings, and delivery notes.</p>
         </div>
 
         <Dialog open={isUploadOpen} onOpenChange={setIsUploadOpen}>
@@ -185,6 +188,7 @@ export default function DocumentsPage() {
                     <SelectItem value="INVOICE">Invoice</SelectItem>
                     <SelectItem value="PURCHASE_ORDER">Purchase Order</SelectItem>
                     <SelectItem value="DELIVERY_NOTE">Delivery Note</SelectItem>
+                    <SelectItem value="DRAWING">Part Drawing</SelectItem>
                     <SelectItem value="OTHER">Other</SelectItem>
                   </SelectContent>
                 </Select>
@@ -242,7 +246,7 @@ export default function DocumentsPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <Card className="bg-linear-to-br from-blue-500/5 to-transparent border-blue-500/20">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-blue-600">Total Invoices</CardTitle>
@@ -260,6 +264,16 @@ export default function DocumentsPage() {
           <CardContent>
             <div className="text-2xl font-bold">
               {documents?.filter(d => d.documentType === 'PURCHASE_ORDER').length || 0}
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="bg-linear-to-br from-purple-500/5 to-transparent border-purple-500/20">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-purple-600">Part Drawings</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">
+              {documents?.filter(d => d.documentType === 'DRAWING').length || 0}
             </div>
           </CardContent>
         </Card>
@@ -293,19 +307,7 @@ export default function DocumentsPage() {
                   onChange={(e) => setSearch(e.target.value)}
                 />
               </div>
-              <Select value={filterType} onValueChange={setFilterType}>
-                <SelectTrigger className="w-[150px] bg-background">
-                  <Filter className="h-4 w-4 mr-2" />
-                  <SelectValue placeholder="All Types" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Types</SelectItem>
-                  <SelectItem value="INVOICE">Invoices</SelectItem>
-                  <SelectItem value="PURCHASE_ORDER">Purchase Orders</SelectItem>
-                  <SelectItem value="DELIVERY_NOTE">Delivery Notes</SelectItem>
-                  <SelectItem value="OTHER">Others</SelectItem>
-                </SelectContent>
-              </Select>
+              <FilterTypeSelect value={filterType} onValueChange={setFilterType} />
             </div>
           </div>
         </CardHeader>
@@ -406,5 +408,24 @@ export default function DocumentsPage() {
         </CardContent>
       </Card>
     </div>
+  );
+}
+
+function FilterTypeSelect({ value, onValueChange }: { value: string, onValueChange: (v: string) => void }) {
+  return (
+    <Select value={value} onValueChange={onValueChange}>
+      <SelectTrigger className="w-[150px] bg-background">
+        <Filter className="h-4 w-4 mr-2" />
+        <SelectValue placeholder="All Types" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="all">All Types</SelectItem>
+        <SelectItem value="INVOICE">Invoices</SelectItem>
+        <SelectItem value="PURCHASE_ORDER">Purchase Orders</SelectItem>
+        <SelectItem value="DRAWING">Part Drawings</SelectItem>
+        <SelectItem value="DELIVERY_NOTE">Delivery Notes</SelectItem>
+        <SelectItem value="OTHER">Others</SelectItem>
+      </SelectContent>
+    </Select>
   );
 }

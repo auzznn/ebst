@@ -20,18 +20,8 @@ export type QcLogModel = runtime.Types.Result.DefaultSelection<Prisma.$QcLogPayl
 
 export type AggregateQcLog = {
   _count: QcLogCountAggregateOutputType | null
-  _avg: QcLogAvgAggregateOutputType | null
-  _sum: QcLogSumAggregateOutputType | null
   _min: QcLogMinAggregateOutputType | null
   _max: QcLogMaxAggregateOutputType | null
-}
-
-export type QcLogAvgAggregateOutputType = {
-  totalScore: number | null
-}
-
-export type QcLogSumAggregateOutputType = {
-  totalScore: number | null
 }
 
 export type QcLogMinAggregateOutputType = {
@@ -41,8 +31,6 @@ export type QcLogMinAggregateOutputType = {
   reason: string | null
   inspectorId: string | null
   loggedAt: Date | null
-  totalScore: number | null
-  actionRequired: string | null
 }
 
 export type QcLogMaxAggregateOutputType = {
@@ -52,8 +40,6 @@ export type QcLogMaxAggregateOutputType = {
   reason: string | null
   inspectorId: string | null
   loggedAt: Date | null
-  totalScore: number | null
-  actionRequired: string | null
 }
 
 export type QcLogCountAggregateOutputType = {
@@ -63,19 +49,9 @@ export type QcLogCountAggregateOutputType = {
   reason: number
   inspectorId: number
   loggedAt: number
-  totalScore: number
-  actionRequired: number
   _all: number
 }
 
-
-export type QcLogAvgAggregateInputType = {
-  totalScore?: true
-}
-
-export type QcLogSumAggregateInputType = {
-  totalScore?: true
-}
 
 export type QcLogMinAggregateInputType = {
   id?: true
@@ -84,8 +60,6 @@ export type QcLogMinAggregateInputType = {
   reason?: true
   inspectorId?: true
   loggedAt?: true
-  totalScore?: true
-  actionRequired?: true
 }
 
 export type QcLogMaxAggregateInputType = {
@@ -95,8 +69,6 @@ export type QcLogMaxAggregateInputType = {
   reason?: true
   inspectorId?: true
   loggedAt?: true
-  totalScore?: true
-  actionRequired?: true
 }
 
 export type QcLogCountAggregateInputType = {
@@ -106,8 +78,6 @@ export type QcLogCountAggregateInputType = {
   reason?: true
   inspectorId?: true
   loggedAt?: true
-  totalScore?: true
-  actionRequired?: true
   _all?: true
 }
 
@@ -149,18 +119,6 @@ export type QcLogAggregateArgs<ExtArgs extends runtime.Types.Extensions.Internal
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: QcLogAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: QcLogSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: QcLogMinAggregateInputType
@@ -191,8 +149,6 @@ export type QcLogGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   _count?: QcLogCountAggregateInputType | true
-  _avg?: QcLogAvgAggregateInputType
-  _sum?: QcLogSumAggregateInputType
   _min?: QcLogMinAggregateInputType
   _max?: QcLogMaxAggregateInputType
 }
@@ -204,11 +160,7 @@ export type QcLogGroupByOutputType = {
   reason: string | null
   inspectorId: string
   loggedAt: Date
-  totalScore: number | null
-  actionRequired: string | null
   _count: QcLogCountAggregateOutputType | null
-  _avg: QcLogAvgAggregateOutputType | null
-  _sum: QcLogSumAggregateOutputType | null
   _min: QcLogMinAggregateOutputType | null
   _max: QcLogMaxAggregateOutputType | null
 }
@@ -238,8 +190,6 @@ export type QcLogWhereInput = {
   reason?: Prisma.StringNullableFilter<"QcLog"> | string | null
   inspectorId?: Prisma.StringFilter<"QcLog"> | string
   loggedAt?: Prisma.DateTimeFilter<"QcLog"> | Date | string
-  totalScore?: Prisma.IntNullableFilter<"QcLog"> | number | null
-  actionRequired?: Prisma.StringNullableFilter<"QcLog"> | string | null
   operation?: Prisma.XOR<Prisma.OperationScalarRelationFilter, Prisma.OperationWhereInput>
   inspector?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   findings?: Prisma.QcFindingListRelationFilter
@@ -252,8 +202,6 @@ export type QcLogOrderByWithRelationInput = {
   reason?: Prisma.SortOrderInput | Prisma.SortOrder
   inspectorId?: Prisma.SortOrder
   loggedAt?: Prisma.SortOrder
-  totalScore?: Prisma.SortOrderInput | Prisma.SortOrder
-  actionRequired?: Prisma.SortOrderInput | Prisma.SortOrder
   operation?: Prisma.OperationOrderByWithRelationInput
   inspector?: Prisma.UserOrderByWithRelationInput
   findings?: Prisma.QcFindingOrderByRelationAggregateInput
@@ -269,8 +217,6 @@ export type QcLogWhereUniqueInput = Prisma.AtLeast<{
   reason?: Prisma.StringNullableFilter<"QcLog"> | string | null
   inspectorId?: Prisma.StringFilter<"QcLog"> | string
   loggedAt?: Prisma.DateTimeFilter<"QcLog"> | Date | string
-  totalScore?: Prisma.IntNullableFilter<"QcLog"> | number | null
-  actionRequired?: Prisma.StringNullableFilter<"QcLog"> | string | null
   operation?: Prisma.XOR<Prisma.OperationScalarRelationFilter, Prisma.OperationWhereInput>
   inspector?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   findings?: Prisma.QcFindingListRelationFilter
@@ -283,13 +229,9 @@ export type QcLogOrderByWithAggregationInput = {
   reason?: Prisma.SortOrderInput | Prisma.SortOrder
   inspectorId?: Prisma.SortOrder
   loggedAt?: Prisma.SortOrder
-  totalScore?: Prisma.SortOrderInput | Prisma.SortOrder
-  actionRequired?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.QcLogCountOrderByAggregateInput
-  _avg?: Prisma.QcLogAvgOrderByAggregateInput
   _max?: Prisma.QcLogMaxOrderByAggregateInput
   _min?: Prisma.QcLogMinOrderByAggregateInput
-  _sum?: Prisma.QcLogSumOrderByAggregateInput
 }
 
 export type QcLogScalarWhereWithAggregatesInput = {
@@ -302,8 +244,6 @@ export type QcLogScalarWhereWithAggregatesInput = {
   reason?: Prisma.StringNullableWithAggregatesFilter<"QcLog"> | string | null
   inspectorId?: Prisma.StringWithAggregatesFilter<"QcLog"> | string
   loggedAt?: Prisma.DateTimeWithAggregatesFilter<"QcLog"> | Date | string
-  totalScore?: Prisma.IntNullableWithAggregatesFilter<"QcLog"> | number | null
-  actionRequired?: Prisma.StringNullableWithAggregatesFilter<"QcLog"> | string | null
 }
 
 export type QcLogCreateInput = {
@@ -311,8 +251,6 @@ export type QcLogCreateInput = {
   result: $Enums.QcResult
   reason?: string | null
   loggedAt?: Date | string
-  totalScore?: number | null
-  actionRequired?: string | null
   operation: Prisma.OperationCreateNestedOneWithoutQcLogInput
   inspector: Prisma.UserCreateNestedOneWithoutQcLogsInput
   findings?: Prisma.QcFindingCreateNestedManyWithoutQcLogInput
@@ -325,8 +263,6 @@ export type QcLogUncheckedCreateInput = {
   reason?: string | null
   inspectorId: string
   loggedAt?: Date | string
-  totalScore?: number | null
-  actionRequired?: string | null
   findings?: Prisma.QcFindingUncheckedCreateNestedManyWithoutQcLogInput
 }
 
@@ -335,8 +271,6 @@ export type QcLogUpdateInput = {
   result?: Prisma.EnumQcResultFieldUpdateOperationsInput | $Enums.QcResult
   reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   loggedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  totalScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  actionRequired?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   operation?: Prisma.OperationUpdateOneRequiredWithoutQcLogNestedInput
   inspector?: Prisma.UserUpdateOneRequiredWithoutQcLogsNestedInput
   findings?: Prisma.QcFindingUpdateManyWithoutQcLogNestedInput
@@ -349,8 +283,6 @@ export type QcLogUncheckedUpdateInput = {
   reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   inspectorId?: Prisma.StringFieldUpdateOperationsInput | string
   loggedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  totalScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  actionRequired?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   findings?: Prisma.QcFindingUncheckedUpdateManyWithoutQcLogNestedInput
 }
 
@@ -361,8 +293,6 @@ export type QcLogCreateManyInput = {
   reason?: string | null
   inspectorId: string
   loggedAt?: Date | string
-  totalScore?: number | null
-  actionRequired?: string | null
 }
 
 export type QcLogUpdateManyMutationInput = {
@@ -370,8 +300,6 @@ export type QcLogUpdateManyMutationInput = {
   result?: Prisma.EnumQcResultFieldUpdateOperationsInput | $Enums.QcResult
   reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   loggedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  totalScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  actionRequired?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type QcLogUncheckedUpdateManyInput = {
@@ -381,8 +309,6 @@ export type QcLogUncheckedUpdateManyInput = {
   reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   inspectorId?: Prisma.StringFieldUpdateOperationsInput | string
   loggedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  totalScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  actionRequired?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type QcLogListRelationFilter = {
@@ -407,12 +333,6 @@ export type QcLogCountOrderByAggregateInput = {
   reason?: Prisma.SortOrder
   inspectorId?: Prisma.SortOrder
   loggedAt?: Prisma.SortOrder
-  totalScore?: Prisma.SortOrder
-  actionRequired?: Prisma.SortOrder
-}
-
-export type QcLogAvgOrderByAggregateInput = {
-  totalScore?: Prisma.SortOrder
 }
 
 export type QcLogMaxOrderByAggregateInput = {
@@ -422,8 +342,6 @@ export type QcLogMaxOrderByAggregateInput = {
   reason?: Prisma.SortOrder
   inspectorId?: Prisma.SortOrder
   loggedAt?: Prisma.SortOrder
-  totalScore?: Prisma.SortOrder
-  actionRequired?: Prisma.SortOrder
 }
 
 export type QcLogMinOrderByAggregateInput = {
@@ -433,12 +351,6 @@ export type QcLogMinOrderByAggregateInput = {
   reason?: Prisma.SortOrder
   inspectorId?: Prisma.SortOrder
   loggedAt?: Prisma.SortOrder
-  totalScore?: Prisma.SortOrder
-  actionRequired?: Prisma.SortOrder
-}
-
-export type QcLogSumOrderByAggregateInput = {
-  totalScore?: Prisma.SortOrder
 }
 
 export type QcLogScalarRelationFilter = {
@@ -543,8 +455,6 @@ export type QcLogCreateWithoutInspectorInput = {
   result: $Enums.QcResult
   reason?: string | null
   loggedAt?: Date | string
-  totalScore?: number | null
-  actionRequired?: string | null
   operation: Prisma.OperationCreateNestedOneWithoutQcLogInput
   findings?: Prisma.QcFindingCreateNestedManyWithoutQcLogInput
 }
@@ -555,8 +465,6 @@ export type QcLogUncheckedCreateWithoutInspectorInput = {
   result: $Enums.QcResult
   reason?: string | null
   loggedAt?: Date | string
-  totalScore?: number | null
-  actionRequired?: string | null
   findings?: Prisma.QcFindingUncheckedCreateNestedManyWithoutQcLogInput
 }
 
@@ -596,8 +504,6 @@ export type QcLogScalarWhereInput = {
   reason?: Prisma.StringNullableFilter<"QcLog"> | string | null
   inspectorId?: Prisma.StringFilter<"QcLog"> | string
   loggedAt?: Prisma.DateTimeFilter<"QcLog"> | Date | string
-  totalScore?: Prisma.IntNullableFilter<"QcLog"> | number | null
-  actionRequired?: Prisma.StringNullableFilter<"QcLog"> | string | null
 }
 
 export type QcLogCreateWithoutOperationInput = {
@@ -605,8 +511,6 @@ export type QcLogCreateWithoutOperationInput = {
   result: $Enums.QcResult
   reason?: string | null
   loggedAt?: Date | string
-  totalScore?: number | null
-  actionRequired?: string | null
   inspector: Prisma.UserCreateNestedOneWithoutQcLogsInput
   findings?: Prisma.QcFindingCreateNestedManyWithoutQcLogInput
 }
@@ -617,8 +521,6 @@ export type QcLogUncheckedCreateWithoutOperationInput = {
   reason?: string | null
   inspectorId: string
   loggedAt?: Date | string
-  totalScore?: number | null
-  actionRequired?: string | null
   findings?: Prisma.QcFindingUncheckedCreateNestedManyWithoutQcLogInput
 }
 
@@ -643,8 +545,6 @@ export type QcLogUpdateWithoutOperationInput = {
   result?: Prisma.EnumQcResultFieldUpdateOperationsInput | $Enums.QcResult
   reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   loggedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  totalScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  actionRequired?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   inspector?: Prisma.UserUpdateOneRequiredWithoutQcLogsNestedInput
   findings?: Prisma.QcFindingUpdateManyWithoutQcLogNestedInput
 }
@@ -655,8 +555,6 @@ export type QcLogUncheckedUpdateWithoutOperationInput = {
   reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   inspectorId?: Prisma.StringFieldUpdateOperationsInput | string
   loggedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  totalScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  actionRequired?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   findings?: Prisma.QcFindingUncheckedUpdateManyWithoutQcLogNestedInput
 }
 
@@ -665,8 +563,6 @@ export type QcLogCreateWithoutFindingsInput = {
   result: $Enums.QcResult
   reason?: string | null
   loggedAt?: Date | string
-  totalScore?: number | null
-  actionRequired?: string | null
   operation: Prisma.OperationCreateNestedOneWithoutQcLogInput
   inspector: Prisma.UserCreateNestedOneWithoutQcLogsInput
 }
@@ -678,8 +574,6 @@ export type QcLogUncheckedCreateWithoutFindingsInput = {
   reason?: string | null
   inspectorId: string
   loggedAt?: Date | string
-  totalScore?: number | null
-  actionRequired?: string | null
 }
 
 export type QcLogCreateOrConnectWithoutFindingsInput = {
@@ -703,8 +597,6 @@ export type QcLogUpdateWithoutFindingsInput = {
   result?: Prisma.EnumQcResultFieldUpdateOperationsInput | $Enums.QcResult
   reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   loggedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  totalScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  actionRequired?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   operation?: Prisma.OperationUpdateOneRequiredWithoutQcLogNestedInput
   inspector?: Prisma.UserUpdateOneRequiredWithoutQcLogsNestedInput
 }
@@ -716,8 +608,6 @@ export type QcLogUncheckedUpdateWithoutFindingsInput = {
   reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   inspectorId?: Prisma.StringFieldUpdateOperationsInput | string
   loggedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  totalScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  actionRequired?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type QcLogCreateManyInspectorInput = {
@@ -726,8 +616,6 @@ export type QcLogCreateManyInspectorInput = {
   result: $Enums.QcResult
   reason?: string | null
   loggedAt?: Date | string
-  totalScore?: number | null
-  actionRequired?: string | null
 }
 
 export type QcLogUpdateWithoutInspectorInput = {
@@ -735,8 +623,6 @@ export type QcLogUpdateWithoutInspectorInput = {
   result?: Prisma.EnumQcResultFieldUpdateOperationsInput | $Enums.QcResult
   reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   loggedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  totalScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  actionRequired?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   operation?: Prisma.OperationUpdateOneRequiredWithoutQcLogNestedInput
   findings?: Prisma.QcFindingUpdateManyWithoutQcLogNestedInput
 }
@@ -747,8 +633,6 @@ export type QcLogUncheckedUpdateWithoutInspectorInput = {
   result?: Prisma.EnumQcResultFieldUpdateOperationsInput | $Enums.QcResult
   reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   loggedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  totalScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  actionRequired?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   findings?: Prisma.QcFindingUncheckedUpdateManyWithoutQcLogNestedInput
 }
 
@@ -758,8 +642,6 @@ export type QcLogUncheckedUpdateManyWithoutInspectorInput = {
   result?: Prisma.EnumQcResultFieldUpdateOperationsInput | $Enums.QcResult
   reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   loggedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  totalScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  actionRequired?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -800,8 +682,6 @@ export type QcLogSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   reason?: boolean
   inspectorId?: boolean
   loggedAt?: boolean
-  totalScore?: boolean
-  actionRequired?: boolean
   operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
   inspector?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   findings?: boolean | Prisma.QcLog$findingsArgs<ExtArgs>
@@ -815,8 +695,6 @@ export type QcLogSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   reason?: boolean
   inspectorId?: boolean
   loggedAt?: boolean
-  totalScore?: boolean
-  actionRequired?: boolean
   operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
   inspector?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["qcLog"]>
@@ -828,8 +706,6 @@ export type QcLogSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   reason?: boolean
   inspectorId?: boolean
   loggedAt?: boolean
-  totalScore?: boolean
-  actionRequired?: boolean
   operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
   inspector?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["qcLog"]>
@@ -841,11 +717,9 @@ export type QcLogSelectScalar = {
   reason?: boolean
   inspectorId?: boolean
   loggedAt?: boolean
-  totalScore?: boolean
-  actionRequired?: boolean
 }
 
-export type QcLogOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "operationId" | "result" | "reason" | "inspectorId" | "loggedAt" | "totalScore" | "actionRequired", ExtArgs["result"]["qcLog"]>
+export type QcLogOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "operationId" | "result" | "reason" | "inspectorId" | "loggedAt", ExtArgs["result"]["qcLog"]>
 export type QcLogInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
   inspector?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -875,8 +749,6 @@ export type $QcLogPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     reason: string | null
     inspectorId: string
     loggedAt: Date
-    totalScore: number | null
-    actionRequired: string | null
   }, ExtArgs["result"]["qcLog"]>
   composites: {}
 }
@@ -1309,8 +1181,6 @@ export interface QcLogFieldRefs {
   readonly reason: Prisma.FieldRef<"QcLog", 'String'>
   readonly inspectorId: Prisma.FieldRef<"QcLog", 'String'>
   readonly loggedAt: Prisma.FieldRef<"QcLog", 'DateTime'>
-  readonly totalScore: Prisma.FieldRef<"QcLog", 'Int'>
-  readonly actionRequired: Prisma.FieldRef<"QcLog", 'String'>
 }
     
 

@@ -1,0 +1,1348 @@
+import type * as runtime from "@prisma/client/runtime/client";
+import type * as Prisma from "../internal/prismaNamespace.js";
+/**
+ * Model PartSpecification
+ *
+ */
+export type PartSpecificationModel = runtime.Types.Result.DefaultSelection<Prisma.$PartSpecificationPayload>;
+export type AggregatePartSpecification = {
+    _count: PartSpecificationCountAggregateOutputType | null;
+    _avg: PartSpecificationAvgAggregateOutputType | null;
+    _sum: PartSpecificationSumAggregateOutputType | null;
+    _min: PartSpecificationMinAggregateOutputType | null;
+    _max: PartSpecificationMaxAggregateOutputType | null;
+};
+export type PartSpecificationAvgAggregateOutputType = {
+    length: runtime.Decimal | null;
+    width: runtime.Decimal | null;
+    height: runtime.Decimal | null;
+    weight: runtime.Decimal | null;
+};
+export type PartSpecificationSumAggregateOutputType = {
+    length: runtime.Decimal | null;
+    width: runtime.Decimal | null;
+    height: runtime.Decimal | null;
+    weight: runtime.Decimal | null;
+};
+export type PartSpecificationMinAggregateOutputType = {
+    id: string | null;
+    partId: string | null;
+    length: runtime.Decimal | null;
+    width: runtime.Decimal | null;
+    height: runtime.Decimal | null;
+    weight: runtime.Decimal | null;
+    unit: string | null;
+    tolerance: string | null;
+    surfaceFinish: string | null;
+};
+export type PartSpecificationMaxAggregateOutputType = {
+    id: string | null;
+    partId: string | null;
+    length: runtime.Decimal | null;
+    width: runtime.Decimal | null;
+    height: runtime.Decimal | null;
+    weight: runtime.Decimal | null;
+    unit: string | null;
+    tolerance: string | null;
+    surfaceFinish: string | null;
+};
+export type PartSpecificationCountAggregateOutputType = {
+    id: number;
+    partId: number;
+    length: number;
+    width: number;
+    height: number;
+    weight: number;
+    unit: number;
+    tolerance: number;
+    surfaceFinish: number;
+    otherSpecs: number;
+    _all: number;
+};
+export type PartSpecificationAvgAggregateInputType = {
+    length?: true;
+    width?: true;
+    height?: true;
+    weight?: true;
+};
+export type PartSpecificationSumAggregateInputType = {
+    length?: true;
+    width?: true;
+    height?: true;
+    weight?: true;
+};
+export type PartSpecificationMinAggregateInputType = {
+    id?: true;
+    partId?: true;
+    length?: true;
+    width?: true;
+    height?: true;
+    weight?: true;
+    unit?: true;
+    tolerance?: true;
+    surfaceFinish?: true;
+};
+export type PartSpecificationMaxAggregateInputType = {
+    id?: true;
+    partId?: true;
+    length?: true;
+    width?: true;
+    height?: true;
+    weight?: true;
+    unit?: true;
+    tolerance?: true;
+    surfaceFinish?: true;
+};
+export type PartSpecificationCountAggregateInputType = {
+    id?: true;
+    partId?: true;
+    length?: true;
+    width?: true;
+    height?: true;
+    weight?: true;
+    unit?: true;
+    tolerance?: true;
+    surfaceFinish?: true;
+    otherSpecs?: true;
+    _all?: true;
+};
+export type PartSpecificationAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Filter which PartSpecification to aggregate.
+     */
+    where?: Prisma.PartSpecificationWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of PartSpecifications to fetch.
+     */
+    orderBy?: Prisma.PartSpecificationOrderByWithRelationInput | Prisma.PartSpecificationOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the start position
+     */
+    cursor?: Prisma.PartSpecificationWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` PartSpecifications from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` PartSpecifications.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Count returned PartSpecifications
+    **/
+    _count?: true | PartSpecificationCountAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to average
+    **/
+    _avg?: PartSpecificationAvgAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to sum
+    **/
+    _sum?: PartSpecificationSumAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the minimum value
+    **/
+    _min?: PartSpecificationMinAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the maximum value
+    **/
+    _max?: PartSpecificationMaxAggregateInputType;
+};
+export type GetPartSpecificationAggregateType<T extends PartSpecificationAggregateArgs> = {
+    [P in keyof T & keyof AggregatePartSpecification]: P extends '_count' | 'count' ? T[P] extends true ? number : Prisma.GetScalarType<T[P], AggregatePartSpecification[P]> : Prisma.GetScalarType<T[P], AggregatePartSpecification[P]>;
+};
+export type PartSpecificationGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.PartSpecificationWhereInput;
+    orderBy?: Prisma.PartSpecificationOrderByWithAggregationInput | Prisma.PartSpecificationOrderByWithAggregationInput[];
+    by: Prisma.PartSpecificationScalarFieldEnum[] | Prisma.PartSpecificationScalarFieldEnum;
+    having?: Prisma.PartSpecificationScalarWhereWithAggregatesInput;
+    take?: number;
+    skip?: number;
+    _count?: PartSpecificationCountAggregateInputType | true;
+    _avg?: PartSpecificationAvgAggregateInputType;
+    _sum?: PartSpecificationSumAggregateInputType;
+    _min?: PartSpecificationMinAggregateInputType;
+    _max?: PartSpecificationMaxAggregateInputType;
+};
+export type PartSpecificationGroupByOutputType = {
+    id: string;
+    partId: string;
+    length: runtime.Decimal | null;
+    width: runtime.Decimal | null;
+    height: runtime.Decimal | null;
+    weight: runtime.Decimal | null;
+    unit: string;
+    tolerance: string | null;
+    surfaceFinish: string | null;
+    otherSpecs: runtime.JsonValue | null;
+    _count: PartSpecificationCountAggregateOutputType | null;
+    _avg: PartSpecificationAvgAggregateOutputType | null;
+    _sum: PartSpecificationSumAggregateOutputType | null;
+    _min: PartSpecificationMinAggregateOutputType | null;
+    _max: PartSpecificationMaxAggregateOutputType | null;
+};
+export type GetPartSpecificationGroupByPayload<T extends PartSpecificationGroupByArgs> = Prisma.PrismaPromise<Array<Prisma.PickEnumerable<PartSpecificationGroupByOutputType, T['by']> & {
+    [P in ((keyof T) & (keyof PartSpecificationGroupByOutputType))]: P extends '_count' ? T[P] extends boolean ? number : Prisma.GetScalarType<T[P], PartSpecificationGroupByOutputType[P]> : Prisma.GetScalarType<T[P], PartSpecificationGroupByOutputType[P]>;
+}>>;
+export type PartSpecificationWhereInput = {
+    AND?: Prisma.PartSpecificationWhereInput | Prisma.PartSpecificationWhereInput[];
+    OR?: Prisma.PartSpecificationWhereInput[];
+    NOT?: Prisma.PartSpecificationWhereInput | Prisma.PartSpecificationWhereInput[];
+    id?: Prisma.StringFilter<"PartSpecification"> | string;
+    partId?: Prisma.StringFilter<"PartSpecification"> | string;
+    length?: Prisma.DecimalNullableFilter<"PartSpecification"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    width?: Prisma.DecimalNullableFilter<"PartSpecification"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    height?: Prisma.DecimalNullableFilter<"PartSpecification"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    weight?: Prisma.DecimalNullableFilter<"PartSpecification"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    unit?: Prisma.StringFilter<"PartSpecification"> | string;
+    tolerance?: Prisma.StringNullableFilter<"PartSpecification"> | string | null;
+    surfaceFinish?: Prisma.StringNullableFilter<"PartSpecification"> | string | null;
+    otherSpecs?: Prisma.JsonNullableFilter<"PartSpecification">;
+    part?: Prisma.XOR<Prisma.PartScalarRelationFilter, Prisma.PartWhereInput>;
+};
+export type PartSpecificationOrderByWithRelationInput = {
+    id?: Prisma.SortOrder;
+    partId?: Prisma.SortOrder;
+    length?: Prisma.SortOrderInput | Prisma.SortOrder;
+    width?: Prisma.SortOrderInput | Prisma.SortOrder;
+    height?: Prisma.SortOrderInput | Prisma.SortOrder;
+    weight?: Prisma.SortOrderInput | Prisma.SortOrder;
+    unit?: Prisma.SortOrder;
+    tolerance?: Prisma.SortOrderInput | Prisma.SortOrder;
+    surfaceFinish?: Prisma.SortOrderInput | Prisma.SortOrder;
+    otherSpecs?: Prisma.SortOrderInput | Prisma.SortOrder;
+    part?: Prisma.PartOrderByWithRelationInput;
+};
+export type PartSpecificationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string;
+    partId?: string;
+    AND?: Prisma.PartSpecificationWhereInput | Prisma.PartSpecificationWhereInput[];
+    OR?: Prisma.PartSpecificationWhereInput[];
+    NOT?: Prisma.PartSpecificationWhereInput | Prisma.PartSpecificationWhereInput[];
+    length?: Prisma.DecimalNullableFilter<"PartSpecification"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    width?: Prisma.DecimalNullableFilter<"PartSpecification"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    height?: Prisma.DecimalNullableFilter<"PartSpecification"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    weight?: Prisma.DecimalNullableFilter<"PartSpecification"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    unit?: Prisma.StringFilter<"PartSpecification"> | string;
+    tolerance?: Prisma.StringNullableFilter<"PartSpecification"> | string | null;
+    surfaceFinish?: Prisma.StringNullableFilter<"PartSpecification"> | string | null;
+    otherSpecs?: Prisma.JsonNullableFilter<"PartSpecification">;
+    part?: Prisma.XOR<Prisma.PartScalarRelationFilter, Prisma.PartWhereInput>;
+}, "id" | "partId">;
+export type PartSpecificationOrderByWithAggregationInput = {
+    id?: Prisma.SortOrder;
+    partId?: Prisma.SortOrder;
+    length?: Prisma.SortOrderInput | Prisma.SortOrder;
+    width?: Prisma.SortOrderInput | Prisma.SortOrder;
+    height?: Prisma.SortOrderInput | Prisma.SortOrder;
+    weight?: Prisma.SortOrderInput | Prisma.SortOrder;
+    unit?: Prisma.SortOrder;
+    tolerance?: Prisma.SortOrderInput | Prisma.SortOrder;
+    surfaceFinish?: Prisma.SortOrderInput | Prisma.SortOrder;
+    otherSpecs?: Prisma.SortOrderInput | Prisma.SortOrder;
+    _count?: Prisma.PartSpecificationCountOrderByAggregateInput;
+    _avg?: Prisma.PartSpecificationAvgOrderByAggregateInput;
+    _max?: Prisma.PartSpecificationMaxOrderByAggregateInput;
+    _min?: Prisma.PartSpecificationMinOrderByAggregateInput;
+    _sum?: Prisma.PartSpecificationSumOrderByAggregateInput;
+};
+export type PartSpecificationScalarWhereWithAggregatesInput = {
+    AND?: Prisma.PartSpecificationScalarWhereWithAggregatesInput | Prisma.PartSpecificationScalarWhereWithAggregatesInput[];
+    OR?: Prisma.PartSpecificationScalarWhereWithAggregatesInput[];
+    NOT?: Prisma.PartSpecificationScalarWhereWithAggregatesInput | Prisma.PartSpecificationScalarWhereWithAggregatesInput[];
+    id?: Prisma.StringWithAggregatesFilter<"PartSpecification"> | string;
+    partId?: Prisma.StringWithAggregatesFilter<"PartSpecification"> | string;
+    length?: Prisma.DecimalNullableWithAggregatesFilter<"PartSpecification"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    width?: Prisma.DecimalNullableWithAggregatesFilter<"PartSpecification"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    height?: Prisma.DecimalNullableWithAggregatesFilter<"PartSpecification"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    weight?: Prisma.DecimalNullableWithAggregatesFilter<"PartSpecification"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    unit?: Prisma.StringWithAggregatesFilter<"PartSpecification"> | string;
+    tolerance?: Prisma.StringNullableWithAggregatesFilter<"PartSpecification"> | string | null;
+    surfaceFinish?: Prisma.StringNullableWithAggregatesFilter<"PartSpecification"> | string | null;
+    otherSpecs?: Prisma.JsonNullableWithAggregatesFilter<"PartSpecification">;
+};
+export type PartSpecificationCreateInput = {
+    id?: string;
+    length?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    width?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    height?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    unit?: string;
+    tolerance?: string | null;
+    surfaceFinish?: string | null;
+    otherSpecs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    part: Prisma.PartCreateNestedOneWithoutSpecificationsInput;
+};
+export type PartSpecificationUncheckedCreateInput = {
+    id?: string;
+    partId: string;
+    length?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    width?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    height?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    unit?: string;
+    tolerance?: string | null;
+    surfaceFinish?: string | null;
+    otherSpecs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+};
+export type PartSpecificationUpdateInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    length?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    width?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    height?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    unit?: Prisma.StringFieldUpdateOperationsInput | string;
+    tolerance?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    surfaceFinish?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    otherSpecs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    part?: Prisma.PartUpdateOneRequiredWithoutSpecificationsNestedInput;
+};
+export type PartSpecificationUncheckedUpdateInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    partId?: Prisma.StringFieldUpdateOperationsInput | string;
+    length?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    width?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    height?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    unit?: Prisma.StringFieldUpdateOperationsInput | string;
+    tolerance?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    surfaceFinish?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    otherSpecs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+};
+export type PartSpecificationCreateManyInput = {
+    id?: string;
+    partId: string;
+    length?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    width?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    height?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    unit?: string;
+    tolerance?: string | null;
+    surfaceFinish?: string | null;
+    otherSpecs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+};
+export type PartSpecificationUpdateManyMutationInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    length?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    width?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    height?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    unit?: Prisma.StringFieldUpdateOperationsInput | string;
+    tolerance?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    surfaceFinish?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    otherSpecs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+};
+export type PartSpecificationUncheckedUpdateManyInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    partId?: Prisma.StringFieldUpdateOperationsInput | string;
+    length?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    width?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    height?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    unit?: Prisma.StringFieldUpdateOperationsInput | string;
+    tolerance?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    surfaceFinish?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    otherSpecs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+};
+export type PartSpecificationNullableScalarRelationFilter = {
+    is?: Prisma.PartSpecificationWhereInput | null;
+    isNot?: Prisma.PartSpecificationWhereInput | null;
+};
+export type PartSpecificationCountOrderByAggregateInput = {
+    id?: Prisma.SortOrder;
+    partId?: Prisma.SortOrder;
+    length?: Prisma.SortOrder;
+    width?: Prisma.SortOrder;
+    height?: Prisma.SortOrder;
+    weight?: Prisma.SortOrder;
+    unit?: Prisma.SortOrder;
+    tolerance?: Prisma.SortOrder;
+    surfaceFinish?: Prisma.SortOrder;
+    otherSpecs?: Prisma.SortOrder;
+};
+export type PartSpecificationAvgOrderByAggregateInput = {
+    length?: Prisma.SortOrder;
+    width?: Prisma.SortOrder;
+    height?: Prisma.SortOrder;
+    weight?: Prisma.SortOrder;
+};
+export type PartSpecificationMaxOrderByAggregateInput = {
+    id?: Prisma.SortOrder;
+    partId?: Prisma.SortOrder;
+    length?: Prisma.SortOrder;
+    width?: Prisma.SortOrder;
+    height?: Prisma.SortOrder;
+    weight?: Prisma.SortOrder;
+    unit?: Prisma.SortOrder;
+    tolerance?: Prisma.SortOrder;
+    surfaceFinish?: Prisma.SortOrder;
+};
+export type PartSpecificationMinOrderByAggregateInput = {
+    id?: Prisma.SortOrder;
+    partId?: Prisma.SortOrder;
+    length?: Prisma.SortOrder;
+    width?: Prisma.SortOrder;
+    height?: Prisma.SortOrder;
+    weight?: Prisma.SortOrder;
+    unit?: Prisma.SortOrder;
+    tolerance?: Prisma.SortOrder;
+    surfaceFinish?: Prisma.SortOrder;
+};
+export type PartSpecificationSumOrderByAggregateInput = {
+    length?: Prisma.SortOrder;
+    width?: Prisma.SortOrder;
+    height?: Prisma.SortOrder;
+    weight?: Prisma.SortOrder;
+};
+export type PartSpecificationCreateNestedOneWithoutPartInput = {
+    create?: Prisma.XOR<Prisma.PartSpecificationCreateWithoutPartInput, Prisma.PartSpecificationUncheckedCreateWithoutPartInput>;
+    connectOrCreate?: Prisma.PartSpecificationCreateOrConnectWithoutPartInput;
+    connect?: Prisma.PartSpecificationWhereUniqueInput;
+};
+export type PartSpecificationUncheckedCreateNestedOneWithoutPartInput = {
+    create?: Prisma.XOR<Prisma.PartSpecificationCreateWithoutPartInput, Prisma.PartSpecificationUncheckedCreateWithoutPartInput>;
+    connectOrCreate?: Prisma.PartSpecificationCreateOrConnectWithoutPartInput;
+    connect?: Prisma.PartSpecificationWhereUniqueInput;
+};
+export type PartSpecificationUpdateOneWithoutPartNestedInput = {
+    create?: Prisma.XOR<Prisma.PartSpecificationCreateWithoutPartInput, Prisma.PartSpecificationUncheckedCreateWithoutPartInput>;
+    connectOrCreate?: Prisma.PartSpecificationCreateOrConnectWithoutPartInput;
+    upsert?: Prisma.PartSpecificationUpsertWithoutPartInput;
+    disconnect?: Prisma.PartSpecificationWhereInput | boolean;
+    delete?: Prisma.PartSpecificationWhereInput | boolean;
+    connect?: Prisma.PartSpecificationWhereUniqueInput;
+    update?: Prisma.XOR<Prisma.XOR<Prisma.PartSpecificationUpdateToOneWithWhereWithoutPartInput, Prisma.PartSpecificationUpdateWithoutPartInput>, Prisma.PartSpecificationUncheckedUpdateWithoutPartInput>;
+};
+export type PartSpecificationUncheckedUpdateOneWithoutPartNestedInput = {
+    create?: Prisma.XOR<Prisma.PartSpecificationCreateWithoutPartInput, Prisma.PartSpecificationUncheckedCreateWithoutPartInput>;
+    connectOrCreate?: Prisma.PartSpecificationCreateOrConnectWithoutPartInput;
+    upsert?: Prisma.PartSpecificationUpsertWithoutPartInput;
+    disconnect?: Prisma.PartSpecificationWhereInput | boolean;
+    delete?: Prisma.PartSpecificationWhereInput | boolean;
+    connect?: Prisma.PartSpecificationWhereUniqueInput;
+    update?: Prisma.XOR<Prisma.XOR<Prisma.PartSpecificationUpdateToOneWithWhereWithoutPartInput, Prisma.PartSpecificationUpdateWithoutPartInput>, Prisma.PartSpecificationUncheckedUpdateWithoutPartInput>;
+};
+export type NullableDecimalFieldUpdateOperationsInput = {
+    set?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    increment?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    divide?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+};
+export type PartSpecificationCreateWithoutPartInput = {
+    id?: string;
+    length?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    width?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    height?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    unit?: string;
+    tolerance?: string | null;
+    surfaceFinish?: string | null;
+    otherSpecs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+};
+export type PartSpecificationUncheckedCreateWithoutPartInput = {
+    id?: string;
+    length?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    width?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    height?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    unit?: string;
+    tolerance?: string | null;
+    surfaceFinish?: string | null;
+    otherSpecs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+};
+export type PartSpecificationCreateOrConnectWithoutPartInput = {
+    where: Prisma.PartSpecificationWhereUniqueInput;
+    create: Prisma.XOR<Prisma.PartSpecificationCreateWithoutPartInput, Prisma.PartSpecificationUncheckedCreateWithoutPartInput>;
+};
+export type PartSpecificationUpsertWithoutPartInput = {
+    update: Prisma.XOR<Prisma.PartSpecificationUpdateWithoutPartInput, Prisma.PartSpecificationUncheckedUpdateWithoutPartInput>;
+    create: Prisma.XOR<Prisma.PartSpecificationCreateWithoutPartInput, Prisma.PartSpecificationUncheckedCreateWithoutPartInput>;
+    where?: Prisma.PartSpecificationWhereInput;
+};
+export type PartSpecificationUpdateToOneWithWhereWithoutPartInput = {
+    where?: Prisma.PartSpecificationWhereInput;
+    data: Prisma.XOR<Prisma.PartSpecificationUpdateWithoutPartInput, Prisma.PartSpecificationUncheckedUpdateWithoutPartInput>;
+};
+export type PartSpecificationUpdateWithoutPartInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    length?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    width?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    height?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    unit?: Prisma.StringFieldUpdateOperationsInput | string;
+    tolerance?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    surfaceFinish?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    otherSpecs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+};
+export type PartSpecificationUncheckedUpdateWithoutPartInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    length?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    width?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    height?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+    unit?: Prisma.StringFieldUpdateOperationsInput | string;
+    tolerance?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    surfaceFinish?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    otherSpecs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+};
+export type PartSpecificationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+    id?: boolean;
+    partId?: boolean;
+    length?: boolean;
+    width?: boolean;
+    height?: boolean;
+    weight?: boolean;
+    unit?: boolean;
+    tolerance?: boolean;
+    surfaceFinish?: boolean;
+    otherSpecs?: boolean;
+    part?: boolean | Prisma.PartDefaultArgs<ExtArgs>;
+}, ExtArgs["result"]["partSpecification"]>;
+export type PartSpecificationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+    id?: boolean;
+    partId?: boolean;
+    length?: boolean;
+    width?: boolean;
+    height?: boolean;
+    weight?: boolean;
+    unit?: boolean;
+    tolerance?: boolean;
+    surfaceFinish?: boolean;
+    otherSpecs?: boolean;
+    part?: boolean | Prisma.PartDefaultArgs<ExtArgs>;
+}, ExtArgs["result"]["partSpecification"]>;
+export type PartSpecificationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+    id?: boolean;
+    partId?: boolean;
+    length?: boolean;
+    width?: boolean;
+    height?: boolean;
+    weight?: boolean;
+    unit?: boolean;
+    tolerance?: boolean;
+    surfaceFinish?: boolean;
+    otherSpecs?: boolean;
+    part?: boolean | Prisma.PartDefaultArgs<ExtArgs>;
+}, ExtArgs["result"]["partSpecification"]>;
+export type PartSpecificationSelectScalar = {
+    id?: boolean;
+    partId?: boolean;
+    length?: boolean;
+    width?: boolean;
+    height?: boolean;
+    weight?: boolean;
+    unit?: boolean;
+    tolerance?: boolean;
+    surfaceFinish?: boolean;
+    otherSpecs?: boolean;
+};
+export type PartSpecificationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "partId" | "length" | "width" | "height" | "weight" | "unit" | "tolerance" | "surfaceFinish" | "otherSpecs", ExtArgs["result"]["partSpecification"]>;
+export type PartSpecificationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    part?: boolean | Prisma.PartDefaultArgs<ExtArgs>;
+};
+export type PartSpecificationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    part?: boolean | Prisma.PartDefaultArgs<ExtArgs>;
+};
+export type PartSpecificationIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    part?: boolean | Prisma.PartDefaultArgs<ExtArgs>;
+};
+export type $PartSpecificationPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    name: "PartSpecification";
+    objects: {
+        part: Prisma.$PartPayload<ExtArgs>;
+    };
+    scalars: runtime.Types.Extensions.GetPayloadResult<{
+        id: string;
+        partId: string;
+        length: runtime.Decimal | null;
+        width: runtime.Decimal | null;
+        height: runtime.Decimal | null;
+        weight: runtime.Decimal | null;
+        unit: string;
+        tolerance: string | null;
+        surfaceFinish: string | null;
+        otherSpecs: runtime.JsonValue | null;
+    }, ExtArgs["result"]["partSpecification"]>;
+    composites: {};
+};
+export type PartSpecificationGetPayload<S extends boolean | null | undefined | PartSpecificationDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$PartSpecificationPayload, S>;
+export type PartSpecificationCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = Omit<PartSpecificationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+    select?: PartSpecificationCountAggregateInputType | true;
+};
+export interface PartSpecificationDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: {
+        types: Prisma.TypeMap<ExtArgs>['model']['PartSpecification'];
+        meta: {
+            name: 'PartSpecification';
+        };
+    };
+    /**
+     * Find zero or one PartSpecification that matches the filter.
+     * @param {PartSpecificationFindUniqueArgs} args - Arguments to find a PartSpecification
+     * @example
+     * // Get one PartSpecification
+     * const partSpecification = await prisma.partSpecification.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PartSpecificationFindUniqueArgs>(args: Prisma.SelectSubset<T, PartSpecificationFindUniqueArgs<ExtArgs>>): Prisma.Prisma__PartSpecificationClient<runtime.Types.Result.GetResult<Prisma.$PartSpecificationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find one PartSpecification that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PartSpecificationFindUniqueOrThrowArgs} args - Arguments to find a PartSpecification
+     * @example
+     * // Get one PartSpecification
+     * const partSpecification = await prisma.partSpecification.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PartSpecificationFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, PartSpecificationFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__PartSpecificationClient<runtime.Types.Result.GetResult<Prisma.$PartSpecificationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find the first PartSpecification that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PartSpecificationFindFirstArgs} args - Arguments to find a PartSpecification
+     * @example
+     * // Get one PartSpecification
+     * const partSpecification = await prisma.partSpecification.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PartSpecificationFindFirstArgs>(args?: Prisma.SelectSubset<T, PartSpecificationFindFirstArgs<ExtArgs>>): Prisma.Prisma__PartSpecificationClient<runtime.Types.Result.GetResult<Prisma.$PartSpecificationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find the first PartSpecification that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PartSpecificationFindFirstOrThrowArgs} args - Arguments to find a PartSpecification
+     * @example
+     * // Get one PartSpecification
+     * const partSpecification = await prisma.partSpecification.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PartSpecificationFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, PartSpecificationFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__PartSpecificationClient<runtime.Types.Result.GetResult<Prisma.$PartSpecificationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Find zero or more PartSpecifications that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PartSpecificationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PartSpecifications
+     * const partSpecifications = await prisma.partSpecification.findMany()
+     *
+     * // Get first 10 PartSpecifications
+     * const partSpecifications = await prisma.partSpecification.findMany({ take: 10 })
+     *
+     * // Only select the `id`
+     * const partSpecificationWithIdOnly = await prisma.partSpecification.findMany({ select: { id: true } })
+     *
+     */
+    findMany<T extends PartSpecificationFindManyArgs>(args?: Prisma.SelectSubset<T, PartSpecificationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PartSpecificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>;
+    /**
+     * Create a PartSpecification.
+     * @param {PartSpecificationCreateArgs} args - Arguments to create a PartSpecification.
+     * @example
+     * // Create one PartSpecification
+     * const PartSpecification = await prisma.partSpecification.create({
+     *   data: {
+     *     // ... data to create a PartSpecification
+     *   }
+     * })
+     *
+     */
+    create<T extends PartSpecificationCreateArgs>(args: Prisma.SelectSubset<T, PartSpecificationCreateArgs<ExtArgs>>): Prisma.Prisma__PartSpecificationClient<runtime.Types.Result.GetResult<Prisma.$PartSpecificationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Create many PartSpecifications.
+     * @param {PartSpecificationCreateManyArgs} args - Arguments to create many PartSpecifications.
+     * @example
+     * // Create many PartSpecifications
+     * const partSpecification = await prisma.partSpecification.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     */
+    createMany<T extends PartSpecificationCreateManyArgs>(args?: Prisma.SelectSubset<T, PartSpecificationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Create many PartSpecifications and returns the data saved in the database.
+     * @param {PartSpecificationCreateManyAndReturnArgs} args - Arguments to create many PartSpecifications.
+     * @example
+     * // Create many PartSpecifications
+     * const partSpecification = await prisma.partSpecification.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Create many PartSpecifications and only return the `id`
+     * const partSpecificationWithIdOnly = await prisma.partSpecification.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    createManyAndReturn<T extends PartSpecificationCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, PartSpecificationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PartSpecificationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>;
+    /**
+     * Delete a PartSpecification.
+     * @param {PartSpecificationDeleteArgs} args - Arguments to delete one PartSpecification.
+     * @example
+     * // Delete one PartSpecification
+     * const PartSpecification = await prisma.partSpecification.delete({
+     *   where: {
+     *     // ... filter to delete one PartSpecification
+     *   }
+     * })
+     *
+     */
+    delete<T extends PartSpecificationDeleteArgs>(args: Prisma.SelectSubset<T, PartSpecificationDeleteArgs<ExtArgs>>): Prisma.Prisma__PartSpecificationClient<runtime.Types.Result.GetResult<Prisma.$PartSpecificationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Update one PartSpecification.
+     * @param {PartSpecificationUpdateArgs} args - Arguments to update one PartSpecification.
+     * @example
+     * // Update one PartSpecification
+     * const partSpecification = await prisma.partSpecification.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    update<T extends PartSpecificationUpdateArgs>(args: Prisma.SelectSubset<T, PartSpecificationUpdateArgs<ExtArgs>>): Prisma.Prisma__PartSpecificationClient<runtime.Types.Result.GetResult<Prisma.$PartSpecificationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Delete zero or more PartSpecifications.
+     * @param {PartSpecificationDeleteManyArgs} args - Arguments to filter PartSpecifications to delete.
+     * @example
+     * // Delete a few PartSpecifications
+     * const { count } = await prisma.partSpecification.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     *
+     */
+    deleteMany<T extends PartSpecificationDeleteManyArgs>(args?: Prisma.SelectSubset<T, PartSpecificationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Update zero or more PartSpecifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PartSpecificationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PartSpecifications
+     * const partSpecification = await prisma.partSpecification.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    updateMany<T extends PartSpecificationUpdateManyArgs>(args: Prisma.SelectSubset<T, PartSpecificationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>;
+    /**
+     * Update zero or more PartSpecifications and returns the data updated in the database.
+     * @param {PartSpecificationUpdateManyAndReturnArgs} args - Arguments to update many PartSpecifications.
+     * @example
+     * // Update many PartSpecifications
+     * const partSpecification = await prisma.partSpecification.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Update zero or more PartSpecifications and only return the `id`
+     * const partSpecificationWithIdOnly = await prisma.partSpecification.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    updateManyAndReturn<T extends PartSpecificationUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, PartSpecificationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PartSpecificationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>;
+    /**
+     * Create or update one PartSpecification.
+     * @param {PartSpecificationUpsertArgs} args - Arguments to update or create a PartSpecification.
+     * @example
+     * // Update or create a PartSpecification
+     * const partSpecification = await prisma.partSpecification.upsert({
+     *   create: {
+     *     // ... data to create a PartSpecification
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PartSpecification we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PartSpecificationUpsertArgs>(args: Prisma.SelectSubset<T, PartSpecificationUpsertArgs<ExtArgs>>): Prisma.Prisma__PartSpecificationClient<runtime.Types.Result.GetResult<Prisma.$PartSpecificationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Count the number of PartSpecifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PartSpecificationCountArgs} args - Arguments to filter PartSpecifications to count.
+     * @example
+     * // Count the number of PartSpecifications
+     * const count = await prisma.partSpecification.count({
+     *   where: {
+     *     // ... the filter for the PartSpecifications we want to count
+     *   }
+     * })
+    **/
+    count<T extends PartSpecificationCountArgs>(args?: Prisma.Subset<T, PartSpecificationCountArgs>): Prisma.PrismaPromise<T extends runtime.Types.Utils.Record<'select', any> ? T['select'] extends true ? number : Prisma.GetScalarType<T['select'], PartSpecificationCountAggregateOutputType> : number>;
+    /**
+     * Allows you to perform aggregations operations on a PartSpecification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PartSpecificationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PartSpecificationAggregateArgs>(args: Prisma.Subset<T, PartSpecificationAggregateArgs>): Prisma.PrismaPromise<GetPartSpecificationAggregateType<T>>;
+    /**
+     * Group by PartSpecification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PartSpecificationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     *
+    **/
+    groupBy<T extends PartSpecificationGroupByArgs, HasSelectOrTake extends Prisma.Or<Prisma.Extends<'skip', Prisma.Keys<T>>, Prisma.Extends<'take', Prisma.Keys<T>>>, OrderByArg extends Prisma.True extends HasSelectOrTake ? {
+        orderBy: PartSpecificationGroupByArgs['orderBy'];
+    } : {
+        orderBy?: PartSpecificationGroupByArgs['orderBy'];
+    }, OrderFields extends Prisma.ExcludeUnderscoreKeys<Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>>, ByFields extends Prisma.MaybeTupleToUnion<T['by']>, ByValid extends Prisma.Has<ByFields, OrderFields>, HavingFields extends Prisma.GetHavingFields<T['having']>, HavingValid extends Prisma.Has<ByFields, HavingFields>, ByEmpty extends T['by'] extends never[] ? Prisma.True : Prisma.False, InputErrors extends ByEmpty extends Prisma.True ? `Error: "by" must not be empty.` : HavingValid extends Prisma.False ? {
+        [P in HavingFields]: P extends ByFields ? never : P extends string ? `Error: Field "${P}" used in "having" needs to be provided in "by".` : [
+            Error,
+            'Field ',
+            P,
+            ` in "having" needs to be provided in "by"`
+        ];
+    }[HavingFields] : 'take' extends Prisma.Keys<T> ? 'orderBy' extends Prisma.Keys<T> ? ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields] : 'Error: If you provide "take", you also need to provide "orderBy"' : 'skip' extends Prisma.Keys<T> ? 'orderBy' extends Prisma.Keys<T> ? ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields] : 'Error: If you provide "skip", you also need to provide "orderBy"' : ByValid extends Prisma.True ? {} : {
+        [P in OrderFields]: P extends ByFields ? never : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+    }[OrderFields]>(args: Prisma.SubsetIntersection<T, PartSpecificationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPartSpecificationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>;
+    /**
+     * Fields of the PartSpecification model
+     */
+    readonly fields: PartSpecificationFieldRefs;
+}
+/**
+ * The delegate class that acts as a "Promise-like" for PartSpecification.
+ * Why is this prefixed with `Prisma__`?
+ * Because we want to prevent naming conflicts as mentioned in
+ * https://github.com/prisma/prisma-client-js/issues/707
+ */
+export interface Prisma__PartSpecificationClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise";
+    part<T extends Prisma.PartDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PartDefaultArgs<ExtArgs>>): Prisma.Prisma__PartClient<runtime.Types.Result.GetResult<Prisma.$PartPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): runtime.Types.Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): runtime.Types.Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): runtime.Types.Utils.JsPromise<T>;
+}
+/**
+ * Fields of the PartSpecification model
+ */
+export interface PartSpecificationFieldRefs {
+    readonly id: Prisma.FieldRef<"PartSpecification", 'String'>;
+    readonly partId: Prisma.FieldRef<"PartSpecification", 'String'>;
+    readonly length: Prisma.FieldRef<"PartSpecification", 'Decimal'>;
+    readonly width: Prisma.FieldRef<"PartSpecification", 'Decimal'>;
+    readonly height: Prisma.FieldRef<"PartSpecification", 'Decimal'>;
+    readonly weight: Prisma.FieldRef<"PartSpecification", 'Decimal'>;
+    readonly unit: Prisma.FieldRef<"PartSpecification", 'String'>;
+    readonly tolerance: Prisma.FieldRef<"PartSpecification", 'String'>;
+    readonly surfaceFinish: Prisma.FieldRef<"PartSpecification", 'String'>;
+    readonly otherSpecs: Prisma.FieldRef<"PartSpecification", 'Json'>;
+}
+/**
+ * PartSpecification findUnique
+ */
+export type PartSpecificationFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PartSpecification
+     */
+    select?: Prisma.PartSpecificationSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the PartSpecification
+     */
+    omit?: Prisma.PartSpecificationOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.PartSpecificationInclude<ExtArgs> | null;
+    /**
+     * Filter, which PartSpecification to fetch.
+     */
+    where: Prisma.PartSpecificationWhereUniqueInput;
+};
+/**
+ * PartSpecification findUniqueOrThrow
+ */
+export type PartSpecificationFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PartSpecification
+     */
+    select?: Prisma.PartSpecificationSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the PartSpecification
+     */
+    omit?: Prisma.PartSpecificationOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.PartSpecificationInclude<ExtArgs> | null;
+    /**
+     * Filter, which PartSpecification to fetch.
+     */
+    where: Prisma.PartSpecificationWhereUniqueInput;
+};
+/**
+ * PartSpecification findFirst
+ */
+export type PartSpecificationFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PartSpecification
+     */
+    select?: Prisma.PartSpecificationSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the PartSpecification
+     */
+    omit?: Prisma.PartSpecificationOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.PartSpecificationInclude<ExtArgs> | null;
+    /**
+     * Filter, which PartSpecification to fetch.
+     */
+    where?: Prisma.PartSpecificationWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of PartSpecifications to fetch.
+     */
+    orderBy?: Prisma.PartSpecificationOrderByWithRelationInput | Prisma.PartSpecificationOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for PartSpecifications.
+     */
+    cursor?: Prisma.PartSpecificationWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` PartSpecifications from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` PartSpecifications.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of PartSpecifications.
+     */
+    distinct?: Prisma.PartSpecificationScalarFieldEnum | Prisma.PartSpecificationScalarFieldEnum[];
+};
+/**
+ * PartSpecification findFirstOrThrow
+ */
+export type PartSpecificationFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PartSpecification
+     */
+    select?: Prisma.PartSpecificationSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the PartSpecification
+     */
+    omit?: Prisma.PartSpecificationOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.PartSpecificationInclude<ExtArgs> | null;
+    /**
+     * Filter, which PartSpecification to fetch.
+     */
+    where?: Prisma.PartSpecificationWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of PartSpecifications to fetch.
+     */
+    orderBy?: Prisma.PartSpecificationOrderByWithRelationInput | Prisma.PartSpecificationOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for PartSpecifications.
+     */
+    cursor?: Prisma.PartSpecificationWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` PartSpecifications from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` PartSpecifications.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of PartSpecifications.
+     */
+    distinct?: Prisma.PartSpecificationScalarFieldEnum | Prisma.PartSpecificationScalarFieldEnum[];
+};
+/**
+ * PartSpecification findMany
+ */
+export type PartSpecificationFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PartSpecification
+     */
+    select?: Prisma.PartSpecificationSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the PartSpecification
+     */
+    omit?: Prisma.PartSpecificationOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.PartSpecificationInclude<ExtArgs> | null;
+    /**
+     * Filter, which PartSpecifications to fetch.
+     */
+    where?: Prisma.PartSpecificationWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of PartSpecifications to fetch.
+     */
+    orderBy?: Prisma.PartSpecificationOrderByWithRelationInput | Prisma.PartSpecificationOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for listing PartSpecifications.
+     */
+    cursor?: Prisma.PartSpecificationWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` PartSpecifications from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` PartSpecifications.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of PartSpecifications.
+     */
+    distinct?: Prisma.PartSpecificationScalarFieldEnum | Prisma.PartSpecificationScalarFieldEnum[];
+};
+/**
+ * PartSpecification create
+ */
+export type PartSpecificationCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PartSpecification
+     */
+    select?: Prisma.PartSpecificationSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the PartSpecification
+     */
+    omit?: Prisma.PartSpecificationOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.PartSpecificationInclude<ExtArgs> | null;
+    /**
+     * The data needed to create a PartSpecification.
+     */
+    data: Prisma.XOR<Prisma.PartSpecificationCreateInput, Prisma.PartSpecificationUncheckedCreateInput>;
+};
+/**
+ * PartSpecification createMany
+ */
+export type PartSpecificationCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PartSpecifications.
+     */
+    data: Prisma.PartSpecificationCreateManyInput | Prisma.PartSpecificationCreateManyInput[];
+    skipDuplicates?: boolean;
+};
+/**
+ * PartSpecification createManyAndReturn
+ */
+export type PartSpecificationCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PartSpecification
+     */
+    select?: Prisma.PartSpecificationSelectCreateManyAndReturn<ExtArgs> | null;
+    /**
+     * Omit specific fields from the PartSpecification
+     */
+    omit?: Prisma.PartSpecificationOmit<ExtArgs> | null;
+    /**
+     * The data used to create many PartSpecifications.
+     */
+    data: Prisma.PartSpecificationCreateManyInput | Prisma.PartSpecificationCreateManyInput[];
+    skipDuplicates?: boolean;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.PartSpecificationIncludeCreateManyAndReturn<ExtArgs> | null;
+};
+/**
+ * PartSpecification update
+ */
+export type PartSpecificationUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PartSpecification
+     */
+    select?: Prisma.PartSpecificationSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the PartSpecification
+     */
+    omit?: Prisma.PartSpecificationOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.PartSpecificationInclude<ExtArgs> | null;
+    /**
+     * The data needed to update a PartSpecification.
+     */
+    data: Prisma.XOR<Prisma.PartSpecificationUpdateInput, Prisma.PartSpecificationUncheckedUpdateInput>;
+    /**
+     * Choose, which PartSpecification to update.
+     */
+    where: Prisma.PartSpecificationWhereUniqueInput;
+};
+/**
+ * PartSpecification updateMany
+ */
+export type PartSpecificationUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PartSpecifications.
+     */
+    data: Prisma.XOR<Prisma.PartSpecificationUpdateManyMutationInput, Prisma.PartSpecificationUncheckedUpdateManyInput>;
+    /**
+     * Filter which PartSpecifications to update
+     */
+    where?: Prisma.PartSpecificationWhereInput;
+    /**
+     * Limit how many PartSpecifications to update.
+     */
+    limit?: number;
+};
+/**
+ * PartSpecification updateManyAndReturn
+ */
+export type PartSpecificationUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PartSpecification
+     */
+    select?: Prisma.PartSpecificationSelectUpdateManyAndReturn<ExtArgs> | null;
+    /**
+     * Omit specific fields from the PartSpecification
+     */
+    omit?: Prisma.PartSpecificationOmit<ExtArgs> | null;
+    /**
+     * The data used to update PartSpecifications.
+     */
+    data: Prisma.XOR<Prisma.PartSpecificationUpdateManyMutationInput, Prisma.PartSpecificationUncheckedUpdateManyInput>;
+    /**
+     * Filter which PartSpecifications to update
+     */
+    where?: Prisma.PartSpecificationWhereInput;
+    /**
+     * Limit how many PartSpecifications to update.
+     */
+    limit?: number;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.PartSpecificationIncludeUpdateManyAndReturn<ExtArgs> | null;
+};
+/**
+ * PartSpecification upsert
+ */
+export type PartSpecificationUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PartSpecification
+     */
+    select?: Prisma.PartSpecificationSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the PartSpecification
+     */
+    omit?: Prisma.PartSpecificationOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.PartSpecificationInclude<ExtArgs> | null;
+    /**
+     * The filter to search for the PartSpecification to update in case it exists.
+     */
+    where: Prisma.PartSpecificationWhereUniqueInput;
+    /**
+     * In case the PartSpecification found by the `where` argument doesn't exist, create a new PartSpecification with this data.
+     */
+    create: Prisma.XOR<Prisma.PartSpecificationCreateInput, Prisma.PartSpecificationUncheckedCreateInput>;
+    /**
+     * In case the PartSpecification was found with the provided `where` argument, update it with this data.
+     */
+    update: Prisma.XOR<Prisma.PartSpecificationUpdateInput, Prisma.PartSpecificationUncheckedUpdateInput>;
+};
+/**
+ * PartSpecification delete
+ */
+export type PartSpecificationDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PartSpecification
+     */
+    select?: Prisma.PartSpecificationSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the PartSpecification
+     */
+    omit?: Prisma.PartSpecificationOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.PartSpecificationInclude<ExtArgs> | null;
+    /**
+     * Filter which PartSpecification to delete.
+     */
+    where: Prisma.PartSpecificationWhereUniqueInput;
+};
+/**
+ * PartSpecification deleteMany
+ */
+export type PartSpecificationDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Filter which PartSpecifications to delete
+     */
+    where?: Prisma.PartSpecificationWhereInput;
+    /**
+     * Limit how many PartSpecifications to delete.
+     */
+    limit?: number;
+};
+/**
+ * PartSpecification without action
+ */
+export type PartSpecificationDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PartSpecification
+     */
+    select?: Prisma.PartSpecificationSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the PartSpecification
+     */
+    omit?: Prisma.PartSpecificationOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.PartSpecificationInclude<ExtArgs> | null;
+};

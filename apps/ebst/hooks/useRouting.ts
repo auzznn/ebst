@@ -1,5 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import api from "@/lib/api";
+import { Machine } from "./useMachines";
 
 export interface RoutingStep {
   id: string;
@@ -7,6 +8,8 @@ export interface RoutingStep {
   stepOrder: number;
   operationName: string;
   defaultMachineType: string | null;
+  defaultMachineId: string | null;
+  defaultMachine?: Machine;
   estimatedMinutes: number | null;
 }
 
@@ -21,6 +24,7 @@ export interface UpsertRoutingDto {
     stepOrder: number;
     operationName: string;
     defaultMachineType?: string;
+    defaultMachineId?: string;
     estimatedMinutes?: number;
   }[];
 }

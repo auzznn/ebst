@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/table";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Plus as PlusIcon, Loader2 as LoaderIcon, List, Save, Factory } from "lucide-react";
+import { Plus as PlusIcon, Loader2 as LoaderIcon, List, Save, Factory, ChevronLeft, ChevronRight } from "lucide-react";
 import {
   Tabs,
   TabsContent,
@@ -27,7 +27,8 @@ import { toast } from "sonner";
 import { authClient } from "@/lib/auth-client";
 
 export default function MachinesPage() {
-  const { machines, loading } = useMachines();
+  const [page, setPage] = useState(1);
+  const { machines, loading, totalPages } = useMachines(page);
   const createMachineMutation = useCreateMachine();
   const { data: session } = authClient.useSession();
   const isAdminOrExecutive = session?.user?.role === "ADMIN" || session?.user?.role === "EXECUTIVE";
@@ -84,28 +85,44 @@ export default function MachinesPage() {
                   <LoaderIcon className="h-8 w-8 animate-spin text-muted-foreground" />
                 </div>
               ) : (
-                <Table>
-                  <TableHeader className="bg-muted/30">
-                    <TableRow className="hover:bg-transparent">
-                      <TableHead className="font-semibold text-muted-foreground uppercase text-xs tracking-wider">Name</TableHead>
-                      <TableHead className="font-semibold text-muted-foreground uppercase text-xs tracking-wider">Type</TableHead>
-                      <TableHead className="font-semibold text-muted-foreground uppercase text-xs tracking-wider">Status</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {machines.map((machine) => (
-                      <TableRow key={machine.id} className="hover:bg-muted/40 transition-colors">
-                        <TableCell className="font-medium">{machine.name}</TableCell>
-                        <TableCell>{machine.machineType}</TableCell>
-                        <TableCell>
-                          <Badge variant={machine.isActive ? "secondary" : "destructive"} className={machine.isActive ? "bg-green-100 text-green-800 hover:bg-green-200 dark:bg-emerald-900/40 dark:text-emerald-400 border border-green-200 dark:border-emerald-800/60" : "font-medium"}>
-                            {machine.isActive ? "Active" : "Inactive"}
-                          </Badge>
-                        </TableCell>
+                <>
+                  <Table>
+                    <TableHeader className="bg-muted/30">
+                      <TableRow className="hover:bg-transparent">
+                        <TableHead className="font-semibold text-muted-foreground uppercase text-xs tracking-wider">Name</TableHead>
+                        <TableHead className="font-semibold text-muted-foreground uppercase text-xs tracking-wider">Type</TableHead>
+                        <TableHead className="font-semibold text-muted-foreground uppercase text-xs tracking-wider">Status</TableHead>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                    </TableHeader>
+                    <TableBody>
+                      {machines.map((machine) => (
+                        <TableRow key={machine.id} className="hover:bg-muted/40 transition-colors">
+                          <TableCell className="font-medium">{machine.name}</TableCell>
+                          <TableCell>{machine.machineType}</TableCell>
+                          <TableCell>
+                            <Badge variant={machine.isActive ? "secondary" : "destructive"} className={machine.isActive ? "bg-green-100 text-green-800 hover:bg-green-200 dark:bg-emerald-900/40 dark:text-emerald-400 border border-green-200 dark:border-emerald-800/60" : "font-medium"}>
+                              {machine.isActive ? "Active" : "Inactive"}
+                            </Badge>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+
+                  <div className="flex items-center justify-between px-4 py-4 border-t border-border/50 bg-muted/10">
+                    <div className="text-sm text-muted-foreground">
+                      Showing page {page} of {totalPages}
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Button variant="outline" size="sm" onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page <= 1}>
+                        <ChevronLeft className="h-4 w-4 mr-1" /> Prev
+                      </Button>
+                      <Button variant="outline" size="sm" onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={page >= totalPages}>
+                        Next <ChevronRight className="h-4 w-4 ml-1" />
+                      </Button>
+                    </div>
+                  </div>
+                </>
               )}
             </CardContent>
           </Card>
@@ -120,25 +137,25 @@ export default function MachinesPage() {
             <CardContent className="p-6 space-y-6">
               <div className="grid gap-2">
                 <Label htmlFor="name">Machine Name</Label>
-                <Input 
-                  id="name" 
+                <Input
+                  id="name"
                   placeholder="e.g. Furnace #1"
-                  value={formData.name} 
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })} 
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="type">Machine Type</Label>
-                <Input 
-                  id="type" 
+                <Input
+                  id="type"
                   placeholder="e.g. Melting Furnace"
-                  value={formData.machineType} 
-                  onChange={(e) => setFormData({ ...formData, machineType: e.target.value })} 
+                  value={formData.machineType}
+                  onChange={(e) => setFormData({ ...formData, machineType: e.target.value })}
                 />
               </div>
               <div className="flex items-center gap-2 py-2">
-                <Switch 
-                  id="isActive" 
+                <Switch
+                  id="isActive"
                   checked={formData.isActive}
                   onCheckedChange={(checked) => setFormData({ ...formData, isActive: checked })}
                 />

@@ -249,6 +249,8 @@ export declare const ModelName: {
     readonly PurchaseOrder: "PurchaseOrder";
     readonly PoLineItem: "PoLineItem";
     readonly Part: "Part";
+    readonly PartMaterial: "PartMaterial";
+    readonly PartSpecification: "PartSpecification";
     readonly RoutingTemplate: "RoutingTemplate";
     readonly RoutingStep: "RoutingStep";
     readonly Machine: "Machine";
@@ -276,7 +278,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         omit: GlobalOmitOptions;
     };
     meta: {
-        modelProps: "user" | "session" | "account" | "verification" | "channel" | "channelMember" | "message" | "chartOfAccount" | "journalEntry" | "journalLine" | "fixedAsset" | "businessDocument" | "customer" | "invoice" | "invoiceItem" | "purchaseOrder" | "poLineItem" | "part" | "routingTemplate" | "routingStep" | "machine" | "jobCard" | "jobList" | "jobMaterial" | "operation" | "qcLog" | "qcFinding" | "checkSheet" | "checkSheetRow" | "material" | "materialUsage" | "stockAdjustment" | "supplier";
+        modelProps: "user" | "session" | "account" | "verification" | "channel" | "channelMember" | "message" | "chartOfAccount" | "journalEntry" | "journalLine" | "fixedAsset" | "businessDocument" | "customer" | "invoice" | "invoiceItem" | "purchaseOrder" | "poLineItem" | "part" | "partMaterial" | "partSpecification" | "routingTemplate" | "routingStep" | "machine" | "jobCard" | "jobList" | "jobMaterial" | "operation" | "qcLog" | "qcFinding" | "checkSheet" | "checkSheetRow" | "material" | "materialUsage" | "stockAdjustment" | "supplier";
         txIsolationLevel: TransactionIsolationLevel;
     };
     model: {
@@ -1609,6 +1611,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
                 count: {
                     args: Prisma.PartCountArgs<ExtArgs>;
                     result: runtime.Types.Utils.Optional<Prisma.PartCountAggregateOutputType> | number;
+                };
+            };
+        };
+        PartMaterial: {
+            payload: Prisma.$PartMaterialPayload<ExtArgs>;
+            fields: Prisma.PartMaterialFieldRefs;
+            operations: {
+                findUnique: {
+                    args: Prisma.PartMaterialFindUniqueArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PartMaterialPayload> | null;
+                };
+                findUniqueOrThrow: {
+                    args: Prisma.PartMaterialFindUniqueOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PartMaterialPayload>;
+                };
+                findFirst: {
+                    args: Prisma.PartMaterialFindFirstArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PartMaterialPayload> | null;
+                };
+                findFirstOrThrow: {
+                    args: Prisma.PartMaterialFindFirstOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PartMaterialPayload>;
+                };
+                findMany: {
+                    args: Prisma.PartMaterialFindManyArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PartMaterialPayload>[];
+                };
+                create: {
+                    args: Prisma.PartMaterialCreateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PartMaterialPayload>;
+                };
+                createMany: {
+                    args: Prisma.PartMaterialCreateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                createManyAndReturn: {
+                    args: Prisma.PartMaterialCreateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PartMaterialPayload>[];
+                };
+                delete: {
+                    args: Prisma.PartMaterialDeleteArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PartMaterialPayload>;
+                };
+                update: {
+                    args: Prisma.PartMaterialUpdateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PartMaterialPayload>;
+                };
+                deleteMany: {
+                    args: Prisma.PartMaterialDeleteManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateMany: {
+                    args: Prisma.PartMaterialUpdateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateManyAndReturn: {
+                    args: Prisma.PartMaterialUpdateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PartMaterialPayload>[];
+                };
+                upsert: {
+                    args: Prisma.PartMaterialUpsertArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PartMaterialPayload>;
+                };
+                aggregate: {
+                    args: Prisma.PartMaterialAggregateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.AggregatePartMaterial>;
+                };
+                groupBy: {
+                    args: Prisma.PartMaterialGroupByArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.PartMaterialGroupByOutputType>[];
+                };
+                count: {
+                    args: Prisma.PartMaterialCountArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.PartMaterialCountAggregateOutputType> | number;
+                };
+            };
+        };
+        PartSpecification: {
+            payload: Prisma.$PartSpecificationPayload<ExtArgs>;
+            fields: Prisma.PartSpecificationFieldRefs;
+            operations: {
+                findUnique: {
+                    args: Prisma.PartSpecificationFindUniqueArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PartSpecificationPayload> | null;
+                };
+                findUniqueOrThrow: {
+                    args: Prisma.PartSpecificationFindUniqueOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PartSpecificationPayload>;
+                };
+                findFirst: {
+                    args: Prisma.PartSpecificationFindFirstArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PartSpecificationPayload> | null;
+                };
+                findFirstOrThrow: {
+                    args: Prisma.PartSpecificationFindFirstOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PartSpecificationPayload>;
+                };
+                findMany: {
+                    args: Prisma.PartSpecificationFindManyArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PartSpecificationPayload>[];
+                };
+                create: {
+                    args: Prisma.PartSpecificationCreateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PartSpecificationPayload>;
+                };
+                createMany: {
+                    args: Prisma.PartSpecificationCreateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                createManyAndReturn: {
+                    args: Prisma.PartSpecificationCreateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PartSpecificationPayload>[];
+                };
+                delete: {
+                    args: Prisma.PartSpecificationDeleteArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PartSpecificationPayload>;
+                };
+                update: {
+                    args: Prisma.PartSpecificationUpdateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PartSpecificationPayload>;
+                };
+                deleteMany: {
+                    args: Prisma.PartSpecificationDeleteManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateMany: {
+                    args: Prisma.PartSpecificationUpdateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateManyAndReturn: {
+                    args: Prisma.PartSpecificationUpdateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PartSpecificationPayload>[];
+                };
+                upsert: {
+                    args: Prisma.PartSpecificationUpsertArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PartSpecificationPayload>;
+                };
+                aggregate: {
+                    args: Prisma.PartSpecificationAggregateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.AggregatePartSpecification>;
+                };
+                groupBy: {
+                    args: Prisma.PartSpecificationGroupByArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.PartSpecificationGroupByOutputType>[];
+                };
+                count: {
+                    args: Prisma.PartSpecificationCountArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.PartSpecificationCountAggregateOutputType> | number;
                 };
             };
         };
@@ -2946,11 +3096,31 @@ export declare const PartScalarFieldEnum: {
     readonly partNo: "partNo";
     readonly description: "description";
     readonly castingType: "castingType";
-    readonly materialId: "materialId";
-    readonly drawingRef: "drawingRef";
+    readonly drawingId: "drawingId";
     readonly createdAt: "createdAt";
+    readonly materialId: "materialId";
 };
 export type PartScalarFieldEnum = (typeof PartScalarFieldEnum)[keyof typeof PartScalarFieldEnum];
+export declare const PartMaterialScalarFieldEnum: {
+    readonly id: "id";
+    readonly partId: "partId";
+    readonly materialId: "materialId";
+    readonly ratio: "ratio";
+};
+export type PartMaterialScalarFieldEnum = (typeof PartMaterialScalarFieldEnum)[keyof typeof PartMaterialScalarFieldEnum];
+export declare const PartSpecificationScalarFieldEnum: {
+    readonly id: "id";
+    readonly partId: "partId";
+    readonly length: "length";
+    readonly width: "width";
+    readonly height: "height";
+    readonly weight: "weight";
+    readonly unit: "unit";
+    readonly tolerance: "tolerance";
+    readonly surfaceFinish: "surfaceFinish";
+    readonly otherSpecs: "otherSpecs";
+};
+export type PartSpecificationScalarFieldEnum = (typeof PartSpecificationScalarFieldEnum)[keyof typeof PartSpecificationScalarFieldEnum];
 export declare const RoutingTemplateScalarFieldEnum: {
     readonly id: "id";
     readonly partId: "partId";
@@ -2963,6 +3133,7 @@ export declare const RoutingStepScalarFieldEnum: {
     readonly stepOrder: "stepOrder";
     readonly operationName: "operationName";
     readonly defaultMachineType: "defaultMachineType";
+    readonly defaultMachineId: "defaultMachineId";
     readonly estimatedMinutes: "estimatedMinutes";
 };
 export type RoutingStepScalarFieldEnum = (typeof RoutingStepScalarFieldEnum)[keyof typeof RoutingStepScalarFieldEnum];
@@ -3020,8 +3191,6 @@ export declare const QcLogScalarFieldEnum: {
     readonly reason: "reason";
     readonly inspectorId: "inspectorId";
     readonly loggedAt: "loggedAt";
-    readonly totalScore: "totalScore";
-    readonly actionRequired: "actionRequired";
 };
 export type QcLogScalarFieldEnum = (typeof QcLogScalarFieldEnum)[keyof typeof QcLogScalarFieldEnum];
 export declare const QcFindingScalarFieldEnum: {
@@ -3033,7 +3202,6 @@ export declare const QcFindingScalarFieldEnum: {
     readonly measuredValue: "measuredValue";
     readonly unit: "unit";
     readonly description: "description";
-    readonly severity: "severity";
     readonly isConforming: "isConforming";
     readonly documentId: "documentId";
 };
@@ -3379,6 +3547,8 @@ export type GlobalOmitConfig = {
     purchaseOrder?: Prisma.PurchaseOrderOmit;
     poLineItem?: Prisma.PoLineItemOmit;
     part?: Prisma.PartOmit;
+    partMaterial?: Prisma.PartMaterialOmit;
+    partSpecification?: Prisma.PartSpecificationOmit;
     routingTemplate?: Prisma.RoutingTemplateOmit;
     routingStep?: Prisma.RoutingStepOmit;
     machine?: Prisma.MachineOmit;

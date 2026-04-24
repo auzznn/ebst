@@ -14,6 +14,10 @@ export class RoutingStepDto {
   @IsOptional()
   defaultMachineType?: string;
 
+  @IsString()
+  @IsOptional()
+  defaultMachineId?: string;
+
   @IsNumber()
   @IsOptional()
   estimatedMinutes?: number;

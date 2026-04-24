@@ -10,7 +10,7 @@ export interface Material {
   stockQty: number;
   reorderThreshold: number;
   reorderQty: number;
-  supplierId?: string;
+  supplierId?: string | null;
   supplier?: {
     id: string;
     name: string;
@@ -19,13 +19,13 @@ export interface Material {
   createdAt: string;
 }
 
-export const useInventory = () => {
+export const useInventory = (page: number = 1, limit: number = 10) => {
   const queryClient = useQueryClient();
 
   const materialsQuery = useQuery({
-    queryKey: ['materials'],
+    queryKey: ['materials', page, limit],
     queryFn: async () => {
-      const { data } = await api.get<Material[]>('/inventory/materials');
+      const { data } = await api.get<{ data: Material[], meta: { totalPages: number, page: number, total: number } }>('/inventory/materials', { params: { page, limit } });
       return data;
     },
   });
@@ -34,6 +34,16 @@ export const useInventory = () => {
     mutationFn: async (newMaterial: Partial<Material>) => {
       const { data } = await api.post('/inventory/materials', newMaterial);
       return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['materials'] });
+    },
+  });
+
+  const updateMaterialMutation = useMutation({
+    mutationFn: async ({ id, ...data }: Partial<Material> & { id: string }) => {
+      const { data: response } = await api.patch(`/inventory/materials/${id}`, data);
+      return response;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['materials'] });
@@ -62,10 +72,12 @@ export const useInventory = () => {
   });
 
   return {
-    materials: materialsQuery.data || [],
+    materials: materialsQuery.data?.data || [],
+    totalPages: materialsQuery.data?.meta?.totalPages ?? 1,
     isLoading: materialsQuery.isLoading,
     isError: materialsQuery.isError,
     createMaterial: createMaterialMutation.mutateAsync,
+    updateMaterial: updateMaterialMutation.mutateAsync,
     adjustStock: adjustStockMutation.mutateAsync,
     allocateMaterial: allocateMaterialMutation.mutateAsync,
   };

@@ -93,6 +93,16 @@ export type PoLineItem = Prisma.PoLineItemModel;
  */
 export type Part = Prisma.PartModel;
 /**
+ * Model PartMaterial
+ *
+ */
+export type PartMaterial = Prisma.PartMaterialModel;
+/**
+ * Model PartSpecification
+ *
+ */
+export type PartSpecification = Prisma.PartSpecificationModel;
+/**
  * Model RoutingTemplate
  *
  */

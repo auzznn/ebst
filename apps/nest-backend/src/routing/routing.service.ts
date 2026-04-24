@@ -12,6 +12,9 @@ export class RoutingService {
       include: {
         steps: {
           orderBy: { stepOrder: 'asc' },
+          include: {
+            defaultMachine: true,
+          },
         },
       },
     });
@@ -46,6 +49,7 @@ export class RoutingService {
           stepOrder: step.stepOrder,
           operationName: step.operationName,
           defaultMachineType: step.defaultMachineType || null,
+          defaultMachineId: step.defaultMachineId || null,
           estimatedMinutes: step.estimatedMinutes || null,
         })),
       });
