@@ -15,8 +15,16 @@ import {
 } from "@/components/ui/table";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Plus, Eye, Loader2, List, Save, Trash2, ClipboardList, ChevronLeft, ChevronRight, Search, X, Calendar, Filter } from "lucide-react";
-import Link from "next/link";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Plus, Eye, Loader2, List, Save, Trash2, ClipboardList, ChevronLeft, ChevronRight, Search, X, Calendar, Filter, MoreHorizontal, Package } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { formatDate } from "@/lib/formatDate";
 import { authClient } from "@/lib/auth-client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -37,6 +45,7 @@ const statusVariants: Record<JobCardStatus, "default" | "secondary" | "destructi
 };
 
 export default function JobsPage() {
+  const router = useRouter();
   const [page, setPage] = useState(1);
   const [startDate, setStartDate] = useState<string>("");
   const [endDate, setEndDate] = useState<string>("");
@@ -253,7 +262,11 @@ export default function JobsPage() {
                           const doneOps = job.jobLists.flatMap(l => l.operations).filter(o => o.status === "COMPLETED").length;
                           const pct = totalOps > 0 ? Math.round((doneOps / totalOps) * 100) : 0;
                           return (
-                            <TableRow key={job.id} className="hover:bg-muted/40 transition-colors">
+                            <TableRow 
+                              key={job.id} 
+                              className="hover:bg-muted/40 transition-colors cursor-pointer group"
+                              onClick={() => router.push(`/manufacturing/jobs/${job.id}`)}
+                            >
                               <TableCell className="font-medium">{job.jobNo}</TableCell>
                               <TableCell>
                                 <span className="font-mono text-xs">{job.purchaseOrder?.poNumber || "N/A"}</span>
@@ -274,12 +287,21 @@ export default function JobsPage() {
                                 </Badge>
                               </TableCell>
                               <TableCell className="whitespace-nowrap text-muted-foreground">{formatDate(job.createdAt)}</TableCell>
-                              <TableCell className="text-right p-3">
-                                <Button variant="outline" size="sm" asChild className="hover:bg-primary/5 hover:text-primary transition-colors border-primary/20">
-                                  <Link href={`/manufacturing/jobs/${job.id}`}>
-                                    <Eye className="h-4 w-4 mr-2" /> View
-                                  </Link>
-                                </Button>
+                              <TableCell className="text-right p-3" onClick={(e) => e.stopPropagation()}>
+                                <DropdownMenu>
+                                  <DropdownMenuTrigger asChild>
+                                    <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full">
+                                      <MoreHorizontal className="h-4 w-4" />
+                                    </Button>
+                                  </DropdownMenuTrigger>
+                                  <DropdownMenuContent align="end" className="w-48">
+                                    <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                                    <DropdownMenuSeparator />
+                                    <DropdownMenuItem onClick={() => router.push(`/manufacturing/jobs/${job.id}`)}>
+                                      <Eye className="mr-2 h-4 w-4" /> View Details
+                                    </DropdownMenuItem>
+                                  </DropdownMenuContent>
+                                </DropdownMenu>
                               </TableCell>
                             </TableRow>
                           );
@@ -441,46 +463,57 @@ function CreateJobView({ onSuccess }: { onSuccess: () => void }) {
 
           <TabsContent value="MANUAL" className="space-y-4">
             <div className="space-y-4">
-              {items.map((item, index) => (
-                <div key={index} className="flex gap-4 items-end">
-                  <div className="flex-1 space-y-2">
-                    <Label>Part</Label>
-                    <Select
-                      value={item.partId || ""}
-                      onValueChange={(v) => handleItemChange(index, "partId", v)}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a part..." />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {parts.map((p) => (
-                          <SelectItem key={p.id} value={p.id}>
-                            {p.partNo} - {p.description}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="w-32 space-y-2">
-                    <Label>Quantity</Label>
-                    <Input
-                      type="text"
-                      min="1"
-                      value={item.quantity ?? 1}
-                      onChange={(e) => handleItemChange(index, "quantity", e.target.value)}
-                    />
-                  </div>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="text-destructive"
-                    onClick={() => handleRemoveItem(index)}
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
+              {items.length === 0 ? (
+                <div className="flex flex-col items-center justify-center p-8 border-2 border-dashed rounded-xl bg-muted/10 text-muted-foreground gap-3">
+                  <Package className="h-10 w-10 opacity-20" />
+                  <p className="text-sm font-medium">No parts added yet. Click 'Add Part' to begin.</p>
                 </div>
-              ))}
-              <Button variant="outline" size="sm" onClick={handleAddItem}>
+              ) : (
+                <div className="space-y-3">
+                  {items.map((item, index) => (
+                    <div key={index} className="flex gap-4 items-end p-4 rounded-xl border bg-card/50 shadow-sm animate-in fade-in slide-in-from-top-2 duration-300">
+                      <div className="flex-1 space-y-2">
+                        <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground ml-1">Part / Component</Label>
+                        <Select
+                          value={item.partId || ""}
+                          onValueChange={(v) => handleItemChange(index, "partId", v)}
+                        >
+                          <SelectTrigger className="h-10 bg-background/50">
+                            <SelectValue placeholder="Select a part..." />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {parts.map((p) => (
+                              <SelectItem key={p.id} value={p.id}>
+                                {p.partNo} - {p.description}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="w-32 space-y-2">
+                        <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground ml-1">Quantity</Label>
+                        <Input
+                          type="number"
+                          min="1"
+                          placeholder="1"
+                          className="h-10 bg-background/50"
+                          value={item.quantity ?? 1}
+                          onChange={(e) => handleItemChange(index, "quantity", e.target.value)}
+                        />
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-10 w-10 text-destructive hover:text-destructive hover:bg-destructive/10 rounded-lg shrink-0"
+                        onClick={() => handleRemoveItem(index)}
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              )}
+              <Button variant="outline" size="sm" onClick={handleAddItem} className="h-9 px-4 rounded-lg border-dashed hover:bg-primary/5 hover:text-primary transition-all">
                 <Plus className="h-4 w-4 mr-2" /> Add Part
               </Button>
             </div>

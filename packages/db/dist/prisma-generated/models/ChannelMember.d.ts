@@ -122,15 +122,15 @@ export type ChannelMemberWhereInput = {
     userId?: Prisma.StringFilter<"ChannelMember"> | string;
     channelId?: Prisma.StringFilter<"ChannelMember"> | string;
     joinedAt?: Prisma.DateTimeFilter<"ChannelMember"> | Date | string;
-    user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
     channel?: Prisma.XOR<Prisma.ChannelScalarRelationFilter, Prisma.ChannelWhereInput>;
+    user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
 };
 export type ChannelMemberOrderByWithRelationInput = {
     userId?: Prisma.SortOrder;
     channelId?: Prisma.SortOrder;
     joinedAt?: Prisma.SortOrder;
-    user?: Prisma.UserOrderByWithRelationInput;
     channel?: Prisma.ChannelOrderByWithRelationInput;
+    user?: Prisma.UserOrderByWithRelationInput;
 };
 export type ChannelMemberWhereUniqueInput = Prisma.AtLeast<{
     userId_channelId?: Prisma.ChannelMemberUserIdChannelIdCompoundUniqueInput;
@@ -140,8 +140,8 @@ export type ChannelMemberWhereUniqueInput = Prisma.AtLeast<{
     userId?: Prisma.StringFilter<"ChannelMember"> | string;
     channelId?: Prisma.StringFilter<"ChannelMember"> | string;
     joinedAt?: Prisma.DateTimeFilter<"ChannelMember"> | Date | string;
-    user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
     channel?: Prisma.XOR<Prisma.ChannelScalarRelationFilter, Prisma.ChannelWhereInput>;
+    user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
 }, "userId_channelId">;
 export type ChannelMemberOrderByWithAggregationInput = {
     userId?: Prisma.SortOrder;
@@ -161,8 +161,8 @@ export type ChannelMemberScalarWhereWithAggregatesInput = {
 };
 export type ChannelMemberCreateInput = {
     joinedAt?: Date | string;
-    user: Prisma.UserCreateNestedOneWithoutMembersInput;
     channel: Prisma.ChannelCreateNestedOneWithoutMembersInput;
+    user: Prisma.UserCreateNestedOneWithoutMembersInput;
 };
 export type ChannelMemberUncheckedCreateInput = {
     userId: string;
@@ -171,8 +171,8 @@ export type ChannelMemberUncheckedCreateInput = {
 };
 export type ChannelMemberUpdateInput = {
     joinedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    user?: Prisma.UserUpdateOneRequiredWithoutMembersNestedInput;
     channel?: Prisma.ChannelUpdateOneRequiredWithoutMembersNestedInput;
+    user?: Prisma.UserUpdateOneRequiredWithoutMembersNestedInput;
 };
 export type ChannelMemberUncheckedUpdateInput = {
     userId?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -397,22 +397,22 @@ export type ChannelMemberSelect<ExtArgs extends runtime.Types.Extensions.Interna
     userId?: boolean;
     channelId?: boolean;
     joinedAt?: boolean;
-    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     channel?: boolean | Prisma.ChannelDefaultArgs<ExtArgs>;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["channelMember"]>;
 export type ChannelMemberSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     userId?: boolean;
     channelId?: boolean;
     joinedAt?: boolean;
-    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     channel?: boolean | Prisma.ChannelDefaultArgs<ExtArgs>;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["channelMember"]>;
 export type ChannelMemberSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     userId?: boolean;
     channelId?: boolean;
     joinedAt?: boolean;
-    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     channel?: boolean | Prisma.ChannelDefaultArgs<ExtArgs>;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["channelMember"]>;
 export type ChannelMemberSelectScalar = {
     userId?: boolean;
@@ -421,22 +421,22 @@ export type ChannelMemberSelectScalar = {
 };
 export type ChannelMemberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"userId" | "channelId" | "joinedAt", ExtArgs["result"]["channelMember"]>;
 export type ChannelMemberInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     channel?: boolean | Prisma.ChannelDefaultArgs<ExtArgs>;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
 };
 export type ChannelMemberIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     channel?: boolean | Prisma.ChannelDefaultArgs<ExtArgs>;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
 };
 export type ChannelMemberIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     channel?: boolean | Prisma.ChannelDefaultArgs<ExtArgs>;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
 };
 export type $ChannelMemberPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     name: "ChannelMember";
     objects: {
-        user: Prisma.$UserPayload<ExtArgs>;
         channel: Prisma.$ChannelPayload<ExtArgs>;
+        user: Prisma.$UserPayload<ExtArgs>;
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         userId: string;
@@ -771,8 +771,8 @@ export interface ChannelMemberDelegate<ExtArgs extends runtime.Types.Extensions.
  */
 export interface Prisma__ChannelMemberClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise";
-    user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
     channel<T extends Prisma.ChannelDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ChannelDefaultArgs<ExtArgs>>): Prisma.Prisma__ChannelClient<runtime.Types.Result.GetResult<Prisma.$ChannelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
+    user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.

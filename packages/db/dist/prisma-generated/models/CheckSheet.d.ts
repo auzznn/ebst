@@ -147,8 +147,8 @@ export type CheckSheetWhereInput = {
     documentId?: Prisma.StringNullableFilter<"CheckSheet"> | string | null;
     createdAt?: Prisma.DateTimeFilter<"CheckSheet"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"CheckSheet"> | Date | string;
-    operation?: Prisma.XOR<Prisma.OperationScalarRelationFilter, Prisma.OperationWhereInput>;
     document?: Prisma.XOR<Prisma.BusinessDocumentNullableScalarRelationFilter, Prisma.BusinessDocumentWhereInput> | null;
+    operation?: Prisma.XOR<Prisma.OperationScalarRelationFilter, Prisma.OperationWhereInput>;
     rows?: Prisma.CheckSheetRowListRelationFilter;
 };
 export type CheckSheetOrderByWithRelationInput = {
@@ -158,8 +158,8 @@ export type CheckSheetOrderByWithRelationInput = {
     documentId?: Prisma.SortOrderInput | Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
     updatedAt?: Prisma.SortOrder;
-    operation?: Prisma.OperationOrderByWithRelationInput;
     document?: Prisma.BusinessDocumentOrderByWithRelationInput;
+    operation?: Prisma.OperationOrderByWithRelationInput;
     rows?: Prisma.CheckSheetRowOrderByRelationAggregateInput;
 };
 export type CheckSheetWhereUniqueInput = Prisma.AtLeast<{
@@ -172,8 +172,8 @@ export type CheckSheetWhereUniqueInput = Prisma.AtLeast<{
     type?: Prisma.EnumCheckSheetTypeFilter<"CheckSheet"> | $Enums.CheckSheetType;
     createdAt?: Prisma.DateTimeFilter<"CheckSheet"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"CheckSheet"> | Date | string;
-    operation?: Prisma.XOR<Prisma.OperationScalarRelationFilter, Prisma.OperationWhereInput>;
     document?: Prisma.XOR<Prisma.BusinessDocumentNullableScalarRelationFilter, Prisma.BusinessDocumentWhereInput> | null;
+    operation?: Prisma.XOR<Prisma.OperationScalarRelationFilter, Prisma.OperationWhereInput>;
     rows?: Prisma.CheckSheetRowListRelationFilter;
 }, "id" | "operationId" | "documentId">;
 export type CheckSheetOrderByWithAggregationInput = {
@@ -203,8 +203,8 @@ export type CheckSheetCreateInput = {
     type: $Enums.CheckSheetType;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    operation: Prisma.OperationCreateNestedOneWithoutCheckSheetInput;
     document?: Prisma.BusinessDocumentCreateNestedOneWithoutCheckSheetInput;
+    operation: Prisma.OperationCreateNestedOneWithoutCheckSheetInput;
     rows?: Prisma.CheckSheetRowCreateNestedManyWithoutCheckSheetInput;
 };
 export type CheckSheetUncheckedCreateInput = {
@@ -221,8 +221,8 @@ export type CheckSheetUpdateInput = {
     type?: Prisma.EnumCheckSheetTypeFieldUpdateOperationsInput | $Enums.CheckSheetType;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    operation?: Prisma.OperationUpdateOneRequiredWithoutCheckSheetNestedInput;
     document?: Prisma.BusinessDocumentUpdateOneWithoutCheckSheetNestedInput;
+    operation?: Prisma.OperationUpdateOneRequiredWithoutCheckSheetNestedInput;
     rows?: Prisma.CheckSheetRowUpdateManyWithoutCheckSheetNestedInput;
 };
 export type CheckSheetUncheckedUpdateInput = {
@@ -454,8 +454,8 @@ export type CheckSheetCreateWithoutRowsInput = {
     type: $Enums.CheckSheetType;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    operation: Prisma.OperationCreateNestedOneWithoutCheckSheetInput;
     document?: Prisma.BusinessDocumentCreateNestedOneWithoutCheckSheetInput;
+    operation: Prisma.OperationCreateNestedOneWithoutCheckSheetInput;
 };
 export type CheckSheetUncheckedCreateWithoutRowsInput = {
     id?: string;
@@ -483,8 +483,8 @@ export type CheckSheetUpdateWithoutRowsInput = {
     type?: Prisma.EnumCheckSheetTypeFieldUpdateOperationsInput | $Enums.CheckSheetType;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    operation?: Prisma.OperationUpdateOneRequiredWithoutCheckSheetNestedInput;
     document?: Prisma.BusinessDocumentUpdateOneWithoutCheckSheetNestedInput;
+    operation?: Prisma.OperationUpdateOneRequiredWithoutCheckSheetNestedInput;
 };
 export type CheckSheetUncheckedUpdateWithoutRowsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -525,8 +525,8 @@ export type CheckSheetSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
     documentId?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
-    operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>;
     document?: boolean | Prisma.CheckSheet$documentArgs<ExtArgs>;
+    operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>;
     rows?: boolean | Prisma.CheckSheet$rowsArgs<ExtArgs>;
     _count?: boolean | Prisma.CheckSheetCountOutputTypeDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["checkSheet"]>;
@@ -537,8 +537,8 @@ export type CheckSheetSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
     documentId?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
-    operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>;
     document?: boolean | Prisma.CheckSheet$documentArgs<ExtArgs>;
+    operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["checkSheet"]>;
 export type CheckSheetSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
@@ -547,8 +547,8 @@ export type CheckSheetSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
     documentId?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
-    operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>;
     document?: boolean | Prisma.CheckSheet$documentArgs<ExtArgs>;
+    operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["checkSheet"]>;
 export type CheckSheetSelectScalar = {
     id?: boolean;
@@ -560,24 +560,24 @@ export type CheckSheetSelectScalar = {
 };
 export type CheckSheetOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "type" | "operationId" | "documentId" | "createdAt" | "updatedAt", ExtArgs["result"]["checkSheet"]>;
 export type CheckSheetInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>;
     document?: boolean | Prisma.CheckSheet$documentArgs<ExtArgs>;
+    operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>;
     rows?: boolean | Prisma.CheckSheet$rowsArgs<ExtArgs>;
     _count?: boolean | Prisma.CheckSheetCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type CheckSheetIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>;
     document?: boolean | Prisma.CheckSheet$documentArgs<ExtArgs>;
+    operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>;
 };
 export type CheckSheetIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>;
     document?: boolean | Prisma.CheckSheet$documentArgs<ExtArgs>;
+    operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>;
 };
 export type $CheckSheetPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     name: "CheckSheet";
     objects: {
-        operation: Prisma.$OperationPayload<ExtArgs>;
         document: Prisma.$BusinessDocumentPayload<ExtArgs> | null;
+        operation: Prisma.$OperationPayload<ExtArgs>;
         rows: Prisma.$CheckSheetRowPayload<ExtArgs>[];
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -916,8 +916,8 @@ export interface CheckSheetDelegate<ExtArgs extends runtime.Types.Extensions.Int
  */
 export interface Prisma__CheckSheetClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise";
-    operation<T extends Prisma.OperationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OperationDefaultArgs<ExtArgs>>): Prisma.Prisma__OperationClient<runtime.Types.Result.GetResult<Prisma.$OperationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
     document<T extends Prisma.CheckSheet$documentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CheckSheet$documentArgs<ExtArgs>>): Prisma.Prisma__BusinessDocumentClient<runtime.Types.Result.GetResult<Prisma.$BusinessDocumentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    operation<T extends Prisma.OperationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OperationDefaultArgs<ExtArgs>>): Prisma.Prisma__OperationClient<runtime.Types.Result.GetResult<Prisma.$OperationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
     rows<T extends Prisma.CheckSheet$rowsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CheckSheet$rowsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CheckSheetRowPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.

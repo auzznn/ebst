@@ -190,9 +190,9 @@ export type QcLogWhereInput = {
   reason?: Prisma.StringNullableFilter<"QcLog"> | string | null
   inspectorId?: Prisma.StringFilter<"QcLog"> | string
   loggedAt?: Prisma.DateTimeFilter<"QcLog"> | Date | string
-  operation?: Prisma.XOR<Prisma.OperationScalarRelationFilter, Prisma.OperationWhereInput>
-  inspector?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   findings?: Prisma.QcFindingListRelationFilter
+  inspector?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  operation?: Prisma.XOR<Prisma.OperationScalarRelationFilter, Prisma.OperationWhereInput>
 }
 
 export type QcLogOrderByWithRelationInput = {
@@ -202,9 +202,9 @@ export type QcLogOrderByWithRelationInput = {
   reason?: Prisma.SortOrderInput | Prisma.SortOrder
   inspectorId?: Prisma.SortOrder
   loggedAt?: Prisma.SortOrder
-  operation?: Prisma.OperationOrderByWithRelationInput
-  inspector?: Prisma.UserOrderByWithRelationInput
   findings?: Prisma.QcFindingOrderByRelationAggregateInput
+  inspector?: Prisma.UserOrderByWithRelationInput
+  operation?: Prisma.OperationOrderByWithRelationInput
 }
 
 export type QcLogWhereUniqueInput = Prisma.AtLeast<{
@@ -217,9 +217,9 @@ export type QcLogWhereUniqueInput = Prisma.AtLeast<{
   reason?: Prisma.StringNullableFilter<"QcLog"> | string | null
   inspectorId?: Prisma.StringFilter<"QcLog"> | string
   loggedAt?: Prisma.DateTimeFilter<"QcLog"> | Date | string
-  operation?: Prisma.XOR<Prisma.OperationScalarRelationFilter, Prisma.OperationWhereInput>
-  inspector?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   findings?: Prisma.QcFindingListRelationFilter
+  inspector?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  operation?: Prisma.XOR<Prisma.OperationScalarRelationFilter, Prisma.OperationWhereInput>
 }, "id" | "operationId">
 
 export type QcLogOrderByWithAggregationInput = {
@@ -251,9 +251,9 @@ export type QcLogCreateInput = {
   result: $Enums.QcResult
   reason?: string | null
   loggedAt?: Date | string
-  operation: Prisma.OperationCreateNestedOneWithoutQcLogInput
-  inspector: Prisma.UserCreateNestedOneWithoutQcLogsInput
   findings?: Prisma.QcFindingCreateNestedManyWithoutQcLogInput
+  inspector: Prisma.UserCreateNestedOneWithoutQcLogsInput
+  operation: Prisma.OperationCreateNestedOneWithoutQcLogInput
 }
 
 export type QcLogUncheckedCreateInput = {
@@ -271,9 +271,9 @@ export type QcLogUpdateInput = {
   result?: Prisma.EnumQcResultFieldUpdateOperationsInput | $Enums.QcResult
   reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   loggedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  operation?: Prisma.OperationUpdateOneRequiredWithoutQcLogNestedInput
-  inspector?: Prisma.UserUpdateOneRequiredWithoutQcLogsNestedInput
   findings?: Prisma.QcFindingUpdateManyWithoutQcLogNestedInput
+  inspector?: Prisma.UserUpdateOneRequiredWithoutQcLogsNestedInput
+  operation?: Prisma.OperationUpdateOneRequiredWithoutQcLogNestedInput
 }
 
 export type QcLogUncheckedUpdateInput = {
@@ -455,8 +455,8 @@ export type QcLogCreateWithoutInspectorInput = {
   result: $Enums.QcResult
   reason?: string | null
   loggedAt?: Date | string
-  operation: Prisma.OperationCreateNestedOneWithoutQcLogInput
   findings?: Prisma.QcFindingCreateNestedManyWithoutQcLogInput
+  operation: Prisma.OperationCreateNestedOneWithoutQcLogInput
 }
 
 export type QcLogUncheckedCreateWithoutInspectorInput = {
@@ -511,8 +511,8 @@ export type QcLogCreateWithoutOperationInput = {
   result: $Enums.QcResult
   reason?: string | null
   loggedAt?: Date | string
-  inspector: Prisma.UserCreateNestedOneWithoutQcLogsInput
   findings?: Prisma.QcFindingCreateNestedManyWithoutQcLogInput
+  inspector: Prisma.UserCreateNestedOneWithoutQcLogsInput
 }
 
 export type QcLogUncheckedCreateWithoutOperationInput = {
@@ -545,8 +545,8 @@ export type QcLogUpdateWithoutOperationInput = {
   result?: Prisma.EnumQcResultFieldUpdateOperationsInput | $Enums.QcResult
   reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   loggedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  inspector?: Prisma.UserUpdateOneRequiredWithoutQcLogsNestedInput
   findings?: Prisma.QcFindingUpdateManyWithoutQcLogNestedInput
+  inspector?: Prisma.UserUpdateOneRequiredWithoutQcLogsNestedInput
 }
 
 export type QcLogUncheckedUpdateWithoutOperationInput = {
@@ -563,8 +563,8 @@ export type QcLogCreateWithoutFindingsInput = {
   result: $Enums.QcResult
   reason?: string | null
   loggedAt?: Date | string
-  operation: Prisma.OperationCreateNestedOneWithoutQcLogInput
   inspector: Prisma.UserCreateNestedOneWithoutQcLogsInput
+  operation: Prisma.OperationCreateNestedOneWithoutQcLogInput
 }
 
 export type QcLogUncheckedCreateWithoutFindingsInput = {
@@ -597,8 +597,8 @@ export type QcLogUpdateWithoutFindingsInput = {
   result?: Prisma.EnumQcResultFieldUpdateOperationsInput | $Enums.QcResult
   reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   loggedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  operation?: Prisma.OperationUpdateOneRequiredWithoutQcLogNestedInput
   inspector?: Prisma.UserUpdateOneRequiredWithoutQcLogsNestedInput
+  operation?: Prisma.OperationUpdateOneRequiredWithoutQcLogNestedInput
 }
 
 export type QcLogUncheckedUpdateWithoutFindingsInput = {
@@ -623,8 +623,8 @@ export type QcLogUpdateWithoutInspectorInput = {
   result?: Prisma.EnumQcResultFieldUpdateOperationsInput | $Enums.QcResult
   reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   loggedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  operation?: Prisma.OperationUpdateOneRequiredWithoutQcLogNestedInput
   findings?: Prisma.QcFindingUpdateManyWithoutQcLogNestedInput
+  operation?: Prisma.OperationUpdateOneRequiredWithoutQcLogNestedInput
 }
 
 export type QcLogUncheckedUpdateWithoutInspectorInput = {
@@ -682,9 +682,9 @@ export type QcLogSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   reason?: boolean
   inspectorId?: boolean
   loggedAt?: boolean
-  operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
-  inspector?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   findings?: boolean | Prisma.QcLog$findingsArgs<ExtArgs>
+  inspector?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.QcLogCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["qcLog"]>
 
@@ -695,8 +695,8 @@ export type QcLogSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   reason?: boolean
   inspectorId?: boolean
   loggedAt?: boolean
-  operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
   inspector?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["qcLog"]>
 
 export type QcLogSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -706,8 +706,8 @@ export type QcLogSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   reason?: boolean
   inspectorId?: boolean
   loggedAt?: boolean
-  operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
   inspector?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["qcLog"]>
 
 export type QcLogSelectScalar = {
@@ -721,26 +721,26 @@ export type QcLogSelectScalar = {
 
 export type QcLogOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "operationId" | "result" | "reason" | "inspectorId" | "loggedAt", ExtArgs["result"]["qcLog"]>
 export type QcLogInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
-  inspector?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   findings?: boolean | Prisma.QcLog$findingsArgs<ExtArgs>
+  inspector?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.QcLogCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type QcLogIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
   inspector?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
 }
 export type QcLogIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
   inspector?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
 }
 
 export type $QcLogPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "QcLog"
   objects: {
-    operation: Prisma.$OperationPayload<ExtArgs>
-    inspector: Prisma.$UserPayload<ExtArgs>
     findings: Prisma.$QcFindingPayload<ExtArgs>[]
+    inspector: Prisma.$UserPayload<ExtArgs>
+    operation: Prisma.$OperationPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1143,9 +1143,9 @@ readonly fields: QcLogFieldRefs;
  */
 export interface Prisma__QcLogClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  operation<T extends Prisma.OperationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OperationDefaultArgs<ExtArgs>>): Prisma.Prisma__OperationClient<runtime.Types.Result.GetResult<Prisma.$OperationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  inspector<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   findings<T extends Prisma.QcLog$findingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QcLog$findingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QcFindingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  inspector<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  operation<T extends Prisma.OperationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OperationDefaultArgs<ExtArgs>>): Prisma.Prisma__OperationClient<runtime.Types.Result.GetResult<Prisma.$OperationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

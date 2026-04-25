@@ -160,16 +160,16 @@ export type PartMaterialWhereInput = {
     partId?: Prisma.StringFilter<"PartMaterial"> | string;
     materialId?: Prisma.StringFilter<"PartMaterial"> | string;
     ratio?: Prisma.DecimalFilter<"PartMaterial"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
-    part?: Prisma.XOR<Prisma.PartScalarRelationFilter, Prisma.PartWhereInput>;
     material?: Prisma.XOR<Prisma.MaterialScalarRelationFilter, Prisma.MaterialWhereInput>;
+    part?: Prisma.XOR<Prisma.PartScalarRelationFilter, Prisma.PartWhereInput>;
 };
 export type PartMaterialOrderByWithRelationInput = {
     id?: Prisma.SortOrder;
     partId?: Prisma.SortOrder;
     materialId?: Prisma.SortOrder;
     ratio?: Prisma.SortOrder;
-    part?: Prisma.PartOrderByWithRelationInput;
     material?: Prisma.MaterialOrderByWithRelationInput;
+    part?: Prisma.PartOrderByWithRelationInput;
 };
 export type PartMaterialWhereUniqueInput = Prisma.AtLeast<{
     id?: string;
@@ -180,8 +180,8 @@ export type PartMaterialWhereUniqueInput = Prisma.AtLeast<{
     partId?: Prisma.StringFilter<"PartMaterial"> | string;
     materialId?: Prisma.StringFilter<"PartMaterial"> | string;
     ratio?: Prisma.DecimalFilter<"PartMaterial"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
-    part?: Prisma.XOR<Prisma.PartScalarRelationFilter, Prisma.PartWhereInput>;
     material?: Prisma.XOR<Prisma.MaterialScalarRelationFilter, Prisma.MaterialWhereInput>;
+    part?: Prisma.XOR<Prisma.PartScalarRelationFilter, Prisma.PartWhereInput>;
 }, "id" | "partId_materialId">;
 export type PartMaterialOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
@@ -206,8 +206,8 @@ export type PartMaterialScalarWhereWithAggregatesInput = {
 export type PartMaterialCreateInput = {
     id?: string;
     ratio: runtime.Decimal | runtime.DecimalJsLike | number | string;
-    part: Prisma.PartCreateNestedOneWithoutMaterialsInput;
     material: Prisma.MaterialCreateNestedOneWithoutPartMaterialsInput;
+    part: Prisma.PartCreateNestedOneWithoutMaterialsInput;
 };
 export type PartMaterialUncheckedCreateInput = {
     id?: string;
@@ -218,8 +218,8 @@ export type PartMaterialUncheckedCreateInput = {
 export type PartMaterialUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     ratio?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
-    part?: Prisma.PartUpdateOneRequiredWithoutMaterialsNestedInput;
     material?: Prisma.MaterialUpdateOneRequiredWithoutPartMaterialsNestedInput;
+    part?: Prisma.PartUpdateOneRequiredWithoutMaterialsNestedInput;
 };
 export type PartMaterialUncheckedUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -471,24 +471,24 @@ export type PartMaterialSelect<ExtArgs extends runtime.Types.Extensions.Internal
     partId?: boolean;
     materialId?: boolean;
     ratio?: boolean;
-    part?: boolean | Prisma.PartDefaultArgs<ExtArgs>;
     material?: boolean | Prisma.MaterialDefaultArgs<ExtArgs>;
+    part?: boolean | Prisma.PartDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["partMaterial"]>;
 export type PartMaterialSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
     partId?: boolean;
     materialId?: boolean;
     ratio?: boolean;
-    part?: boolean | Prisma.PartDefaultArgs<ExtArgs>;
     material?: boolean | Prisma.MaterialDefaultArgs<ExtArgs>;
+    part?: boolean | Prisma.PartDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["partMaterial"]>;
 export type PartMaterialSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
     partId?: boolean;
     materialId?: boolean;
     ratio?: boolean;
-    part?: boolean | Prisma.PartDefaultArgs<ExtArgs>;
     material?: boolean | Prisma.MaterialDefaultArgs<ExtArgs>;
+    part?: boolean | Prisma.PartDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["partMaterial"]>;
 export type PartMaterialSelectScalar = {
     id?: boolean;
@@ -498,22 +498,22 @@ export type PartMaterialSelectScalar = {
 };
 export type PartMaterialOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "partId" | "materialId" | "ratio", ExtArgs["result"]["partMaterial"]>;
 export type PartMaterialInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    part?: boolean | Prisma.PartDefaultArgs<ExtArgs>;
     material?: boolean | Prisma.MaterialDefaultArgs<ExtArgs>;
+    part?: boolean | Prisma.PartDefaultArgs<ExtArgs>;
 };
 export type PartMaterialIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    part?: boolean | Prisma.PartDefaultArgs<ExtArgs>;
     material?: boolean | Prisma.MaterialDefaultArgs<ExtArgs>;
+    part?: boolean | Prisma.PartDefaultArgs<ExtArgs>;
 };
 export type PartMaterialIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    part?: boolean | Prisma.PartDefaultArgs<ExtArgs>;
     material?: boolean | Prisma.MaterialDefaultArgs<ExtArgs>;
+    part?: boolean | Prisma.PartDefaultArgs<ExtArgs>;
 };
 export type $PartMaterialPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     name: "PartMaterial";
     objects: {
-        part: Prisma.$PartPayload<ExtArgs>;
         material: Prisma.$MaterialPayload<ExtArgs>;
+        part: Prisma.$PartPayload<ExtArgs>;
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         id: string;
@@ -849,8 +849,8 @@ export interface PartMaterialDelegate<ExtArgs extends runtime.Types.Extensions.I
  */
 export interface Prisma__PartMaterialClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise";
-    part<T extends Prisma.PartDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PartDefaultArgs<ExtArgs>>): Prisma.Prisma__PartClient<runtime.Types.Result.GetResult<Prisma.$PartPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
     material<T extends Prisma.MaterialDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MaterialDefaultArgs<ExtArgs>>): Prisma.Prisma__MaterialClient<runtime.Types.Result.GetResult<Prisma.$MaterialPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
+    part<T extends Prisma.PartDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PartDefaultArgs<ExtArgs>>): Prisma.Prisma__PartClient<runtime.Types.Result.GetResult<Prisma.$PartPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.

@@ -37,10 +37,10 @@ export type InvoiceMinAggregateOutputType = {
     total: runtime.Decimal | null;
     createdAt: Date | null;
     updatedAt: Date | null;
-    purchaseOrderId: string | null;
     customerId: string | null;
     createdById: string | null;
     documentId: string | null;
+    purchaseOrderId: string | null;
 };
 export type InvoiceMaxAggregateOutputType = {
     id: string | null;
@@ -54,10 +54,10 @@ export type InvoiceMaxAggregateOutputType = {
     total: runtime.Decimal | null;
     createdAt: Date | null;
     updatedAt: Date | null;
-    purchaseOrderId: string | null;
     customerId: string | null;
     createdById: string | null;
     documentId: string | null;
+    purchaseOrderId: string | null;
 };
 export type InvoiceCountAggregateOutputType = {
     id: number;
@@ -71,10 +71,10 @@ export type InvoiceCountAggregateOutputType = {
     total: number;
     createdAt: number;
     updatedAt: number;
-    purchaseOrderId: number;
     customerId: number;
     createdById: number;
     documentId: number;
+    purchaseOrderId: number;
     _all: number;
 };
 export type InvoiceAvgAggregateInputType = {
@@ -101,10 +101,10 @@ export type InvoiceMinAggregateInputType = {
     total?: true;
     createdAt?: true;
     updatedAt?: true;
-    purchaseOrderId?: true;
     customerId?: true;
     createdById?: true;
     documentId?: true;
+    purchaseOrderId?: true;
 };
 export type InvoiceMaxAggregateInputType = {
     id?: true;
@@ -118,10 +118,10 @@ export type InvoiceMaxAggregateInputType = {
     total?: true;
     createdAt?: true;
     updatedAt?: true;
-    purchaseOrderId?: true;
     customerId?: true;
     createdById?: true;
     documentId?: true;
+    purchaseOrderId?: true;
 };
 export type InvoiceCountAggregateInputType = {
     id?: true;
@@ -135,10 +135,10 @@ export type InvoiceCountAggregateInputType = {
     total?: true;
     createdAt?: true;
     updatedAt?: true;
-    purchaseOrderId?: true;
     customerId?: true;
     createdById?: true;
     documentId?: true;
+    purchaseOrderId?: true;
     _all?: true;
 };
 export type InvoiceAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -229,10 +229,10 @@ export type InvoiceGroupByOutputType = {
     total: runtime.Decimal;
     createdAt: Date;
     updatedAt: Date;
-    purchaseOrderId: string | null;
     customerId: string;
     createdById: string;
     documentId: string | null;
+    purchaseOrderId: string | null;
     _count: InvoiceCountAggregateOutputType | null;
     _avg: InvoiceAvgAggregateOutputType | null;
     _sum: InvoiceSumAggregateOutputType | null;
@@ -257,12 +257,12 @@ export type InvoiceWhereInput = {
     total?: Prisma.DecimalFilter<"Invoice"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string;
-    purchaseOrderId?: Prisma.StringNullableFilter<"Invoice"> | string | null;
     customerId?: Prisma.StringFilter<"Invoice"> | string;
     createdById?: Prisma.StringFilter<"Invoice"> | string;
     documentId?: Prisma.StringNullableFilter<"Invoice"> | string | null;
-    customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>;
+    purchaseOrderId?: Prisma.StringNullableFilter<"Invoice"> | string | null;
     createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
+    customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>;
     document?: Prisma.XOR<Prisma.BusinessDocumentNullableScalarRelationFilter, Prisma.BusinessDocumentWhereInput> | null;
     purchaseOrder?: Prisma.XOR<Prisma.PurchaseOrderNullableScalarRelationFilter, Prisma.PurchaseOrderWhereInput> | null;
     items?: Prisma.InvoiceItemListRelationFilter;
@@ -279,12 +279,12 @@ export type InvoiceOrderByWithRelationInput = {
     total?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
     updatedAt?: Prisma.SortOrder;
-    purchaseOrderId?: Prisma.SortOrderInput | Prisma.SortOrder;
     customerId?: Prisma.SortOrder;
     createdById?: Prisma.SortOrder;
     documentId?: Prisma.SortOrderInput | Prisma.SortOrder;
-    customer?: Prisma.CustomerOrderByWithRelationInput;
+    purchaseOrderId?: Prisma.SortOrderInput | Prisma.SortOrder;
     createdBy?: Prisma.UserOrderByWithRelationInput;
+    customer?: Prisma.CustomerOrderByWithRelationInput;
     document?: Prisma.BusinessDocumentOrderByWithRelationInput;
     purchaseOrder?: Prisma.PurchaseOrderOrderByWithRelationInput;
     items?: Prisma.InvoiceItemOrderByRelationAggregateInput;
@@ -292,8 +292,8 @@ export type InvoiceOrderByWithRelationInput = {
 export type InvoiceWhereUniqueInput = Prisma.AtLeast<{
     id?: string;
     invoiceNo?: string;
-    purchaseOrderId?: string;
     documentId?: string;
+    purchaseOrderId?: string;
     AND?: Prisma.InvoiceWhereInput | Prisma.InvoiceWhereInput[];
     OR?: Prisma.InvoiceWhereInput[];
     NOT?: Prisma.InvoiceWhereInput | Prisma.InvoiceWhereInput[];
@@ -308,12 +308,12 @@ export type InvoiceWhereUniqueInput = Prisma.AtLeast<{
     updatedAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string;
     customerId?: Prisma.StringFilter<"Invoice"> | string;
     createdById?: Prisma.StringFilter<"Invoice"> | string;
-    customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>;
     createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
+    customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>;
     document?: Prisma.XOR<Prisma.BusinessDocumentNullableScalarRelationFilter, Prisma.BusinessDocumentWhereInput> | null;
     purchaseOrder?: Prisma.XOR<Prisma.PurchaseOrderNullableScalarRelationFilter, Prisma.PurchaseOrderWhereInput> | null;
     items?: Prisma.InvoiceItemListRelationFilter;
-}, "id" | "invoiceNo" | "purchaseOrderId" | "documentId">;
+}, "id" | "invoiceNo" | "documentId" | "purchaseOrderId">;
 export type InvoiceOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
     invoiceNo?: Prisma.SortOrder;
@@ -326,10 +326,10 @@ export type InvoiceOrderByWithAggregationInput = {
     total?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
     updatedAt?: Prisma.SortOrder;
-    purchaseOrderId?: Prisma.SortOrderInput | Prisma.SortOrder;
     customerId?: Prisma.SortOrder;
     createdById?: Prisma.SortOrder;
     documentId?: Prisma.SortOrderInput | Prisma.SortOrder;
+    purchaseOrderId?: Prisma.SortOrderInput | Prisma.SortOrder;
     _count?: Prisma.InvoiceCountOrderByAggregateInput;
     _avg?: Prisma.InvoiceAvgOrderByAggregateInput;
     _max?: Prisma.InvoiceMaxOrderByAggregateInput;
@@ -351,10 +351,10 @@ export type InvoiceScalarWhereWithAggregatesInput = {
     total?: Prisma.DecimalWithAggregatesFilter<"Invoice"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeWithAggregatesFilter<"Invoice"> | Date | string;
     updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Invoice"> | Date | string;
-    purchaseOrderId?: Prisma.StringNullableWithAggregatesFilter<"Invoice"> | string | null;
     customerId?: Prisma.StringWithAggregatesFilter<"Invoice"> | string;
     createdById?: Prisma.StringWithAggregatesFilter<"Invoice"> | string;
     documentId?: Prisma.StringNullableWithAggregatesFilter<"Invoice"> | string | null;
+    purchaseOrderId?: Prisma.StringNullableWithAggregatesFilter<"Invoice"> | string | null;
 };
 export type InvoiceCreateInput = {
     id?: string;
@@ -368,8 +368,8 @@ export type InvoiceCreateInput = {
     total: runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    customer: Prisma.CustomerCreateNestedOneWithoutInvoicesInput;
     createdBy: Prisma.UserCreateNestedOneWithoutInvoicesInput;
+    customer: Prisma.CustomerCreateNestedOneWithoutInvoicesInput;
     document?: Prisma.BusinessDocumentCreateNestedOneWithoutInvoiceInput;
     purchaseOrder?: Prisma.PurchaseOrderCreateNestedOneWithoutInvoiceInput;
     items?: Prisma.InvoiceItemCreateNestedManyWithoutInvoiceInput;
@@ -386,10 +386,10 @@ export type InvoiceUncheckedCreateInput = {
     total: runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    purchaseOrderId?: string | null;
     customerId: string;
     createdById: string;
     documentId?: string | null;
+    purchaseOrderId?: string | null;
     items?: Prisma.InvoiceItemUncheckedCreateNestedManyWithoutInvoiceInput;
 };
 export type InvoiceUpdateInput = {
@@ -404,8 +404,8 @@ export type InvoiceUpdateInput = {
     total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    customer?: Prisma.CustomerUpdateOneRequiredWithoutInvoicesNestedInput;
     createdBy?: Prisma.UserUpdateOneRequiredWithoutInvoicesNestedInput;
+    customer?: Prisma.CustomerUpdateOneRequiredWithoutInvoicesNestedInput;
     document?: Prisma.BusinessDocumentUpdateOneWithoutInvoiceNestedInput;
     purchaseOrder?: Prisma.PurchaseOrderUpdateOneWithoutInvoiceNestedInput;
     items?: Prisma.InvoiceItemUpdateManyWithoutInvoiceNestedInput;
@@ -422,10 +422,10 @@ export type InvoiceUncheckedUpdateInput = {
     total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    purchaseOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     customerId?: Prisma.StringFieldUpdateOperationsInput | string;
     createdById?: Prisma.StringFieldUpdateOperationsInput | string;
     documentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    purchaseOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     items?: Prisma.InvoiceItemUncheckedUpdateManyWithoutInvoiceNestedInput;
 };
 export type InvoiceCreateManyInput = {
@@ -440,10 +440,10 @@ export type InvoiceCreateManyInput = {
     total: runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    purchaseOrderId?: string | null;
     customerId: string;
     createdById: string;
     documentId?: string | null;
+    purchaseOrderId?: string | null;
 };
 export type InvoiceUpdateManyMutationInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -470,10 +470,10 @@ export type InvoiceUncheckedUpdateManyInput = {
     total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    purchaseOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     customerId?: Prisma.StringFieldUpdateOperationsInput | string;
     createdById?: Prisma.StringFieldUpdateOperationsInput | string;
     documentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    purchaseOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 };
 export type InvoiceListRelationFilter = {
     every?: Prisma.InvoiceWhereInput;
@@ -499,10 +499,10 @@ export type InvoiceCountOrderByAggregateInput = {
     total?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
     updatedAt?: Prisma.SortOrder;
-    purchaseOrderId?: Prisma.SortOrder;
     customerId?: Prisma.SortOrder;
     createdById?: Prisma.SortOrder;
     documentId?: Prisma.SortOrder;
+    purchaseOrderId?: Prisma.SortOrder;
 };
 export type InvoiceAvgOrderByAggregateInput = {
     dppHargaJual?: Prisma.SortOrder;
@@ -522,10 +522,10 @@ export type InvoiceMaxOrderByAggregateInput = {
     total?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
     updatedAt?: Prisma.SortOrder;
-    purchaseOrderId?: Prisma.SortOrder;
     customerId?: Prisma.SortOrder;
     createdById?: Prisma.SortOrder;
     documentId?: Prisma.SortOrder;
+    purchaseOrderId?: Prisma.SortOrder;
 };
 export type InvoiceMinOrderByAggregateInput = {
     id?: Prisma.SortOrder;
@@ -539,10 +539,10 @@ export type InvoiceMinOrderByAggregateInput = {
     total?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
     updatedAt?: Prisma.SortOrder;
-    purchaseOrderId?: Prisma.SortOrder;
     customerId?: Prisma.SortOrder;
     createdById?: Prisma.SortOrder;
     documentId?: Prisma.SortOrder;
+    purchaseOrderId?: Prisma.SortOrder;
 };
 export type InvoiceSumOrderByAggregateInput = {
     dppHargaJual?: Prisma.SortOrder;
@@ -737,9 +737,9 @@ export type InvoiceUncheckedCreateWithoutCreatedByInput = {
     total: runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    purchaseOrderId?: string | null;
     customerId: string;
     documentId?: string | null;
+    purchaseOrderId?: string | null;
     items?: Prisma.InvoiceItemUncheckedCreateNestedManyWithoutInvoiceInput;
 };
 export type InvoiceCreateOrConnectWithoutCreatedByInput = {
@@ -778,10 +778,10 @@ export type InvoiceScalarWhereInput = {
     total?: Prisma.DecimalFilter<"Invoice"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string;
-    purchaseOrderId?: Prisma.StringNullableFilter<"Invoice"> | string | null;
     customerId?: Prisma.StringFilter<"Invoice"> | string;
     createdById?: Prisma.StringFilter<"Invoice"> | string;
     documentId?: Prisma.StringNullableFilter<"Invoice"> | string | null;
+    purchaseOrderId?: Prisma.StringNullableFilter<"Invoice"> | string | null;
 };
 export type InvoiceCreateWithoutDocumentInput = {
     id?: string;
@@ -795,8 +795,8 @@ export type InvoiceCreateWithoutDocumentInput = {
     total: runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    customer: Prisma.CustomerCreateNestedOneWithoutInvoicesInput;
     createdBy: Prisma.UserCreateNestedOneWithoutInvoicesInput;
+    customer: Prisma.CustomerCreateNestedOneWithoutInvoicesInput;
     purchaseOrder?: Prisma.PurchaseOrderCreateNestedOneWithoutInvoiceInput;
     items?: Prisma.InvoiceItemCreateNestedManyWithoutInvoiceInput;
 };
@@ -812,9 +812,9 @@ export type InvoiceUncheckedCreateWithoutDocumentInput = {
     total: runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    purchaseOrderId?: string | null;
     customerId: string;
     createdById: string;
+    purchaseOrderId?: string | null;
     items?: Prisma.InvoiceItemUncheckedCreateNestedManyWithoutInvoiceInput;
 };
 export type InvoiceCreateOrConnectWithoutDocumentInput = {
@@ -842,8 +842,8 @@ export type InvoiceUpdateWithoutDocumentInput = {
     total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    customer?: Prisma.CustomerUpdateOneRequiredWithoutInvoicesNestedInput;
     createdBy?: Prisma.UserUpdateOneRequiredWithoutInvoicesNestedInput;
+    customer?: Prisma.CustomerUpdateOneRequiredWithoutInvoicesNestedInput;
     purchaseOrder?: Prisma.PurchaseOrderUpdateOneWithoutInvoiceNestedInput;
     items?: Prisma.InvoiceItemUpdateManyWithoutInvoiceNestedInput;
 };
@@ -859,9 +859,9 @@ export type InvoiceUncheckedUpdateWithoutDocumentInput = {
     total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    purchaseOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     customerId?: Prisma.StringFieldUpdateOperationsInput | string;
     createdById?: Prisma.StringFieldUpdateOperationsInput | string;
+    purchaseOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     items?: Prisma.InvoiceItemUncheckedUpdateManyWithoutInvoiceNestedInput;
 };
 export type InvoiceCreateWithoutCustomerInput = {
@@ -893,9 +893,9 @@ export type InvoiceUncheckedCreateWithoutCustomerInput = {
     total: runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    purchaseOrderId?: string | null;
     createdById: string;
     documentId?: string | null;
+    purchaseOrderId?: string | null;
     items?: Prisma.InvoiceItemUncheckedCreateNestedManyWithoutInvoiceInput;
 };
 export type InvoiceCreateOrConnectWithoutCustomerInput = {
@@ -931,8 +931,8 @@ export type InvoiceCreateWithoutItemsInput = {
     total: runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    customer: Prisma.CustomerCreateNestedOneWithoutInvoicesInput;
     createdBy: Prisma.UserCreateNestedOneWithoutInvoicesInput;
+    customer: Prisma.CustomerCreateNestedOneWithoutInvoicesInput;
     document?: Prisma.BusinessDocumentCreateNestedOneWithoutInvoiceInput;
     purchaseOrder?: Prisma.PurchaseOrderCreateNestedOneWithoutInvoiceInput;
 };
@@ -948,10 +948,10 @@ export type InvoiceUncheckedCreateWithoutItemsInput = {
     total: runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    purchaseOrderId?: string | null;
     customerId: string;
     createdById: string;
     documentId?: string | null;
+    purchaseOrderId?: string | null;
 };
 export type InvoiceCreateOrConnectWithoutItemsInput = {
     where: Prisma.InvoiceWhereUniqueInput;
@@ -978,8 +978,8 @@ export type InvoiceUpdateWithoutItemsInput = {
     total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    customer?: Prisma.CustomerUpdateOneRequiredWithoutInvoicesNestedInput;
     createdBy?: Prisma.UserUpdateOneRequiredWithoutInvoicesNestedInput;
+    customer?: Prisma.CustomerUpdateOneRequiredWithoutInvoicesNestedInput;
     document?: Prisma.BusinessDocumentUpdateOneWithoutInvoiceNestedInput;
     purchaseOrder?: Prisma.PurchaseOrderUpdateOneWithoutInvoiceNestedInput;
 };
@@ -995,10 +995,10 @@ export type InvoiceUncheckedUpdateWithoutItemsInput = {
     total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    purchaseOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     customerId?: Prisma.StringFieldUpdateOperationsInput | string;
     createdById?: Prisma.StringFieldUpdateOperationsInput | string;
     documentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    purchaseOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 };
 export type InvoiceCreateWithoutPurchaseOrderInput = {
     id?: string;
@@ -1012,8 +1012,8 @@ export type InvoiceCreateWithoutPurchaseOrderInput = {
     total: runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    customer: Prisma.CustomerCreateNestedOneWithoutInvoicesInput;
     createdBy: Prisma.UserCreateNestedOneWithoutInvoicesInput;
+    customer: Prisma.CustomerCreateNestedOneWithoutInvoicesInput;
     document?: Prisma.BusinessDocumentCreateNestedOneWithoutInvoiceInput;
     items?: Prisma.InvoiceItemCreateNestedManyWithoutInvoiceInput;
 };
@@ -1059,8 +1059,8 @@ export type InvoiceUpdateWithoutPurchaseOrderInput = {
     total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    customer?: Prisma.CustomerUpdateOneRequiredWithoutInvoicesNestedInput;
     createdBy?: Prisma.UserUpdateOneRequiredWithoutInvoicesNestedInput;
+    customer?: Prisma.CustomerUpdateOneRequiredWithoutInvoicesNestedInput;
     document?: Prisma.BusinessDocumentUpdateOneWithoutInvoiceNestedInput;
     items?: Prisma.InvoiceItemUpdateManyWithoutInvoiceNestedInput;
 };
@@ -1093,9 +1093,9 @@ export type InvoiceCreateManyCreatedByInput = {
     total: runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    purchaseOrderId?: string | null;
     customerId: string;
     documentId?: string | null;
+    purchaseOrderId?: string | null;
 };
 export type InvoiceUpdateWithoutCreatedByInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1126,9 +1126,9 @@ export type InvoiceUncheckedUpdateWithoutCreatedByInput = {
     total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    purchaseOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     customerId?: Prisma.StringFieldUpdateOperationsInput | string;
     documentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    purchaseOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     items?: Prisma.InvoiceItemUncheckedUpdateManyWithoutInvoiceNestedInput;
 };
 export type InvoiceUncheckedUpdateManyWithoutCreatedByInput = {
@@ -1143,9 +1143,9 @@ export type InvoiceUncheckedUpdateManyWithoutCreatedByInput = {
     total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    purchaseOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     customerId?: Prisma.StringFieldUpdateOperationsInput | string;
     documentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    purchaseOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 };
 export type InvoiceCreateManyCustomerInput = {
     id?: string;
@@ -1159,9 +1159,9 @@ export type InvoiceCreateManyCustomerInput = {
     total: runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    purchaseOrderId?: string | null;
     createdById: string;
     documentId?: string | null;
+    purchaseOrderId?: string | null;
 };
 export type InvoiceUpdateWithoutCustomerInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1192,9 +1192,9 @@ export type InvoiceUncheckedUpdateWithoutCustomerInput = {
     total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    purchaseOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     createdById?: Prisma.StringFieldUpdateOperationsInput | string;
     documentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    purchaseOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     items?: Prisma.InvoiceItemUncheckedUpdateManyWithoutInvoiceNestedInput;
 };
 export type InvoiceUncheckedUpdateManyWithoutCustomerInput = {
@@ -1209,9 +1209,9 @@ export type InvoiceUncheckedUpdateManyWithoutCustomerInput = {
     total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    purchaseOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     createdById?: Prisma.StringFieldUpdateOperationsInput | string;
     documentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    purchaseOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 };
 /**
  * Count Type InvoiceCountOutputType
@@ -1249,12 +1249,12 @@ export type InvoiceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     total?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
-    purchaseOrderId?: boolean;
     customerId?: boolean;
     createdById?: boolean;
     documentId?: boolean;
-    customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>;
+    purchaseOrderId?: boolean;
     createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>;
     document?: boolean | Prisma.Invoice$documentArgs<ExtArgs>;
     purchaseOrder?: boolean | Prisma.Invoice$purchaseOrderArgs<ExtArgs>;
     items?: boolean | Prisma.Invoice$itemsArgs<ExtArgs>;
@@ -1272,12 +1272,12 @@ export type InvoiceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
     total?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
-    purchaseOrderId?: boolean;
     customerId?: boolean;
     createdById?: boolean;
     documentId?: boolean;
-    customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>;
+    purchaseOrderId?: boolean;
     createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>;
     document?: boolean | Prisma.Invoice$documentArgs<ExtArgs>;
     purchaseOrder?: boolean | Prisma.Invoice$purchaseOrderArgs<ExtArgs>;
 }, ExtArgs["result"]["invoice"]>;
@@ -1293,12 +1293,12 @@ export type InvoiceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
     total?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
-    purchaseOrderId?: boolean;
     customerId?: boolean;
     createdById?: boolean;
     documentId?: boolean;
-    customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>;
+    purchaseOrderId?: boolean;
     createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>;
     document?: boolean | Prisma.Invoice$documentArgs<ExtArgs>;
     purchaseOrder?: boolean | Prisma.Invoice$purchaseOrderArgs<ExtArgs>;
 }, ExtArgs["result"]["invoice"]>;
@@ -1314,37 +1314,37 @@ export type InvoiceSelectScalar = {
     total?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
-    purchaseOrderId?: boolean;
     customerId?: boolean;
     createdById?: boolean;
     documentId?: boolean;
+    purchaseOrderId?: boolean;
 };
-export type InvoiceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "invoiceNo" | "date" | "poNo" | "status" | "dppHargaJual" | "dppNilaiLain" | "ppn" | "total" | "createdAt" | "updatedAt" | "purchaseOrderId" | "customerId" | "createdById" | "documentId", ExtArgs["result"]["invoice"]>;
+export type InvoiceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "invoiceNo" | "date" | "poNo" | "status" | "dppHargaJual" | "dppNilaiLain" | "ppn" | "total" | "createdAt" | "updatedAt" | "customerId" | "createdById" | "documentId" | "purchaseOrderId", ExtArgs["result"]["invoice"]>;
 export type InvoiceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>;
     createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>;
     document?: boolean | Prisma.Invoice$documentArgs<ExtArgs>;
     purchaseOrder?: boolean | Prisma.Invoice$purchaseOrderArgs<ExtArgs>;
     items?: boolean | Prisma.Invoice$itemsArgs<ExtArgs>;
     _count?: boolean | Prisma.InvoiceCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type InvoiceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>;
     createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>;
     document?: boolean | Prisma.Invoice$documentArgs<ExtArgs>;
     purchaseOrder?: boolean | Prisma.Invoice$purchaseOrderArgs<ExtArgs>;
 };
 export type InvoiceIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>;
     createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>;
     document?: boolean | Prisma.Invoice$documentArgs<ExtArgs>;
     purchaseOrder?: boolean | Prisma.Invoice$purchaseOrderArgs<ExtArgs>;
 };
 export type $InvoicePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     name: "Invoice";
     objects: {
-        customer: Prisma.$CustomerPayload<ExtArgs>;
         createdBy: Prisma.$UserPayload<ExtArgs>;
+        customer: Prisma.$CustomerPayload<ExtArgs>;
         document: Prisma.$BusinessDocumentPayload<ExtArgs> | null;
         purchaseOrder: Prisma.$PurchaseOrderPayload<ExtArgs> | null;
         items: Prisma.$InvoiceItemPayload<ExtArgs>[];
@@ -1361,10 +1361,10 @@ export type $InvoicePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
         total: runtime.Decimal;
         createdAt: Date;
         updatedAt: Date;
-        purchaseOrderId: string | null;
         customerId: string;
         createdById: string;
         documentId: string | null;
+        purchaseOrderId: string | null;
     }, ExtArgs["result"]["invoice"]>;
     composites: {};
 };
@@ -1694,8 +1694,8 @@ export interface InvoiceDelegate<ExtArgs extends runtime.Types.Extensions.Intern
  */
 export interface Prisma__InvoiceClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise";
-    customer<T extends Prisma.CustomerDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CustomerDefaultArgs<ExtArgs>>): Prisma.Prisma__CustomerClient<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
     createdBy<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
+    customer<T extends Prisma.CustomerDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CustomerDefaultArgs<ExtArgs>>): Prisma.Prisma__CustomerClient<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
     document<T extends Prisma.Invoice$documentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Invoice$documentArgs<ExtArgs>>): Prisma.Prisma__BusinessDocumentClient<runtime.Types.Result.GetResult<Prisma.$BusinessDocumentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
     purchaseOrder<T extends Prisma.Invoice$purchaseOrderArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Invoice$purchaseOrderArgs<ExtArgs>>): Prisma.Prisma__PurchaseOrderClient<runtime.Types.Result.GetResult<Prisma.$PurchaseOrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
     items<T extends Prisma.Invoice$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Invoice$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoiceItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
@@ -1735,10 +1735,10 @@ export interface InvoiceFieldRefs {
     readonly total: Prisma.FieldRef<"Invoice", 'Decimal'>;
     readonly createdAt: Prisma.FieldRef<"Invoice", 'DateTime'>;
     readonly updatedAt: Prisma.FieldRef<"Invoice", 'DateTime'>;
-    readonly purchaseOrderId: Prisma.FieldRef<"Invoice", 'String'>;
     readonly customerId: Prisma.FieldRef<"Invoice", 'String'>;
     readonly createdById: Prisma.FieldRef<"Invoice", 'String'>;
     readonly documentId: Prisma.FieldRef<"Invoice", 'String'>;
+    readonly purchaseOrderId: Prisma.FieldRef<"Invoice", 'String'>;
 }
 /**
  * Invoice findUnique

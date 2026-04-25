@@ -224,8 +224,8 @@ export type StockAdjustmentWhereInput = {
   reason?: Prisma.StringFilter<"StockAdjustment"> | string
   adjustedById?: Prisma.StringFilter<"StockAdjustment"> | string
   adjustedAt?: Prisma.DateTimeFilter<"StockAdjustment"> | Date | string
-  material?: Prisma.XOR<Prisma.MaterialScalarRelationFilter, Prisma.MaterialWhereInput>
   adjustedBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  material?: Prisma.XOR<Prisma.MaterialScalarRelationFilter, Prisma.MaterialWhereInput>
 }
 
 export type StockAdjustmentOrderByWithRelationInput = {
@@ -235,8 +235,8 @@ export type StockAdjustmentOrderByWithRelationInput = {
   reason?: Prisma.SortOrder
   adjustedById?: Prisma.SortOrder
   adjustedAt?: Prisma.SortOrder
-  material?: Prisma.MaterialOrderByWithRelationInput
   adjustedBy?: Prisma.UserOrderByWithRelationInput
+  material?: Prisma.MaterialOrderByWithRelationInput
 }
 
 export type StockAdjustmentWhereUniqueInput = Prisma.AtLeast<{
@@ -249,8 +249,8 @@ export type StockAdjustmentWhereUniqueInput = Prisma.AtLeast<{
   reason?: Prisma.StringFilter<"StockAdjustment"> | string
   adjustedById?: Prisma.StringFilter<"StockAdjustment"> | string
   adjustedAt?: Prisma.DateTimeFilter<"StockAdjustment"> | Date | string
-  material?: Prisma.XOR<Prisma.MaterialScalarRelationFilter, Prisma.MaterialWhereInput>
   adjustedBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  material?: Prisma.XOR<Prisma.MaterialScalarRelationFilter, Prisma.MaterialWhereInput>
 }, "id">
 
 export type StockAdjustmentOrderByWithAggregationInput = {
@@ -284,8 +284,8 @@ export type StockAdjustmentCreateInput = {
   qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   reason: string
   adjustedAt?: Date | string
-  material: Prisma.MaterialCreateNestedOneWithoutAdjustmentsInput
   adjustedBy: Prisma.UserCreateNestedOneWithoutStockAdjustmentsInput
+  material: Prisma.MaterialCreateNestedOneWithoutAdjustmentsInput
 }
 
 export type StockAdjustmentUncheckedCreateInput = {
@@ -302,8 +302,8 @@ export type StockAdjustmentUpdateInput = {
   qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   reason?: Prisma.StringFieldUpdateOperationsInput | string
   adjustedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  material?: Prisma.MaterialUpdateOneRequiredWithoutAdjustmentsNestedInput
   adjustedBy?: Prisma.UserUpdateOneRequiredWithoutStockAdjustmentsNestedInput
+  material?: Prisma.MaterialUpdateOneRequiredWithoutAdjustmentsNestedInput
 }
 
 export type StockAdjustmentUncheckedUpdateInput = {
@@ -638,8 +638,8 @@ export type StockAdjustmentSelect<ExtArgs extends runtime.Types.Extensions.Inter
   reason?: boolean
   adjustedById?: boolean
   adjustedAt?: boolean
-  material?: boolean | Prisma.MaterialDefaultArgs<ExtArgs>
   adjustedBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  material?: boolean | Prisma.MaterialDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["stockAdjustment"]>
 
 export type StockAdjustmentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -649,8 +649,8 @@ export type StockAdjustmentSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   reason?: boolean
   adjustedById?: boolean
   adjustedAt?: boolean
-  material?: boolean | Prisma.MaterialDefaultArgs<ExtArgs>
   adjustedBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  material?: boolean | Prisma.MaterialDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["stockAdjustment"]>
 
 export type StockAdjustmentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -660,8 +660,8 @@ export type StockAdjustmentSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   reason?: boolean
   adjustedById?: boolean
   adjustedAt?: boolean
-  material?: boolean | Prisma.MaterialDefaultArgs<ExtArgs>
   adjustedBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  material?: boolean | Prisma.MaterialDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["stockAdjustment"]>
 
 export type StockAdjustmentSelectScalar = {
@@ -675,23 +675,23 @@ export type StockAdjustmentSelectScalar = {
 
 export type StockAdjustmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "materialId" | "qty" | "reason" | "adjustedById" | "adjustedAt", ExtArgs["result"]["stockAdjustment"]>
 export type StockAdjustmentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  material?: boolean | Prisma.MaterialDefaultArgs<ExtArgs>
   adjustedBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  material?: boolean | Prisma.MaterialDefaultArgs<ExtArgs>
 }
 export type StockAdjustmentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  material?: boolean | Prisma.MaterialDefaultArgs<ExtArgs>
   adjustedBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  material?: boolean | Prisma.MaterialDefaultArgs<ExtArgs>
 }
 export type StockAdjustmentIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  material?: boolean | Prisma.MaterialDefaultArgs<ExtArgs>
   adjustedBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  material?: boolean | Prisma.MaterialDefaultArgs<ExtArgs>
 }
 
 export type $StockAdjustmentPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "StockAdjustment"
   objects: {
-    material: Prisma.$MaterialPayload<ExtArgs>
     adjustedBy: Prisma.$UserPayload<ExtArgs>
+    material: Prisma.$MaterialPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1094,8 +1094,8 @@ readonly fields: StockAdjustmentFieldRefs;
  */
 export interface Prisma__StockAdjustmentClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  material<T extends Prisma.MaterialDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MaterialDefaultArgs<ExtArgs>>): Prisma.Prisma__MaterialClient<runtime.Types.Result.GetResult<Prisma.$MaterialPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   adjustedBy<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  material<T extends Prisma.MaterialDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MaterialDefaultArgs<ExtArgs>>): Prisma.Prisma__MaterialClient<runtime.Types.Result.GetResult<Prisma.$MaterialPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

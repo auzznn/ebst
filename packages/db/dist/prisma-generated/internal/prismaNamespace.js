@@ -49,7 +49,7 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CheckSheetRowScalarFieldEnum = exports.CheckSheetScalarFieldEnum = exports.QcFindingScalarFieldEnum = exports.QcLogScalarFieldEnum = exports.OperationScalarFieldEnum = exports.JobMaterialScalarFieldEnum = exports.JobListScalarFieldEnum = exports.JobCardScalarFieldEnum = exports.MachineScalarFieldEnum = exports.RoutingStepScalarFieldEnum = exports.RoutingTemplateScalarFieldEnum = exports.PartSpecificationScalarFieldEnum = exports.PartMaterialScalarFieldEnum = exports.PartScalarFieldEnum = exports.PoLineItemScalarFieldEnum = exports.PurchaseOrderScalarFieldEnum = exports.InvoiceItemScalarFieldEnum = exports.InvoiceScalarFieldEnum = exports.CustomerScalarFieldEnum = exports.BusinessDocumentScalarFieldEnum = exports.FixedAssetScalarFieldEnum = exports.JournalLineScalarFieldEnum = exports.JournalEntryScalarFieldEnum = exports.ChartOfAccountScalarFieldEnum = exports.MessageScalarFieldEnum = exports.ChannelMemberScalarFieldEnum = exports.ChannelScalarFieldEnum = exports.VerificationScalarFieldEnum = exports.AccountScalarFieldEnum = exports.SessionScalarFieldEnum = exports.UserScalarFieldEnum = exports.TransactionIsolationLevel = exports.ModelName = exports.AnyNull = exports.JsonNull = exports.DbNull = exports.NullTypes = exports.prismaVersion = exports.getExtensionContext = exports.Decimal = exports.Sql = exports.raw = exports.join = exports.empty = exports.sql = exports.PrismaClientValidationError = exports.PrismaClientInitializationError = exports.PrismaClientRustPanicError = exports.PrismaClientUnknownRequestError = exports.PrismaClientKnownRequestError = void 0;
-exports.defineExtension = exports.JsonNullValueFilter = exports.NullsOrder = exports.QueryMode = exports.NullableJsonNullValueInput = exports.SortOrder = exports.SupplierScalarFieldEnum = exports.StockAdjustmentScalarFieldEnum = exports.MaterialUsageScalarFieldEnum = exports.MaterialScalarFieldEnum = void 0;
+exports.defineExtension = exports.JsonNullValueFilter = exports.NullsOrder = exports.QueryMode = exports.NullableJsonNullValueInput = exports.SortOrder = exports.SupplierScalarFieldEnum = exports.StockLedgerScalarFieldEnum = exports.StockAdjustmentScalarFieldEnum = exports.MaterialUsageScalarFieldEnum = exports.MaterialScalarFieldEnum = void 0;
 const runtime = __importStar(require("@prisma/client/runtime/client"));
 /**
  * Prisma Errors
@@ -138,6 +138,7 @@ exports.ModelName = {
     Material: 'Material',
     MaterialUsage: 'MaterialUsage',
     StockAdjustment: 'StockAdjustment',
+    StockLedger: 'StockLedger',
     Supplier: 'Supplier'
 };
 /**
@@ -286,10 +287,10 @@ exports.InvoiceScalarFieldEnum = {
     total: 'total',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    purchaseOrderId: 'purchaseOrderId',
     customerId: 'customerId',
     createdById: 'createdById',
-    documentId: 'documentId'
+    documentId: 'documentId',
+    purchaseOrderId: 'purchaseOrderId'
 };
 exports.InvoiceItemScalarFieldEnum = {
     id: 'id',
@@ -322,9 +323,9 @@ exports.PartScalarFieldEnum = {
     partNo: 'partNo',
     description: 'description',
     castingType: 'castingType',
-    drawingId: 'drawingId',
     createdAt: 'createdAt',
-    materialId: 'materialId'
+    materialId: 'materialId',
+    drawingId: 'drawingId'
 };
 exports.PartMaterialScalarFieldEnum = {
     id: 'id',
@@ -355,8 +356,8 @@ exports.RoutingStepScalarFieldEnum = {
     stepOrder: 'stepOrder',
     operationName: 'operationName',
     defaultMachineType: 'defaultMachineType',
-    defaultMachineId: 'defaultMachineId',
-    estimatedMinutes: 'estimatedMinutes'
+    estimatedMinutes: 'estimatedMinutes',
+    defaultMachineId: 'defaultMachineId'
 };
 exports.MachineScalarFieldEnum = {
     id: 'id',
@@ -376,10 +377,10 @@ exports.JobCardScalarFieldEnum = {
 exports.JobListScalarFieldEnum = {
     id: 'id',
     jobCardId: 'jobCardId',
-    partId: 'partId',
     lineItemId: 'lineItemId',
     quantity: 'quantity',
-    status: 'status'
+    status: 'status',
+    partId: 'partId'
 };
 exports.JobMaterialScalarFieldEnum = {
     id: 'id',
@@ -465,6 +466,17 @@ exports.StockAdjustmentScalarFieldEnum = {
     reason: 'reason',
     adjustedById: 'adjustedById',
     adjustedAt: 'adjustedAt'
+};
+exports.StockLedgerScalarFieldEnum = {
+    id: 'id',
+    materialId: 'materialId',
+    transactionType: 'transactionType',
+    qtyChange: 'qtyChange',
+    balanceAfter: 'balanceAfter',
+    reason: 'reason',
+    referenceId: 'referenceId',
+    userId: 'userId',
+    createdAt: 'createdAt'
 };
 exports.SupplierScalarFieldEnum = {
     id: 'id',

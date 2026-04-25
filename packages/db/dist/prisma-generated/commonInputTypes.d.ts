@@ -462,6 +462,21 @@ export type EnumMaterialUnitWithAggregatesFilter<$PrismaModel = never> = {
     _min?: Prisma.NestedEnumMaterialUnitFilter<$PrismaModel>;
     _max?: Prisma.NestedEnumMaterialUnitFilter<$PrismaModel>;
 };
+export type EnumLedgerTransactionTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.LedgerTransactionType | Prisma.EnumLedgerTransactionTypeFieldRefInput<$PrismaModel>;
+    in?: $Enums.LedgerTransactionType[] | Prisma.ListEnumLedgerTransactionTypeFieldRefInput<$PrismaModel>;
+    notIn?: $Enums.LedgerTransactionType[] | Prisma.ListEnumLedgerTransactionTypeFieldRefInput<$PrismaModel>;
+    not?: Prisma.NestedEnumLedgerTransactionTypeFilter<$PrismaModel> | $Enums.LedgerTransactionType;
+};
+export type EnumLedgerTransactionTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.LedgerTransactionType | Prisma.EnumLedgerTransactionTypeFieldRefInput<$PrismaModel>;
+    in?: $Enums.LedgerTransactionType[] | Prisma.ListEnumLedgerTransactionTypeFieldRefInput<$PrismaModel>;
+    notIn?: $Enums.LedgerTransactionType[] | Prisma.ListEnumLedgerTransactionTypeFieldRefInput<$PrismaModel>;
+    not?: Prisma.NestedEnumLedgerTransactionTypeWithAggregatesFilter<$PrismaModel> | $Enums.LedgerTransactionType;
+    _count?: Prisma.NestedIntFilter<$PrismaModel>;
+    _min?: Prisma.NestedEnumLedgerTransactionTypeFilter<$PrismaModel>;
+    _max?: Prisma.NestedEnumLedgerTransactionTypeFilter<$PrismaModel>;
+};
 export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | Prisma.StringFieldRefInput<$PrismaModel>;
     in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>;
@@ -904,4 +919,19 @@ export type NestedEnumMaterialUnitWithAggregatesFilter<$PrismaModel = never> = {
     _count?: Prisma.NestedIntFilter<$PrismaModel>;
     _min?: Prisma.NestedEnumMaterialUnitFilter<$PrismaModel>;
     _max?: Prisma.NestedEnumMaterialUnitFilter<$PrismaModel>;
+};
+export type NestedEnumLedgerTransactionTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.LedgerTransactionType | Prisma.EnumLedgerTransactionTypeFieldRefInput<$PrismaModel>;
+    in?: $Enums.LedgerTransactionType[] | Prisma.ListEnumLedgerTransactionTypeFieldRefInput<$PrismaModel>;
+    notIn?: $Enums.LedgerTransactionType[] | Prisma.ListEnumLedgerTransactionTypeFieldRefInput<$PrismaModel>;
+    not?: Prisma.NestedEnumLedgerTransactionTypeFilter<$PrismaModel> | $Enums.LedgerTransactionType;
+};
+export type NestedEnumLedgerTransactionTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.LedgerTransactionType | Prisma.EnumLedgerTransactionTypeFieldRefInput<$PrismaModel>;
+    in?: $Enums.LedgerTransactionType[] | Prisma.ListEnumLedgerTransactionTypeFieldRefInput<$PrismaModel>;
+    notIn?: $Enums.LedgerTransactionType[] | Prisma.ListEnumLedgerTransactionTypeFieldRefInput<$PrismaModel>;
+    not?: Prisma.NestedEnumLedgerTransactionTypeWithAggregatesFilter<$PrismaModel> | $Enums.LedgerTransactionType;
+    _count?: Prisma.NestedIntFilter<$PrismaModel>;
+    _min?: Prisma.NestedEnumLedgerTransactionTypeFilter<$PrismaModel>;
+    _max?: Prisma.NestedEnumLedgerTransactionTypeFilter<$PrismaModel>;
 };

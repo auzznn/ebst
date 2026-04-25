@@ -35,16 +35,6 @@ export class InventoryService {
       where: { id },
       include: {
         supplier: true,
-        adjustments: {
-          include: { adjustedBy: true },
-          orderBy: { adjustedAt: 'desc' },
-          take: 20,
-        },
-        usages: {
-          include: { operation: { include: { jobList: { include: { jobCard: true } } } } },
-          orderBy: { loggedAt: 'desc' },
-          take: 20,
-        },
       },
     });
 
@@ -53,6 +43,30 @@ export class InventoryService {
     }
 
     return material;
+  }
+
+  async getMaterialLedger(id: string, page: number = 1, limit: number = 20) {
+    const skip = (page - 1) * limit;
+
+    const [total, data] = await Promise.all([
+      this.prisma.stockLedger.count({ where: { materialId: id } }),
+      this.prisma.stockLedger.findMany({
+        where: { materialId: id },
+        skip,
+        take: limit,
+        include: {
+          user: {
+            select: { id: true, name: true }
+          }
+        },
+        orderBy: { createdAt: 'desc' },
+      })
+    ]);
+
+    return {
+      data,
+      meta: { total, page, limit, totalPages: Math.ceil(total / limit) }
+    };
   }
 
   async create(data: CreateMaterialDto) {
@@ -102,11 +116,24 @@ export class InventoryService {
       });
 
       // 2. Update current stock
-      await tx.material.update({
+      const updatedMaterial = await tx.material.update({
         where: { id },
         data: {
           stockQty: { increment: data.qty },
         },
+      });
+
+      // 3. Record in Ledger
+      await tx.stockLedger.create({
+        data: {
+          materialId: id,
+          transactionType: data.qty > 0 ? 'RECEIPT' : 'ADJUSTMENT',
+          qtyChange: data.qty,
+          balanceAfter: updatedMaterial.stockQty,
+          reason: data.reason,
+          referenceId: adjustment.id,
+          userId: userId,
+        }
       });
 
       return adjustment;
@@ -139,7 +166,7 @@ export class InventoryService {
       });
 
       // 3. Deduct from stock
-      await tx.material.update({
+      const updatedMaterial = await tx.material.update({
         where: { id: data.materialId },
         data: {
           stockQty: { decrement: data.qty },
@@ -147,13 +174,26 @@ export class InventoryService {
       });
 
       // 4. Record stock adjustment for traceability
-      await tx.stockAdjustment.create({
+      const adjustment = await tx.stockAdjustment.create({
         data: {
           materialId: data.materialId,
           qty: -data.qty,
           reason: `Auto-allocated to job (Job List: ${data.jobListId})`,
           adjustedById: userId,
         },
+      });
+
+      // 5. Record in Ledger
+      await tx.stockLedger.create({
+        data: {
+          materialId: data.materialId,
+          transactionType: 'USAGE',
+          qtyChange: -data.qty,
+          balanceAfter: updatedMaterial.stockQty,
+          reason: `Allocated to Job List: ${data.jobListId}`,
+          referenceId: usage.id,
+          userId: userId,
+        }
       });
 
       return usage;

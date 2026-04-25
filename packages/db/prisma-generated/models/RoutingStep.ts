@@ -42,8 +42,8 @@ export type RoutingStepMinAggregateOutputType = {
   stepOrder: number | null
   operationName: string | null
   defaultMachineType: string | null
-  defaultMachineId: string | null
   estimatedMinutes: number | null
+  defaultMachineId: string | null
 }
 
 export type RoutingStepMaxAggregateOutputType = {
@@ -52,8 +52,8 @@ export type RoutingStepMaxAggregateOutputType = {
   stepOrder: number | null
   operationName: string | null
   defaultMachineType: string | null
-  defaultMachineId: string | null
   estimatedMinutes: number | null
+  defaultMachineId: string | null
 }
 
 export type RoutingStepCountAggregateOutputType = {
@@ -62,8 +62,8 @@ export type RoutingStepCountAggregateOutputType = {
   stepOrder: number
   operationName: number
   defaultMachineType: number
-  defaultMachineId: number
   estimatedMinutes: number
+  defaultMachineId: number
   _all: number
 }
 
@@ -84,8 +84,8 @@ export type RoutingStepMinAggregateInputType = {
   stepOrder?: true
   operationName?: true
   defaultMachineType?: true
-  defaultMachineId?: true
   estimatedMinutes?: true
+  defaultMachineId?: true
 }
 
 export type RoutingStepMaxAggregateInputType = {
@@ -94,8 +94,8 @@ export type RoutingStepMaxAggregateInputType = {
   stepOrder?: true
   operationName?: true
   defaultMachineType?: true
-  defaultMachineId?: true
   estimatedMinutes?: true
+  defaultMachineId?: true
 }
 
 export type RoutingStepCountAggregateInputType = {
@@ -104,8 +104,8 @@ export type RoutingStepCountAggregateInputType = {
   stepOrder?: true
   operationName?: true
   defaultMachineType?: true
-  defaultMachineId?: true
   estimatedMinutes?: true
+  defaultMachineId?: true
   _all?: true
 }
 
@@ -201,8 +201,8 @@ export type RoutingStepGroupByOutputType = {
   stepOrder: number
   operationName: string
   defaultMachineType: string | null
-  defaultMachineId: string | null
   estimatedMinutes: number | null
+  defaultMachineId: string | null
   _count: RoutingStepCountAggregateOutputType | null
   _avg: RoutingStepAvgAggregateOutputType | null
   _sum: RoutingStepSumAggregateOutputType | null
@@ -234,11 +234,11 @@ export type RoutingStepWhereInput = {
   stepOrder?: Prisma.IntFilter<"RoutingStep"> | number
   operationName?: Prisma.StringFilter<"RoutingStep"> | string
   defaultMachineType?: Prisma.StringNullableFilter<"RoutingStep"> | string | null
-  defaultMachineId?: Prisma.StringNullableFilter<"RoutingStep"> | string | null
   estimatedMinutes?: Prisma.IntNullableFilter<"RoutingStep"> | number | null
+  defaultMachineId?: Prisma.StringNullableFilter<"RoutingStep"> | string | null
   operations?: Prisma.OperationListRelationFilter
-  routing?: Prisma.XOR<Prisma.RoutingTemplateScalarRelationFilter, Prisma.RoutingTemplateWhereInput>
   defaultMachine?: Prisma.XOR<Prisma.MachineNullableScalarRelationFilter, Prisma.MachineWhereInput> | null
+  routing?: Prisma.XOR<Prisma.RoutingTemplateScalarRelationFilter, Prisma.RoutingTemplateWhereInput>
 }
 
 export type RoutingStepOrderByWithRelationInput = {
@@ -247,11 +247,11 @@ export type RoutingStepOrderByWithRelationInput = {
   stepOrder?: Prisma.SortOrder
   operationName?: Prisma.SortOrder
   defaultMachineType?: Prisma.SortOrderInput | Prisma.SortOrder
-  defaultMachineId?: Prisma.SortOrderInput | Prisma.SortOrder
   estimatedMinutes?: Prisma.SortOrderInput | Prisma.SortOrder
+  defaultMachineId?: Prisma.SortOrderInput | Prisma.SortOrder
   operations?: Prisma.OperationOrderByRelationAggregateInput
-  routing?: Prisma.RoutingTemplateOrderByWithRelationInput
   defaultMachine?: Prisma.MachineOrderByWithRelationInput
+  routing?: Prisma.RoutingTemplateOrderByWithRelationInput
 }
 
 export type RoutingStepWhereUniqueInput = Prisma.AtLeast<{
@@ -264,11 +264,11 @@ export type RoutingStepWhereUniqueInput = Prisma.AtLeast<{
   stepOrder?: Prisma.IntFilter<"RoutingStep"> | number
   operationName?: Prisma.StringFilter<"RoutingStep"> | string
   defaultMachineType?: Prisma.StringNullableFilter<"RoutingStep"> | string | null
-  defaultMachineId?: Prisma.StringNullableFilter<"RoutingStep"> | string | null
   estimatedMinutes?: Prisma.IntNullableFilter<"RoutingStep"> | number | null
+  defaultMachineId?: Prisma.StringNullableFilter<"RoutingStep"> | string | null
   operations?: Prisma.OperationListRelationFilter
-  routing?: Prisma.XOR<Prisma.RoutingTemplateScalarRelationFilter, Prisma.RoutingTemplateWhereInput>
   defaultMachine?: Prisma.XOR<Prisma.MachineNullableScalarRelationFilter, Prisma.MachineWhereInput> | null
+  routing?: Prisma.XOR<Prisma.RoutingTemplateScalarRelationFilter, Prisma.RoutingTemplateWhereInput>
 }, "id" | "routingTemplateId_stepOrder">
 
 export type RoutingStepOrderByWithAggregationInput = {
@@ -277,8 +277,8 @@ export type RoutingStepOrderByWithAggregationInput = {
   stepOrder?: Prisma.SortOrder
   operationName?: Prisma.SortOrder
   defaultMachineType?: Prisma.SortOrderInput | Prisma.SortOrder
-  defaultMachineId?: Prisma.SortOrderInput | Prisma.SortOrder
   estimatedMinutes?: Prisma.SortOrderInput | Prisma.SortOrder
+  defaultMachineId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.RoutingStepCountOrderByAggregateInput
   _avg?: Prisma.RoutingStepAvgOrderByAggregateInput
   _max?: Prisma.RoutingStepMaxOrderByAggregateInput
@@ -295,8 +295,8 @@ export type RoutingStepScalarWhereWithAggregatesInput = {
   stepOrder?: Prisma.IntWithAggregatesFilter<"RoutingStep"> | number
   operationName?: Prisma.StringWithAggregatesFilter<"RoutingStep"> | string
   defaultMachineType?: Prisma.StringNullableWithAggregatesFilter<"RoutingStep"> | string | null
-  defaultMachineId?: Prisma.StringNullableWithAggregatesFilter<"RoutingStep"> | string | null
   estimatedMinutes?: Prisma.IntNullableWithAggregatesFilter<"RoutingStep"> | number | null
+  defaultMachineId?: Prisma.StringNullableWithAggregatesFilter<"RoutingStep"> | string | null
 }
 
 export type RoutingStepCreateInput = {
@@ -306,8 +306,8 @@ export type RoutingStepCreateInput = {
   defaultMachineType?: string | null
   estimatedMinutes?: number | null
   operations?: Prisma.OperationCreateNestedManyWithoutRoutingStepInput
-  routing: Prisma.RoutingTemplateCreateNestedOneWithoutStepsInput
   defaultMachine?: Prisma.MachineCreateNestedOneWithoutDefaultStepsInput
+  routing: Prisma.RoutingTemplateCreateNestedOneWithoutStepsInput
 }
 
 export type RoutingStepUncheckedCreateInput = {
@@ -316,8 +316,8 @@ export type RoutingStepUncheckedCreateInput = {
   stepOrder: number
   operationName: string
   defaultMachineType?: string | null
-  defaultMachineId?: string | null
   estimatedMinutes?: number | null
+  defaultMachineId?: string | null
   operations?: Prisma.OperationUncheckedCreateNestedManyWithoutRoutingStepInput
 }
 
@@ -328,8 +328,8 @@ export type RoutingStepUpdateInput = {
   defaultMachineType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   operations?: Prisma.OperationUpdateManyWithoutRoutingStepNestedInput
-  routing?: Prisma.RoutingTemplateUpdateOneRequiredWithoutStepsNestedInput
   defaultMachine?: Prisma.MachineUpdateOneWithoutDefaultStepsNestedInput
+  routing?: Prisma.RoutingTemplateUpdateOneRequiredWithoutStepsNestedInput
 }
 
 export type RoutingStepUncheckedUpdateInput = {
@@ -338,8 +338,8 @@ export type RoutingStepUncheckedUpdateInput = {
   stepOrder?: Prisma.IntFieldUpdateOperationsInput | number
   operationName?: Prisma.StringFieldUpdateOperationsInput | string
   defaultMachineType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  defaultMachineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  defaultMachineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   operations?: Prisma.OperationUncheckedUpdateManyWithoutRoutingStepNestedInput
 }
 
@@ -349,8 +349,8 @@ export type RoutingStepCreateManyInput = {
   stepOrder: number
   operationName: string
   defaultMachineType?: string | null
-  defaultMachineId?: string | null
   estimatedMinutes?: number | null
+  defaultMachineId?: string | null
 }
 
 export type RoutingStepUpdateManyMutationInput = {
@@ -367,8 +367,8 @@ export type RoutingStepUncheckedUpdateManyInput = {
   stepOrder?: Prisma.IntFieldUpdateOperationsInput | number
   operationName?: Prisma.StringFieldUpdateOperationsInput | string
   defaultMachineType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  defaultMachineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  defaultMachineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type RoutingStepListRelationFilter = {
@@ -392,8 +392,8 @@ export type RoutingStepCountOrderByAggregateInput = {
   stepOrder?: Prisma.SortOrder
   operationName?: Prisma.SortOrder
   defaultMachineType?: Prisma.SortOrder
-  defaultMachineId?: Prisma.SortOrder
   estimatedMinutes?: Prisma.SortOrder
+  defaultMachineId?: Prisma.SortOrder
 }
 
 export type RoutingStepAvgOrderByAggregateInput = {
@@ -407,8 +407,8 @@ export type RoutingStepMaxOrderByAggregateInput = {
   stepOrder?: Prisma.SortOrder
   operationName?: Prisma.SortOrder
   defaultMachineType?: Prisma.SortOrder
-  defaultMachineId?: Prisma.SortOrder
   estimatedMinutes?: Prisma.SortOrder
+  defaultMachineId?: Prisma.SortOrder
 }
 
 export type RoutingStepMinOrderByAggregateInput = {
@@ -417,8 +417,8 @@ export type RoutingStepMinOrderByAggregateInput = {
   stepOrder?: Prisma.SortOrder
   operationName?: Prisma.SortOrder
   defaultMachineType?: Prisma.SortOrder
-  defaultMachineId?: Prisma.SortOrder
   estimatedMinutes?: Prisma.SortOrder
+  defaultMachineId?: Prisma.SortOrder
 }
 
 export type RoutingStepSumOrderByAggregateInput = {
@@ -544,8 +544,8 @@ export type RoutingStepUncheckedCreateWithoutRoutingInput = {
   stepOrder: number
   operationName: string
   defaultMachineType?: string | null
-  defaultMachineId?: string | null
   estimatedMinutes?: number | null
+  defaultMachineId?: string | null
   operations?: Prisma.OperationUncheckedCreateNestedManyWithoutRoutingStepInput
 }
 
@@ -584,8 +584,8 @@ export type RoutingStepScalarWhereInput = {
   stepOrder?: Prisma.IntFilter<"RoutingStep"> | number
   operationName?: Prisma.StringFilter<"RoutingStep"> | string
   defaultMachineType?: Prisma.StringNullableFilter<"RoutingStep"> | string | null
-  defaultMachineId?: Prisma.StringNullableFilter<"RoutingStep"> | string | null
   estimatedMinutes?: Prisma.IntNullableFilter<"RoutingStep"> | number | null
+  defaultMachineId?: Prisma.StringNullableFilter<"RoutingStep"> | string | null
 }
 
 export type RoutingStepCreateWithoutDefaultMachineInput = {
@@ -640,8 +640,8 @@ export type RoutingStepCreateWithoutOperationsInput = {
   operationName: string
   defaultMachineType?: string | null
   estimatedMinutes?: number | null
-  routing: Prisma.RoutingTemplateCreateNestedOneWithoutStepsInput
   defaultMachine?: Prisma.MachineCreateNestedOneWithoutDefaultStepsInput
+  routing: Prisma.RoutingTemplateCreateNestedOneWithoutStepsInput
 }
 
 export type RoutingStepUncheckedCreateWithoutOperationsInput = {
@@ -650,8 +650,8 @@ export type RoutingStepUncheckedCreateWithoutOperationsInput = {
   stepOrder: number
   operationName: string
   defaultMachineType?: string | null
-  defaultMachineId?: string | null
   estimatedMinutes?: number | null
+  defaultMachineId?: string | null
 }
 
 export type RoutingStepCreateOrConnectWithoutOperationsInput = {
@@ -676,8 +676,8 @@ export type RoutingStepUpdateWithoutOperationsInput = {
   operationName?: Prisma.StringFieldUpdateOperationsInput | string
   defaultMachineType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  routing?: Prisma.RoutingTemplateUpdateOneRequiredWithoutStepsNestedInput
   defaultMachine?: Prisma.MachineUpdateOneWithoutDefaultStepsNestedInput
+  routing?: Prisma.RoutingTemplateUpdateOneRequiredWithoutStepsNestedInput
 }
 
 export type RoutingStepUncheckedUpdateWithoutOperationsInput = {
@@ -686,8 +686,8 @@ export type RoutingStepUncheckedUpdateWithoutOperationsInput = {
   stepOrder?: Prisma.IntFieldUpdateOperationsInput | number
   operationName?: Prisma.StringFieldUpdateOperationsInput | string
   defaultMachineType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  defaultMachineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  defaultMachineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type RoutingStepCreateManyRoutingInput = {
@@ -695,8 +695,8 @@ export type RoutingStepCreateManyRoutingInput = {
   stepOrder: number
   operationName: string
   defaultMachineType?: string | null
-  defaultMachineId?: string | null
   estimatedMinutes?: number | null
+  defaultMachineId?: string | null
 }
 
 export type RoutingStepUpdateWithoutRoutingInput = {
@@ -714,8 +714,8 @@ export type RoutingStepUncheckedUpdateWithoutRoutingInput = {
   stepOrder?: Prisma.IntFieldUpdateOperationsInput | number
   operationName?: Prisma.StringFieldUpdateOperationsInput | string
   defaultMachineType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  defaultMachineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  defaultMachineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   operations?: Prisma.OperationUncheckedUpdateManyWithoutRoutingStepNestedInput
 }
 
@@ -724,8 +724,8 @@ export type RoutingStepUncheckedUpdateManyWithoutRoutingInput = {
   stepOrder?: Prisma.IntFieldUpdateOperationsInput | number
   operationName?: Prisma.StringFieldUpdateOperationsInput | string
   defaultMachineType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  defaultMachineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  defaultMachineId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type RoutingStepCreateManyDefaultMachineInput = {
@@ -803,11 +803,11 @@ export type RoutingStepSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   stepOrder?: boolean
   operationName?: boolean
   defaultMachineType?: boolean
-  defaultMachineId?: boolean
   estimatedMinutes?: boolean
+  defaultMachineId?: boolean
   operations?: boolean | Prisma.RoutingStep$operationsArgs<ExtArgs>
-  routing?: boolean | Prisma.RoutingTemplateDefaultArgs<ExtArgs>
   defaultMachine?: boolean | Prisma.RoutingStep$defaultMachineArgs<ExtArgs>
+  routing?: boolean | Prisma.RoutingTemplateDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.RoutingStepCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["routingStep"]>
 
@@ -817,10 +817,10 @@ export type RoutingStepSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   stepOrder?: boolean
   operationName?: boolean
   defaultMachineType?: boolean
-  defaultMachineId?: boolean
   estimatedMinutes?: boolean
-  routing?: boolean | Prisma.RoutingTemplateDefaultArgs<ExtArgs>
+  defaultMachineId?: boolean
   defaultMachine?: boolean | Prisma.RoutingStep$defaultMachineArgs<ExtArgs>
+  routing?: boolean | Prisma.RoutingTemplateDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["routingStep"]>
 
 export type RoutingStepSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -829,10 +829,10 @@ export type RoutingStepSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   stepOrder?: boolean
   operationName?: boolean
   defaultMachineType?: boolean
-  defaultMachineId?: boolean
   estimatedMinutes?: boolean
-  routing?: boolean | Prisma.RoutingTemplateDefaultArgs<ExtArgs>
+  defaultMachineId?: boolean
   defaultMachine?: boolean | Prisma.RoutingStep$defaultMachineArgs<ExtArgs>
+  routing?: boolean | Prisma.RoutingTemplateDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["routingStep"]>
 
 export type RoutingStepSelectScalar = {
@@ -841,32 +841,32 @@ export type RoutingStepSelectScalar = {
   stepOrder?: boolean
   operationName?: boolean
   defaultMachineType?: boolean
-  defaultMachineId?: boolean
   estimatedMinutes?: boolean
+  defaultMachineId?: boolean
 }
 
-export type RoutingStepOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "routingTemplateId" | "stepOrder" | "operationName" | "defaultMachineType" | "defaultMachineId" | "estimatedMinutes", ExtArgs["result"]["routingStep"]>
+export type RoutingStepOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "routingTemplateId" | "stepOrder" | "operationName" | "defaultMachineType" | "estimatedMinutes" | "defaultMachineId", ExtArgs["result"]["routingStep"]>
 export type RoutingStepInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   operations?: boolean | Prisma.RoutingStep$operationsArgs<ExtArgs>
-  routing?: boolean | Prisma.RoutingTemplateDefaultArgs<ExtArgs>
   defaultMachine?: boolean | Prisma.RoutingStep$defaultMachineArgs<ExtArgs>
+  routing?: boolean | Prisma.RoutingTemplateDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.RoutingStepCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type RoutingStepIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  routing?: boolean | Prisma.RoutingTemplateDefaultArgs<ExtArgs>
   defaultMachine?: boolean | Prisma.RoutingStep$defaultMachineArgs<ExtArgs>
+  routing?: boolean | Prisma.RoutingTemplateDefaultArgs<ExtArgs>
 }
 export type RoutingStepIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  routing?: boolean | Prisma.RoutingTemplateDefaultArgs<ExtArgs>
   defaultMachine?: boolean | Prisma.RoutingStep$defaultMachineArgs<ExtArgs>
+  routing?: boolean | Prisma.RoutingTemplateDefaultArgs<ExtArgs>
 }
 
 export type $RoutingStepPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "RoutingStep"
   objects: {
     operations: Prisma.$OperationPayload<ExtArgs>[]
-    routing: Prisma.$RoutingTemplatePayload<ExtArgs>
     defaultMachine: Prisma.$MachinePayload<ExtArgs> | null
+    routing: Prisma.$RoutingTemplatePayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -874,8 +874,8 @@ export type $RoutingStepPayload<ExtArgs extends runtime.Types.Extensions.Interna
     stepOrder: number
     operationName: string
     defaultMachineType: string | null
-    defaultMachineId: string | null
     estimatedMinutes: number | null
+    defaultMachineId: string | null
   }, ExtArgs["result"]["routingStep"]>
   composites: {}
 }
@@ -1271,8 +1271,8 @@ readonly fields: RoutingStepFieldRefs;
 export interface Prisma__RoutingStepClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   operations<T extends Prisma.RoutingStep$operationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RoutingStep$operationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OperationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  routing<T extends Prisma.RoutingTemplateDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RoutingTemplateDefaultArgs<ExtArgs>>): Prisma.Prisma__RoutingTemplateClient<runtime.Types.Result.GetResult<Prisma.$RoutingTemplatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   defaultMachine<T extends Prisma.RoutingStep$defaultMachineArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RoutingStep$defaultMachineArgs<ExtArgs>>): Prisma.Prisma__MachineClient<runtime.Types.Result.GetResult<Prisma.$MachinePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  routing<T extends Prisma.RoutingTemplateDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RoutingTemplateDefaultArgs<ExtArgs>>): Prisma.Prisma__RoutingTemplateClient<runtime.Types.Result.GetResult<Prisma.$RoutingTemplatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1307,8 +1307,8 @@ export interface RoutingStepFieldRefs {
   readonly stepOrder: Prisma.FieldRef<"RoutingStep", 'Int'>
   readonly operationName: Prisma.FieldRef<"RoutingStep", 'String'>
   readonly defaultMachineType: Prisma.FieldRef<"RoutingStep", 'String'>
-  readonly defaultMachineId: Prisma.FieldRef<"RoutingStep", 'String'>
   readonly estimatedMinutes: Prisma.FieldRef<"RoutingStep", 'Int'>
+  readonly defaultMachineId: Prisma.FieldRef<"RoutingStep", 'String'>
 }
     
 

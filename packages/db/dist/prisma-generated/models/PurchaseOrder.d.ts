@@ -146,10 +146,10 @@ export type PurchaseOrderWhereInput = {
     dueDate?: Prisma.DateTimeFilter<"PurchaseOrder"> | Date | string;
     notes?: Prisma.StringNullableFilter<"PurchaseOrder"> | string | null;
     createdAt?: Prisma.DateTimeFilter<"PurchaseOrder"> | Date | string;
-    customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>;
-    lineItems?: Prisma.PoLineItemListRelationFilter;
-    jobCards?: Prisma.JobCardListRelationFilter;
     invoice?: Prisma.XOR<Prisma.InvoiceNullableScalarRelationFilter, Prisma.InvoiceWhereInput> | null;
+    jobCards?: Prisma.XOR<Prisma.JobCardNullableScalarRelationFilter, Prisma.JobCardWhereInput> | null;
+    lineItems?: Prisma.PoLineItemListRelationFilter;
+    customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>;
 };
 export type PurchaseOrderOrderByWithRelationInput = {
     id?: Prisma.SortOrder;
@@ -158,10 +158,10 @@ export type PurchaseOrderOrderByWithRelationInput = {
     dueDate?: Prisma.SortOrder;
     notes?: Prisma.SortOrderInput | Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
-    customer?: Prisma.CustomerOrderByWithRelationInput;
-    lineItems?: Prisma.PoLineItemOrderByRelationAggregateInput;
-    jobCards?: Prisma.JobCardOrderByRelationAggregateInput;
     invoice?: Prisma.InvoiceOrderByWithRelationInput;
+    jobCards?: Prisma.JobCardOrderByWithRelationInput;
+    lineItems?: Prisma.PoLineItemOrderByRelationAggregateInput;
+    customer?: Prisma.CustomerOrderByWithRelationInput;
 };
 export type PurchaseOrderWhereUniqueInput = Prisma.AtLeast<{
     id?: string;
@@ -173,10 +173,10 @@ export type PurchaseOrderWhereUniqueInput = Prisma.AtLeast<{
     dueDate?: Prisma.DateTimeFilter<"PurchaseOrder"> | Date | string;
     notes?: Prisma.StringNullableFilter<"PurchaseOrder"> | string | null;
     createdAt?: Prisma.DateTimeFilter<"PurchaseOrder"> | Date | string;
-    customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>;
-    lineItems?: Prisma.PoLineItemListRelationFilter;
-    jobCards?: Prisma.JobCardListRelationFilter;
     invoice?: Prisma.XOR<Prisma.InvoiceNullableScalarRelationFilter, Prisma.InvoiceWhereInput> | null;
+    jobCards?: Prisma.XOR<Prisma.JobCardNullableScalarRelationFilter, Prisma.JobCardWhereInput> | null;
+    lineItems?: Prisma.PoLineItemListRelationFilter;
+    customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>;
 }, "id" | "poNumber">;
 export type PurchaseOrderOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
@@ -206,10 +206,10 @@ export type PurchaseOrderCreateInput = {
     dueDate: Date | string;
     notes?: string | null;
     createdAt?: Date | string;
-    customer: Prisma.CustomerCreateNestedOneWithoutPurchaseOrderInput;
-    lineItems?: Prisma.PoLineItemCreateNestedManyWithoutPurchaseOrderInput;
-    jobCards?: Prisma.JobCardCreateNestedManyWithoutPurchaseOrderInput;
     invoice?: Prisma.InvoiceCreateNestedOneWithoutPurchaseOrderInput;
+    jobCards?: Prisma.JobCardCreateNestedOneWithoutPurchaseOrderInput;
+    lineItems?: Prisma.PoLineItemCreateNestedManyWithoutPurchaseOrderInput;
+    customer: Prisma.CustomerCreateNestedOneWithoutPurchaseOrderInput;
 };
 export type PurchaseOrderUncheckedCreateInput = {
     id?: string;
@@ -218,9 +218,9 @@ export type PurchaseOrderUncheckedCreateInput = {
     dueDate: Date | string;
     notes?: string | null;
     createdAt?: Date | string;
-    lineItems?: Prisma.PoLineItemUncheckedCreateNestedManyWithoutPurchaseOrderInput;
-    jobCards?: Prisma.JobCardUncheckedCreateNestedManyWithoutPurchaseOrderInput;
     invoice?: Prisma.InvoiceUncheckedCreateNestedOneWithoutPurchaseOrderInput;
+    jobCards?: Prisma.JobCardUncheckedCreateNestedOneWithoutPurchaseOrderInput;
+    lineItems?: Prisma.PoLineItemUncheckedCreateNestedManyWithoutPurchaseOrderInput;
 };
 export type PurchaseOrderUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -228,10 +228,10 @@ export type PurchaseOrderUpdateInput = {
     dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    customer?: Prisma.CustomerUpdateOneRequiredWithoutPurchaseOrderNestedInput;
-    lineItems?: Prisma.PoLineItemUpdateManyWithoutPurchaseOrderNestedInput;
-    jobCards?: Prisma.JobCardUpdateManyWithoutPurchaseOrderNestedInput;
     invoice?: Prisma.InvoiceUpdateOneWithoutPurchaseOrderNestedInput;
+    jobCards?: Prisma.JobCardUpdateOneWithoutPurchaseOrderNestedInput;
+    lineItems?: Prisma.PoLineItemUpdateManyWithoutPurchaseOrderNestedInput;
+    customer?: Prisma.CustomerUpdateOneRequiredWithoutPurchaseOrderNestedInput;
 };
 export type PurchaseOrderUncheckedUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -240,9 +240,9 @@ export type PurchaseOrderUncheckedUpdateInput = {
     dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    lineItems?: Prisma.PoLineItemUncheckedUpdateManyWithoutPurchaseOrderNestedInput;
-    jobCards?: Prisma.JobCardUncheckedUpdateManyWithoutPurchaseOrderNestedInput;
     invoice?: Prisma.InvoiceUncheckedUpdateOneWithoutPurchaseOrderNestedInput;
+    jobCards?: Prisma.JobCardUncheckedUpdateOneWithoutPurchaseOrderNestedInput;
+    lineItems?: Prisma.PoLineItemUncheckedUpdateManyWithoutPurchaseOrderNestedInput;
 };
 export type PurchaseOrderCreateManyInput = {
     id?: string;
@@ -391,9 +391,9 @@ export type PurchaseOrderCreateWithoutCustomerInput = {
     dueDate: Date | string;
     notes?: string | null;
     createdAt?: Date | string;
-    lineItems?: Prisma.PoLineItemCreateNestedManyWithoutPurchaseOrderInput;
-    jobCards?: Prisma.JobCardCreateNestedManyWithoutPurchaseOrderInput;
     invoice?: Prisma.InvoiceCreateNestedOneWithoutPurchaseOrderInput;
+    jobCards?: Prisma.JobCardCreateNestedOneWithoutPurchaseOrderInput;
+    lineItems?: Prisma.PoLineItemCreateNestedManyWithoutPurchaseOrderInput;
 };
 export type PurchaseOrderUncheckedCreateWithoutCustomerInput = {
     id?: string;
@@ -401,9 +401,9 @@ export type PurchaseOrderUncheckedCreateWithoutCustomerInput = {
     dueDate: Date | string;
     notes?: string | null;
     createdAt?: Date | string;
-    lineItems?: Prisma.PoLineItemUncheckedCreateNestedManyWithoutPurchaseOrderInput;
-    jobCards?: Prisma.JobCardUncheckedCreateNestedManyWithoutPurchaseOrderInput;
     invoice?: Prisma.InvoiceUncheckedCreateNestedOneWithoutPurchaseOrderInput;
+    jobCards?: Prisma.JobCardUncheckedCreateNestedOneWithoutPurchaseOrderInput;
+    lineItems?: Prisma.PoLineItemUncheckedCreateNestedManyWithoutPurchaseOrderInput;
 };
 export type PurchaseOrderCreateOrConnectWithoutCustomerInput = {
     where: Prisma.PurchaseOrderWhereUniqueInput;
@@ -443,9 +443,9 @@ export type PurchaseOrderCreateWithoutInvoiceInput = {
     dueDate: Date | string;
     notes?: string | null;
     createdAt?: Date | string;
-    customer: Prisma.CustomerCreateNestedOneWithoutPurchaseOrderInput;
+    jobCards?: Prisma.JobCardCreateNestedOneWithoutPurchaseOrderInput;
     lineItems?: Prisma.PoLineItemCreateNestedManyWithoutPurchaseOrderInput;
-    jobCards?: Prisma.JobCardCreateNestedManyWithoutPurchaseOrderInput;
+    customer: Prisma.CustomerCreateNestedOneWithoutPurchaseOrderInput;
 };
 export type PurchaseOrderUncheckedCreateWithoutInvoiceInput = {
     id?: string;
@@ -454,8 +454,8 @@ export type PurchaseOrderUncheckedCreateWithoutInvoiceInput = {
     dueDate: Date | string;
     notes?: string | null;
     createdAt?: Date | string;
+    jobCards?: Prisma.JobCardUncheckedCreateNestedOneWithoutPurchaseOrderInput;
     lineItems?: Prisma.PoLineItemUncheckedCreateNestedManyWithoutPurchaseOrderInput;
-    jobCards?: Prisma.JobCardUncheckedCreateNestedManyWithoutPurchaseOrderInput;
 };
 export type PurchaseOrderCreateOrConnectWithoutInvoiceInput = {
     where: Prisma.PurchaseOrderWhereUniqueInput;
@@ -476,9 +476,9 @@ export type PurchaseOrderUpdateWithoutInvoiceInput = {
     dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    customer?: Prisma.CustomerUpdateOneRequiredWithoutPurchaseOrderNestedInput;
+    jobCards?: Prisma.JobCardUpdateOneWithoutPurchaseOrderNestedInput;
     lineItems?: Prisma.PoLineItemUpdateManyWithoutPurchaseOrderNestedInput;
-    jobCards?: Prisma.JobCardUpdateManyWithoutPurchaseOrderNestedInput;
+    customer?: Prisma.CustomerUpdateOneRequiredWithoutPurchaseOrderNestedInput;
 };
 export type PurchaseOrderUncheckedUpdateWithoutInvoiceInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -487,8 +487,8 @@ export type PurchaseOrderUncheckedUpdateWithoutInvoiceInput = {
     dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    jobCards?: Prisma.JobCardUncheckedUpdateOneWithoutPurchaseOrderNestedInput;
     lineItems?: Prisma.PoLineItemUncheckedUpdateManyWithoutPurchaseOrderNestedInput;
-    jobCards?: Prisma.JobCardUncheckedUpdateManyWithoutPurchaseOrderNestedInput;
 };
 export type PurchaseOrderCreateWithoutLineItemsInput = {
     id?: string;
@@ -496,9 +496,9 @@ export type PurchaseOrderCreateWithoutLineItemsInput = {
     dueDate: Date | string;
     notes?: string | null;
     createdAt?: Date | string;
-    customer: Prisma.CustomerCreateNestedOneWithoutPurchaseOrderInput;
-    jobCards?: Prisma.JobCardCreateNestedManyWithoutPurchaseOrderInput;
     invoice?: Prisma.InvoiceCreateNestedOneWithoutPurchaseOrderInput;
+    jobCards?: Prisma.JobCardCreateNestedOneWithoutPurchaseOrderInput;
+    customer: Prisma.CustomerCreateNestedOneWithoutPurchaseOrderInput;
 };
 export type PurchaseOrderUncheckedCreateWithoutLineItemsInput = {
     id?: string;
@@ -507,8 +507,8 @@ export type PurchaseOrderUncheckedCreateWithoutLineItemsInput = {
     dueDate: Date | string;
     notes?: string | null;
     createdAt?: Date | string;
-    jobCards?: Prisma.JobCardUncheckedCreateNestedManyWithoutPurchaseOrderInput;
     invoice?: Prisma.InvoiceUncheckedCreateNestedOneWithoutPurchaseOrderInput;
+    jobCards?: Prisma.JobCardUncheckedCreateNestedOneWithoutPurchaseOrderInput;
 };
 export type PurchaseOrderCreateOrConnectWithoutLineItemsInput = {
     where: Prisma.PurchaseOrderWhereUniqueInput;
@@ -529,9 +529,9 @@ export type PurchaseOrderUpdateWithoutLineItemsInput = {
     dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    customer?: Prisma.CustomerUpdateOneRequiredWithoutPurchaseOrderNestedInput;
-    jobCards?: Prisma.JobCardUpdateManyWithoutPurchaseOrderNestedInput;
     invoice?: Prisma.InvoiceUpdateOneWithoutPurchaseOrderNestedInput;
+    jobCards?: Prisma.JobCardUpdateOneWithoutPurchaseOrderNestedInput;
+    customer?: Prisma.CustomerUpdateOneRequiredWithoutPurchaseOrderNestedInput;
 };
 export type PurchaseOrderUncheckedUpdateWithoutLineItemsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -540,8 +540,8 @@ export type PurchaseOrderUncheckedUpdateWithoutLineItemsInput = {
     dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    jobCards?: Prisma.JobCardUncheckedUpdateManyWithoutPurchaseOrderNestedInput;
     invoice?: Prisma.InvoiceUncheckedUpdateOneWithoutPurchaseOrderNestedInput;
+    jobCards?: Prisma.JobCardUncheckedUpdateOneWithoutPurchaseOrderNestedInput;
 };
 export type PurchaseOrderCreateWithoutJobCardsInput = {
     id?: string;
@@ -549,9 +549,9 @@ export type PurchaseOrderCreateWithoutJobCardsInput = {
     dueDate: Date | string;
     notes?: string | null;
     createdAt?: Date | string;
-    customer: Prisma.CustomerCreateNestedOneWithoutPurchaseOrderInput;
-    lineItems?: Prisma.PoLineItemCreateNestedManyWithoutPurchaseOrderInput;
     invoice?: Prisma.InvoiceCreateNestedOneWithoutPurchaseOrderInput;
+    lineItems?: Prisma.PoLineItemCreateNestedManyWithoutPurchaseOrderInput;
+    customer: Prisma.CustomerCreateNestedOneWithoutPurchaseOrderInput;
 };
 export type PurchaseOrderUncheckedCreateWithoutJobCardsInput = {
     id?: string;
@@ -560,8 +560,8 @@ export type PurchaseOrderUncheckedCreateWithoutJobCardsInput = {
     dueDate: Date | string;
     notes?: string | null;
     createdAt?: Date | string;
-    lineItems?: Prisma.PoLineItemUncheckedCreateNestedManyWithoutPurchaseOrderInput;
     invoice?: Prisma.InvoiceUncheckedCreateNestedOneWithoutPurchaseOrderInput;
+    lineItems?: Prisma.PoLineItemUncheckedCreateNestedManyWithoutPurchaseOrderInput;
 };
 export type PurchaseOrderCreateOrConnectWithoutJobCardsInput = {
     where: Prisma.PurchaseOrderWhereUniqueInput;
@@ -582,9 +582,9 @@ export type PurchaseOrderUpdateWithoutJobCardsInput = {
     dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    customer?: Prisma.CustomerUpdateOneRequiredWithoutPurchaseOrderNestedInput;
-    lineItems?: Prisma.PoLineItemUpdateManyWithoutPurchaseOrderNestedInput;
     invoice?: Prisma.InvoiceUpdateOneWithoutPurchaseOrderNestedInput;
+    lineItems?: Prisma.PoLineItemUpdateManyWithoutPurchaseOrderNestedInput;
+    customer?: Prisma.CustomerUpdateOneRequiredWithoutPurchaseOrderNestedInput;
 };
 export type PurchaseOrderUncheckedUpdateWithoutJobCardsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -593,8 +593,8 @@ export type PurchaseOrderUncheckedUpdateWithoutJobCardsInput = {
     dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    lineItems?: Prisma.PoLineItemUncheckedUpdateManyWithoutPurchaseOrderNestedInput;
     invoice?: Prisma.InvoiceUncheckedUpdateOneWithoutPurchaseOrderNestedInput;
+    lineItems?: Prisma.PoLineItemUncheckedUpdateManyWithoutPurchaseOrderNestedInput;
 };
 export type PurchaseOrderCreateManyCustomerInput = {
     id?: string;
@@ -609,9 +609,9 @@ export type PurchaseOrderUpdateWithoutCustomerInput = {
     dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    lineItems?: Prisma.PoLineItemUpdateManyWithoutPurchaseOrderNestedInput;
-    jobCards?: Prisma.JobCardUpdateManyWithoutPurchaseOrderNestedInput;
     invoice?: Prisma.InvoiceUpdateOneWithoutPurchaseOrderNestedInput;
+    jobCards?: Prisma.JobCardUpdateOneWithoutPurchaseOrderNestedInput;
+    lineItems?: Prisma.PoLineItemUpdateManyWithoutPurchaseOrderNestedInput;
 };
 export type PurchaseOrderUncheckedUpdateWithoutCustomerInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -619,9 +619,9 @@ export type PurchaseOrderUncheckedUpdateWithoutCustomerInput = {
     dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    lineItems?: Prisma.PoLineItemUncheckedUpdateManyWithoutPurchaseOrderNestedInput;
-    jobCards?: Prisma.JobCardUncheckedUpdateManyWithoutPurchaseOrderNestedInput;
     invoice?: Prisma.InvoiceUncheckedUpdateOneWithoutPurchaseOrderNestedInput;
+    jobCards?: Prisma.JobCardUncheckedUpdateOneWithoutPurchaseOrderNestedInput;
+    lineItems?: Prisma.PoLineItemUncheckedUpdateManyWithoutPurchaseOrderNestedInput;
 };
 export type PurchaseOrderUncheckedUpdateManyWithoutCustomerInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -635,11 +635,9 @@ export type PurchaseOrderUncheckedUpdateManyWithoutCustomerInput = {
  */
 export type PurchaseOrderCountOutputType = {
     lineItems: number;
-    jobCards: number;
 };
 export type PurchaseOrderCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     lineItems?: boolean | PurchaseOrderCountOutputTypeCountLineItemsArgs;
-    jobCards?: boolean | PurchaseOrderCountOutputTypeCountJobCardsArgs;
 };
 /**
  * PurchaseOrderCountOutputType without action
@@ -656,12 +654,6 @@ export type PurchaseOrderCountOutputTypeDefaultArgs<ExtArgs extends runtime.Type
 export type PurchaseOrderCountOutputTypeCountLineItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     where?: Prisma.PoLineItemWhereInput;
 };
-/**
- * PurchaseOrderCountOutputType without action
- */
-export type PurchaseOrderCountOutputTypeCountJobCardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    where?: Prisma.JobCardWhereInput;
-};
 export type PurchaseOrderSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
     poNumber?: boolean;
@@ -669,10 +661,10 @@ export type PurchaseOrderSelect<ExtArgs extends runtime.Types.Extensions.Interna
     dueDate?: boolean;
     notes?: boolean;
     createdAt?: boolean;
-    customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>;
-    lineItems?: boolean | Prisma.PurchaseOrder$lineItemsArgs<ExtArgs>;
-    jobCards?: boolean | Prisma.PurchaseOrder$jobCardsArgs<ExtArgs>;
     invoice?: boolean | Prisma.PurchaseOrder$invoiceArgs<ExtArgs>;
+    jobCards?: boolean | Prisma.PurchaseOrder$jobCardsArgs<ExtArgs>;
+    lineItems?: boolean | Prisma.PurchaseOrder$lineItemsArgs<ExtArgs>;
+    customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>;
     _count?: boolean | Prisma.PurchaseOrderCountOutputTypeDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["purchaseOrder"]>;
 export type PurchaseOrderSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -703,10 +695,10 @@ export type PurchaseOrderSelectScalar = {
 };
 export type PurchaseOrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "poNumber" | "customerId" | "dueDate" | "notes" | "createdAt", ExtArgs["result"]["purchaseOrder"]>;
 export type PurchaseOrderInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>;
-    lineItems?: boolean | Prisma.PurchaseOrder$lineItemsArgs<ExtArgs>;
-    jobCards?: boolean | Prisma.PurchaseOrder$jobCardsArgs<ExtArgs>;
     invoice?: boolean | Prisma.PurchaseOrder$invoiceArgs<ExtArgs>;
+    jobCards?: boolean | Prisma.PurchaseOrder$jobCardsArgs<ExtArgs>;
+    lineItems?: boolean | Prisma.PurchaseOrder$lineItemsArgs<ExtArgs>;
+    customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>;
     _count?: boolean | Prisma.PurchaseOrderCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type PurchaseOrderIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -718,10 +710,10 @@ export type PurchaseOrderIncludeUpdateManyAndReturn<ExtArgs extends runtime.Type
 export type $PurchaseOrderPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     name: "PurchaseOrder";
     objects: {
-        customer: Prisma.$CustomerPayload<ExtArgs>;
-        lineItems: Prisma.$PoLineItemPayload<ExtArgs>[];
-        jobCards: Prisma.$JobCardPayload<ExtArgs>[];
         invoice: Prisma.$InvoicePayload<ExtArgs> | null;
+        jobCards: Prisma.$JobCardPayload<ExtArgs> | null;
+        lineItems: Prisma.$PoLineItemPayload<ExtArgs>[];
+        customer: Prisma.$CustomerPayload<ExtArgs>;
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         id: string;
@@ -1059,10 +1051,10 @@ export interface PurchaseOrderDelegate<ExtArgs extends runtime.Types.Extensions.
  */
 export interface Prisma__PurchaseOrderClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise";
-    customer<T extends Prisma.CustomerDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CustomerDefaultArgs<ExtArgs>>): Prisma.Prisma__CustomerClient<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
-    lineItems<T extends Prisma.PurchaseOrder$lineItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PurchaseOrder$lineItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PoLineItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
-    jobCards<T extends Prisma.PurchaseOrder$jobCardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PurchaseOrder$jobCardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$JobCardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     invoice<T extends Prisma.PurchaseOrder$invoiceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PurchaseOrder$invoiceArgs<ExtArgs>>): Prisma.Prisma__InvoiceClient<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    jobCards<T extends Prisma.PurchaseOrder$jobCardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PurchaseOrder$jobCardsArgs<ExtArgs>>): Prisma.Prisma__JobCardClient<runtime.Types.Result.GetResult<Prisma.$JobCardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    lineItems<T extends Prisma.PurchaseOrder$lineItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PurchaseOrder$lineItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PoLineItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
+    customer<T extends Prisma.CustomerDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CustomerDefaultArgs<ExtArgs>>): Prisma.Prisma__CustomerClient<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1478,6 +1470,42 @@ export type PurchaseOrderDeleteManyArgs<ExtArgs extends runtime.Types.Extensions
     limit?: number;
 };
 /**
+ * PurchaseOrder.invoice
+ */
+export type PurchaseOrder$invoiceArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Invoice
+     */
+    select?: Prisma.InvoiceSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Invoice
+     */
+    omit?: Prisma.InvoiceOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.InvoiceInclude<ExtArgs> | null;
+    where?: Prisma.InvoiceWhereInput;
+};
+/**
+ * PurchaseOrder.jobCards
+ */
+export type PurchaseOrder$jobCardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobCard
+     */
+    select?: Prisma.JobCardSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the JobCard
+     */
+    omit?: Prisma.JobCardOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.JobCardInclude<ExtArgs> | null;
+    where?: Prisma.JobCardWhereInput;
+};
+/**
  * PurchaseOrder.lineItems
  */
 export type PurchaseOrder$lineItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1499,47 +1527,6 @@ export type PurchaseOrder$lineItemsArgs<ExtArgs extends runtime.Types.Extensions
     take?: number;
     skip?: number;
     distinct?: Prisma.PoLineItemScalarFieldEnum | Prisma.PoLineItemScalarFieldEnum[];
-};
-/**
- * PurchaseOrder.jobCards
- */
-export type PurchaseOrder$jobCardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the JobCard
-     */
-    select?: Prisma.JobCardSelect<ExtArgs> | null;
-    /**
-     * Omit specific fields from the JobCard
-     */
-    omit?: Prisma.JobCardOmit<ExtArgs> | null;
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: Prisma.JobCardInclude<ExtArgs> | null;
-    where?: Prisma.JobCardWhereInput;
-    orderBy?: Prisma.JobCardOrderByWithRelationInput | Prisma.JobCardOrderByWithRelationInput[];
-    cursor?: Prisma.JobCardWhereUniqueInput;
-    take?: number;
-    skip?: number;
-    distinct?: Prisma.JobCardScalarFieldEnum | Prisma.JobCardScalarFieldEnum[];
-};
-/**
- * PurchaseOrder.invoice
- */
-export type PurchaseOrder$invoiceArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Invoice
-     */
-    select?: Prisma.InvoiceSelect<ExtArgs> | null;
-    /**
-     * Omit specific fields from the Invoice
-     */
-    omit?: Prisma.InvoiceOmit<ExtArgs> | null;
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: Prisma.InvoiceInclude<ExtArgs> | null;
-    where?: Prisma.InvoiceWhereInput;
 };
 /**
  * PurchaseOrder without action

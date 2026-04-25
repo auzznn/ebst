@@ -29,9 +29,9 @@ export type PartMinAggregateOutputType = {
   partNo: string | null
   description: string | null
   castingType: $Enums.CastingType | null
-  drawingId: string | null
   createdAt: Date | null
   materialId: string | null
+  drawingId: string | null
 }
 
 export type PartMaxAggregateOutputType = {
@@ -39,9 +39,9 @@ export type PartMaxAggregateOutputType = {
   partNo: string | null
   description: string | null
   castingType: $Enums.CastingType | null
-  drawingId: string | null
   createdAt: Date | null
   materialId: string | null
+  drawingId: string | null
 }
 
 export type PartCountAggregateOutputType = {
@@ -49,9 +49,9 @@ export type PartCountAggregateOutputType = {
   partNo: number
   description: number
   castingType: number
-  drawingId: number
   createdAt: number
   materialId: number
+  drawingId: number
   _all: number
 }
 
@@ -61,9 +61,9 @@ export type PartMinAggregateInputType = {
   partNo?: true
   description?: true
   castingType?: true
-  drawingId?: true
   createdAt?: true
   materialId?: true
+  drawingId?: true
 }
 
 export type PartMaxAggregateInputType = {
@@ -71,9 +71,9 @@ export type PartMaxAggregateInputType = {
   partNo?: true
   description?: true
   castingType?: true
-  drawingId?: true
   createdAt?: true
   materialId?: true
+  drawingId?: true
 }
 
 export type PartCountAggregateInputType = {
@@ -81,9 +81,9 @@ export type PartCountAggregateInputType = {
   partNo?: true
   description?: true
   castingType?: true
-  drawingId?: true
   createdAt?: true
   materialId?: true
+  drawingId?: true
   _all?: true
 }
 
@@ -164,9 +164,9 @@ export type PartGroupByOutputType = {
   partNo: string
   description: string
   castingType: $Enums.CastingType
-  drawingId: string | null
   createdAt: Date
   materialId: string | null
+  drawingId: string | null
   _count: PartCountAggregateOutputType | null
   _min: PartMinAggregateOutputType | null
   _max: PartMaxAggregateOutputType | null
@@ -195,16 +195,16 @@ export type PartWhereInput = {
   partNo?: Prisma.StringFilter<"Part"> | string
   description?: Prisma.StringFilter<"Part"> | string
   castingType?: Prisma.EnumCastingTypeFilter<"Part"> | $Enums.CastingType
-  drawingId?: Prisma.StringNullableFilter<"Part"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Part"> | Date | string
   materialId?: Prisma.StringNullableFilter<"Part"> | string | null
-  drawing?: Prisma.XOR<Prisma.BusinessDocumentNullableScalarRelationFilter, Prisma.BusinessDocumentWhereInput> | null
-  routing?: Prisma.XOR<Prisma.RoutingTemplateNullableScalarRelationFilter, Prisma.RoutingTemplateWhereInput> | null
-  lineItems?: Prisma.PoLineItemListRelationFilter
+  drawingId?: Prisma.StringNullableFilter<"Part"> | string | null
   jobLists?: Prisma.JobListListRelationFilter
+  drawing?: Prisma.XOR<Prisma.BusinessDocumentNullableScalarRelationFilter, Prisma.BusinessDocumentWhereInput> | null
+  material?: Prisma.XOR<Prisma.MaterialNullableScalarRelationFilter, Prisma.MaterialWhereInput> | null
   materials?: Prisma.PartMaterialListRelationFilter
   specifications?: Prisma.XOR<Prisma.PartSpecificationNullableScalarRelationFilter, Prisma.PartSpecificationWhereInput> | null
-  material?: Prisma.XOR<Prisma.MaterialNullableScalarRelationFilter, Prisma.MaterialWhereInput> | null
+  lineItems?: Prisma.PoLineItemListRelationFilter
+  routing?: Prisma.XOR<Prisma.RoutingTemplateNullableScalarRelationFilter, Prisma.RoutingTemplateWhereInput> | null
 }
 
 export type PartOrderByWithRelationInput = {
@@ -212,16 +212,16 @@ export type PartOrderByWithRelationInput = {
   partNo?: Prisma.SortOrder
   description?: Prisma.SortOrder
   castingType?: Prisma.SortOrder
-  drawingId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   materialId?: Prisma.SortOrderInput | Prisma.SortOrder
-  drawing?: Prisma.BusinessDocumentOrderByWithRelationInput
-  routing?: Prisma.RoutingTemplateOrderByWithRelationInput
-  lineItems?: Prisma.PoLineItemOrderByRelationAggregateInput
+  drawingId?: Prisma.SortOrderInput | Prisma.SortOrder
   jobLists?: Prisma.JobListOrderByRelationAggregateInput
+  drawing?: Prisma.BusinessDocumentOrderByWithRelationInput
+  material?: Prisma.MaterialOrderByWithRelationInput
   materials?: Prisma.PartMaterialOrderByRelationAggregateInput
   specifications?: Prisma.PartSpecificationOrderByWithRelationInput
-  material?: Prisma.MaterialOrderByWithRelationInput
+  lineItems?: Prisma.PoLineItemOrderByRelationAggregateInput
+  routing?: Prisma.RoutingTemplateOrderByWithRelationInput
 }
 
 export type PartWhereUniqueInput = Prisma.AtLeast<{
@@ -235,13 +235,13 @@ export type PartWhereUniqueInput = Prisma.AtLeast<{
   castingType?: Prisma.EnumCastingTypeFilter<"Part"> | $Enums.CastingType
   createdAt?: Prisma.DateTimeFilter<"Part"> | Date | string
   materialId?: Prisma.StringNullableFilter<"Part"> | string | null
-  drawing?: Prisma.XOR<Prisma.BusinessDocumentNullableScalarRelationFilter, Prisma.BusinessDocumentWhereInput> | null
-  routing?: Prisma.XOR<Prisma.RoutingTemplateNullableScalarRelationFilter, Prisma.RoutingTemplateWhereInput> | null
-  lineItems?: Prisma.PoLineItemListRelationFilter
   jobLists?: Prisma.JobListListRelationFilter
+  drawing?: Prisma.XOR<Prisma.BusinessDocumentNullableScalarRelationFilter, Prisma.BusinessDocumentWhereInput> | null
+  material?: Prisma.XOR<Prisma.MaterialNullableScalarRelationFilter, Prisma.MaterialWhereInput> | null
   materials?: Prisma.PartMaterialListRelationFilter
   specifications?: Prisma.XOR<Prisma.PartSpecificationNullableScalarRelationFilter, Prisma.PartSpecificationWhereInput> | null
-  material?: Prisma.XOR<Prisma.MaterialNullableScalarRelationFilter, Prisma.MaterialWhereInput> | null
+  lineItems?: Prisma.PoLineItemListRelationFilter
+  routing?: Prisma.XOR<Prisma.RoutingTemplateNullableScalarRelationFilter, Prisma.RoutingTemplateWhereInput> | null
 }, "id" | "partNo" | "drawingId">
 
 export type PartOrderByWithAggregationInput = {
@@ -249,9 +249,9 @@ export type PartOrderByWithAggregationInput = {
   partNo?: Prisma.SortOrder
   description?: Prisma.SortOrder
   castingType?: Prisma.SortOrder
-  drawingId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   materialId?: Prisma.SortOrderInput | Prisma.SortOrder
+  drawingId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.PartCountOrderByAggregateInput
   _max?: Prisma.PartMaxOrderByAggregateInput
   _min?: Prisma.PartMinOrderByAggregateInput
@@ -265,9 +265,9 @@ export type PartScalarWhereWithAggregatesInput = {
   partNo?: Prisma.StringWithAggregatesFilter<"Part"> | string
   description?: Prisma.StringWithAggregatesFilter<"Part"> | string
   castingType?: Prisma.EnumCastingTypeWithAggregatesFilter<"Part"> | $Enums.CastingType
-  drawingId?: Prisma.StringNullableWithAggregatesFilter<"Part"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Part"> | Date | string
   materialId?: Prisma.StringNullableWithAggregatesFilter<"Part"> | string | null
+  drawingId?: Prisma.StringNullableWithAggregatesFilter<"Part"> | string | null
 }
 
 export type PartCreateInput = {
@@ -276,13 +276,13 @@ export type PartCreateInput = {
   description: string
   castingType: $Enums.CastingType
   createdAt?: Date | string
-  drawing?: Prisma.BusinessDocumentCreateNestedOneWithoutPartInput
-  routing?: Prisma.RoutingTemplateCreateNestedOneWithoutPartInput
-  lineItems?: Prisma.PoLineItemCreateNestedManyWithoutPartInput
   jobLists?: Prisma.JobListCreateNestedManyWithoutPartInput
+  drawing?: Prisma.BusinessDocumentCreateNestedOneWithoutPartInput
+  material?: Prisma.MaterialCreateNestedOneWithoutPartsInput
   materials?: Prisma.PartMaterialCreateNestedManyWithoutPartInput
   specifications?: Prisma.PartSpecificationCreateNestedOneWithoutPartInput
-  material?: Prisma.MaterialCreateNestedOneWithoutPartsInput
+  lineItems?: Prisma.PoLineItemCreateNestedManyWithoutPartInput
+  routing?: Prisma.RoutingTemplateCreateNestedOneWithoutPartInput
 }
 
 export type PartUncheckedCreateInput = {
@@ -290,14 +290,14 @@ export type PartUncheckedCreateInput = {
   partNo: string
   description: string
   castingType: $Enums.CastingType
-  drawingId?: string | null
   createdAt?: Date | string
   materialId?: string | null
-  routing?: Prisma.RoutingTemplateUncheckedCreateNestedOneWithoutPartInput
-  lineItems?: Prisma.PoLineItemUncheckedCreateNestedManyWithoutPartInput
+  drawingId?: string | null
   jobLists?: Prisma.JobListUncheckedCreateNestedManyWithoutPartInput
   materials?: Prisma.PartMaterialUncheckedCreateNestedManyWithoutPartInput
   specifications?: Prisma.PartSpecificationUncheckedCreateNestedOneWithoutPartInput
+  lineItems?: Prisma.PoLineItemUncheckedCreateNestedManyWithoutPartInput
+  routing?: Prisma.RoutingTemplateUncheckedCreateNestedOneWithoutPartInput
 }
 
 export type PartUpdateInput = {
@@ -306,13 +306,13 @@ export type PartUpdateInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   castingType?: Prisma.EnumCastingTypeFieldUpdateOperationsInput | $Enums.CastingType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  drawing?: Prisma.BusinessDocumentUpdateOneWithoutPartNestedInput
-  routing?: Prisma.RoutingTemplateUpdateOneWithoutPartNestedInput
-  lineItems?: Prisma.PoLineItemUpdateManyWithoutPartNestedInput
   jobLists?: Prisma.JobListUpdateManyWithoutPartNestedInput
+  drawing?: Prisma.BusinessDocumentUpdateOneWithoutPartNestedInput
+  material?: Prisma.MaterialUpdateOneWithoutPartsNestedInput
   materials?: Prisma.PartMaterialUpdateManyWithoutPartNestedInput
   specifications?: Prisma.PartSpecificationUpdateOneWithoutPartNestedInput
-  material?: Prisma.MaterialUpdateOneWithoutPartsNestedInput
+  lineItems?: Prisma.PoLineItemUpdateManyWithoutPartNestedInput
+  routing?: Prisma.RoutingTemplateUpdateOneWithoutPartNestedInput
 }
 
 export type PartUncheckedUpdateInput = {
@@ -320,14 +320,14 @@ export type PartUncheckedUpdateInput = {
   partNo?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   castingType?: Prisma.EnumCastingTypeFieldUpdateOperationsInput | $Enums.CastingType
-  drawingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   materialId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  routing?: Prisma.RoutingTemplateUncheckedUpdateOneWithoutPartNestedInput
-  lineItems?: Prisma.PoLineItemUncheckedUpdateManyWithoutPartNestedInput
+  drawingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   jobLists?: Prisma.JobListUncheckedUpdateManyWithoutPartNestedInput
   materials?: Prisma.PartMaterialUncheckedUpdateManyWithoutPartNestedInput
   specifications?: Prisma.PartSpecificationUncheckedUpdateOneWithoutPartNestedInput
+  lineItems?: Prisma.PoLineItemUncheckedUpdateManyWithoutPartNestedInput
+  routing?: Prisma.RoutingTemplateUncheckedUpdateOneWithoutPartNestedInput
 }
 
 export type PartCreateManyInput = {
@@ -335,9 +335,9 @@ export type PartCreateManyInput = {
   partNo: string
   description: string
   castingType: $Enums.CastingType
-  drawingId?: string | null
   createdAt?: Date | string
   materialId?: string | null
+  drawingId?: string | null
 }
 
 export type PartUpdateManyMutationInput = {
@@ -353,9 +353,9 @@ export type PartUncheckedUpdateManyInput = {
   partNo?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   castingType?: Prisma.EnumCastingTypeFieldUpdateOperationsInput | $Enums.CastingType
-  drawingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   materialId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  drawingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type PartNullableScalarRelationFilter = {
@@ -373,9 +373,9 @@ export type PartCountOrderByAggregateInput = {
   partNo?: Prisma.SortOrder
   description?: Prisma.SortOrder
   castingType?: Prisma.SortOrder
-  drawingId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   materialId?: Prisma.SortOrder
+  drawingId?: Prisma.SortOrder
 }
 
 export type PartMaxOrderByAggregateInput = {
@@ -383,9 +383,9 @@ export type PartMaxOrderByAggregateInput = {
   partNo?: Prisma.SortOrder
   description?: Prisma.SortOrder
   castingType?: Prisma.SortOrder
-  drawingId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   materialId?: Prisma.SortOrder
+  drawingId?: Prisma.SortOrder
 }
 
 export type PartMinOrderByAggregateInput = {
@@ -393,9 +393,9 @@ export type PartMinOrderByAggregateInput = {
   partNo?: Prisma.SortOrder
   description?: Prisma.SortOrder
   castingType?: Prisma.SortOrder
-  drawingId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   materialId?: Prisma.SortOrder
+  drawingId?: Prisma.SortOrder
 }
 
 export type PartListRelationFilter = {
@@ -564,12 +564,12 @@ export type PartCreateWithoutDrawingInput = {
   description: string
   castingType: $Enums.CastingType
   createdAt?: Date | string
-  routing?: Prisma.RoutingTemplateCreateNestedOneWithoutPartInput
-  lineItems?: Prisma.PoLineItemCreateNestedManyWithoutPartInput
   jobLists?: Prisma.JobListCreateNestedManyWithoutPartInput
+  material?: Prisma.MaterialCreateNestedOneWithoutPartsInput
   materials?: Prisma.PartMaterialCreateNestedManyWithoutPartInput
   specifications?: Prisma.PartSpecificationCreateNestedOneWithoutPartInput
-  material?: Prisma.MaterialCreateNestedOneWithoutPartsInput
+  lineItems?: Prisma.PoLineItemCreateNestedManyWithoutPartInput
+  routing?: Prisma.RoutingTemplateCreateNestedOneWithoutPartInput
 }
 
 export type PartUncheckedCreateWithoutDrawingInput = {
@@ -579,11 +579,11 @@ export type PartUncheckedCreateWithoutDrawingInput = {
   castingType: $Enums.CastingType
   createdAt?: Date | string
   materialId?: string | null
-  routing?: Prisma.RoutingTemplateUncheckedCreateNestedOneWithoutPartInput
-  lineItems?: Prisma.PoLineItemUncheckedCreateNestedManyWithoutPartInput
   jobLists?: Prisma.JobListUncheckedCreateNestedManyWithoutPartInput
   materials?: Prisma.PartMaterialUncheckedCreateNestedManyWithoutPartInput
   specifications?: Prisma.PartSpecificationUncheckedCreateNestedOneWithoutPartInput
+  lineItems?: Prisma.PoLineItemUncheckedCreateNestedManyWithoutPartInput
+  routing?: Prisma.RoutingTemplateUncheckedCreateNestedOneWithoutPartInput
 }
 
 export type PartCreateOrConnectWithoutDrawingInput = {
@@ -608,12 +608,12 @@ export type PartUpdateWithoutDrawingInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   castingType?: Prisma.EnumCastingTypeFieldUpdateOperationsInput | $Enums.CastingType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  routing?: Prisma.RoutingTemplateUpdateOneWithoutPartNestedInput
-  lineItems?: Prisma.PoLineItemUpdateManyWithoutPartNestedInput
   jobLists?: Prisma.JobListUpdateManyWithoutPartNestedInput
+  material?: Prisma.MaterialUpdateOneWithoutPartsNestedInput
   materials?: Prisma.PartMaterialUpdateManyWithoutPartNestedInput
   specifications?: Prisma.PartSpecificationUpdateOneWithoutPartNestedInput
-  material?: Prisma.MaterialUpdateOneWithoutPartsNestedInput
+  lineItems?: Prisma.PoLineItemUpdateManyWithoutPartNestedInput
+  routing?: Prisma.RoutingTemplateUpdateOneWithoutPartNestedInput
 }
 
 export type PartUncheckedUpdateWithoutDrawingInput = {
@@ -623,11 +623,11 @@ export type PartUncheckedUpdateWithoutDrawingInput = {
   castingType?: Prisma.EnumCastingTypeFieldUpdateOperationsInput | $Enums.CastingType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   materialId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  routing?: Prisma.RoutingTemplateUncheckedUpdateOneWithoutPartNestedInput
-  lineItems?: Prisma.PoLineItemUncheckedUpdateManyWithoutPartNestedInput
   jobLists?: Prisma.JobListUncheckedUpdateManyWithoutPartNestedInput
   materials?: Prisma.PartMaterialUncheckedUpdateManyWithoutPartNestedInput
   specifications?: Prisma.PartSpecificationUncheckedUpdateOneWithoutPartNestedInput
+  lineItems?: Prisma.PoLineItemUncheckedUpdateManyWithoutPartNestedInput
+  routing?: Prisma.RoutingTemplateUncheckedUpdateOneWithoutPartNestedInput
 }
 
 export type PartCreateWithoutLineItemsInput = {
@@ -636,12 +636,12 @@ export type PartCreateWithoutLineItemsInput = {
   description: string
   castingType: $Enums.CastingType
   createdAt?: Date | string
-  drawing?: Prisma.BusinessDocumentCreateNestedOneWithoutPartInput
-  routing?: Prisma.RoutingTemplateCreateNestedOneWithoutPartInput
   jobLists?: Prisma.JobListCreateNestedManyWithoutPartInput
+  drawing?: Prisma.BusinessDocumentCreateNestedOneWithoutPartInput
+  material?: Prisma.MaterialCreateNestedOneWithoutPartsInput
   materials?: Prisma.PartMaterialCreateNestedManyWithoutPartInput
   specifications?: Prisma.PartSpecificationCreateNestedOneWithoutPartInput
-  material?: Prisma.MaterialCreateNestedOneWithoutPartsInput
+  routing?: Prisma.RoutingTemplateCreateNestedOneWithoutPartInput
 }
 
 export type PartUncheckedCreateWithoutLineItemsInput = {
@@ -649,13 +649,13 @@ export type PartUncheckedCreateWithoutLineItemsInput = {
   partNo: string
   description: string
   castingType: $Enums.CastingType
-  drawingId?: string | null
   createdAt?: Date | string
   materialId?: string | null
-  routing?: Prisma.RoutingTemplateUncheckedCreateNestedOneWithoutPartInput
+  drawingId?: string | null
   jobLists?: Prisma.JobListUncheckedCreateNestedManyWithoutPartInput
   materials?: Prisma.PartMaterialUncheckedCreateNestedManyWithoutPartInput
   specifications?: Prisma.PartSpecificationUncheckedCreateNestedOneWithoutPartInput
+  routing?: Prisma.RoutingTemplateUncheckedCreateNestedOneWithoutPartInput
 }
 
 export type PartCreateOrConnectWithoutLineItemsInput = {
@@ -680,12 +680,12 @@ export type PartUpdateWithoutLineItemsInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   castingType?: Prisma.EnumCastingTypeFieldUpdateOperationsInput | $Enums.CastingType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  drawing?: Prisma.BusinessDocumentUpdateOneWithoutPartNestedInput
-  routing?: Prisma.RoutingTemplateUpdateOneWithoutPartNestedInput
   jobLists?: Prisma.JobListUpdateManyWithoutPartNestedInput
+  drawing?: Prisma.BusinessDocumentUpdateOneWithoutPartNestedInput
+  material?: Prisma.MaterialUpdateOneWithoutPartsNestedInput
   materials?: Prisma.PartMaterialUpdateManyWithoutPartNestedInput
   specifications?: Prisma.PartSpecificationUpdateOneWithoutPartNestedInput
-  material?: Prisma.MaterialUpdateOneWithoutPartsNestedInput
+  routing?: Prisma.RoutingTemplateUpdateOneWithoutPartNestedInput
 }
 
 export type PartUncheckedUpdateWithoutLineItemsInput = {
@@ -693,13 +693,13 @@ export type PartUncheckedUpdateWithoutLineItemsInput = {
   partNo?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   castingType?: Prisma.EnumCastingTypeFieldUpdateOperationsInput | $Enums.CastingType
-  drawingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   materialId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  routing?: Prisma.RoutingTemplateUncheckedUpdateOneWithoutPartNestedInput
+  drawingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   jobLists?: Prisma.JobListUncheckedUpdateManyWithoutPartNestedInput
   materials?: Prisma.PartMaterialUncheckedUpdateManyWithoutPartNestedInput
   specifications?: Prisma.PartSpecificationUncheckedUpdateOneWithoutPartNestedInput
+  routing?: Prisma.RoutingTemplateUncheckedUpdateOneWithoutPartNestedInput
 }
 
 export type PartCreateWithoutMaterialsInput = {
@@ -708,12 +708,12 @@ export type PartCreateWithoutMaterialsInput = {
   description: string
   castingType: $Enums.CastingType
   createdAt?: Date | string
-  drawing?: Prisma.BusinessDocumentCreateNestedOneWithoutPartInput
-  routing?: Prisma.RoutingTemplateCreateNestedOneWithoutPartInput
-  lineItems?: Prisma.PoLineItemCreateNestedManyWithoutPartInput
   jobLists?: Prisma.JobListCreateNestedManyWithoutPartInput
-  specifications?: Prisma.PartSpecificationCreateNestedOneWithoutPartInput
+  drawing?: Prisma.BusinessDocumentCreateNestedOneWithoutPartInput
   material?: Prisma.MaterialCreateNestedOneWithoutPartsInput
+  specifications?: Prisma.PartSpecificationCreateNestedOneWithoutPartInput
+  lineItems?: Prisma.PoLineItemCreateNestedManyWithoutPartInput
+  routing?: Prisma.RoutingTemplateCreateNestedOneWithoutPartInput
 }
 
 export type PartUncheckedCreateWithoutMaterialsInput = {
@@ -721,13 +721,13 @@ export type PartUncheckedCreateWithoutMaterialsInput = {
   partNo: string
   description: string
   castingType: $Enums.CastingType
-  drawingId?: string | null
   createdAt?: Date | string
   materialId?: string | null
-  routing?: Prisma.RoutingTemplateUncheckedCreateNestedOneWithoutPartInput
-  lineItems?: Prisma.PoLineItemUncheckedCreateNestedManyWithoutPartInput
+  drawingId?: string | null
   jobLists?: Prisma.JobListUncheckedCreateNestedManyWithoutPartInput
   specifications?: Prisma.PartSpecificationUncheckedCreateNestedOneWithoutPartInput
+  lineItems?: Prisma.PoLineItemUncheckedCreateNestedManyWithoutPartInput
+  routing?: Prisma.RoutingTemplateUncheckedCreateNestedOneWithoutPartInput
 }
 
 export type PartCreateOrConnectWithoutMaterialsInput = {
@@ -752,12 +752,12 @@ export type PartUpdateWithoutMaterialsInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   castingType?: Prisma.EnumCastingTypeFieldUpdateOperationsInput | $Enums.CastingType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  drawing?: Prisma.BusinessDocumentUpdateOneWithoutPartNestedInput
-  routing?: Prisma.RoutingTemplateUpdateOneWithoutPartNestedInput
-  lineItems?: Prisma.PoLineItemUpdateManyWithoutPartNestedInput
   jobLists?: Prisma.JobListUpdateManyWithoutPartNestedInput
-  specifications?: Prisma.PartSpecificationUpdateOneWithoutPartNestedInput
+  drawing?: Prisma.BusinessDocumentUpdateOneWithoutPartNestedInput
   material?: Prisma.MaterialUpdateOneWithoutPartsNestedInput
+  specifications?: Prisma.PartSpecificationUpdateOneWithoutPartNestedInput
+  lineItems?: Prisma.PoLineItemUpdateManyWithoutPartNestedInput
+  routing?: Prisma.RoutingTemplateUpdateOneWithoutPartNestedInput
 }
 
 export type PartUncheckedUpdateWithoutMaterialsInput = {
@@ -765,13 +765,13 @@ export type PartUncheckedUpdateWithoutMaterialsInput = {
   partNo?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   castingType?: Prisma.EnumCastingTypeFieldUpdateOperationsInput | $Enums.CastingType
-  drawingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   materialId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  routing?: Prisma.RoutingTemplateUncheckedUpdateOneWithoutPartNestedInput
-  lineItems?: Prisma.PoLineItemUncheckedUpdateManyWithoutPartNestedInput
+  drawingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   jobLists?: Prisma.JobListUncheckedUpdateManyWithoutPartNestedInput
   specifications?: Prisma.PartSpecificationUncheckedUpdateOneWithoutPartNestedInput
+  lineItems?: Prisma.PoLineItemUncheckedUpdateManyWithoutPartNestedInput
+  routing?: Prisma.RoutingTemplateUncheckedUpdateOneWithoutPartNestedInput
 }
 
 export type PartCreateWithoutSpecificationsInput = {
@@ -780,12 +780,12 @@ export type PartCreateWithoutSpecificationsInput = {
   description: string
   castingType: $Enums.CastingType
   createdAt?: Date | string
-  drawing?: Prisma.BusinessDocumentCreateNestedOneWithoutPartInput
-  routing?: Prisma.RoutingTemplateCreateNestedOneWithoutPartInput
-  lineItems?: Prisma.PoLineItemCreateNestedManyWithoutPartInput
   jobLists?: Prisma.JobListCreateNestedManyWithoutPartInput
-  materials?: Prisma.PartMaterialCreateNestedManyWithoutPartInput
+  drawing?: Prisma.BusinessDocumentCreateNestedOneWithoutPartInput
   material?: Prisma.MaterialCreateNestedOneWithoutPartsInput
+  materials?: Prisma.PartMaterialCreateNestedManyWithoutPartInput
+  lineItems?: Prisma.PoLineItemCreateNestedManyWithoutPartInput
+  routing?: Prisma.RoutingTemplateCreateNestedOneWithoutPartInput
 }
 
 export type PartUncheckedCreateWithoutSpecificationsInput = {
@@ -793,13 +793,13 @@ export type PartUncheckedCreateWithoutSpecificationsInput = {
   partNo: string
   description: string
   castingType: $Enums.CastingType
-  drawingId?: string | null
   createdAt?: Date | string
   materialId?: string | null
-  routing?: Prisma.RoutingTemplateUncheckedCreateNestedOneWithoutPartInput
-  lineItems?: Prisma.PoLineItemUncheckedCreateNestedManyWithoutPartInput
+  drawingId?: string | null
   jobLists?: Prisma.JobListUncheckedCreateNestedManyWithoutPartInput
   materials?: Prisma.PartMaterialUncheckedCreateNestedManyWithoutPartInput
+  lineItems?: Prisma.PoLineItemUncheckedCreateNestedManyWithoutPartInput
+  routing?: Prisma.RoutingTemplateUncheckedCreateNestedOneWithoutPartInput
 }
 
 export type PartCreateOrConnectWithoutSpecificationsInput = {
@@ -824,12 +824,12 @@ export type PartUpdateWithoutSpecificationsInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   castingType?: Prisma.EnumCastingTypeFieldUpdateOperationsInput | $Enums.CastingType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  drawing?: Prisma.BusinessDocumentUpdateOneWithoutPartNestedInput
-  routing?: Prisma.RoutingTemplateUpdateOneWithoutPartNestedInput
-  lineItems?: Prisma.PoLineItemUpdateManyWithoutPartNestedInput
   jobLists?: Prisma.JobListUpdateManyWithoutPartNestedInput
-  materials?: Prisma.PartMaterialUpdateManyWithoutPartNestedInput
+  drawing?: Prisma.BusinessDocumentUpdateOneWithoutPartNestedInput
   material?: Prisma.MaterialUpdateOneWithoutPartsNestedInput
+  materials?: Prisma.PartMaterialUpdateManyWithoutPartNestedInput
+  lineItems?: Prisma.PoLineItemUpdateManyWithoutPartNestedInput
+  routing?: Prisma.RoutingTemplateUpdateOneWithoutPartNestedInput
 }
 
 export type PartUncheckedUpdateWithoutSpecificationsInput = {
@@ -837,13 +837,13 @@ export type PartUncheckedUpdateWithoutSpecificationsInput = {
   partNo?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   castingType?: Prisma.EnumCastingTypeFieldUpdateOperationsInput | $Enums.CastingType
-  drawingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   materialId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  routing?: Prisma.RoutingTemplateUncheckedUpdateOneWithoutPartNestedInput
-  lineItems?: Prisma.PoLineItemUncheckedUpdateManyWithoutPartNestedInput
+  drawingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   jobLists?: Prisma.JobListUncheckedUpdateManyWithoutPartNestedInput
   materials?: Prisma.PartMaterialUncheckedUpdateManyWithoutPartNestedInput
+  lineItems?: Prisma.PoLineItemUncheckedUpdateManyWithoutPartNestedInput
+  routing?: Prisma.RoutingTemplateUncheckedUpdateOneWithoutPartNestedInput
 }
 
 export type PartCreateWithoutRoutingInput = {
@@ -852,12 +852,12 @@ export type PartCreateWithoutRoutingInput = {
   description: string
   castingType: $Enums.CastingType
   createdAt?: Date | string
-  drawing?: Prisma.BusinessDocumentCreateNestedOneWithoutPartInput
-  lineItems?: Prisma.PoLineItemCreateNestedManyWithoutPartInput
   jobLists?: Prisma.JobListCreateNestedManyWithoutPartInput
+  drawing?: Prisma.BusinessDocumentCreateNestedOneWithoutPartInput
+  material?: Prisma.MaterialCreateNestedOneWithoutPartsInput
   materials?: Prisma.PartMaterialCreateNestedManyWithoutPartInput
   specifications?: Prisma.PartSpecificationCreateNestedOneWithoutPartInput
-  material?: Prisma.MaterialCreateNestedOneWithoutPartsInput
+  lineItems?: Prisma.PoLineItemCreateNestedManyWithoutPartInput
 }
 
 export type PartUncheckedCreateWithoutRoutingInput = {
@@ -865,13 +865,13 @@ export type PartUncheckedCreateWithoutRoutingInput = {
   partNo: string
   description: string
   castingType: $Enums.CastingType
-  drawingId?: string | null
   createdAt?: Date | string
   materialId?: string | null
-  lineItems?: Prisma.PoLineItemUncheckedCreateNestedManyWithoutPartInput
+  drawingId?: string | null
   jobLists?: Prisma.JobListUncheckedCreateNestedManyWithoutPartInput
   materials?: Prisma.PartMaterialUncheckedCreateNestedManyWithoutPartInput
   specifications?: Prisma.PartSpecificationUncheckedCreateNestedOneWithoutPartInput
+  lineItems?: Prisma.PoLineItemUncheckedCreateNestedManyWithoutPartInput
 }
 
 export type PartCreateOrConnectWithoutRoutingInput = {
@@ -896,12 +896,12 @@ export type PartUpdateWithoutRoutingInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   castingType?: Prisma.EnumCastingTypeFieldUpdateOperationsInput | $Enums.CastingType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  drawing?: Prisma.BusinessDocumentUpdateOneWithoutPartNestedInput
-  lineItems?: Prisma.PoLineItemUpdateManyWithoutPartNestedInput
   jobLists?: Prisma.JobListUpdateManyWithoutPartNestedInput
+  drawing?: Prisma.BusinessDocumentUpdateOneWithoutPartNestedInput
+  material?: Prisma.MaterialUpdateOneWithoutPartsNestedInput
   materials?: Prisma.PartMaterialUpdateManyWithoutPartNestedInput
   specifications?: Prisma.PartSpecificationUpdateOneWithoutPartNestedInput
-  material?: Prisma.MaterialUpdateOneWithoutPartsNestedInput
+  lineItems?: Prisma.PoLineItemUpdateManyWithoutPartNestedInput
 }
 
 export type PartUncheckedUpdateWithoutRoutingInput = {
@@ -909,13 +909,13 @@ export type PartUncheckedUpdateWithoutRoutingInput = {
   partNo?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   castingType?: Prisma.EnumCastingTypeFieldUpdateOperationsInput | $Enums.CastingType
-  drawingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   materialId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lineItems?: Prisma.PoLineItemUncheckedUpdateManyWithoutPartNestedInput
+  drawingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   jobLists?: Prisma.JobListUncheckedUpdateManyWithoutPartNestedInput
   materials?: Prisma.PartMaterialUncheckedUpdateManyWithoutPartNestedInput
   specifications?: Prisma.PartSpecificationUncheckedUpdateOneWithoutPartNestedInput
+  lineItems?: Prisma.PoLineItemUncheckedUpdateManyWithoutPartNestedInput
 }
 
 export type PartCreateWithoutJobListsInput = {
@@ -925,11 +925,11 @@ export type PartCreateWithoutJobListsInput = {
   castingType: $Enums.CastingType
   createdAt?: Date | string
   drawing?: Prisma.BusinessDocumentCreateNestedOneWithoutPartInput
-  routing?: Prisma.RoutingTemplateCreateNestedOneWithoutPartInput
-  lineItems?: Prisma.PoLineItemCreateNestedManyWithoutPartInput
+  material?: Prisma.MaterialCreateNestedOneWithoutPartsInput
   materials?: Prisma.PartMaterialCreateNestedManyWithoutPartInput
   specifications?: Prisma.PartSpecificationCreateNestedOneWithoutPartInput
-  material?: Prisma.MaterialCreateNestedOneWithoutPartsInput
+  lineItems?: Prisma.PoLineItemCreateNestedManyWithoutPartInput
+  routing?: Prisma.RoutingTemplateCreateNestedOneWithoutPartInput
 }
 
 export type PartUncheckedCreateWithoutJobListsInput = {
@@ -937,13 +937,13 @@ export type PartUncheckedCreateWithoutJobListsInput = {
   partNo: string
   description: string
   castingType: $Enums.CastingType
-  drawingId?: string | null
   createdAt?: Date | string
   materialId?: string | null
-  routing?: Prisma.RoutingTemplateUncheckedCreateNestedOneWithoutPartInput
-  lineItems?: Prisma.PoLineItemUncheckedCreateNestedManyWithoutPartInput
+  drawingId?: string | null
   materials?: Prisma.PartMaterialUncheckedCreateNestedManyWithoutPartInput
   specifications?: Prisma.PartSpecificationUncheckedCreateNestedOneWithoutPartInput
+  lineItems?: Prisma.PoLineItemUncheckedCreateNestedManyWithoutPartInput
+  routing?: Prisma.RoutingTemplateUncheckedCreateNestedOneWithoutPartInput
 }
 
 export type PartCreateOrConnectWithoutJobListsInput = {
@@ -969,11 +969,11 @@ export type PartUpdateWithoutJobListsInput = {
   castingType?: Prisma.EnumCastingTypeFieldUpdateOperationsInput | $Enums.CastingType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   drawing?: Prisma.BusinessDocumentUpdateOneWithoutPartNestedInput
-  routing?: Prisma.RoutingTemplateUpdateOneWithoutPartNestedInput
-  lineItems?: Prisma.PoLineItemUpdateManyWithoutPartNestedInput
+  material?: Prisma.MaterialUpdateOneWithoutPartsNestedInput
   materials?: Prisma.PartMaterialUpdateManyWithoutPartNestedInput
   specifications?: Prisma.PartSpecificationUpdateOneWithoutPartNestedInput
-  material?: Prisma.MaterialUpdateOneWithoutPartsNestedInput
+  lineItems?: Prisma.PoLineItemUpdateManyWithoutPartNestedInput
+  routing?: Prisma.RoutingTemplateUpdateOneWithoutPartNestedInput
 }
 
 export type PartUncheckedUpdateWithoutJobListsInput = {
@@ -981,13 +981,13 @@ export type PartUncheckedUpdateWithoutJobListsInput = {
   partNo?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   castingType?: Prisma.EnumCastingTypeFieldUpdateOperationsInput | $Enums.CastingType
-  drawingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   materialId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  routing?: Prisma.RoutingTemplateUncheckedUpdateOneWithoutPartNestedInput
-  lineItems?: Prisma.PoLineItemUncheckedUpdateManyWithoutPartNestedInput
+  drawingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   materials?: Prisma.PartMaterialUncheckedUpdateManyWithoutPartNestedInput
   specifications?: Prisma.PartSpecificationUncheckedUpdateOneWithoutPartNestedInput
+  lineItems?: Prisma.PoLineItemUncheckedUpdateManyWithoutPartNestedInput
+  routing?: Prisma.RoutingTemplateUncheckedUpdateOneWithoutPartNestedInput
 }
 
 export type PartCreateWithoutMaterialInput = {
@@ -996,12 +996,12 @@ export type PartCreateWithoutMaterialInput = {
   description: string
   castingType: $Enums.CastingType
   createdAt?: Date | string
-  drawing?: Prisma.BusinessDocumentCreateNestedOneWithoutPartInput
-  routing?: Prisma.RoutingTemplateCreateNestedOneWithoutPartInput
-  lineItems?: Prisma.PoLineItemCreateNestedManyWithoutPartInput
   jobLists?: Prisma.JobListCreateNestedManyWithoutPartInput
+  drawing?: Prisma.BusinessDocumentCreateNestedOneWithoutPartInput
   materials?: Prisma.PartMaterialCreateNestedManyWithoutPartInput
   specifications?: Prisma.PartSpecificationCreateNestedOneWithoutPartInput
+  lineItems?: Prisma.PoLineItemCreateNestedManyWithoutPartInput
+  routing?: Prisma.RoutingTemplateCreateNestedOneWithoutPartInput
 }
 
 export type PartUncheckedCreateWithoutMaterialInput = {
@@ -1009,13 +1009,13 @@ export type PartUncheckedCreateWithoutMaterialInput = {
   partNo: string
   description: string
   castingType: $Enums.CastingType
-  drawingId?: string | null
   createdAt?: Date | string
-  routing?: Prisma.RoutingTemplateUncheckedCreateNestedOneWithoutPartInput
-  lineItems?: Prisma.PoLineItemUncheckedCreateNestedManyWithoutPartInput
+  drawingId?: string | null
   jobLists?: Prisma.JobListUncheckedCreateNestedManyWithoutPartInput
   materials?: Prisma.PartMaterialUncheckedCreateNestedManyWithoutPartInput
   specifications?: Prisma.PartSpecificationUncheckedCreateNestedOneWithoutPartInput
+  lineItems?: Prisma.PoLineItemUncheckedCreateNestedManyWithoutPartInput
+  routing?: Prisma.RoutingTemplateUncheckedCreateNestedOneWithoutPartInput
 }
 
 export type PartCreateOrConnectWithoutMaterialInput = {
@@ -1052,9 +1052,9 @@ export type PartScalarWhereInput = {
   partNo?: Prisma.StringFilter<"Part"> | string
   description?: Prisma.StringFilter<"Part"> | string
   castingType?: Prisma.EnumCastingTypeFilter<"Part"> | $Enums.CastingType
-  drawingId?: Prisma.StringNullableFilter<"Part"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Part"> | Date | string
   materialId?: Prisma.StringNullableFilter<"Part"> | string | null
+  drawingId?: Prisma.StringNullableFilter<"Part"> | string | null
 }
 
 export type PartCreateManyMaterialInput = {
@@ -1062,8 +1062,8 @@ export type PartCreateManyMaterialInput = {
   partNo: string
   description: string
   castingType: $Enums.CastingType
-  drawingId?: string | null
   createdAt?: Date | string
+  drawingId?: string | null
 }
 
 export type PartUpdateWithoutMaterialInput = {
@@ -1072,12 +1072,12 @@ export type PartUpdateWithoutMaterialInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   castingType?: Prisma.EnumCastingTypeFieldUpdateOperationsInput | $Enums.CastingType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  drawing?: Prisma.BusinessDocumentUpdateOneWithoutPartNestedInput
-  routing?: Prisma.RoutingTemplateUpdateOneWithoutPartNestedInput
-  lineItems?: Prisma.PoLineItemUpdateManyWithoutPartNestedInput
   jobLists?: Prisma.JobListUpdateManyWithoutPartNestedInput
+  drawing?: Prisma.BusinessDocumentUpdateOneWithoutPartNestedInput
   materials?: Prisma.PartMaterialUpdateManyWithoutPartNestedInput
   specifications?: Prisma.PartSpecificationUpdateOneWithoutPartNestedInput
+  lineItems?: Prisma.PoLineItemUpdateManyWithoutPartNestedInput
+  routing?: Prisma.RoutingTemplateUpdateOneWithoutPartNestedInput
 }
 
 export type PartUncheckedUpdateWithoutMaterialInput = {
@@ -1085,13 +1085,13 @@ export type PartUncheckedUpdateWithoutMaterialInput = {
   partNo?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   castingType?: Prisma.EnumCastingTypeFieldUpdateOperationsInput | $Enums.CastingType
-  drawingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  routing?: Prisma.RoutingTemplateUncheckedUpdateOneWithoutPartNestedInput
-  lineItems?: Prisma.PoLineItemUncheckedUpdateManyWithoutPartNestedInput
+  drawingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   jobLists?: Prisma.JobListUncheckedUpdateManyWithoutPartNestedInput
   materials?: Prisma.PartMaterialUncheckedUpdateManyWithoutPartNestedInput
   specifications?: Prisma.PartSpecificationUncheckedUpdateOneWithoutPartNestedInput
+  lineItems?: Prisma.PoLineItemUncheckedUpdateManyWithoutPartNestedInput
+  routing?: Prisma.RoutingTemplateUncheckedUpdateOneWithoutPartNestedInput
 }
 
 export type PartUncheckedUpdateManyWithoutMaterialInput = {
@@ -1099,8 +1099,8 @@ export type PartUncheckedUpdateManyWithoutMaterialInput = {
   partNo?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   castingType?: Prisma.EnumCastingTypeFieldUpdateOperationsInput | $Enums.CastingType
-  drawingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  drawingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -1109,15 +1109,15 @@ export type PartUncheckedUpdateManyWithoutMaterialInput = {
  */
 
 export type PartCountOutputType = {
-  lineItems: number
   jobLists: number
   materials: number
+  lineItems: number
 }
 
 export type PartCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  lineItems?: boolean | PartCountOutputTypeCountLineItemsArgs
   jobLists?: boolean | PartCountOutputTypeCountJobListsArgs
   materials?: boolean | PartCountOutputTypeCountMaterialsArgs
+  lineItems?: boolean | PartCountOutputTypeCountLineItemsArgs
 }
 
 /**
@@ -1128,13 +1128,6 @@ export type PartCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
    * Select specific fields to fetch from the PartCountOutputType
    */
   select?: Prisma.PartCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * PartCountOutputType without action
- */
-export type PartCountOutputTypeCountLineItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PoLineItemWhereInput
 }
 
 /**
@@ -1151,22 +1144,29 @@ export type PartCountOutputTypeCountMaterialsArgs<ExtArgs extends runtime.Types.
   where?: Prisma.PartMaterialWhereInput
 }
 
+/**
+ * PartCountOutputType without action
+ */
+export type PartCountOutputTypeCountLineItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PoLineItemWhereInput
+}
+
 
 export type PartSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   partNo?: boolean
   description?: boolean
   castingType?: boolean
-  drawingId?: boolean
   createdAt?: boolean
   materialId?: boolean
-  drawing?: boolean | Prisma.Part$drawingArgs<ExtArgs>
-  routing?: boolean | Prisma.Part$routingArgs<ExtArgs>
-  lineItems?: boolean | Prisma.Part$lineItemsArgs<ExtArgs>
+  drawingId?: boolean
   jobLists?: boolean | Prisma.Part$jobListsArgs<ExtArgs>
+  drawing?: boolean | Prisma.Part$drawingArgs<ExtArgs>
+  material?: boolean | Prisma.Part$materialArgs<ExtArgs>
   materials?: boolean | Prisma.Part$materialsArgs<ExtArgs>
   specifications?: boolean | Prisma.Part$specificationsArgs<ExtArgs>
-  material?: boolean | Prisma.Part$materialArgs<ExtArgs>
+  lineItems?: boolean | Prisma.Part$lineItemsArgs<ExtArgs>
+  routing?: boolean | Prisma.Part$routingArgs<ExtArgs>
   _count?: boolean | Prisma.PartCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["part"]>
 
@@ -1175,9 +1175,9 @@ export type PartSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   partNo?: boolean
   description?: boolean
   castingType?: boolean
-  drawingId?: boolean
   createdAt?: boolean
   materialId?: boolean
+  drawingId?: boolean
   drawing?: boolean | Prisma.Part$drawingArgs<ExtArgs>
   material?: boolean | Prisma.Part$materialArgs<ExtArgs>
 }, ExtArgs["result"]["part"]>
@@ -1187,9 +1187,9 @@ export type PartSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   partNo?: boolean
   description?: boolean
   castingType?: boolean
-  drawingId?: boolean
   createdAt?: boolean
   materialId?: boolean
+  drawingId?: boolean
   drawing?: boolean | Prisma.Part$drawingArgs<ExtArgs>
   material?: boolean | Prisma.Part$materialArgs<ExtArgs>
 }, ExtArgs["result"]["part"]>
@@ -1199,20 +1199,20 @@ export type PartSelectScalar = {
   partNo?: boolean
   description?: boolean
   castingType?: boolean
-  drawingId?: boolean
   createdAt?: boolean
   materialId?: boolean
+  drawingId?: boolean
 }
 
-export type PartOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "partNo" | "description" | "castingType" | "drawingId" | "createdAt" | "materialId", ExtArgs["result"]["part"]>
+export type PartOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "partNo" | "description" | "castingType" | "createdAt" | "materialId" | "drawingId", ExtArgs["result"]["part"]>
 export type PartInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  drawing?: boolean | Prisma.Part$drawingArgs<ExtArgs>
-  routing?: boolean | Prisma.Part$routingArgs<ExtArgs>
-  lineItems?: boolean | Prisma.Part$lineItemsArgs<ExtArgs>
   jobLists?: boolean | Prisma.Part$jobListsArgs<ExtArgs>
+  drawing?: boolean | Prisma.Part$drawingArgs<ExtArgs>
+  material?: boolean | Prisma.Part$materialArgs<ExtArgs>
   materials?: boolean | Prisma.Part$materialsArgs<ExtArgs>
   specifications?: boolean | Prisma.Part$specificationsArgs<ExtArgs>
-  material?: boolean | Prisma.Part$materialArgs<ExtArgs>
+  lineItems?: boolean | Prisma.Part$lineItemsArgs<ExtArgs>
+  routing?: boolean | Prisma.Part$routingArgs<ExtArgs>
   _count?: boolean | Prisma.PartCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PartIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1227,22 +1227,22 @@ export type PartIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $PartPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Part"
   objects: {
-    drawing: Prisma.$BusinessDocumentPayload<ExtArgs> | null
-    routing: Prisma.$RoutingTemplatePayload<ExtArgs> | null
-    lineItems: Prisma.$PoLineItemPayload<ExtArgs>[]
     jobLists: Prisma.$JobListPayload<ExtArgs>[]
+    drawing: Prisma.$BusinessDocumentPayload<ExtArgs> | null
+    material: Prisma.$MaterialPayload<ExtArgs> | null
     materials: Prisma.$PartMaterialPayload<ExtArgs>[]
     specifications: Prisma.$PartSpecificationPayload<ExtArgs> | null
-    material: Prisma.$MaterialPayload<ExtArgs> | null
+    lineItems: Prisma.$PoLineItemPayload<ExtArgs>[]
+    routing: Prisma.$RoutingTemplatePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     partNo: string
     description: string
     castingType: $Enums.CastingType
-    drawingId: string | null
     createdAt: Date
     materialId: string | null
+    drawingId: string | null
   }, ExtArgs["result"]["part"]>
   composites: {}
 }
@@ -1637,13 +1637,13 @@ readonly fields: PartFieldRefs;
  */
 export interface Prisma__PartClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  drawing<T extends Prisma.Part$drawingArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Part$drawingArgs<ExtArgs>>): Prisma.Prisma__BusinessDocumentClient<runtime.Types.Result.GetResult<Prisma.$BusinessDocumentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  routing<T extends Prisma.Part$routingArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Part$routingArgs<ExtArgs>>): Prisma.Prisma__RoutingTemplateClient<runtime.Types.Result.GetResult<Prisma.$RoutingTemplatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  lineItems<T extends Prisma.Part$lineItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Part$lineItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PoLineItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   jobLists<T extends Prisma.Part$jobListsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Part$jobListsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$JobListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  drawing<T extends Prisma.Part$drawingArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Part$drawingArgs<ExtArgs>>): Prisma.Prisma__BusinessDocumentClient<runtime.Types.Result.GetResult<Prisma.$BusinessDocumentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  material<T extends Prisma.Part$materialArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Part$materialArgs<ExtArgs>>): Prisma.Prisma__MaterialClient<runtime.Types.Result.GetResult<Prisma.$MaterialPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   materials<T extends Prisma.Part$materialsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Part$materialsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PartMaterialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   specifications<T extends Prisma.Part$specificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Part$specificationsArgs<ExtArgs>>): Prisma.Prisma__PartSpecificationClient<runtime.Types.Result.GetResult<Prisma.$PartSpecificationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  material<T extends Prisma.Part$materialArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Part$materialArgs<ExtArgs>>): Prisma.Prisma__MaterialClient<runtime.Types.Result.GetResult<Prisma.$MaterialPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  lineItems<T extends Prisma.Part$lineItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Part$lineItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PoLineItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  routing<T extends Prisma.Part$routingArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Part$routingArgs<ExtArgs>>): Prisma.Prisma__RoutingTemplateClient<runtime.Types.Result.GetResult<Prisma.$RoutingTemplatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1677,9 +1677,9 @@ export interface PartFieldRefs {
   readonly partNo: Prisma.FieldRef<"Part", 'String'>
   readonly description: Prisma.FieldRef<"Part", 'String'>
   readonly castingType: Prisma.FieldRef<"Part", 'CastingType'>
-  readonly drawingId: Prisma.FieldRef<"Part", 'String'>
   readonly createdAt: Prisma.FieldRef<"Part", 'DateTime'>
   readonly materialId: Prisma.FieldRef<"Part", 'String'>
+  readonly drawingId: Prisma.FieldRef<"Part", 'String'>
 }
     
 
@@ -2081,68 +2081,6 @@ export type PartDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * Part.drawing
- */
-export type Part$drawingArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the BusinessDocument
-   */
-  select?: Prisma.BusinessDocumentSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the BusinessDocument
-   */
-  omit?: Prisma.BusinessDocumentOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.BusinessDocumentInclude<ExtArgs> | null
-  where?: Prisma.BusinessDocumentWhereInput
-}
-
-/**
- * Part.routing
- */
-export type Part$routingArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the RoutingTemplate
-   */
-  select?: Prisma.RoutingTemplateSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the RoutingTemplate
-   */
-  omit?: Prisma.RoutingTemplateOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.RoutingTemplateInclude<ExtArgs> | null
-  where?: Prisma.RoutingTemplateWhereInput
-}
-
-/**
- * Part.lineItems
- */
-export type Part$lineItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the PoLineItem
-   */
-  select?: Prisma.PoLineItemSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the PoLineItem
-   */
-  omit?: Prisma.PoLineItemOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PoLineItemInclude<ExtArgs> | null
-  where?: Prisma.PoLineItemWhereInput
-  orderBy?: Prisma.PoLineItemOrderByWithRelationInput | Prisma.PoLineItemOrderByWithRelationInput[]
-  cursor?: Prisma.PoLineItemWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PoLineItemScalarFieldEnum | Prisma.PoLineItemScalarFieldEnum[]
-}
-
-/**
  * Part.jobLists
  */
 export type Part$jobListsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2164,6 +2102,44 @@ export type Part$jobListsArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.JobListScalarFieldEnum | Prisma.JobListScalarFieldEnum[]
+}
+
+/**
+ * Part.drawing
+ */
+export type Part$drawingArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the BusinessDocument
+   */
+  select?: Prisma.BusinessDocumentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the BusinessDocument
+   */
+  omit?: Prisma.BusinessDocumentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BusinessDocumentInclude<ExtArgs> | null
+  where?: Prisma.BusinessDocumentWhereInput
+}
+
+/**
+ * Part.material
+ */
+export type Part$materialArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Material
+   */
+  select?: Prisma.MaterialSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Material
+   */
+  omit?: Prisma.MaterialOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MaterialInclude<ExtArgs> | null
+  where?: Prisma.MaterialWhereInput
 }
 
 /**
@@ -2210,22 +2186,46 @@ export type Part$specificationsArgs<ExtArgs extends runtime.Types.Extensions.Int
 }
 
 /**
- * Part.material
+ * Part.lineItems
  */
-export type Part$materialArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Part$lineItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Material
+   * Select specific fields to fetch from the PoLineItem
    */
-  select?: Prisma.MaterialSelect<ExtArgs> | null
+  select?: Prisma.PoLineItemSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Material
+   * Omit specific fields from the PoLineItem
    */
-  omit?: Prisma.MaterialOmit<ExtArgs> | null
+  omit?: Prisma.PoLineItemOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.MaterialInclude<ExtArgs> | null
-  where?: Prisma.MaterialWhereInput
+  include?: Prisma.PoLineItemInclude<ExtArgs> | null
+  where?: Prisma.PoLineItemWhereInput
+  orderBy?: Prisma.PoLineItemOrderByWithRelationInput | Prisma.PoLineItemOrderByWithRelationInput[]
+  cursor?: Prisma.PoLineItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PoLineItemScalarFieldEnum | Prisma.PoLineItemScalarFieldEnum[]
+}
+
+/**
+ * Part.routing
+ */
+export type Part$routingArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RoutingTemplate
+   */
+  select?: Prisma.RoutingTemplateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RoutingTemplate
+   */
+  omit?: Prisma.RoutingTemplateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RoutingTemplateInclude<ExtArgs> | null
+  where?: Prisma.RoutingTemplateWhereInput
 }
 
 /**

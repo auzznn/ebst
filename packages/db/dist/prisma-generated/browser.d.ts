@@ -173,6 +173,11 @@ export type MaterialUsage = Prisma.MaterialUsageModel;
  */
 export type StockAdjustment = Prisma.StockAdjustmentModel;
 /**
+ * Model StockLedger
+ *
+ */
+export type StockLedger = Prisma.StockLedgerModel;
+/**
  * Model Supplier
  *
  */

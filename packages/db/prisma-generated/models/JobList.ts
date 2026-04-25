@@ -37,28 +37,28 @@ export type JobListSumAggregateOutputType = {
 export type JobListMinAggregateOutputType = {
   id: string | null
   jobCardId: string | null
-  partId: string | null
   lineItemId: string | null
   quantity: number | null
   status: $Enums.JobCardStatus | null
+  partId: string | null
 }
 
 export type JobListMaxAggregateOutputType = {
   id: string | null
   jobCardId: string | null
-  partId: string | null
   lineItemId: string | null
   quantity: number | null
   status: $Enums.JobCardStatus | null
+  partId: string | null
 }
 
 export type JobListCountAggregateOutputType = {
   id: number
   jobCardId: number
-  partId: number
   lineItemId: number
   quantity: number
   status: number
+  partId: number
   _all: number
 }
 
@@ -74,28 +74,28 @@ export type JobListSumAggregateInputType = {
 export type JobListMinAggregateInputType = {
   id?: true
   jobCardId?: true
-  partId?: true
   lineItemId?: true
   quantity?: true
   status?: true
+  partId?: true
 }
 
 export type JobListMaxAggregateInputType = {
   id?: true
   jobCardId?: true
-  partId?: true
   lineItemId?: true
   quantity?: true
   status?: true
+  partId?: true
 }
 
 export type JobListCountAggregateInputType = {
   id?: true
   jobCardId?: true
-  partId?: true
   lineItemId?: true
   quantity?: true
   status?: true
+  partId?: true
   _all?: true
 }
 
@@ -188,10 +188,10 @@ export type JobListGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 export type JobListGroupByOutputType = {
   id: string
   jobCardId: string
-  partId: string | null
   lineItemId: string | null
   quantity: number
   status: $Enums.JobCardStatus
+  partId: string | null
   _count: JobListCountAggregateOutputType | null
   _avg: JobListAvgAggregateOutputType | null
   _sum: JobListSumAggregateOutputType | null
@@ -220,29 +220,29 @@ export type JobListWhereInput = {
   NOT?: Prisma.JobListWhereInput | Prisma.JobListWhereInput[]
   id?: Prisma.StringFilter<"JobList"> | string
   jobCardId?: Prisma.StringFilter<"JobList"> | string
-  partId?: Prisma.StringNullableFilter<"JobList"> | string | null
   lineItemId?: Prisma.StringNullableFilter<"JobList"> | string | null
   quantity?: Prisma.IntFilter<"JobList"> | number
   status?: Prisma.EnumJobCardStatusFilter<"JobList"> | $Enums.JobCardStatus
-  operations?: Prisma.OperationListRelationFilter
-  jobMaterials?: Prisma.JobMaterialListRelationFilter
+  partId?: Prisma.StringNullableFilter<"JobList"> | string | null
   jobCard?: Prisma.XOR<Prisma.JobCardScalarRelationFilter, Prisma.JobCardWhereInput>
-  part?: Prisma.XOR<Prisma.PartNullableScalarRelationFilter, Prisma.PartWhereInput> | null
   lineItem?: Prisma.XOR<Prisma.PoLineItemNullableScalarRelationFilter, Prisma.PoLineItemWhereInput> | null
+  part?: Prisma.XOR<Prisma.PartNullableScalarRelationFilter, Prisma.PartWhereInput> | null
+  jobMaterials?: Prisma.JobMaterialListRelationFilter
+  operations?: Prisma.OperationListRelationFilter
 }
 
 export type JobListOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   jobCardId?: Prisma.SortOrder
-  partId?: Prisma.SortOrderInput | Prisma.SortOrder
   lineItemId?: Prisma.SortOrderInput | Prisma.SortOrder
   quantity?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  operations?: Prisma.OperationOrderByRelationAggregateInput
-  jobMaterials?: Prisma.JobMaterialOrderByRelationAggregateInput
+  partId?: Prisma.SortOrderInput | Prisma.SortOrder
   jobCard?: Prisma.JobCardOrderByWithRelationInput
-  part?: Prisma.PartOrderByWithRelationInput
   lineItem?: Prisma.PoLineItemOrderByWithRelationInput
+  part?: Prisma.PartOrderByWithRelationInput
+  jobMaterials?: Prisma.JobMaterialOrderByRelationAggregateInput
+  operations?: Prisma.OperationOrderByRelationAggregateInput
 }
 
 export type JobListWhereUniqueInput = Prisma.AtLeast<{
@@ -252,23 +252,23 @@ export type JobListWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.JobListWhereInput[]
   NOT?: Prisma.JobListWhereInput | Prisma.JobListWhereInput[]
   jobCardId?: Prisma.StringFilter<"JobList"> | string
-  partId?: Prisma.StringNullableFilter<"JobList"> | string | null
   quantity?: Prisma.IntFilter<"JobList"> | number
   status?: Prisma.EnumJobCardStatusFilter<"JobList"> | $Enums.JobCardStatus
-  operations?: Prisma.OperationListRelationFilter
-  jobMaterials?: Prisma.JobMaterialListRelationFilter
+  partId?: Prisma.StringNullableFilter<"JobList"> | string | null
   jobCard?: Prisma.XOR<Prisma.JobCardScalarRelationFilter, Prisma.JobCardWhereInput>
-  part?: Prisma.XOR<Prisma.PartNullableScalarRelationFilter, Prisma.PartWhereInput> | null
   lineItem?: Prisma.XOR<Prisma.PoLineItemNullableScalarRelationFilter, Prisma.PoLineItemWhereInput> | null
+  part?: Prisma.XOR<Prisma.PartNullableScalarRelationFilter, Prisma.PartWhereInput> | null
+  jobMaterials?: Prisma.JobMaterialListRelationFilter
+  operations?: Prisma.OperationListRelationFilter
 }, "id" | "lineItemId">
 
 export type JobListOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   jobCardId?: Prisma.SortOrder
-  partId?: Prisma.SortOrderInput | Prisma.SortOrder
   lineItemId?: Prisma.SortOrderInput | Prisma.SortOrder
   quantity?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  partId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.JobListCountOrderByAggregateInput
   _avg?: Prisma.JobListAvgOrderByAggregateInput
   _max?: Prisma.JobListMaxOrderByAggregateInput
@@ -282,63 +282,63 @@ export type JobListScalarWhereWithAggregatesInput = {
   NOT?: Prisma.JobListScalarWhereWithAggregatesInput | Prisma.JobListScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"JobList"> | string
   jobCardId?: Prisma.StringWithAggregatesFilter<"JobList"> | string
-  partId?: Prisma.StringNullableWithAggregatesFilter<"JobList"> | string | null
   lineItemId?: Prisma.StringNullableWithAggregatesFilter<"JobList"> | string | null
   quantity?: Prisma.IntWithAggregatesFilter<"JobList"> | number
   status?: Prisma.EnumJobCardStatusWithAggregatesFilter<"JobList"> | $Enums.JobCardStatus
+  partId?: Prisma.StringNullableWithAggregatesFilter<"JobList"> | string | null
 }
 
 export type JobListCreateInput = {
   id?: string
   quantity: number
   status?: $Enums.JobCardStatus
-  operations?: Prisma.OperationCreateNestedManyWithoutJobListInput
-  jobMaterials?: Prisma.JobMaterialCreateNestedManyWithoutJobListInput
   jobCard: Prisma.JobCardCreateNestedOneWithoutJobListsInput
-  part?: Prisma.PartCreateNestedOneWithoutJobListsInput
   lineItem?: Prisma.PoLineItemCreateNestedOneWithoutJobListInput
+  part?: Prisma.PartCreateNestedOneWithoutJobListsInput
+  jobMaterials?: Prisma.JobMaterialCreateNestedManyWithoutJobListInput
+  operations?: Prisma.OperationCreateNestedManyWithoutJobListInput
 }
 
 export type JobListUncheckedCreateInput = {
   id?: string
   jobCardId: string
-  partId?: string | null
   lineItemId?: string | null
   quantity: number
   status?: $Enums.JobCardStatus
-  operations?: Prisma.OperationUncheckedCreateNestedManyWithoutJobListInput
+  partId?: string | null
   jobMaterials?: Prisma.JobMaterialUncheckedCreateNestedManyWithoutJobListInput
+  operations?: Prisma.OperationUncheckedCreateNestedManyWithoutJobListInput
 }
 
 export type JobListUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumJobCardStatusFieldUpdateOperationsInput | $Enums.JobCardStatus
-  operations?: Prisma.OperationUpdateManyWithoutJobListNestedInput
-  jobMaterials?: Prisma.JobMaterialUpdateManyWithoutJobListNestedInput
   jobCard?: Prisma.JobCardUpdateOneRequiredWithoutJobListsNestedInput
-  part?: Prisma.PartUpdateOneWithoutJobListsNestedInput
   lineItem?: Prisma.PoLineItemUpdateOneWithoutJobListNestedInput
+  part?: Prisma.PartUpdateOneWithoutJobListsNestedInput
+  jobMaterials?: Prisma.JobMaterialUpdateManyWithoutJobListNestedInput
+  operations?: Prisma.OperationUpdateManyWithoutJobListNestedInput
 }
 
 export type JobListUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   jobCardId?: Prisma.StringFieldUpdateOperationsInput | string
-  partId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lineItemId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumJobCardStatusFieldUpdateOperationsInput | $Enums.JobCardStatus
-  operations?: Prisma.OperationUncheckedUpdateManyWithoutJobListNestedInput
+  partId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   jobMaterials?: Prisma.JobMaterialUncheckedUpdateManyWithoutJobListNestedInput
+  operations?: Prisma.OperationUncheckedUpdateManyWithoutJobListNestedInput
 }
 
 export type JobListCreateManyInput = {
   id?: string
   jobCardId: string
-  partId?: string | null
   lineItemId?: string | null
   quantity: number
   status?: $Enums.JobCardStatus
+  partId?: string | null
 }
 
 export type JobListUpdateManyMutationInput = {
@@ -350,10 +350,10 @@ export type JobListUpdateManyMutationInput = {
 export type JobListUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   jobCardId?: Prisma.StringFieldUpdateOperationsInput | string
-  partId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lineItemId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumJobCardStatusFieldUpdateOperationsInput | $Enums.JobCardStatus
+  partId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type JobListNullableScalarRelationFilter = {
@@ -374,10 +374,10 @@ export type JobListOrderByRelationAggregateInput = {
 export type JobListCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   jobCardId?: Prisma.SortOrder
-  partId?: Prisma.SortOrder
   lineItemId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  partId?: Prisma.SortOrder
 }
 
 export type JobListAvgOrderByAggregateInput = {
@@ -387,19 +387,19 @@ export type JobListAvgOrderByAggregateInput = {
 export type JobListMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   jobCardId?: Prisma.SortOrder
-  partId?: Prisma.SortOrder
   lineItemId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  partId?: Prisma.SortOrder
 }
 
 export type JobListMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   jobCardId?: Prisma.SortOrder
-  partId?: Prisma.SortOrder
   lineItemId?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  partId?: Prisma.SortOrder
 }
 
 export type JobListSumOrderByAggregateInput = {
@@ -559,20 +559,20 @@ export type JobListCreateWithoutLineItemInput = {
   id?: string
   quantity: number
   status?: $Enums.JobCardStatus
-  operations?: Prisma.OperationCreateNestedManyWithoutJobListInput
-  jobMaterials?: Prisma.JobMaterialCreateNestedManyWithoutJobListInput
   jobCard: Prisma.JobCardCreateNestedOneWithoutJobListsInput
   part?: Prisma.PartCreateNestedOneWithoutJobListsInput
+  jobMaterials?: Prisma.JobMaterialCreateNestedManyWithoutJobListInput
+  operations?: Prisma.OperationCreateNestedManyWithoutJobListInput
 }
 
 export type JobListUncheckedCreateWithoutLineItemInput = {
   id?: string
   jobCardId: string
-  partId?: string | null
   quantity: number
   status?: $Enums.JobCardStatus
-  operations?: Prisma.OperationUncheckedCreateNestedManyWithoutJobListInput
+  partId?: string | null
   jobMaterials?: Prisma.JobMaterialUncheckedCreateNestedManyWithoutJobListInput
+  operations?: Prisma.OperationUncheckedCreateNestedManyWithoutJobListInput
 }
 
 export type JobListCreateOrConnectWithoutLineItemInput = {
@@ -595,30 +595,30 @@ export type JobListUpdateWithoutLineItemInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumJobCardStatusFieldUpdateOperationsInput | $Enums.JobCardStatus
-  operations?: Prisma.OperationUpdateManyWithoutJobListNestedInput
-  jobMaterials?: Prisma.JobMaterialUpdateManyWithoutJobListNestedInput
   jobCard?: Prisma.JobCardUpdateOneRequiredWithoutJobListsNestedInput
   part?: Prisma.PartUpdateOneWithoutJobListsNestedInput
+  jobMaterials?: Prisma.JobMaterialUpdateManyWithoutJobListNestedInput
+  operations?: Prisma.OperationUpdateManyWithoutJobListNestedInput
 }
 
 export type JobListUncheckedUpdateWithoutLineItemInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   jobCardId?: Prisma.StringFieldUpdateOperationsInput | string
-  partId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumJobCardStatusFieldUpdateOperationsInput | $Enums.JobCardStatus
-  operations?: Prisma.OperationUncheckedUpdateManyWithoutJobListNestedInput
+  partId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   jobMaterials?: Prisma.JobMaterialUncheckedUpdateManyWithoutJobListNestedInput
+  operations?: Prisma.OperationUncheckedUpdateManyWithoutJobListNestedInput
 }
 
 export type JobListCreateWithoutPartInput = {
   id?: string
   quantity: number
   status?: $Enums.JobCardStatus
-  operations?: Prisma.OperationCreateNestedManyWithoutJobListInput
-  jobMaterials?: Prisma.JobMaterialCreateNestedManyWithoutJobListInput
   jobCard: Prisma.JobCardCreateNestedOneWithoutJobListsInput
   lineItem?: Prisma.PoLineItemCreateNestedOneWithoutJobListInput
+  jobMaterials?: Prisma.JobMaterialCreateNestedManyWithoutJobListInput
+  operations?: Prisma.OperationCreateNestedManyWithoutJobListInput
 }
 
 export type JobListUncheckedCreateWithoutPartInput = {
@@ -627,8 +627,8 @@ export type JobListUncheckedCreateWithoutPartInput = {
   lineItemId?: string | null
   quantity: number
   status?: $Enums.JobCardStatus
-  operations?: Prisma.OperationUncheckedCreateNestedManyWithoutJobListInput
   jobMaterials?: Prisma.JobMaterialUncheckedCreateNestedManyWithoutJobListInput
+  operations?: Prisma.OperationUncheckedCreateNestedManyWithoutJobListInput
 }
 
 export type JobListCreateOrConnectWithoutPartInput = {
@@ -663,30 +663,30 @@ export type JobListScalarWhereInput = {
   NOT?: Prisma.JobListScalarWhereInput | Prisma.JobListScalarWhereInput[]
   id?: Prisma.StringFilter<"JobList"> | string
   jobCardId?: Prisma.StringFilter<"JobList"> | string
-  partId?: Prisma.StringNullableFilter<"JobList"> | string | null
   lineItemId?: Prisma.StringNullableFilter<"JobList"> | string | null
   quantity?: Prisma.IntFilter<"JobList"> | number
   status?: Prisma.EnumJobCardStatusFilter<"JobList"> | $Enums.JobCardStatus
+  partId?: Prisma.StringNullableFilter<"JobList"> | string | null
 }
 
 export type JobListCreateWithoutJobCardInput = {
   id?: string
   quantity: number
   status?: $Enums.JobCardStatus
-  operations?: Prisma.OperationCreateNestedManyWithoutJobListInput
-  jobMaterials?: Prisma.JobMaterialCreateNestedManyWithoutJobListInput
-  part?: Prisma.PartCreateNestedOneWithoutJobListsInput
   lineItem?: Prisma.PoLineItemCreateNestedOneWithoutJobListInput
+  part?: Prisma.PartCreateNestedOneWithoutJobListsInput
+  jobMaterials?: Prisma.JobMaterialCreateNestedManyWithoutJobListInput
+  operations?: Prisma.OperationCreateNestedManyWithoutJobListInput
 }
 
 export type JobListUncheckedCreateWithoutJobCardInput = {
   id?: string
-  partId?: string | null
   lineItemId?: string | null
   quantity: number
   status?: $Enums.JobCardStatus
-  operations?: Prisma.OperationUncheckedCreateNestedManyWithoutJobListInput
+  partId?: string | null
   jobMaterials?: Prisma.JobMaterialUncheckedCreateNestedManyWithoutJobListInput
+  operations?: Prisma.OperationUncheckedCreateNestedManyWithoutJobListInput
 }
 
 export type JobListCreateOrConnectWithoutJobCardInput = {
@@ -719,19 +719,19 @@ export type JobListCreateWithoutJobMaterialsInput = {
   id?: string
   quantity: number
   status?: $Enums.JobCardStatus
-  operations?: Prisma.OperationCreateNestedManyWithoutJobListInput
   jobCard: Prisma.JobCardCreateNestedOneWithoutJobListsInput
-  part?: Prisma.PartCreateNestedOneWithoutJobListsInput
   lineItem?: Prisma.PoLineItemCreateNestedOneWithoutJobListInput
+  part?: Prisma.PartCreateNestedOneWithoutJobListsInput
+  operations?: Prisma.OperationCreateNestedManyWithoutJobListInput
 }
 
 export type JobListUncheckedCreateWithoutJobMaterialsInput = {
   id?: string
   jobCardId: string
-  partId?: string | null
   lineItemId?: string | null
   quantity: number
   status?: $Enums.JobCardStatus
+  partId?: string | null
   operations?: Prisma.OperationUncheckedCreateNestedManyWithoutJobListInput
 }
 
@@ -755,19 +755,19 @@ export type JobListUpdateWithoutJobMaterialsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumJobCardStatusFieldUpdateOperationsInput | $Enums.JobCardStatus
-  operations?: Prisma.OperationUpdateManyWithoutJobListNestedInput
   jobCard?: Prisma.JobCardUpdateOneRequiredWithoutJobListsNestedInput
-  part?: Prisma.PartUpdateOneWithoutJobListsNestedInput
   lineItem?: Prisma.PoLineItemUpdateOneWithoutJobListNestedInput
+  part?: Prisma.PartUpdateOneWithoutJobListsNestedInput
+  operations?: Prisma.OperationUpdateManyWithoutJobListNestedInput
 }
 
 export type JobListUncheckedUpdateWithoutJobMaterialsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   jobCardId?: Prisma.StringFieldUpdateOperationsInput | string
-  partId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lineItemId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumJobCardStatusFieldUpdateOperationsInput | $Enums.JobCardStatus
+  partId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   operations?: Prisma.OperationUncheckedUpdateManyWithoutJobListNestedInput
 }
 
@@ -775,19 +775,19 @@ export type JobListCreateWithoutOperationsInput = {
   id?: string
   quantity: number
   status?: $Enums.JobCardStatus
-  jobMaterials?: Prisma.JobMaterialCreateNestedManyWithoutJobListInput
   jobCard: Prisma.JobCardCreateNestedOneWithoutJobListsInput
-  part?: Prisma.PartCreateNestedOneWithoutJobListsInput
   lineItem?: Prisma.PoLineItemCreateNestedOneWithoutJobListInput
+  part?: Prisma.PartCreateNestedOneWithoutJobListsInput
+  jobMaterials?: Prisma.JobMaterialCreateNestedManyWithoutJobListInput
 }
 
 export type JobListUncheckedCreateWithoutOperationsInput = {
   id?: string
   jobCardId: string
-  partId?: string | null
   lineItemId?: string | null
   quantity: number
   status?: $Enums.JobCardStatus
+  partId?: string | null
   jobMaterials?: Prisma.JobMaterialUncheckedCreateNestedManyWithoutJobListInput
 }
 
@@ -811,19 +811,19 @@ export type JobListUpdateWithoutOperationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumJobCardStatusFieldUpdateOperationsInput | $Enums.JobCardStatus
-  jobMaterials?: Prisma.JobMaterialUpdateManyWithoutJobListNestedInput
   jobCard?: Prisma.JobCardUpdateOneRequiredWithoutJobListsNestedInput
-  part?: Prisma.PartUpdateOneWithoutJobListsNestedInput
   lineItem?: Prisma.PoLineItemUpdateOneWithoutJobListNestedInput
+  part?: Prisma.PartUpdateOneWithoutJobListsNestedInput
+  jobMaterials?: Prisma.JobMaterialUpdateManyWithoutJobListNestedInput
 }
 
 export type JobListUncheckedUpdateWithoutOperationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   jobCardId?: Prisma.StringFieldUpdateOperationsInput | string
-  partId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lineItemId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumJobCardStatusFieldUpdateOperationsInput | $Enums.JobCardStatus
+  partId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   jobMaterials?: Prisma.JobMaterialUncheckedUpdateManyWithoutJobListNestedInput
 }
 
@@ -839,10 +839,10 @@ export type JobListUpdateWithoutPartInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumJobCardStatusFieldUpdateOperationsInput | $Enums.JobCardStatus
-  operations?: Prisma.OperationUpdateManyWithoutJobListNestedInput
-  jobMaterials?: Prisma.JobMaterialUpdateManyWithoutJobListNestedInput
   jobCard?: Prisma.JobCardUpdateOneRequiredWithoutJobListsNestedInput
   lineItem?: Prisma.PoLineItemUpdateOneWithoutJobListNestedInput
+  jobMaterials?: Prisma.JobMaterialUpdateManyWithoutJobListNestedInput
+  operations?: Prisma.OperationUpdateManyWithoutJobListNestedInput
 }
 
 export type JobListUncheckedUpdateWithoutPartInput = {
@@ -851,8 +851,8 @@ export type JobListUncheckedUpdateWithoutPartInput = {
   lineItemId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumJobCardStatusFieldUpdateOperationsInput | $Enums.JobCardStatus
-  operations?: Prisma.OperationUncheckedUpdateManyWithoutJobListNestedInput
   jobMaterials?: Prisma.JobMaterialUncheckedUpdateManyWithoutJobListNestedInput
+  operations?: Prisma.OperationUncheckedUpdateManyWithoutJobListNestedInput
 }
 
 export type JobListUncheckedUpdateManyWithoutPartInput = {
@@ -865,38 +865,38 @@ export type JobListUncheckedUpdateManyWithoutPartInput = {
 
 export type JobListCreateManyJobCardInput = {
   id?: string
-  partId?: string | null
   lineItemId?: string | null
   quantity: number
   status?: $Enums.JobCardStatus
+  partId?: string | null
 }
 
 export type JobListUpdateWithoutJobCardInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumJobCardStatusFieldUpdateOperationsInput | $Enums.JobCardStatus
-  operations?: Prisma.OperationUpdateManyWithoutJobListNestedInput
-  jobMaterials?: Prisma.JobMaterialUpdateManyWithoutJobListNestedInput
-  part?: Prisma.PartUpdateOneWithoutJobListsNestedInput
   lineItem?: Prisma.PoLineItemUpdateOneWithoutJobListNestedInput
+  part?: Prisma.PartUpdateOneWithoutJobListsNestedInput
+  jobMaterials?: Prisma.JobMaterialUpdateManyWithoutJobListNestedInput
+  operations?: Prisma.OperationUpdateManyWithoutJobListNestedInput
 }
 
 export type JobListUncheckedUpdateWithoutJobCardInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  partId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lineItemId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumJobCardStatusFieldUpdateOperationsInput | $Enums.JobCardStatus
-  operations?: Prisma.OperationUncheckedUpdateManyWithoutJobListNestedInput
+  partId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   jobMaterials?: Prisma.JobMaterialUncheckedUpdateManyWithoutJobListNestedInput
+  operations?: Prisma.OperationUncheckedUpdateManyWithoutJobListNestedInput
 }
 
 export type JobListUncheckedUpdateManyWithoutJobCardInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  partId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lineItemId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumJobCardStatusFieldUpdateOperationsInput | $Enums.JobCardStatus
+  partId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -905,13 +905,13 @@ export type JobListUncheckedUpdateManyWithoutJobCardInput = {
  */
 
 export type JobListCountOutputType = {
-  operations: number
   jobMaterials: number
+  operations: number
 }
 
 export type JobListCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  operations?: boolean | JobListCountOutputTypeCountOperationsArgs
   jobMaterials?: boolean | JobListCountOutputTypeCountJobMaterialsArgs
+  operations?: boolean | JobListCountOutputTypeCountOperationsArgs
 }
 
 /**
@@ -927,102 +927,102 @@ export type JobListCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exte
 /**
  * JobListCountOutputType without action
  */
-export type JobListCountOutputTypeCountOperationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.OperationWhereInput
+export type JobListCountOutputTypeCountJobMaterialsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.JobMaterialWhereInput
 }
 
 /**
  * JobListCountOutputType without action
  */
-export type JobListCountOutputTypeCountJobMaterialsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.JobMaterialWhereInput
+export type JobListCountOutputTypeCountOperationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OperationWhereInput
 }
 
 
 export type JobListSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   jobCardId?: boolean
-  partId?: boolean
   lineItemId?: boolean
   quantity?: boolean
   status?: boolean
-  operations?: boolean | Prisma.JobList$operationsArgs<ExtArgs>
-  jobMaterials?: boolean | Prisma.JobList$jobMaterialsArgs<ExtArgs>
+  partId?: boolean
   jobCard?: boolean | Prisma.JobCardDefaultArgs<ExtArgs>
-  part?: boolean | Prisma.JobList$partArgs<ExtArgs>
   lineItem?: boolean | Prisma.JobList$lineItemArgs<ExtArgs>
+  part?: boolean | Prisma.JobList$partArgs<ExtArgs>
+  jobMaterials?: boolean | Prisma.JobList$jobMaterialsArgs<ExtArgs>
+  operations?: boolean | Prisma.JobList$operationsArgs<ExtArgs>
   _count?: boolean | Prisma.JobListCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["jobList"]>
 
 export type JobListSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   jobCardId?: boolean
-  partId?: boolean
   lineItemId?: boolean
   quantity?: boolean
   status?: boolean
+  partId?: boolean
   jobCard?: boolean | Prisma.JobCardDefaultArgs<ExtArgs>
-  part?: boolean | Prisma.JobList$partArgs<ExtArgs>
   lineItem?: boolean | Prisma.JobList$lineItemArgs<ExtArgs>
+  part?: boolean | Prisma.JobList$partArgs<ExtArgs>
 }, ExtArgs["result"]["jobList"]>
 
 export type JobListSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   jobCardId?: boolean
-  partId?: boolean
   lineItemId?: boolean
   quantity?: boolean
   status?: boolean
+  partId?: boolean
   jobCard?: boolean | Prisma.JobCardDefaultArgs<ExtArgs>
-  part?: boolean | Prisma.JobList$partArgs<ExtArgs>
   lineItem?: boolean | Prisma.JobList$lineItemArgs<ExtArgs>
+  part?: boolean | Prisma.JobList$partArgs<ExtArgs>
 }, ExtArgs["result"]["jobList"]>
 
 export type JobListSelectScalar = {
   id?: boolean
   jobCardId?: boolean
-  partId?: boolean
   lineItemId?: boolean
   quantity?: boolean
   status?: boolean
+  partId?: boolean
 }
 
-export type JobListOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "jobCardId" | "partId" | "lineItemId" | "quantity" | "status", ExtArgs["result"]["jobList"]>
+export type JobListOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "jobCardId" | "lineItemId" | "quantity" | "status" | "partId", ExtArgs["result"]["jobList"]>
 export type JobListInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  operations?: boolean | Prisma.JobList$operationsArgs<ExtArgs>
-  jobMaterials?: boolean | Prisma.JobList$jobMaterialsArgs<ExtArgs>
   jobCard?: boolean | Prisma.JobCardDefaultArgs<ExtArgs>
-  part?: boolean | Prisma.JobList$partArgs<ExtArgs>
   lineItem?: boolean | Prisma.JobList$lineItemArgs<ExtArgs>
+  part?: boolean | Prisma.JobList$partArgs<ExtArgs>
+  jobMaterials?: boolean | Prisma.JobList$jobMaterialsArgs<ExtArgs>
+  operations?: boolean | Prisma.JobList$operationsArgs<ExtArgs>
   _count?: boolean | Prisma.JobListCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type JobListIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   jobCard?: boolean | Prisma.JobCardDefaultArgs<ExtArgs>
-  part?: boolean | Prisma.JobList$partArgs<ExtArgs>
   lineItem?: boolean | Prisma.JobList$lineItemArgs<ExtArgs>
+  part?: boolean | Prisma.JobList$partArgs<ExtArgs>
 }
 export type JobListIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   jobCard?: boolean | Prisma.JobCardDefaultArgs<ExtArgs>
-  part?: boolean | Prisma.JobList$partArgs<ExtArgs>
   lineItem?: boolean | Prisma.JobList$lineItemArgs<ExtArgs>
+  part?: boolean | Prisma.JobList$partArgs<ExtArgs>
 }
 
 export type $JobListPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "JobList"
   objects: {
-    operations: Prisma.$OperationPayload<ExtArgs>[]
-    jobMaterials: Prisma.$JobMaterialPayload<ExtArgs>[]
     jobCard: Prisma.$JobCardPayload<ExtArgs>
-    part: Prisma.$PartPayload<ExtArgs> | null
     lineItem: Prisma.$PoLineItemPayload<ExtArgs> | null
+    part: Prisma.$PartPayload<ExtArgs> | null
+    jobMaterials: Prisma.$JobMaterialPayload<ExtArgs>[]
+    operations: Prisma.$OperationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     jobCardId: string
-    partId: string | null
     lineItemId: string | null
     quantity: number
     status: $Enums.JobCardStatus
+    partId: string | null
   }, ExtArgs["result"]["jobList"]>
   composites: {}
 }
@@ -1417,11 +1417,11 @@ readonly fields: JobListFieldRefs;
  */
 export interface Prisma__JobListClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  operations<T extends Prisma.JobList$operationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobList$operationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OperationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  jobMaterials<T extends Prisma.JobList$jobMaterialsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobList$jobMaterialsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$JobMaterialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   jobCard<T extends Prisma.JobCardDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobCardDefaultArgs<ExtArgs>>): Prisma.Prisma__JobCardClient<runtime.Types.Result.GetResult<Prisma.$JobCardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  part<T extends Prisma.JobList$partArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobList$partArgs<ExtArgs>>): Prisma.Prisma__PartClient<runtime.Types.Result.GetResult<Prisma.$PartPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   lineItem<T extends Prisma.JobList$lineItemArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobList$lineItemArgs<ExtArgs>>): Prisma.Prisma__PoLineItemClient<runtime.Types.Result.GetResult<Prisma.$PoLineItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  part<T extends Prisma.JobList$partArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobList$partArgs<ExtArgs>>): Prisma.Prisma__PartClient<runtime.Types.Result.GetResult<Prisma.$PartPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  jobMaterials<T extends Prisma.JobList$jobMaterialsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobList$jobMaterialsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$JobMaterialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  operations<T extends Prisma.JobList$operationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobList$operationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OperationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1453,10 +1453,10 @@ export interface Prisma__JobListClient<T, Null = never, ExtArgs extends runtime.
 export interface JobListFieldRefs {
   readonly id: Prisma.FieldRef<"JobList", 'String'>
   readonly jobCardId: Prisma.FieldRef<"JobList", 'String'>
-  readonly partId: Prisma.FieldRef<"JobList", 'String'>
   readonly lineItemId: Prisma.FieldRef<"JobList", 'String'>
   readonly quantity: Prisma.FieldRef<"JobList", 'Int'>
   readonly status: Prisma.FieldRef<"JobList", 'JobCardStatus'>
+  readonly partId: Prisma.FieldRef<"JobList", 'String'>
 }
     
 
@@ -1858,27 +1858,41 @@ export type JobListDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * JobList.operations
+ * JobList.lineItem
  */
-export type JobList$operationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type JobList$lineItemArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Operation
+   * Select specific fields to fetch from the PoLineItem
    */
-  select?: Prisma.OperationSelect<ExtArgs> | null
+  select?: Prisma.PoLineItemSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Operation
+   * Omit specific fields from the PoLineItem
    */
-  omit?: Prisma.OperationOmit<ExtArgs> | null
+  omit?: Prisma.PoLineItemOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.OperationInclude<ExtArgs> | null
-  where?: Prisma.OperationWhereInput
-  orderBy?: Prisma.OperationOrderByWithRelationInput | Prisma.OperationOrderByWithRelationInput[]
-  cursor?: Prisma.OperationWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.OperationScalarFieldEnum | Prisma.OperationScalarFieldEnum[]
+  include?: Prisma.PoLineItemInclude<ExtArgs> | null
+  where?: Prisma.PoLineItemWhereInput
+}
+
+/**
+ * JobList.part
+ */
+export type JobList$partArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Part
+   */
+  select?: Prisma.PartSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Part
+   */
+  omit?: Prisma.PartOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PartInclude<ExtArgs> | null
+  where?: Prisma.PartWhereInput
 }
 
 /**
@@ -1906,41 +1920,27 @@ export type JobList$jobMaterialsArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 /**
- * JobList.part
+ * JobList.operations
  */
-export type JobList$partArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type JobList$operationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Part
+   * Select specific fields to fetch from the Operation
    */
-  select?: Prisma.PartSelect<ExtArgs> | null
+  select?: Prisma.OperationSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Part
+   * Omit specific fields from the Operation
    */
-  omit?: Prisma.PartOmit<ExtArgs> | null
+  omit?: Prisma.OperationOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PartInclude<ExtArgs> | null
-  where?: Prisma.PartWhereInput
-}
-
-/**
- * JobList.lineItem
- */
-export type JobList$lineItemArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the PoLineItem
-   */
-  select?: Prisma.PoLineItemSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the PoLineItem
-   */
-  omit?: Prisma.PoLineItemOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PoLineItemInclude<ExtArgs> | null
-  where?: Prisma.PoLineItemWhereInput
+  include?: Prisma.OperationInclude<ExtArgs> | null
+  where?: Prisma.OperationWhereInput
+  orderBy?: Prisma.OperationOrderByWithRelationInput | Prisma.OperationOrderByWithRelationInput[]
+  cursor?: Prisma.OperationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OperationScalarFieldEnum | Prisma.OperationScalarFieldEnum[]
 }
 
 /**

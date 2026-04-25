@@ -222,8 +222,8 @@ export type QcFindingWhereInput = {
   description?: Prisma.StringNullableFilter<"QcFinding"> | string | null
   isConforming?: Prisma.BoolFilter<"QcFinding"> | boolean
   documentId?: Prisma.StringNullableFilter<"QcFinding"> | string | null
-  qcLog?: Prisma.XOR<Prisma.QcLogScalarRelationFilter, Prisma.QcLogWhereInput>
   document?: Prisma.XOR<Prisma.BusinessDocumentNullableScalarRelationFilter, Prisma.BusinessDocumentWhereInput> | null
+  qcLog?: Prisma.XOR<Prisma.QcLogScalarRelationFilter, Prisma.QcLogWhereInput>
 }
 
 export type QcFindingOrderByWithRelationInput = {
@@ -237,8 +237,8 @@ export type QcFindingOrderByWithRelationInput = {
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   isConforming?: Prisma.SortOrder
   documentId?: Prisma.SortOrderInput | Prisma.SortOrder
-  qcLog?: Prisma.QcLogOrderByWithRelationInput
   document?: Prisma.BusinessDocumentOrderByWithRelationInput
+  qcLog?: Prisma.QcLogOrderByWithRelationInput
 }
 
 export type QcFindingWhereUniqueInput = Prisma.AtLeast<{
@@ -255,8 +255,8 @@ export type QcFindingWhereUniqueInput = Prisma.AtLeast<{
   unit?: Prisma.StringNullableFilter<"QcFinding"> | string | null
   description?: Prisma.StringNullableFilter<"QcFinding"> | string | null
   isConforming?: Prisma.BoolFilter<"QcFinding"> | boolean
-  qcLog?: Prisma.XOR<Prisma.QcLogScalarRelationFilter, Prisma.QcLogWhereInput>
   document?: Prisma.XOR<Prisma.BusinessDocumentNullableScalarRelationFilter, Prisma.BusinessDocumentWhereInput> | null
+  qcLog?: Prisma.XOR<Prisma.QcLogScalarRelationFilter, Prisma.QcLogWhereInput>
 }, "id" | "documentId">
 
 export type QcFindingOrderByWithAggregationInput = {
@@ -300,8 +300,8 @@ export type QcFindingCreateInput = {
   unit?: string | null
   description?: string | null
   isConforming?: boolean
-  qcLog: Prisma.QcLogCreateNestedOneWithoutFindingsInput
   document?: Prisma.BusinessDocumentCreateNestedOneWithoutQcFindingInput
+  qcLog: Prisma.QcLogCreateNestedOneWithoutFindingsInput
 }
 
 export type QcFindingUncheckedCreateInput = {
@@ -326,8 +326,8 @@ export type QcFindingUpdateInput = {
   unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isConforming?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  qcLog?: Prisma.QcLogUpdateOneRequiredWithoutFindingsNestedInput
   document?: Prisma.BusinessDocumentUpdateOneWithoutQcFindingNestedInput
+  qcLog?: Prisma.QcLogUpdateOneRequiredWithoutFindingsNestedInput
 }
 
 export type QcFindingUncheckedUpdateInput = {
@@ -703,8 +703,8 @@ export type QcFindingSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   description?: boolean
   isConforming?: boolean
   documentId?: boolean
-  qcLog?: boolean | Prisma.QcLogDefaultArgs<ExtArgs>
   document?: boolean | Prisma.QcFinding$documentArgs<ExtArgs>
+  qcLog?: boolean | Prisma.QcLogDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["qcFinding"]>
 
 export type QcFindingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -718,8 +718,8 @@ export type QcFindingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   description?: boolean
   isConforming?: boolean
   documentId?: boolean
-  qcLog?: boolean | Prisma.QcLogDefaultArgs<ExtArgs>
   document?: boolean | Prisma.QcFinding$documentArgs<ExtArgs>
+  qcLog?: boolean | Prisma.QcLogDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["qcFinding"]>
 
 export type QcFindingSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -733,8 +733,8 @@ export type QcFindingSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   description?: boolean
   isConforming?: boolean
   documentId?: boolean
-  qcLog?: boolean | Prisma.QcLogDefaultArgs<ExtArgs>
   document?: boolean | Prisma.QcFinding$documentArgs<ExtArgs>
+  qcLog?: boolean | Prisma.QcLogDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["qcFinding"]>
 
 export type QcFindingSelectScalar = {
@@ -752,23 +752,23 @@ export type QcFindingSelectScalar = {
 
 export type QcFindingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "qcLogId" | "category" | "parameter" | "specification" | "measuredValue" | "unit" | "description" | "isConforming" | "documentId", ExtArgs["result"]["qcFinding"]>
 export type QcFindingInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  qcLog?: boolean | Prisma.QcLogDefaultArgs<ExtArgs>
   document?: boolean | Prisma.QcFinding$documentArgs<ExtArgs>
+  qcLog?: boolean | Prisma.QcLogDefaultArgs<ExtArgs>
 }
 export type QcFindingIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  qcLog?: boolean | Prisma.QcLogDefaultArgs<ExtArgs>
   document?: boolean | Prisma.QcFinding$documentArgs<ExtArgs>
+  qcLog?: boolean | Prisma.QcLogDefaultArgs<ExtArgs>
 }
 export type QcFindingIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  qcLog?: boolean | Prisma.QcLogDefaultArgs<ExtArgs>
   document?: boolean | Prisma.QcFinding$documentArgs<ExtArgs>
+  qcLog?: boolean | Prisma.QcLogDefaultArgs<ExtArgs>
 }
 
 export type $QcFindingPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "QcFinding"
   objects: {
-    qcLog: Prisma.$QcLogPayload<ExtArgs>
     document: Prisma.$BusinessDocumentPayload<ExtArgs> | null
+    qcLog: Prisma.$QcLogPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1175,8 +1175,8 @@ readonly fields: QcFindingFieldRefs;
  */
 export interface Prisma__QcFindingClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  qcLog<T extends Prisma.QcLogDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QcLogDefaultArgs<ExtArgs>>): Prisma.Prisma__QcLogClient<runtime.Types.Result.GetResult<Prisma.$QcLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   document<T extends Prisma.QcFinding$documentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QcFinding$documentArgs<ExtArgs>>): Prisma.Prisma__BusinessDocumentClient<runtime.Types.Result.GetResult<Prisma.$BusinessDocumentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  qcLog<T extends Prisma.QcLogDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QcLogDefaultArgs<ExtArgs>>): Prisma.Prisma__QcLogClient<runtime.Types.Result.GetResult<Prisma.$QcLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

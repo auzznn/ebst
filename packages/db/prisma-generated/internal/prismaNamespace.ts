@@ -418,6 +418,7 @@ export const ModelName = {
   Material: 'Material',
   MaterialUsage: 'MaterialUsage',
   StockAdjustment: 'StockAdjustment',
+  StockLedger: 'StockLedger',
   Supplier: 'Supplier'
 } as const
 
@@ -434,7 +435,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "channel" | "channelMember" | "message" | "chartOfAccount" | "journalEntry" | "journalLine" | "fixedAsset" | "businessDocument" | "customer" | "invoice" | "invoiceItem" | "purchaseOrder" | "poLineItem" | "part" | "partMaterial" | "partSpecification" | "routingTemplate" | "routingStep" | "machine" | "jobCard" | "jobList" | "jobMaterial" | "operation" | "qcLog" | "qcFinding" | "checkSheet" | "checkSheetRow" | "material" | "materialUsage" | "stockAdjustment" | "supplier"
+    modelProps: "user" | "session" | "account" | "verification" | "channel" | "channelMember" | "message" | "chartOfAccount" | "journalEntry" | "journalLine" | "fixedAsset" | "businessDocument" | "customer" | "invoice" | "invoiceItem" | "purchaseOrder" | "poLineItem" | "part" | "partMaterial" | "partSpecification" | "routingTemplate" | "routingStep" | "machine" | "jobCard" | "jobList" | "jobMaterial" | "operation" | "qcLog" | "qcFinding" | "checkSheet" | "checkSheetRow" | "material" | "materialUsage" | "stockAdjustment" | "stockLedger" | "supplier"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2954,6 +2955,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    StockLedger: {
+      payload: Prisma.$StockLedgerPayload<ExtArgs>
+      fields: Prisma.StockLedgerFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.StockLedgerFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StockLedgerPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.StockLedgerFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StockLedgerPayload>
+        }
+        findFirst: {
+          args: Prisma.StockLedgerFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StockLedgerPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.StockLedgerFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StockLedgerPayload>
+        }
+        findMany: {
+          args: Prisma.StockLedgerFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StockLedgerPayload>[]
+        }
+        create: {
+          args: Prisma.StockLedgerCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StockLedgerPayload>
+        }
+        createMany: {
+          args: Prisma.StockLedgerCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.StockLedgerCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StockLedgerPayload>[]
+        }
+        delete: {
+          args: Prisma.StockLedgerDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StockLedgerPayload>
+        }
+        update: {
+          args: Prisma.StockLedgerUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StockLedgerPayload>
+        }
+        deleteMany: {
+          args: Prisma.StockLedgerDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.StockLedgerUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.StockLedgerUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StockLedgerPayload>[]
+        }
+        upsert: {
+          args: Prisma.StockLedgerUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StockLedgerPayload>
+        }
+        aggregate: {
+          args: Prisma.StockLedgerAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateStockLedger>
+        }
+        groupBy: {
+          args: Prisma.StockLedgerGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.StockLedgerGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.StockLedgerCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.StockLedgerCountAggregateOutputType> | number
+        }
+      }
+    }
     Supplier: {
       payload: Prisma.$SupplierPayload<ExtArgs>
       fields: Prisma.SupplierFieldRefs
@@ -3256,10 +3331,10 @@ export const InvoiceScalarFieldEnum = {
   total: 'total',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  purchaseOrderId: 'purchaseOrderId',
   customerId: 'customerId',
   createdById: 'createdById',
-  documentId: 'documentId'
+  documentId: 'documentId',
+  purchaseOrderId: 'purchaseOrderId'
 } as const
 
 export type InvoiceScalarFieldEnum = (typeof InvoiceScalarFieldEnum)[keyof typeof InvoiceScalarFieldEnum]
@@ -3308,9 +3383,9 @@ export const PartScalarFieldEnum = {
   partNo: 'partNo',
   description: 'description',
   castingType: 'castingType',
-  drawingId: 'drawingId',
   createdAt: 'createdAt',
-  materialId: 'materialId'
+  materialId: 'materialId',
+  drawingId: 'drawingId'
 } as const
 
 export type PartScalarFieldEnum = (typeof PartScalarFieldEnum)[keyof typeof PartScalarFieldEnum]
@@ -3357,8 +3432,8 @@ export const RoutingStepScalarFieldEnum = {
   stepOrder: 'stepOrder',
   operationName: 'operationName',
   defaultMachineType: 'defaultMachineType',
-  defaultMachineId: 'defaultMachineId',
-  estimatedMinutes: 'estimatedMinutes'
+  estimatedMinutes: 'estimatedMinutes',
+  defaultMachineId: 'defaultMachineId'
 } as const
 
 export type RoutingStepScalarFieldEnum = (typeof RoutingStepScalarFieldEnum)[keyof typeof RoutingStepScalarFieldEnum]
@@ -3390,10 +3465,10 @@ export type JobCardScalarFieldEnum = (typeof JobCardScalarFieldEnum)[keyof typeo
 export const JobListScalarFieldEnum = {
   id: 'id',
   jobCardId: 'jobCardId',
-  partId: 'partId',
   lineItemId: 'lineItemId',
   quantity: 'quantity',
-  status: 'status'
+  status: 'status',
+  partId: 'partId'
 } as const
 
 export type JobListScalarFieldEnum = (typeof JobListScalarFieldEnum)[keyof typeof JobListScalarFieldEnum]
@@ -3518,6 +3593,21 @@ export const StockAdjustmentScalarFieldEnum = {
 } as const
 
 export type StockAdjustmentScalarFieldEnum = (typeof StockAdjustmentScalarFieldEnum)[keyof typeof StockAdjustmentScalarFieldEnum]
+
+
+export const StockLedgerScalarFieldEnum = {
+  id: 'id',
+  materialId: 'materialId',
+  transactionType: 'transactionType',
+  qtyChange: 'qtyChange',
+  balanceAfter: 'balanceAfter',
+  reason: 'reason',
+  referenceId: 'referenceId',
+  userId: 'userId',
+  createdAt: 'createdAt'
+} as const
+
+export type StockLedgerScalarFieldEnum = (typeof StockLedgerScalarFieldEnum)[keyof typeof StockLedgerScalarFieldEnum]
 
 
 export const SupplierScalarFieldEnum = {
@@ -3823,6 +3913,20 @@ export type EnumMaterialUnitFieldRefInput<$PrismaModel> = FieldRefInputType<$Pri
 export type ListEnumMaterialUnitFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MaterialUnit[]'>
     
 
+
+/**
+ * Reference to a field of type 'LedgerTransactionType'
+ */
+export type EnumLedgerTransactionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LedgerTransactionType'>
+    
+
+
+/**
+ * Reference to a field of type 'LedgerTransactionType[]'
+ */
+export type ListEnumLedgerTransactionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LedgerTransactionType[]'>
+    
+
 /**
  * Batch Payload for updateMany & deleteMany & createMany
  */
@@ -3952,6 +4056,7 @@ export type GlobalOmitConfig = {
   material?: Prisma.MaterialOmit
   materialUsage?: Prisma.MaterialUsageOmit
   stockAdjustment?: Prisma.StockAdjustmentOmit
+  stockLedger?: Prisma.StockLedgerOmit
   supplier?: Prisma.SupplierOmit
 }
 

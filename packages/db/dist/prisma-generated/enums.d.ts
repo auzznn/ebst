@@ -18,9 +18,9 @@ export declare const DocumentType: {
     readonly INVOICE: "INVOICE";
     readonly PURCHASE_ORDER: "PURCHASE_ORDER";
     readonly DELIVERY_NOTE: "DELIVERY_NOTE";
+    readonly OTHER: "OTHER";
     readonly CHECK_SHEET: "CHECK_SHEET";
     readonly DRAWING: "DRAWING";
-    readonly OTHER: "OTHER";
 };
 export type DocumentType = (typeof DocumentType)[keyof typeof DocumentType];
 export declare const InvoiceStatus: {
@@ -79,3 +79,10 @@ export declare const CheckSheetType: {
     readonly FINISHING: "FINISHING";
 };
 export type CheckSheetType = (typeof CheckSheetType)[keyof typeof CheckSheetType];
+export declare const LedgerTransactionType: {
+    readonly RECEIPT: "RECEIPT";
+    readonly ADJUSTMENT: "ADJUSTMENT";
+    readonly USAGE: "USAGE";
+    readonly RETURN: "RETURN";
+};
+export type LedgerTransactionType = (typeof LedgerTransactionType)[keyof typeof LedgerTransactionType];

@@ -21,6 +21,17 @@ export class InventoryController {
     return this.inventoryService.findOne(id);
   }
 
+  @Get('materials/:id/ledger')
+  getLedger(
+    @Param('id') id: string,
+    @Query('page') page?: string,
+    @Query('limit') limit?: string
+  ) {
+    const pageNum = page ? parseInt(page, 10) : 1;
+    const limitNum = limit ? parseInt(limit, 10) : 20;
+    return this.inventoryService.getMaterialLedger(id, pageNum, limitNum);
+  }
+
   @Post('materials')
   create(@Body() body: CreateMaterialDto) {
     return this.inventoryService.create(body);

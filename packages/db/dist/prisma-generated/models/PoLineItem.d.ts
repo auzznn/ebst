@@ -172,9 +172,9 @@ export type PoLineItemWhereInput = {
     partId?: Prisma.StringFilter<"PoLineItem"> | string;
     quantity?: Prisma.IntFilter<"PoLineItem"> | number;
     unitPrice?: Prisma.DecimalFilter<"PoLineItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
-    purchaseOrder?: Prisma.XOR<Prisma.PurchaseOrderScalarRelationFilter, Prisma.PurchaseOrderWhereInput>;
-    part?: Prisma.XOR<Prisma.PartScalarRelationFilter, Prisma.PartWhereInput>;
     jobList?: Prisma.XOR<Prisma.JobListNullableScalarRelationFilter, Prisma.JobListWhereInput> | null;
+    part?: Prisma.XOR<Prisma.PartScalarRelationFilter, Prisma.PartWhereInput>;
+    purchaseOrder?: Prisma.XOR<Prisma.PurchaseOrderScalarRelationFilter, Prisma.PurchaseOrderWhereInput>;
 };
 export type PoLineItemOrderByWithRelationInput = {
     id?: Prisma.SortOrder;
@@ -182,9 +182,9 @@ export type PoLineItemOrderByWithRelationInput = {
     partId?: Prisma.SortOrder;
     quantity?: Prisma.SortOrder;
     unitPrice?: Prisma.SortOrder;
-    purchaseOrder?: Prisma.PurchaseOrderOrderByWithRelationInput;
-    part?: Prisma.PartOrderByWithRelationInput;
     jobList?: Prisma.JobListOrderByWithRelationInput;
+    part?: Prisma.PartOrderByWithRelationInput;
+    purchaseOrder?: Prisma.PurchaseOrderOrderByWithRelationInput;
 };
 export type PoLineItemWhereUniqueInput = Prisma.AtLeast<{
     id?: string;
@@ -195,9 +195,9 @@ export type PoLineItemWhereUniqueInput = Prisma.AtLeast<{
     partId?: Prisma.StringFilter<"PoLineItem"> | string;
     quantity?: Prisma.IntFilter<"PoLineItem"> | number;
     unitPrice?: Prisma.DecimalFilter<"PoLineItem"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
-    purchaseOrder?: Prisma.XOR<Prisma.PurchaseOrderScalarRelationFilter, Prisma.PurchaseOrderWhereInput>;
-    part?: Prisma.XOR<Prisma.PartScalarRelationFilter, Prisma.PartWhereInput>;
     jobList?: Prisma.XOR<Prisma.JobListNullableScalarRelationFilter, Prisma.JobListWhereInput> | null;
+    part?: Prisma.XOR<Prisma.PartScalarRelationFilter, Prisma.PartWhereInput>;
+    purchaseOrder?: Prisma.XOR<Prisma.PurchaseOrderScalarRelationFilter, Prisma.PurchaseOrderWhereInput>;
 }, "id">;
 export type PoLineItemOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
@@ -225,9 +225,9 @@ export type PoLineItemCreateInput = {
     id?: string;
     quantity: number;
     unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
-    purchaseOrder: Prisma.PurchaseOrderCreateNestedOneWithoutLineItemsInput;
-    part: Prisma.PartCreateNestedOneWithoutLineItemsInput;
     jobList?: Prisma.JobListCreateNestedOneWithoutLineItemInput;
+    part: Prisma.PartCreateNestedOneWithoutLineItemsInput;
+    purchaseOrder: Prisma.PurchaseOrderCreateNestedOneWithoutLineItemsInput;
 };
 export type PoLineItemUncheckedCreateInput = {
     id?: string;
@@ -241,9 +241,9 @@ export type PoLineItemUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     quantity?: Prisma.IntFieldUpdateOperationsInput | number;
     unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
-    purchaseOrder?: Prisma.PurchaseOrderUpdateOneRequiredWithoutLineItemsNestedInput;
-    part?: Prisma.PartUpdateOneRequiredWithoutLineItemsNestedInput;
     jobList?: Prisma.JobListUpdateOneWithoutLineItemNestedInput;
+    part?: Prisma.PartUpdateOneRequiredWithoutLineItemsNestedInput;
+    purchaseOrder?: Prisma.PurchaseOrderUpdateOneRequiredWithoutLineItemsNestedInput;
 };
 export type PoLineItemUncheckedUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -407,8 +407,8 @@ export type PoLineItemCreateWithoutPurchaseOrderInput = {
     id?: string;
     quantity: number;
     unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
-    part: Prisma.PartCreateNestedOneWithoutLineItemsInput;
     jobList?: Prisma.JobListCreateNestedOneWithoutLineItemInput;
+    part: Prisma.PartCreateNestedOneWithoutLineItemsInput;
 };
 export type PoLineItemUncheckedCreateWithoutPurchaseOrderInput = {
     id?: string;
@@ -452,8 +452,8 @@ export type PoLineItemCreateWithoutPartInput = {
     id?: string;
     quantity: number;
     unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
-    purchaseOrder: Prisma.PurchaseOrderCreateNestedOneWithoutLineItemsInput;
     jobList?: Prisma.JobListCreateNestedOneWithoutLineItemInput;
+    purchaseOrder: Prisma.PurchaseOrderCreateNestedOneWithoutLineItemsInput;
 };
 export type PoLineItemUncheckedCreateWithoutPartInput = {
     id?: string;
@@ -487,8 +487,8 @@ export type PoLineItemCreateWithoutJobListInput = {
     id?: string;
     quantity: number;
     unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
-    purchaseOrder: Prisma.PurchaseOrderCreateNestedOneWithoutLineItemsInput;
     part: Prisma.PartCreateNestedOneWithoutLineItemsInput;
+    purchaseOrder: Prisma.PurchaseOrderCreateNestedOneWithoutLineItemsInput;
 };
 export type PoLineItemUncheckedCreateWithoutJobListInput = {
     id?: string;
@@ -514,8 +514,8 @@ export type PoLineItemUpdateWithoutJobListInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     quantity?: Prisma.IntFieldUpdateOperationsInput | number;
     unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
-    purchaseOrder?: Prisma.PurchaseOrderUpdateOneRequiredWithoutLineItemsNestedInput;
     part?: Prisma.PartUpdateOneRequiredWithoutLineItemsNestedInput;
+    purchaseOrder?: Prisma.PurchaseOrderUpdateOneRequiredWithoutLineItemsNestedInput;
 };
 export type PoLineItemUncheckedUpdateWithoutJobListInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -534,8 +534,8 @@ export type PoLineItemUpdateWithoutPurchaseOrderInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     quantity?: Prisma.IntFieldUpdateOperationsInput | number;
     unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
-    part?: Prisma.PartUpdateOneRequiredWithoutLineItemsNestedInput;
     jobList?: Prisma.JobListUpdateOneWithoutLineItemNestedInput;
+    part?: Prisma.PartUpdateOneRequiredWithoutLineItemsNestedInput;
 };
 export type PoLineItemUncheckedUpdateWithoutPurchaseOrderInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -560,8 +560,8 @@ export type PoLineItemUpdateWithoutPartInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     quantity?: Prisma.IntFieldUpdateOperationsInput | number;
     unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
-    purchaseOrder?: Prisma.PurchaseOrderUpdateOneRequiredWithoutLineItemsNestedInput;
     jobList?: Prisma.JobListUpdateOneWithoutLineItemNestedInput;
+    purchaseOrder?: Prisma.PurchaseOrderUpdateOneRequiredWithoutLineItemsNestedInput;
 };
 export type PoLineItemUncheckedUpdateWithoutPartInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -582,9 +582,9 @@ export type PoLineItemSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
     partId?: boolean;
     quantity?: boolean;
     unitPrice?: boolean;
-    purchaseOrder?: boolean | Prisma.PurchaseOrderDefaultArgs<ExtArgs>;
-    part?: boolean | Prisma.PartDefaultArgs<ExtArgs>;
     jobList?: boolean | Prisma.PoLineItem$jobListArgs<ExtArgs>;
+    part?: boolean | Prisma.PartDefaultArgs<ExtArgs>;
+    purchaseOrder?: boolean | Prisma.PurchaseOrderDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["poLineItem"]>;
 export type PoLineItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
@@ -592,8 +592,8 @@ export type PoLineItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
     partId?: boolean;
     quantity?: boolean;
     unitPrice?: boolean;
-    purchaseOrder?: boolean | Prisma.PurchaseOrderDefaultArgs<ExtArgs>;
     part?: boolean | Prisma.PartDefaultArgs<ExtArgs>;
+    purchaseOrder?: boolean | Prisma.PurchaseOrderDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["poLineItem"]>;
 export type PoLineItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
@@ -601,8 +601,8 @@ export type PoLineItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
     partId?: boolean;
     quantity?: boolean;
     unitPrice?: boolean;
-    purchaseOrder?: boolean | Prisma.PurchaseOrderDefaultArgs<ExtArgs>;
     part?: boolean | Prisma.PartDefaultArgs<ExtArgs>;
+    purchaseOrder?: boolean | Prisma.PurchaseOrderDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["poLineItem"]>;
 export type PoLineItemSelectScalar = {
     id?: boolean;
@@ -613,24 +613,24 @@ export type PoLineItemSelectScalar = {
 };
 export type PoLineItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "purchaseOrderId" | "partId" | "quantity" | "unitPrice", ExtArgs["result"]["poLineItem"]>;
 export type PoLineItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    purchaseOrder?: boolean | Prisma.PurchaseOrderDefaultArgs<ExtArgs>;
-    part?: boolean | Prisma.PartDefaultArgs<ExtArgs>;
     jobList?: boolean | Prisma.PoLineItem$jobListArgs<ExtArgs>;
+    part?: boolean | Prisma.PartDefaultArgs<ExtArgs>;
+    purchaseOrder?: boolean | Prisma.PurchaseOrderDefaultArgs<ExtArgs>;
 };
 export type PoLineItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    purchaseOrder?: boolean | Prisma.PurchaseOrderDefaultArgs<ExtArgs>;
     part?: boolean | Prisma.PartDefaultArgs<ExtArgs>;
+    purchaseOrder?: boolean | Prisma.PurchaseOrderDefaultArgs<ExtArgs>;
 };
 export type PoLineItemIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    purchaseOrder?: boolean | Prisma.PurchaseOrderDefaultArgs<ExtArgs>;
     part?: boolean | Prisma.PartDefaultArgs<ExtArgs>;
+    purchaseOrder?: boolean | Prisma.PurchaseOrderDefaultArgs<ExtArgs>;
 };
 export type $PoLineItemPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     name: "PoLineItem";
     objects: {
-        purchaseOrder: Prisma.$PurchaseOrderPayload<ExtArgs>;
-        part: Prisma.$PartPayload<ExtArgs>;
         jobList: Prisma.$JobListPayload<ExtArgs> | null;
+        part: Prisma.$PartPayload<ExtArgs>;
+        purchaseOrder: Prisma.$PurchaseOrderPayload<ExtArgs>;
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         id: string;
@@ -967,9 +967,9 @@ export interface PoLineItemDelegate<ExtArgs extends runtime.Types.Extensions.Int
  */
 export interface Prisma__PoLineItemClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise";
-    purchaseOrder<T extends Prisma.PurchaseOrderDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PurchaseOrderDefaultArgs<ExtArgs>>): Prisma.Prisma__PurchaseOrderClient<runtime.Types.Result.GetResult<Prisma.$PurchaseOrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
-    part<T extends Prisma.PartDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PartDefaultArgs<ExtArgs>>): Prisma.Prisma__PartClient<runtime.Types.Result.GetResult<Prisma.$PartPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
     jobList<T extends Prisma.PoLineItem$jobListArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PoLineItem$jobListArgs<ExtArgs>>): Prisma.Prisma__JobListClient<runtime.Types.Result.GetResult<Prisma.$JobListPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    part<T extends Prisma.PartDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PartDefaultArgs<ExtArgs>>): Prisma.Prisma__PartClient<runtime.Types.Result.GetResult<Prisma.$PartPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
+    purchaseOrder<T extends Prisma.PurchaseOrderDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PurchaseOrderDefaultArgs<ExtArgs>>): Prisma.Prisma__PurchaseOrderClient<runtime.Types.Result.GetResult<Prisma.$PurchaseOrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.

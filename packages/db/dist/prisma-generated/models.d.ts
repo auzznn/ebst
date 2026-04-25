@@ -32,5 +32,6 @@ export type * from './models/CheckSheetRow.js';
 export type * from './models/Material.js';
 export type * from './models/MaterialUsage.js';
 export type * from './models/StockAdjustment.js';
+export type * from './models/StockLedger.js';
 export type * from './models/Supplier.js';
 export type * from './commonInputTypes.js';

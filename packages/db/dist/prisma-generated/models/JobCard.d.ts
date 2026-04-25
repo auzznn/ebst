@@ -155,9 +155,9 @@ export type JobCardWhereInput = {
     createdById?: Prisma.StringFilter<"JobCard"> | string;
     createdAt?: Prisma.DateTimeFilter<"JobCard"> | Date | string;
     completedAt?: Prisma.DateTimeNullableFilter<"JobCard"> | Date | string | null;
-    jobLists?: Prisma.JobListListRelationFilter;
-    purchaseOrder?: Prisma.XOR<Prisma.PurchaseOrderNullableScalarRelationFilter, Prisma.PurchaseOrderWhereInput> | null;
     createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
+    purchaseOrder?: Prisma.XOR<Prisma.PurchaseOrderNullableScalarRelationFilter, Prisma.PurchaseOrderWhereInput> | null;
+    jobLists?: Prisma.JobListListRelationFilter;
 };
 export type JobCardOrderByWithRelationInput = {
     id?: Prisma.SortOrder;
@@ -167,9 +167,9 @@ export type JobCardOrderByWithRelationInput = {
     createdById?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
     completedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
-    jobLists?: Prisma.JobListOrderByRelationAggregateInput;
-    purchaseOrder?: Prisma.PurchaseOrderOrderByWithRelationInput;
     createdBy?: Prisma.UserOrderByWithRelationInput;
+    purchaseOrder?: Prisma.PurchaseOrderOrderByWithRelationInput;
+    jobLists?: Prisma.JobListOrderByRelationAggregateInput;
 };
 export type JobCardWhereUniqueInput = Prisma.AtLeast<{
     id?: string;
@@ -182,9 +182,9 @@ export type JobCardWhereUniqueInput = Prisma.AtLeast<{
     createdById?: Prisma.StringFilter<"JobCard"> | string;
     createdAt?: Prisma.DateTimeFilter<"JobCard"> | Date | string;
     completedAt?: Prisma.DateTimeNullableFilter<"JobCard"> | Date | string | null;
-    jobLists?: Prisma.JobListListRelationFilter;
-    purchaseOrder?: Prisma.XOR<Prisma.PurchaseOrderNullableScalarRelationFilter, Prisma.PurchaseOrderWhereInput> | null;
     createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
+    purchaseOrder?: Prisma.XOR<Prisma.PurchaseOrderNullableScalarRelationFilter, Prisma.PurchaseOrderWhereInput> | null;
+    jobLists?: Prisma.JobListListRelationFilter;
 }, "id" | "jobNo" | "purchaseOrderId">;
 export type JobCardOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
@@ -216,9 +216,9 @@ export type JobCardCreateInput = {
     status?: $Enums.JobCardStatus;
     createdAt?: Date | string;
     completedAt?: Date | string | null;
-    jobLists?: Prisma.JobListCreateNestedManyWithoutJobCardInput;
-    purchaseOrder?: Prisma.PurchaseOrderCreateNestedOneWithoutJobCardsInput;
     createdBy: Prisma.UserCreateNestedOneWithoutCreatedJobCardsInput;
+    purchaseOrder?: Prisma.PurchaseOrderCreateNestedOneWithoutJobCardsInput;
+    jobLists?: Prisma.JobListCreateNestedManyWithoutJobCardInput;
 };
 export type JobCardUncheckedCreateInput = {
     id?: string;
@@ -236,9 +236,9 @@ export type JobCardUpdateInput = {
     status?: Prisma.EnumJobCardStatusFieldUpdateOperationsInput | $Enums.JobCardStatus;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-    jobLists?: Prisma.JobListUpdateManyWithoutJobCardNestedInput;
-    purchaseOrder?: Prisma.PurchaseOrderUpdateOneWithoutJobCardsNestedInput;
     createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedJobCardsNestedInput;
+    purchaseOrder?: Prisma.PurchaseOrderUpdateOneWithoutJobCardsNestedInput;
+    jobLists?: Prisma.JobListUpdateManyWithoutJobCardNestedInput;
 };
 export type JobCardUncheckedUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -282,6 +282,10 @@ export type JobCardListRelationFilter = {
 };
 export type JobCardOrderByRelationAggregateInput = {
     _count?: Prisma.SortOrder;
+};
+export type JobCardNullableScalarRelationFilter = {
+    is?: Prisma.JobCardWhereInput | null;
+    isNot?: Prisma.JobCardWhereInput | null;
 };
 export type JobCardCountOrderByAggregateInput = {
     id?: Prisma.SortOrder;
@@ -352,43 +356,33 @@ export type JobCardUncheckedUpdateManyWithoutCreatedByNestedInput = {
     updateMany?: Prisma.JobCardUpdateManyWithWhereWithoutCreatedByInput | Prisma.JobCardUpdateManyWithWhereWithoutCreatedByInput[];
     deleteMany?: Prisma.JobCardScalarWhereInput | Prisma.JobCardScalarWhereInput[];
 };
-export type JobCardCreateNestedManyWithoutPurchaseOrderInput = {
-    create?: Prisma.XOR<Prisma.JobCardCreateWithoutPurchaseOrderInput, Prisma.JobCardUncheckedCreateWithoutPurchaseOrderInput> | Prisma.JobCardCreateWithoutPurchaseOrderInput[] | Prisma.JobCardUncheckedCreateWithoutPurchaseOrderInput[];
-    connectOrCreate?: Prisma.JobCardCreateOrConnectWithoutPurchaseOrderInput | Prisma.JobCardCreateOrConnectWithoutPurchaseOrderInput[];
-    createMany?: Prisma.JobCardCreateManyPurchaseOrderInputEnvelope;
-    connect?: Prisma.JobCardWhereUniqueInput | Prisma.JobCardWhereUniqueInput[];
+export type JobCardCreateNestedOneWithoutPurchaseOrderInput = {
+    create?: Prisma.XOR<Prisma.JobCardCreateWithoutPurchaseOrderInput, Prisma.JobCardUncheckedCreateWithoutPurchaseOrderInput>;
+    connectOrCreate?: Prisma.JobCardCreateOrConnectWithoutPurchaseOrderInput;
+    connect?: Prisma.JobCardWhereUniqueInput;
 };
-export type JobCardUncheckedCreateNestedManyWithoutPurchaseOrderInput = {
-    create?: Prisma.XOR<Prisma.JobCardCreateWithoutPurchaseOrderInput, Prisma.JobCardUncheckedCreateWithoutPurchaseOrderInput> | Prisma.JobCardCreateWithoutPurchaseOrderInput[] | Prisma.JobCardUncheckedCreateWithoutPurchaseOrderInput[];
-    connectOrCreate?: Prisma.JobCardCreateOrConnectWithoutPurchaseOrderInput | Prisma.JobCardCreateOrConnectWithoutPurchaseOrderInput[];
-    createMany?: Prisma.JobCardCreateManyPurchaseOrderInputEnvelope;
-    connect?: Prisma.JobCardWhereUniqueInput | Prisma.JobCardWhereUniqueInput[];
+export type JobCardUncheckedCreateNestedOneWithoutPurchaseOrderInput = {
+    create?: Prisma.XOR<Prisma.JobCardCreateWithoutPurchaseOrderInput, Prisma.JobCardUncheckedCreateWithoutPurchaseOrderInput>;
+    connectOrCreate?: Prisma.JobCardCreateOrConnectWithoutPurchaseOrderInput;
+    connect?: Prisma.JobCardWhereUniqueInput;
 };
-export type JobCardUpdateManyWithoutPurchaseOrderNestedInput = {
-    create?: Prisma.XOR<Prisma.JobCardCreateWithoutPurchaseOrderInput, Prisma.JobCardUncheckedCreateWithoutPurchaseOrderInput> | Prisma.JobCardCreateWithoutPurchaseOrderInput[] | Prisma.JobCardUncheckedCreateWithoutPurchaseOrderInput[];
-    connectOrCreate?: Prisma.JobCardCreateOrConnectWithoutPurchaseOrderInput | Prisma.JobCardCreateOrConnectWithoutPurchaseOrderInput[];
-    upsert?: Prisma.JobCardUpsertWithWhereUniqueWithoutPurchaseOrderInput | Prisma.JobCardUpsertWithWhereUniqueWithoutPurchaseOrderInput[];
-    createMany?: Prisma.JobCardCreateManyPurchaseOrderInputEnvelope;
-    set?: Prisma.JobCardWhereUniqueInput | Prisma.JobCardWhereUniqueInput[];
-    disconnect?: Prisma.JobCardWhereUniqueInput | Prisma.JobCardWhereUniqueInput[];
-    delete?: Prisma.JobCardWhereUniqueInput | Prisma.JobCardWhereUniqueInput[];
-    connect?: Prisma.JobCardWhereUniqueInput | Prisma.JobCardWhereUniqueInput[];
-    update?: Prisma.JobCardUpdateWithWhereUniqueWithoutPurchaseOrderInput | Prisma.JobCardUpdateWithWhereUniqueWithoutPurchaseOrderInput[];
-    updateMany?: Prisma.JobCardUpdateManyWithWhereWithoutPurchaseOrderInput | Prisma.JobCardUpdateManyWithWhereWithoutPurchaseOrderInput[];
-    deleteMany?: Prisma.JobCardScalarWhereInput | Prisma.JobCardScalarWhereInput[];
+export type JobCardUpdateOneWithoutPurchaseOrderNestedInput = {
+    create?: Prisma.XOR<Prisma.JobCardCreateWithoutPurchaseOrderInput, Prisma.JobCardUncheckedCreateWithoutPurchaseOrderInput>;
+    connectOrCreate?: Prisma.JobCardCreateOrConnectWithoutPurchaseOrderInput;
+    upsert?: Prisma.JobCardUpsertWithoutPurchaseOrderInput;
+    disconnect?: Prisma.JobCardWhereInput | boolean;
+    delete?: Prisma.JobCardWhereInput | boolean;
+    connect?: Prisma.JobCardWhereUniqueInput;
+    update?: Prisma.XOR<Prisma.XOR<Prisma.JobCardUpdateToOneWithWhereWithoutPurchaseOrderInput, Prisma.JobCardUpdateWithoutPurchaseOrderInput>, Prisma.JobCardUncheckedUpdateWithoutPurchaseOrderInput>;
 };
-export type JobCardUncheckedUpdateManyWithoutPurchaseOrderNestedInput = {
-    create?: Prisma.XOR<Prisma.JobCardCreateWithoutPurchaseOrderInput, Prisma.JobCardUncheckedCreateWithoutPurchaseOrderInput> | Prisma.JobCardCreateWithoutPurchaseOrderInput[] | Prisma.JobCardUncheckedCreateWithoutPurchaseOrderInput[];
-    connectOrCreate?: Prisma.JobCardCreateOrConnectWithoutPurchaseOrderInput | Prisma.JobCardCreateOrConnectWithoutPurchaseOrderInput[];
-    upsert?: Prisma.JobCardUpsertWithWhereUniqueWithoutPurchaseOrderInput | Prisma.JobCardUpsertWithWhereUniqueWithoutPurchaseOrderInput[];
-    createMany?: Prisma.JobCardCreateManyPurchaseOrderInputEnvelope;
-    set?: Prisma.JobCardWhereUniqueInput | Prisma.JobCardWhereUniqueInput[];
-    disconnect?: Prisma.JobCardWhereUniqueInput | Prisma.JobCardWhereUniqueInput[];
-    delete?: Prisma.JobCardWhereUniqueInput | Prisma.JobCardWhereUniqueInput[];
-    connect?: Prisma.JobCardWhereUniqueInput | Prisma.JobCardWhereUniqueInput[];
-    update?: Prisma.JobCardUpdateWithWhereUniqueWithoutPurchaseOrderInput | Prisma.JobCardUpdateWithWhereUniqueWithoutPurchaseOrderInput[];
-    updateMany?: Prisma.JobCardUpdateManyWithWhereWithoutPurchaseOrderInput | Prisma.JobCardUpdateManyWithWhereWithoutPurchaseOrderInput[];
-    deleteMany?: Prisma.JobCardScalarWhereInput | Prisma.JobCardScalarWhereInput[];
+export type JobCardUncheckedUpdateOneWithoutPurchaseOrderNestedInput = {
+    create?: Prisma.XOR<Prisma.JobCardCreateWithoutPurchaseOrderInput, Prisma.JobCardUncheckedCreateWithoutPurchaseOrderInput>;
+    connectOrCreate?: Prisma.JobCardCreateOrConnectWithoutPurchaseOrderInput;
+    upsert?: Prisma.JobCardUpsertWithoutPurchaseOrderInput;
+    disconnect?: Prisma.JobCardWhereInput | boolean;
+    delete?: Prisma.JobCardWhereInput | boolean;
+    connect?: Prisma.JobCardWhereUniqueInput;
+    update?: Prisma.XOR<Prisma.XOR<Prisma.JobCardUpdateToOneWithWhereWithoutPurchaseOrderInput, Prisma.JobCardUpdateWithoutPurchaseOrderInput>, Prisma.JobCardUncheckedUpdateWithoutPurchaseOrderInput>;
 };
 export type EnumJobCardStatusFieldUpdateOperationsInput = {
     set?: $Enums.JobCardStatus;
@@ -411,8 +405,8 @@ export type JobCardCreateWithoutCreatedByInput = {
     status?: $Enums.JobCardStatus;
     createdAt?: Date | string;
     completedAt?: Date | string | null;
-    jobLists?: Prisma.JobListCreateNestedManyWithoutJobCardInput;
     purchaseOrder?: Prisma.PurchaseOrderCreateNestedOneWithoutJobCardsInput;
+    jobLists?: Prisma.JobListCreateNestedManyWithoutJobCardInput;
 };
 export type JobCardUncheckedCreateWithoutCreatedByInput = {
     id?: string;
@@ -462,8 +456,8 @@ export type JobCardCreateWithoutPurchaseOrderInput = {
     status?: $Enums.JobCardStatus;
     createdAt?: Date | string;
     completedAt?: Date | string | null;
-    jobLists?: Prisma.JobListCreateNestedManyWithoutJobCardInput;
     createdBy: Prisma.UserCreateNestedOneWithoutCreatedJobCardsInput;
+    jobLists?: Prisma.JobListCreateNestedManyWithoutJobCardInput;
 };
 export type JobCardUncheckedCreateWithoutPurchaseOrderInput = {
     id?: string;
@@ -478,22 +472,32 @@ export type JobCardCreateOrConnectWithoutPurchaseOrderInput = {
     where: Prisma.JobCardWhereUniqueInput;
     create: Prisma.XOR<Prisma.JobCardCreateWithoutPurchaseOrderInput, Prisma.JobCardUncheckedCreateWithoutPurchaseOrderInput>;
 };
-export type JobCardCreateManyPurchaseOrderInputEnvelope = {
-    data: Prisma.JobCardCreateManyPurchaseOrderInput | Prisma.JobCardCreateManyPurchaseOrderInput[];
-    skipDuplicates?: boolean;
-};
-export type JobCardUpsertWithWhereUniqueWithoutPurchaseOrderInput = {
-    where: Prisma.JobCardWhereUniqueInput;
+export type JobCardUpsertWithoutPurchaseOrderInput = {
     update: Prisma.XOR<Prisma.JobCardUpdateWithoutPurchaseOrderInput, Prisma.JobCardUncheckedUpdateWithoutPurchaseOrderInput>;
     create: Prisma.XOR<Prisma.JobCardCreateWithoutPurchaseOrderInput, Prisma.JobCardUncheckedCreateWithoutPurchaseOrderInput>;
+    where?: Prisma.JobCardWhereInput;
 };
-export type JobCardUpdateWithWhereUniqueWithoutPurchaseOrderInput = {
-    where: Prisma.JobCardWhereUniqueInput;
+export type JobCardUpdateToOneWithWhereWithoutPurchaseOrderInput = {
+    where?: Prisma.JobCardWhereInput;
     data: Prisma.XOR<Prisma.JobCardUpdateWithoutPurchaseOrderInput, Prisma.JobCardUncheckedUpdateWithoutPurchaseOrderInput>;
 };
-export type JobCardUpdateManyWithWhereWithoutPurchaseOrderInput = {
-    where: Prisma.JobCardScalarWhereInput;
-    data: Prisma.XOR<Prisma.JobCardUpdateManyMutationInput, Prisma.JobCardUncheckedUpdateManyWithoutPurchaseOrderInput>;
+export type JobCardUpdateWithoutPurchaseOrderInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    jobNo?: Prisma.StringFieldUpdateOperationsInput | string;
+    status?: Prisma.EnumJobCardStatusFieldUpdateOperationsInput | $Enums.JobCardStatus;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedJobCardsNestedInput;
+    jobLists?: Prisma.JobListUpdateManyWithoutJobCardNestedInput;
+};
+export type JobCardUncheckedUpdateWithoutPurchaseOrderInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    jobNo?: Prisma.StringFieldUpdateOperationsInput | string;
+    status?: Prisma.EnumJobCardStatusFieldUpdateOperationsInput | $Enums.JobCardStatus;
+    createdById?: Prisma.StringFieldUpdateOperationsInput | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    jobLists?: Prisma.JobListUncheckedUpdateManyWithoutJobCardNestedInput;
 };
 export type JobCardCreateWithoutJobListsInput = {
     id?: string;
@@ -501,8 +505,8 @@ export type JobCardCreateWithoutJobListsInput = {
     status?: $Enums.JobCardStatus;
     createdAt?: Date | string;
     completedAt?: Date | string | null;
-    purchaseOrder?: Prisma.PurchaseOrderCreateNestedOneWithoutJobCardsInput;
     createdBy: Prisma.UserCreateNestedOneWithoutCreatedJobCardsInput;
+    purchaseOrder?: Prisma.PurchaseOrderCreateNestedOneWithoutJobCardsInput;
 };
 export type JobCardUncheckedCreateWithoutJobListsInput = {
     id?: string;
@@ -532,8 +536,8 @@ export type JobCardUpdateWithoutJobListsInput = {
     status?: Prisma.EnumJobCardStatusFieldUpdateOperationsInput | $Enums.JobCardStatus;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-    purchaseOrder?: Prisma.PurchaseOrderUpdateOneWithoutJobCardsNestedInput;
     createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedJobCardsNestedInput;
+    purchaseOrder?: Prisma.PurchaseOrderUpdateOneWithoutJobCardsNestedInput;
 };
 export type JobCardUncheckedUpdateWithoutJobListsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -558,8 +562,8 @@ export type JobCardUpdateWithoutCreatedByInput = {
     status?: Prisma.EnumJobCardStatusFieldUpdateOperationsInput | $Enums.JobCardStatus;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-    jobLists?: Prisma.JobListUpdateManyWithoutJobCardNestedInput;
     purchaseOrder?: Prisma.PurchaseOrderUpdateOneWithoutJobCardsNestedInput;
+    jobLists?: Prisma.JobListUpdateManyWithoutJobCardNestedInput;
 };
 export type JobCardUncheckedUpdateWithoutCreatedByInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -575,40 +579,6 @@ export type JobCardUncheckedUpdateManyWithoutCreatedByInput = {
     jobNo?: Prisma.StringFieldUpdateOperationsInput | string;
     purchaseOrderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     status?: Prisma.EnumJobCardStatusFieldUpdateOperationsInput | $Enums.JobCardStatus;
-    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-};
-export type JobCardCreateManyPurchaseOrderInput = {
-    id?: string;
-    jobNo: string;
-    status?: $Enums.JobCardStatus;
-    createdById: string;
-    createdAt?: Date | string;
-    completedAt?: Date | string | null;
-};
-export type JobCardUpdateWithoutPurchaseOrderInput = {
-    id?: Prisma.StringFieldUpdateOperationsInput | string;
-    jobNo?: Prisma.StringFieldUpdateOperationsInput | string;
-    status?: Prisma.EnumJobCardStatusFieldUpdateOperationsInput | $Enums.JobCardStatus;
-    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-    jobLists?: Prisma.JobListUpdateManyWithoutJobCardNestedInput;
-    createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedJobCardsNestedInput;
-};
-export type JobCardUncheckedUpdateWithoutPurchaseOrderInput = {
-    id?: Prisma.StringFieldUpdateOperationsInput | string;
-    jobNo?: Prisma.StringFieldUpdateOperationsInput | string;
-    status?: Prisma.EnumJobCardStatusFieldUpdateOperationsInput | $Enums.JobCardStatus;
-    createdById?: Prisma.StringFieldUpdateOperationsInput | string;
-    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
-    jobLists?: Prisma.JobListUncheckedUpdateManyWithoutJobCardNestedInput;
-};
-export type JobCardUncheckedUpdateManyWithoutPurchaseOrderInput = {
-    id?: Prisma.StringFieldUpdateOperationsInput | string;
-    jobNo?: Prisma.StringFieldUpdateOperationsInput | string;
-    status?: Prisma.EnumJobCardStatusFieldUpdateOperationsInput | $Enums.JobCardStatus;
-    createdById?: Prisma.StringFieldUpdateOperationsInput | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 };
@@ -644,9 +614,9 @@ export type JobCardSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     createdById?: boolean;
     createdAt?: boolean;
     completedAt?: boolean;
-    jobLists?: boolean | Prisma.JobCard$jobListsArgs<ExtArgs>;
-    purchaseOrder?: boolean | Prisma.JobCard$purchaseOrderArgs<ExtArgs>;
     createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    purchaseOrder?: boolean | Prisma.JobCard$purchaseOrderArgs<ExtArgs>;
+    jobLists?: boolean | Prisma.JobCard$jobListsArgs<ExtArgs>;
     _count?: boolean | Prisma.JobCardCountOutputTypeDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["jobCard"]>;
 export type JobCardSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -657,8 +627,8 @@ export type JobCardSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
     createdById?: boolean;
     createdAt?: boolean;
     completedAt?: boolean;
-    purchaseOrder?: boolean | Prisma.JobCard$purchaseOrderArgs<ExtArgs>;
     createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    purchaseOrder?: boolean | Prisma.JobCard$purchaseOrderArgs<ExtArgs>;
 }, ExtArgs["result"]["jobCard"]>;
 export type JobCardSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
@@ -668,8 +638,8 @@ export type JobCardSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
     createdById?: boolean;
     createdAt?: boolean;
     completedAt?: boolean;
-    purchaseOrder?: boolean | Prisma.JobCard$purchaseOrderArgs<ExtArgs>;
     createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    purchaseOrder?: boolean | Prisma.JobCard$purchaseOrderArgs<ExtArgs>;
 }, ExtArgs["result"]["jobCard"]>;
 export type JobCardSelectScalar = {
     id?: boolean;
@@ -682,25 +652,25 @@ export type JobCardSelectScalar = {
 };
 export type JobCardOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "jobNo" | "purchaseOrderId" | "status" | "createdById" | "createdAt" | "completedAt", ExtArgs["result"]["jobCard"]>;
 export type JobCardInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    jobLists?: boolean | Prisma.JobCard$jobListsArgs<ExtArgs>;
-    purchaseOrder?: boolean | Prisma.JobCard$purchaseOrderArgs<ExtArgs>;
     createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    purchaseOrder?: boolean | Prisma.JobCard$purchaseOrderArgs<ExtArgs>;
+    jobLists?: boolean | Prisma.JobCard$jobListsArgs<ExtArgs>;
     _count?: boolean | Prisma.JobCardCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type JobCardIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    purchaseOrder?: boolean | Prisma.JobCard$purchaseOrderArgs<ExtArgs>;
     createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    purchaseOrder?: boolean | Prisma.JobCard$purchaseOrderArgs<ExtArgs>;
 };
 export type JobCardIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    purchaseOrder?: boolean | Prisma.JobCard$purchaseOrderArgs<ExtArgs>;
     createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    purchaseOrder?: boolean | Prisma.JobCard$purchaseOrderArgs<ExtArgs>;
 };
 export type $JobCardPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     name: "JobCard";
     objects: {
-        jobLists: Prisma.$JobListPayload<ExtArgs>[];
-        purchaseOrder: Prisma.$PurchaseOrderPayload<ExtArgs> | null;
         createdBy: Prisma.$UserPayload<ExtArgs>;
+        purchaseOrder: Prisma.$PurchaseOrderPayload<ExtArgs> | null;
+        jobLists: Prisma.$JobListPayload<ExtArgs>[];
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         id: string;
@@ -1039,9 +1009,9 @@ export interface JobCardDelegate<ExtArgs extends runtime.Types.Extensions.Intern
  */
 export interface Prisma__JobCardClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise";
-    jobLists<T extends Prisma.JobCard$jobListsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobCard$jobListsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$JobListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
-    purchaseOrder<T extends Prisma.JobCard$purchaseOrderArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobCard$purchaseOrderArgs<ExtArgs>>): Prisma.Prisma__PurchaseOrderClient<runtime.Types.Result.GetResult<Prisma.$PurchaseOrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
     createdBy<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
+    purchaseOrder<T extends Prisma.JobCard$purchaseOrderArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobCard$purchaseOrderArgs<ExtArgs>>): Prisma.Prisma__PurchaseOrderClient<runtime.Types.Result.GetResult<Prisma.$PurchaseOrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    jobLists<T extends Prisma.JobCard$jobListsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobCard$jobListsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$JobListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1458,6 +1428,24 @@ export type JobCardDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
     limit?: number;
 };
 /**
+ * JobCard.purchaseOrder
+ */
+export type JobCard$purchaseOrderArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PurchaseOrder
+     */
+    select?: Prisma.PurchaseOrderSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the PurchaseOrder
+     */
+    omit?: Prisma.PurchaseOrderOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.PurchaseOrderInclude<ExtArgs> | null;
+    where?: Prisma.PurchaseOrderWhereInput;
+};
+/**
  * JobCard.jobLists
  */
 export type JobCard$jobListsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1479,24 +1467,6 @@ export type JobCard$jobListsArgs<ExtArgs extends runtime.Types.Extensions.Intern
     take?: number;
     skip?: number;
     distinct?: Prisma.JobListScalarFieldEnum | Prisma.JobListScalarFieldEnum[];
-};
-/**
- * JobCard.purchaseOrder
- */
-export type JobCard$purchaseOrderArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PurchaseOrder
-     */
-    select?: Prisma.PurchaseOrderSelect<ExtArgs> | null;
-    /**
-     * Omit specific fields from the PurchaseOrder
-     */
-    omit?: Prisma.PurchaseOrderOmit<ExtArgs> | null;
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: Prisma.PurchaseOrderInclude<ExtArgs> | null;
-    where?: Prisma.PurchaseOrderWhereInput;
 };
 /**
  * JobCard without action

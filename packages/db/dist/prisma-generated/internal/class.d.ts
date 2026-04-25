@@ -490,6 +490,17 @@ export interface PrismaClient<in LogOpts extends Prisma.LogLevel = never, in out
         omit: OmitOpts;
     }>;
     /**
+     * `prisma.stockLedger`: Exposes CRUD operations for the **StockLedger** model.
+      * Example usage:
+      * ```ts
+      * // Fetch zero or more StockLedgers
+      * const stockLedgers = await prisma.stockLedger.findMany()
+      * ```
+      */
+    get stockLedger(): Prisma.StockLedgerDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
+    /**
      * `prisma.supplier`: Exposes CRUD operations for the **Supplier** model.
       * Example usage:
       * ```ts

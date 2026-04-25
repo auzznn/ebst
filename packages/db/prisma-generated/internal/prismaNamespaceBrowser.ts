@@ -85,6 +85,7 @@ export const ModelName = {
   Material: 'Material',
   MaterialUsage: 'MaterialUsage',
   StockAdjustment: 'StockAdjustment',
+  StockLedger: 'StockLedger',
   Supplier: 'Supplier'
 } as const
 
@@ -293,10 +294,10 @@ export const InvoiceScalarFieldEnum = {
   total: 'total',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  purchaseOrderId: 'purchaseOrderId',
   customerId: 'customerId',
   createdById: 'createdById',
-  documentId: 'documentId'
+  documentId: 'documentId',
+  purchaseOrderId: 'purchaseOrderId'
 } as const
 
 export type InvoiceScalarFieldEnum = (typeof InvoiceScalarFieldEnum)[keyof typeof InvoiceScalarFieldEnum]
@@ -345,9 +346,9 @@ export const PartScalarFieldEnum = {
   partNo: 'partNo',
   description: 'description',
   castingType: 'castingType',
-  drawingId: 'drawingId',
   createdAt: 'createdAt',
-  materialId: 'materialId'
+  materialId: 'materialId',
+  drawingId: 'drawingId'
 } as const
 
 export type PartScalarFieldEnum = (typeof PartScalarFieldEnum)[keyof typeof PartScalarFieldEnum]
@@ -394,8 +395,8 @@ export const RoutingStepScalarFieldEnum = {
   stepOrder: 'stepOrder',
   operationName: 'operationName',
   defaultMachineType: 'defaultMachineType',
-  defaultMachineId: 'defaultMachineId',
-  estimatedMinutes: 'estimatedMinutes'
+  estimatedMinutes: 'estimatedMinutes',
+  defaultMachineId: 'defaultMachineId'
 } as const
 
 export type RoutingStepScalarFieldEnum = (typeof RoutingStepScalarFieldEnum)[keyof typeof RoutingStepScalarFieldEnum]
@@ -427,10 +428,10 @@ export type JobCardScalarFieldEnum = (typeof JobCardScalarFieldEnum)[keyof typeo
 export const JobListScalarFieldEnum = {
   id: 'id',
   jobCardId: 'jobCardId',
-  partId: 'partId',
   lineItemId: 'lineItemId',
   quantity: 'quantity',
-  status: 'status'
+  status: 'status',
+  partId: 'partId'
 } as const
 
 export type JobListScalarFieldEnum = (typeof JobListScalarFieldEnum)[keyof typeof JobListScalarFieldEnum]
@@ -555,6 +556,21 @@ export const StockAdjustmentScalarFieldEnum = {
 } as const
 
 export type StockAdjustmentScalarFieldEnum = (typeof StockAdjustmentScalarFieldEnum)[keyof typeof StockAdjustmentScalarFieldEnum]
+
+
+export const StockLedgerScalarFieldEnum = {
+  id: 'id',
+  materialId: 'materialId',
+  transactionType: 'transactionType',
+  qtyChange: 'qtyChange',
+  balanceAfter: 'balanceAfter',
+  reason: 'reason',
+  referenceId: 'referenceId',
+  userId: 'userId',
+  createdAt: 'createdAt'
+} as const
+
+export type StockLedgerScalarFieldEnum = (typeof StockLedgerScalarFieldEnum)[keyof typeof StockLedgerScalarFieldEnum]
 
 
 export const SupplierScalarFieldEnum = {

@@ -122,15 +122,15 @@ export type RoutingTemplateWhereInput = {
     id?: Prisma.StringFilter<"RoutingTemplate"> | string;
     partId?: Prisma.StringFilter<"RoutingTemplate"> | string;
     createdAt?: Prisma.DateTimeFilter<"RoutingTemplate"> | Date | string;
-    part?: Prisma.XOR<Prisma.PartScalarRelationFilter, Prisma.PartWhereInput>;
     steps?: Prisma.RoutingStepListRelationFilter;
+    part?: Prisma.XOR<Prisma.PartScalarRelationFilter, Prisma.PartWhereInput>;
 };
 export type RoutingTemplateOrderByWithRelationInput = {
     id?: Prisma.SortOrder;
     partId?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
-    part?: Prisma.PartOrderByWithRelationInput;
     steps?: Prisma.RoutingStepOrderByRelationAggregateInput;
+    part?: Prisma.PartOrderByWithRelationInput;
 };
 export type RoutingTemplateWhereUniqueInput = Prisma.AtLeast<{
     id?: string;
@@ -139,8 +139,8 @@ export type RoutingTemplateWhereUniqueInput = Prisma.AtLeast<{
     OR?: Prisma.RoutingTemplateWhereInput[];
     NOT?: Prisma.RoutingTemplateWhereInput | Prisma.RoutingTemplateWhereInput[];
     createdAt?: Prisma.DateTimeFilter<"RoutingTemplate"> | Date | string;
-    part?: Prisma.XOR<Prisma.PartScalarRelationFilter, Prisma.PartWhereInput>;
     steps?: Prisma.RoutingStepListRelationFilter;
+    part?: Prisma.XOR<Prisma.PartScalarRelationFilter, Prisma.PartWhereInput>;
 }, "id" | "partId">;
 export type RoutingTemplateOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
@@ -161,8 +161,8 @@ export type RoutingTemplateScalarWhereWithAggregatesInput = {
 export type RoutingTemplateCreateInput = {
     id?: string;
     createdAt?: Date | string;
-    part: Prisma.PartCreateNestedOneWithoutRoutingInput;
     steps?: Prisma.RoutingStepCreateNestedManyWithoutRoutingInput;
+    part: Prisma.PartCreateNestedOneWithoutRoutingInput;
 };
 export type RoutingTemplateUncheckedCreateInput = {
     id?: string;
@@ -173,8 +173,8 @@ export type RoutingTemplateUncheckedCreateInput = {
 export type RoutingTemplateUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    part?: Prisma.PartUpdateOneRequiredWithoutRoutingNestedInput;
     steps?: Prisma.RoutingStepUpdateManyWithoutRoutingNestedInput;
+    part?: Prisma.PartUpdateOneRequiredWithoutRoutingNestedInput;
 };
 export type RoutingTemplateUncheckedUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -353,8 +353,8 @@ export type RoutingTemplateSelect<ExtArgs extends runtime.Types.Extensions.Inter
     id?: boolean;
     partId?: boolean;
     createdAt?: boolean;
-    part?: boolean | Prisma.PartDefaultArgs<ExtArgs>;
     steps?: boolean | Prisma.RoutingTemplate$stepsArgs<ExtArgs>;
+    part?: boolean | Prisma.PartDefaultArgs<ExtArgs>;
     _count?: boolean | Prisma.RoutingTemplateCountOutputTypeDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["routingTemplate"]>;
 export type RoutingTemplateSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -376,8 +376,8 @@ export type RoutingTemplateSelectScalar = {
 };
 export type RoutingTemplateOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "partId" | "createdAt", ExtArgs["result"]["routingTemplate"]>;
 export type RoutingTemplateInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    part?: boolean | Prisma.PartDefaultArgs<ExtArgs>;
     steps?: boolean | Prisma.RoutingTemplate$stepsArgs<ExtArgs>;
+    part?: boolean | Prisma.PartDefaultArgs<ExtArgs>;
     _count?: boolean | Prisma.RoutingTemplateCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type RoutingTemplateIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -389,8 +389,8 @@ export type RoutingTemplateIncludeUpdateManyAndReturn<ExtArgs extends runtime.Ty
 export type $RoutingTemplatePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     name: "RoutingTemplate";
     objects: {
-        part: Prisma.$PartPayload<ExtArgs>;
         steps: Prisma.$RoutingStepPayload<ExtArgs>[];
+        part: Prisma.$PartPayload<ExtArgs>;
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         id: string;
@@ -725,8 +725,8 @@ export interface RoutingTemplateDelegate<ExtArgs extends runtime.Types.Extension
  */
 export interface Prisma__RoutingTemplateClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise";
-    part<T extends Prisma.PartDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PartDefaultArgs<ExtArgs>>): Prisma.Prisma__PartClient<runtime.Types.Result.GetResult<Prisma.$PartPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
     steps<T extends Prisma.RoutingTemplate$stepsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RoutingTemplate$stepsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RoutingStepPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
+    part<T extends Prisma.PartDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PartDefaultArgs<ExtArgs>>): Prisma.Prisma__PartClient<runtime.Types.Result.GetResult<Prisma.$PartPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.

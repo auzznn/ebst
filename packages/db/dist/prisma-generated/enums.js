@@ -9,7 +9,7 @@
 * 🟢 You can import this file directly.
 */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CheckSheetType = exports.FindingCategory = exports.MaterialUnit = exports.QcResult = exports.OperationStatus = exports.JobCardStatus = exports.CastingType = exports.InvoiceStatus = exports.DocumentType = exports.AccountType = exports.Role = void 0;
+exports.LedgerTransactionType = exports.CheckSheetType = exports.FindingCategory = exports.MaterialUnit = exports.QcResult = exports.OperationStatus = exports.JobCardStatus = exports.CastingType = exports.InvoiceStatus = exports.DocumentType = exports.AccountType = exports.Role = void 0;
 exports.Role = {
     ADMIN: 'ADMIN',
     FINANCE: 'FINANCE',
@@ -28,9 +28,9 @@ exports.DocumentType = {
     INVOICE: 'INVOICE',
     PURCHASE_ORDER: 'PURCHASE_ORDER',
     DELIVERY_NOTE: 'DELIVERY_NOTE',
+    OTHER: 'OTHER',
     CHECK_SHEET: 'CHECK_SHEET',
-    DRAWING: 'DRAWING',
-    OTHER: 'OTHER'
+    DRAWING: 'DRAWING'
 };
 exports.InvoiceStatus = {
     UNPAID: 'UNPAID',
@@ -79,4 +79,10 @@ exports.FindingCategory = {
 exports.CheckSheetType = {
     MELTING: 'MELTING',
     FINISHING: 'FINISHING'
+};
+exports.LedgerTransactionType = {
+    RECEIPT: 'RECEIPT',
+    ADJUSTMENT: 'ADJUSTMENT',
+    USAGE: 'USAGE',
+    RETURN: 'RETURN'
 };

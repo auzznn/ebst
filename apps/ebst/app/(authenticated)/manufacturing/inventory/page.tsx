@@ -13,10 +13,20 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Loader2, Plus, ArrowUpRight, Package, List, Save, Edit3, Phone, Mail, MapPin, Info, Tag, Hash, Scale, Building2, AlertCircle, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Loader2, Plus, ArrowUpRight, Package, List, Save, Edit3, Phone, Mail, MapPin, Info, Tag, Hash, Scale, Building2, AlertCircle, ChevronLeft, ChevronRight, Eye, MoreHorizontal } from "lucide-react";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function InventoryPage() {
+  const router = useRouter();
   const [page, setPage] = useState(1);
   const { materials, isLoading: isInventoryLoading, totalPages, createMaterial, updateMaterial, adjustStock } = useInventory(page);
   const { suppliers, isLoading: isSuppliersLoading, createSupplier, updateSupplier } = useSuppliers();
@@ -222,7 +232,11 @@ export default function InventoryPage() {
                 </TableHeader>
                 <TableBody>
                   {materials.map((m) => (
-                    <TableRow key={m.id} className="hover:bg-muted/40 transition-colors">
+                    <TableRow 
+                      key={m.id} 
+                      className="hover:bg-muted/40 transition-colors cursor-pointer group"
+                      onClick={() => router.push(`/manufacturing/inventory/${m.id}`)}
+                    >
                       <TableCell className="font-medium">{m.code}</TableCell>
                       <TableCell>{m.name}</TableCell>
                       <TableCell>{Number(m.stockQty).toFixed(2)}</TableCell>
@@ -235,13 +249,27 @@ export default function InventoryPage() {
                           <Badge variant="secondary" className="rounded-md font-medium bg-green-100 text-green-800 hover:bg-green-200 dark:bg-emerald-900/40 dark:text-emerald-400 dark:hover:bg-emerald-900/60 border border-green-200 dark:border-emerald-800/60">Healthy</Badge>
                         )}
                       </TableCell>
-                      <TableCell className="text-right space-x-2 p-3">
-                        <Button variant="outline" size="sm" onClick={() => { setSelectedMaterial(m); setIsAdjustDialogOpen(true); }} className="hover:bg-primary/5 hover:text-primary transition-colors">
-                          <ArrowUpRight className="h-4 w-4 mr-1" /> Adjust
-                        </Button>
-                        <Button variant="outline" size="sm" onClick={() => openEditMaterial(m)} className="hover:bg-primary/5 hover:text-primary transition-colors">
-                          <Edit3 className="h-4 w-4 mr-1" /> Edit
-                        </Button>
+                      <TableCell className="text-right p-3" onClick={(e) => e.stopPropagation()}>
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full">
+                              <MoreHorizontal className="h-4 w-4" />
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end" className="w-48">
+                            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem onClick={() => router.push(`/manufacturing/inventory/${m.id}`)}>
+                              <Eye className="mr-2 h-4 w-4" /> View Details
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => { setSelectedMaterial(m); setIsAdjustDialogOpen(true); }}>
+                              <ArrowUpRight className="mr-2 h-4 w-4" /> Adjust Stock
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => openEditMaterial(m)}>
+                              <Edit3 className="mr-2 h-4 w-4" /> Edit Details
+                            </DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
                       </TableCell>
                     </TableRow>
                   ))}

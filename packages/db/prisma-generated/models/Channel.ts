@@ -190,8 +190,8 @@ export type ChannelWhereInput = {
   dmKey?: Prisma.StringNullableFilter<"Channel"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Channel"> | Date | string
   lastMessage?: Prisma.DateTimeFilter<"Channel"> | Date | string
-  messages?: Prisma.MessageListRelationFilter
   members?: Prisma.ChannelMemberListRelationFilter
+  messages?: Prisma.MessageListRelationFilter
 }
 
 export type ChannelOrderByWithRelationInput = {
@@ -201,8 +201,8 @@ export type ChannelOrderByWithRelationInput = {
   dmKey?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   lastMessage?: Prisma.SortOrder
-  messages?: Prisma.MessageOrderByRelationAggregateInput
   members?: Prisma.ChannelMemberOrderByRelationAggregateInput
+  messages?: Prisma.MessageOrderByRelationAggregateInput
 }
 
 export type ChannelWhereUniqueInput = Prisma.AtLeast<{
@@ -215,8 +215,8 @@ export type ChannelWhereUniqueInput = Prisma.AtLeast<{
   isDM?: Prisma.BoolFilter<"Channel"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Channel"> | Date | string
   lastMessage?: Prisma.DateTimeFilter<"Channel"> | Date | string
-  messages?: Prisma.MessageListRelationFilter
   members?: Prisma.ChannelMemberListRelationFilter
+  messages?: Prisma.MessageListRelationFilter
 }, "id" | "dmKey">
 
 export type ChannelOrderByWithAggregationInput = {
@@ -250,8 +250,8 @@ export type ChannelCreateInput = {
   dmKey?: string | null
   createdAt?: Date | string
   lastMessage?: Date | string
-  messages?: Prisma.MessageCreateNestedManyWithoutChannelInput
   members?: Prisma.ChannelMemberCreateNestedManyWithoutChannelInput
+  messages?: Prisma.MessageCreateNestedManyWithoutChannelInput
 }
 
 export type ChannelUncheckedCreateInput = {
@@ -261,8 +261,8 @@ export type ChannelUncheckedCreateInput = {
   dmKey?: string | null
   createdAt?: Date | string
   lastMessage?: Date | string
-  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutChannelInput
   members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutChannelInput
+  messages?: Prisma.MessageUncheckedCreateNestedManyWithoutChannelInput
 }
 
 export type ChannelUpdateInput = {
@@ -272,8 +272,8 @@ export type ChannelUpdateInput = {
   dmKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   lastMessage?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  messages?: Prisma.MessageUpdateManyWithoutChannelNestedInput
   members?: Prisma.ChannelMemberUpdateManyWithoutChannelNestedInput
+  messages?: Prisma.MessageUpdateManyWithoutChannelNestedInput
 }
 
 export type ChannelUncheckedUpdateInput = {
@@ -283,8 +283,8 @@ export type ChannelUncheckedUpdateInput = {
   dmKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   lastMessage?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  messages?: Prisma.MessageUncheckedUpdateManyWithoutChannelNestedInput
   members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutChannelNestedInput
+  messages?: Prisma.MessageUncheckedUpdateManyWithoutChannelNestedInput
 }
 
 export type ChannelCreateManyInput = {
@@ -492,13 +492,13 @@ export type ChannelUncheckedUpdateWithoutMessagesInput = {
  */
 
 export type ChannelCountOutputType = {
-  messages: number
   members: number
+  messages: number
 }
 
 export type ChannelCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  messages?: boolean | ChannelCountOutputTypeCountMessagesArgs
   members?: boolean | ChannelCountOutputTypeCountMembersArgs
+  messages?: boolean | ChannelCountOutputTypeCountMessagesArgs
 }
 
 /**
@@ -514,15 +514,15 @@ export type ChannelCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exte
 /**
  * ChannelCountOutputType without action
  */
-export type ChannelCountOutputTypeCountMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.MessageWhereInput
+export type ChannelCountOutputTypeCountMembersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ChannelMemberWhereInput
 }
 
 /**
  * ChannelCountOutputType without action
  */
-export type ChannelCountOutputTypeCountMembersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ChannelMemberWhereInput
+export type ChannelCountOutputTypeCountMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MessageWhereInput
 }
 
 
@@ -533,8 +533,8 @@ export type ChannelSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   dmKey?: boolean
   createdAt?: boolean
   lastMessage?: boolean
-  messages?: boolean | Prisma.Channel$messagesArgs<ExtArgs>
   members?: boolean | Prisma.Channel$membersArgs<ExtArgs>
+  messages?: boolean | Prisma.Channel$messagesArgs<ExtArgs>
   _count?: boolean | Prisma.ChannelCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["channel"]>
 
@@ -567,8 +567,8 @@ export type ChannelSelectScalar = {
 
 export type ChannelOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "isDM" | "dmKey" | "createdAt" | "lastMessage", ExtArgs["result"]["channel"]>
 export type ChannelInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  messages?: boolean | Prisma.Channel$messagesArgs<ExtArgs>
   members?: boolean | Prisma.Channel$membersArgs<ExtArgs>
+  messages?: boolean | Prisma.Channel$messagesArgs<ExtArgs>
   _count?: boolean | Prisma.ChannelCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ChannelIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -577,8 +577,8 @@ export type ChannelIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type $ChannelPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Channel"
   objects: {
-    messages: Prisma.$MessagePayload<ExtArgs>[]
     members: Prisma.$ChannelMemberPayload<ExtArgs>[]
+    messages: Prisma.$MessagePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -981,8 +981,8 @@ readonly fields: ChannelFieldRefs;
  */
 export interface Prisma__ChannelClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  messages<T extends Prisma.Channel$messagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Channel$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   members<T extends Prisma.Channel$membersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Channel$membersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ChannelMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  messages<T extends Prisma.Channel$messagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Channel$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1411,30 +1411,6 @@ export type ChannelDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * Channel.messages
- */
-export type Channel$messagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Message
-   */
-  select?: Prisma.MessageSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Message
-   */
-  omit?: Prisma.MessageOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.MessageInclude<ExtArgs> | null
-  where?: Prisma.MessageWhereInput
-  orderBy?: Prisma.MessageOrderByWithRelationInput | Prisma.MessageOrderByWithRelationInput[]
-  cursor?: Prisma.MessageWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.MessageScalarFieldEnum | Prisma.MessageScalarFieldEnum[]
-}
-
-/**
  * Channel.members
  */
 export type Channel$membersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1456,6 +1432,30 @@ export type Channel$membersArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.ChannelMemberScalarFieldEnum | Prisma.ChannelMemberScalarFieldEnum[]
+}
+
+/**
+ * Channel.messages
+ */
+export type Channel$messagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Message
+   */
+  select?: Prisma.MessageSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Message
+   */
+  omit?: Prisma.MessageOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MessageInclude<ExtArgs> | null
+  where?: Prisma.MessageWhereInput
+  orderBy?: Prisma.MessageOrderByWithRelationInput | Prisma.MessageOrderByWithRelationInput[]
+  cursor?: Prisma.MessageWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MessageScalarFieldEnum | Prisma.MessageScalarFieldEnum[]
 }
 
 /**

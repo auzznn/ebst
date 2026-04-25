@@ -217,13 +217,13 @@ export type OperationWhereInput = {
     startedAt?: Prisma.DateTimeNullableFilter<"Operation"> | Date | string | null;
     completedAt?: Prisma.DateTimeNullableFilter<"Operation"> | Date | string | null;
     notes?: Prisma.StringNullableFilter<"Operation"> | string | null;
-    materialsUsed?: Prisma.MaterialUsageListRelationFilter;
-    qcLog?: Prisma.XOR<Prisma.QcLogNullableScalarRelationFilter, Prisma.QcLogWhereInput> | null;
     checkSheet?: Prisma.XOR<Prisma.CheckSheetNullableScalarRelationFilter, Prisma.CheckSheetWhereInput> | null;
+    materialsUsed?: Prisma.MaterialUsageListRelationFilter;
     jobList?: Prisma.XOR<Prisma.JobListScalarRelationFilter, Prisma.JobListWhereInput>;
-    routingStep?: Prisma.XOR<Prisma.RoutingStepScalarRelationFilter, Prisma.RoutingStepWhereInput>;
     machine?: Prisma.XOR<Prisma.MachineNullableScalarRelationFilter, Prisma.MachineWhereInput> | null;
     operator?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null;
+    routingStep?: Prisma.XOR<Prisma.RoutingStepScalarRelationFilter, Prisma.RoutingStepWhereInput>;
+    qcLog?: Prisma.XOR<Prisma.QcLogNullableScalarRelationFilter, Prisma.QcLogWhereInput> | null;
 };
 export type OperationOrderByWithRelationInput = {
     id?: Prisma.SortOrder;
@@ -237,13 +237,13 @@ export type OperationOrderByWithRelationInput = {
     startedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
     completedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
     notes?: Prisma.SortOrderInput | Prisma.SortOrder;
-    materialsUsed?: Prisma.MaterialUsageOrderByRelationAggregateInput;
-    qcLog?: Prisma.QcLogOrderByWithRelationInput;
     checkSheet?: Prisma.CheckSheetOrderByWithRelationInput;
+    materialsUsed?: Prisma.MaterialUsageOrderByRelationAggregateInput;
     jobList?: Prisma.JobListOrderByWithRelationInput;
-    routingStep?: Prisma.RoutingStepOrderByWithRelationInput;
     machine?: Prisma.MachineOrderByWithRelationInput;
     operator?: Prisma.UserOrderByWithRelationInput;
+    routingStep?: Prisma.RoutingStepOrderByWithRelationInput;
+    qcLog?: Prisma.QcLogOrderByWithRelationInput;
 };
 export type OperationWhereUniqueInput = Prisma.AtLeast<{
     id?: string;
@@ -261,13 +261,13 @@ export type OperationWhereUniqueInput = Prisma.AtLeast<{
     startedAt?: Prisma.DateTimeNullableFilter<"Operation"> | Date | string | null;
     completedAt?: Prisma.DateTimeNullableFilter<"Operation"> | Date | string | null;
     notes?: Prisma.StringNullableFilter<"Operation"> | string | null;
-    materialsUsed?: Prisma.MaterialUsageListRelationFilter;
-    qcLog?: Prisma.XOR<Prisma.QcLogNullableScalarRelationFilter, Prisma.QcLogWhereInput> | null;
     checkSheet?: Prisma.XOR<Prisma.CheckSheetNullableScalarRelationFilter, Prisma.CheckSheetWhereInput> | null;
+    materialsUsed?: Prisma.MaterialUsageListRelationFilter;
     jobList?: Prisma.XOR<Prisma.JobListScalarRelationFilter, Prisma.JobListWhereInput>;
-    routingStep?: Prisma.XOR<Prisma.RoutingStepScalarRelationFilter, Prisma.RoutingStepWhereInput>;
     machine?: Prisma.XOR<Prisma.MachineNullableScalarRelationFilter, Prisma.MachineWhereInput> | null;
     operator?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null;
+    routingStep?: Prisma.XOR<Prisma.RoutingStepScalarRelationFilter, Prisma.RoutingStepWhereInput>;
+    qcLog?: Prisma.XOR<Prisma.QcLogNullableScalarRelationFilter, Prisma.QcLogWhereInput> | null;
 }, "id" | "jobListId_stepOrder">;
 export type OperationOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
@@ -311,13 +311,13 @@ export type OperationCreateInput = {
     startedAt?: Date | string | null;
     completedAt?: Date | string | null;
     notes?: string | null;
-    materialsUsed?: Prisma.MaterialUsageCreateNestedManyWithoutOperationInput;
-    qcLog?: Prisma.QcLogCreateNestedOneWithoutOperationInput;
     checkSheet?: Prisma.CheckSheetCreateNestedOneWithoutOperationInput;
+    materialsUsed?: Prisma.MaterialUsageCreateNestedManyWithoutOperationInput;
     jobList: Prisma.JobListCreateNestedOneWithoutOperationsInput;
-    routingStep: Prisma.RoutingStepCreateNestedOneWithoutOperationsInput;
     machine?: Prisma.MachineCreateNestedOneWithoutOperationsInput;
     operator?: Prisma.UserCreateNestedOneWithoutAssignedOperationsInput;
+    routingStep: Prisma.RoutingStepCreateNestedOneWithoutOperationsInput;
+    qcLog?: Prisma.QcLogCreateNestedOneWithoutOperationInput;
 };
 export type OperationUncheckedCreateInput = {
     id?: string;
@@ -331,9 +331,9 @@ export type OperationUncheckedCreateInput = {
     startedAt?: Date | string | null;
     completedAt?: Date | string | null;
     notes?: string | null;
+    checkSheet?: Prisma.CheckSheetUncheckedCreateNestedOneWithoutOperationInput;
     materialsUsed?: Prisma.MaterialUsageUncheckedCreateNestedManyWithoutOperationInput;
     qcLog?: Prisma.QcLogUncheckedCreateNestedOneWithoutOperationInput;
-    checkSheet?: Prisma.CheckSheetUncheckedCreateNestedOneWithoutOperationInput;
 };
 export type OperationUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -343,13 +343,13 @@ export type OperationUpdateInput = {
     startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    materialsUsed?: Prisma.MaterialUsageUpdateManyWithoutOperationNestedInput;
-    qcLog?: Prisma.QcLogUpdateOneWithoutOperationNestedInput;
     checkSheet?: Prisma.CheckSheetUpdateOneWithoutOperationNestedInput;
+    materialsUsed?: Prisma.MaterialUsageUpdateManyWithoutOperationNestedInput;
     jobList?: Prisma.JobListUpdateOneRequiredWithoutOperationsNestedInput;
-    routingStep?: Prisma.RoutingStepUpdateOneRequiredWithoutOperationsNestedInput;
     machine?: Prisma.MachineUpdateOneWithoutOperationsNestedInput;
     operator?: Prisma.UserUpdateOneWithoutAssignedOperationsNestedInput;
+    routingStep?: Prisma.RoutingStepUpdateOneRequiredWithoutOperationsNestedInput;
+    qcLog?: Prisma.QcLogUpdateOneWithoutOperationNestedInput;
 };
 export type OperationUncheckedUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -363,9 +363,9 @@ export type OperationUncheckedUpdateInput = {
     startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    checkSheet?: Prisma.CheckSheetUncheckedUpdateOneWithoutOperationNestedInput;
     materialsUsed?: Prisma.MaterialUsageUncheckedUpdateManyWithoutOperationNestedInput;
     qcLog?: Prisma.QcLogUncheckedUpdateOneWithoutOperationNestedInput;
-    checkSheet?: Prisma.CheckSheetUncheckedUpdateOneWithoutOperationNestedInput;
 };
 export type OperationCreateManyInput = {
     id?: string;
@@ -662,12 +662,12 @@ export type OperationCreateWithoutOperatorInput = {
     startedAt?: Date | string | null;
     completedAt?: Date | string | null;
     notes?: string | null;
-    materialsUsed?: Prisma.MaterialUsageCreateNestedManyWithoutOperationInput;
-    qcLog?: Prisma.QcLogCreateNestedOneWithoutOperationInput;
     checkSheet?: Prisma.CheckSheetCreateNestedOneWithoutOperationInput;
+    materialsUsed?: Prisma.MaterialUsageCreateNestedManyWithoutOperationInput;
     jobList: Prisma.JobListCreateNestedOneWithoutOperationsInput;
-    routingStep: Prisma.RoutingStepCreateNestedOneWithoutOperationsInput;
     machine?: Prisma.MachineCreateNestedOneWithoutOperationsInput;
+    routingStep: Prisma.RoutingStepCreateNestedOneWithoutOperationsInput;
+    qcLog?: Prisma.QcLogCreateNestedOneWithoutOperationInput;
 };
 export type OperationUncheckedCreateWithoutOperatorInput = {
     id?: string;
@@ -680,9 +680,9 @@ export type OperationUncheckedCreateWithoutOperatorInput = {
     startedAt?: Date | string | null;
     completedAt?: Date | string | null;
     notes?: string | null;
+    checkSheet?: Prisma.CheckSheetUncheckedCreateNestedOneWithoutOperationInput;
     materialsUsed?: Prisma.MaterialUsageUncheckedCreateNestedManyWithoutOperationInput;
     qcLog?: Prisma.QcLogUncheckedCreateNestedOneWithoutOperationInput;
-    checkSheet?: Prisma.CheckSheetUncheckedCreateNestedOneWithoutOperationInput;
 };
 export type OperationCreateOrConnectWithoutOperatorInput = {
     where: Prisma.OperationWhereUniqueInput;
@@ -729,12 +729,12 @@ export type OperationCreateWithoutRoutingStepInput = {
     startedAt?: Date | string | null;
     completedAt?: Date | string | null;
     notes?: string | null;
-    materialsUsed?: Prisma.MaterialUsageCreateNestedManyWithoutOperationInput;
-    qcLog?: Prisma.QcLogCreateNestedOneWithoutOperationInput;
     checkSheet?: Prisma.CheckSheetCreateNestedOneWithoutOperationInput;
+    materialsUsed?: Prisma.MaterialUsageCreateNestedManyWithoutOperationInput;
     jobList: Prisma.JobListCreateNestedOneWithoutOperationsInput;
     machine?: Prisma.MachineCreateNestedOneWithoutOperationsInput;
     operator?: Prisma.UserCreateNestedOneWithoutAssignedOperationsInput;
+    qcLog?: Prisma.QcLogCreateNestedOneWithoutOperationInput;
 };
 export type OperationUncheckedCreateWithoutRoutingStepInput = {
     id?: string;
@@ -747,9 +747,9 @@ export type OperationUncheckedCreateWithoutRoutingStepInput = {
     startedAt?: Date | string | null;
     completedAt?: Date | string | null;
     notes?: string | null;
+    checkSheet?: Prisma.CheckSheetUncheckedCreateNestedOneWithoutOperationInput;
     materialsUsed?: Prisma.MaterialUsageUncheckedCreateNestedManyWithoutOperationInput;
     qcLog?: Prisma.QcLogUncheckedCreateNestedOneWithoutOperationInput;
-    checkSheet?: Prisma.CheckSheetUncheckedCreateNestedOneWithoutOperationInput;
 };
 export type OperationCreateOrConnectWithoutRoutingStepInput = {
     where: Prisma.OperationWhereUniqueInput;
@@ -780,12 +780,12 @@ export type OperationCreateWithoutMachineInput = {
     startedAt?: Date | string | null;
     completedAt?: Date | string | null;
     notes?: string | null;
-    materialsUsed?: Prisma.MaterialUsageCreateNestedManyWithoutOperationInput;
-    qcLog?: Prisma.QcLogCreateNestedOneWithoutOperationInput;
     checkSheet?: Prisma.CheckSheetCreateNestedOneWithoutOperationInput;
+    materialsUsed?: Prisma.MaterialUsageCreateNestedManyWithoutOperationInput;
     jobList: Prisma.JobListCreateNestedOneWithoutOperationsInput;
-    routingStep: Prisma.RoutingStepCreateNestedOneWithoutOperationsInput;
     operator?: Prisma.UserCreateNestedOneWithoutAssignedOperationsInput;
+    routingStep: Prisma.RoutingStepCreateNestedOneWithoutOperationsInput;
+    qcLog?: Prisma.QcLogCreateNestedOneWithoutOperationInput;
 };
 export type OperationUncheckedCreateWithoutMachineInput = {
     id?: string;
@@ -798,9 +798,9 @@ export type OperationUncheckedCreateWithoutMachineInput = {
     startedAt?: Date | string | null;
     completedAt?: Date | string | null;
     notes?: string | null;
+    checkSheet?: Prisma.CheckSheetUncheckedCreateNestedOneWithoutOperationInput;
     materialsUsed?: Prisma.MaterialUsageUncheckedCreateNestedManyWithoutOperationInput;
     qcLog?: Prisma.QcLogUncheckedCreateNestedOneWithoutOperationInput;
-    checkSheet?: Prisma.CheckSheetUncheckedCreateNestedOneWithoutOperationInput;
 };
 export type OperationCreateOrConnectWithoutMachineInput = {
     where: Prisma.OperationWhereUniqueInput;
@@ -831,12 +831,12 @@ export type OperationCreateWithoutJobListInput = {
     startedAt?: Date | string | null;
     completedAt?: Date | string | null;
     notes?: string | null;
-    materialsUsed?: Prisma.MaterialUsageCreateNestedManyWithoutOperationInput;
-    qcLog?: Prisma.QcLogCreateNestedOneWithoutOperationInput;
     checkSheet?: Prisma.CheckSheetCreateNestedOneWithoutOperationInput;
-    routingStep: Prisma.RoutingStepCreateNestedOneWithoutOperationsInput;
+    materialsUsed?: Prisma.MaterialUsageCreateNestedManyWithoutOperationInput;
     machine?: Prisma.MachineCreateNestedOneWithoutOperationsInput;
     operator?: Prisma.UserCreateNestedOneWithoutAssignedOperationsInput;
+    routingStep: Prisma.RoutingStepCreateNestedOneWithoutOperationsInput;
+    qcLog?: Prisma.QcLogCreateNestedOneWithoutOperationInput;
 };
 export type OperationUncheckedCreateWithoutJobListInput = {
     id?: string;
@@ -849,9 +849,9 @@ export type OperationUncheckedCreateWithoutJobListInput = {
     startedAt?: Date | string | null;
     completedAt?: Date | string | null;
     notes?: string | null;
+    checkSheet?: Prisma.CheckSheetUncheckedCreateNestedOneWithoutOperationInput;
     materialsUsed?: Prisma.MaterialUsageUncheckedCreateNestedManyWithoutOperationInput;
     qcLog?: Prisma.QcLogUncheckedCreateNestedOneWithoutOperationInput;
-    checkSheet?: Prisma.CheckSheetUncheckedCreateNestedOneWithoutOperationInput;
 };
 export type OperationCreateOrConnectWithoutJobListInput = {
     where: Prisma.OperationWhereUniqueInput;
@@ -882,12 +882,12 @@ export type OperationCreateWithoutQcLogInput = {
     startedAt?: Date | string | null;
     completedAt?: Date | string | null;
     notes?: string | null;
-    materialsUsed?: Prisma.MaterialUsageCreateNestedManyWithoutOperationInput;
     checkSheet?: Prisma.CheckSheetCreateNestedOneWithoutOperationInput;
+    materialsUsed?: Prisma.MaterialUsageCreateNestedManyWithoutOperationInput;
     jobList: Prisma.JobListCreateNestedOneWithoutOperationsInput;
-    routingStep: Prisma.RoutingStepCreateNestedOneWithoutOperationsInput;
     machine?: Prisma.MachineCreateNestedOneWithoutOperationsInput;
     operator?: Prisma.UserCreateNestedOneWithoutAssignedOperationsInput;
+    routingStep: Prisma.RoutingStepCreateNestedOneWithoutOperationsInput;
 };
 export type OperationUncheckedCreateWithoutQcLogInput = {
     id?: string;
@@ -901,8 +901,8 @@ export type OperationUncheckedCreateWithoutQcLogInput = {
     startedAt?: Date | string | null;
     completedAt?: Date | string | null;
     notes?: string | null;
-    materialsUsed?: Prisma.MaterialUsageUncheckedCreateNestedManyWithoutOperationInput;
     checkSheet?: Prisma.CheckSheetUncheckedCreateNestedOneWithoutOperationInput;
+    materialsUsed?: Prisma.MaterialUsageUncheckedCreateNestedManyWithoutOperationInput;
 };
 export type OperationCreateOrConnectWithoutQcLogInput = {
     where: Prisma.OperationWhereUniqueInput;
@@ -925,12 +925,12 @@ export type OperationUpdateWithoutQcLogInput = {
     startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    materialsUsed?: Prisma.MaterialUsageUpdateManyWithoutOperationNestedInput;
     checkSheet?: Prisma.CheckSheetUpdateOneWithoutOperationNestedInput;
+    materialsUsed?: Prisma.MaterialUsageUpdateManyWithoutOperationNestedInput;
     jobList?: Prisma.JobListUpdateOneRequiredWithoutOperationsNestedInput;
-    routingStep?: Prisma.RoutingStepUpdateOneRequiredWithoutOperationsNestedInput;
     machine?: Prisma.MachineUpdateOneWithoutOperationsNestedInput;
     operator?: Prisma.UserUpdateOneWithoutAssignedOperationsNestedInput;
+    routingStep?: Prisma.RoutingStepUpdateOneRequiredWithoutOperationsNestedInput;
 };
 export type OperationUncheckedUpdateWithoutQcLogInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -944,8 +944,8 @@ export type OperationUncheckedUpdateWithoutQcLogInput = {
     startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    materialsUsed?: Prisma.MaterialUsageUncheckedUpdateManyWithoutOperationNestedInput;
     checkSheet?: Prisma.CheckSheetUncheckedUpdateOneWithoutOperationNestedInput;
+    materialsUsed?: Prisma.MaterialUsageUncheckedUpdateManyWithoutOperationNestedInput;
 };
 export type OperationCreateWithoutCheckSheetInput = {
     id?: string;
@@ -956,11 +956,11 @@ export type OperationCreateWithoutCheckSheetInput = {
     completedAt?: Date | string | null;
     notes?: string | null;
     materialsUsed?: Prisma.MaterialUsageCreateNestedManyWithoutOperationInput;
-    qcLog?: Prisma.QcLogCreateNestedOneWithoutOperationInput;
     jobList: Prisma.JobListCreateNestedOneWithoutOperationsInput;
-    routingStep: Prisma.RoutingStepCreateNestedOneWithoutOperationsInput;
     machine?: Prisma.MachineCreateNestedOneWithoutOperationsInput;
     operator?: Prisma.UserCreateNestedOneWithoutAssignedOperationsInput;
+    routingStep: Prisma.RoutingStepCreateNestedOneWithoutOperationsInput;
+    qcLog?: Prisma.QcLogCreateNestedOneWithoutOperationInput;
 };
 export type OperationUncheckedCreateWithoutCheckSheetInput = {
     id?: string;
@@ -999,11 +999,11 @@ export type OperationUpdateWithoutCheckSheetInput = {
     completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     materialsUsed?: Prisma.MaterialUsageUpdateManyWithoutOperationNestedInput;
-    qcLog?: Prisma.QcLogUpdateOneWithoutOperationNestedInput;
     jobList?: Prisma.JobListUpdateOneRequiredWithoutOperationsNestedInput;
-    routingStep?: Prisma.RoutingStepUpdateOneRequiredWithoutOperationsNestedInput;
     machine?: Prisma.MachineUpdateOneWithoutOperationsNestedInput;
     operator?: Prisma.UserUpdateOneWithoutAssignedOperationsNestedInput;
+    routingStep?: Prisma.RoutingStepUpdateOneRequiredWithoutOperationsNestedInput;
+    qcLog?: Prisma.QcLogUpdateOneWithoutOperationNestedInput;
 };
 export type OperationUncheckedUpdateWithoutCheckSheetInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1028,12 +1028,12 @@ export type OperationCreateWithoutMaterialsUsedInput = {
     startedAt?: Date | string | null;
     completedAt?: Date | string | null;
     notes?: string | null;
-    qcLog?: Prisma.QcLogCreateNestedOneWithoutOperationInput;
     checkSheet?: Prisma.CheckSheetCreateNestedOneWithoutOperationInput;
     jobList: Prisma.JobListCreateNestedOneWithoutOperationsInput;
-    routingStep: Prisma.RoutingStepCreateNestedOneWithoutOperationsInput;
     machine?: Prisma.MachineCreateNestedOneWithoutOperationsInput;
     operator?: Prisma.UserCreateNestedOneWithoutAssignedOperationsInput;
+    routingStep: Prisma.RoutingStepCreateNestedOneWithoutOperationsInput;
+    qcLog?: Prisma.QcLogCreateNestedOneWithoutOperationInput;
 };
 export type OperationUncheckedCreateWithoutMaterialsUsedInput = {
     id?: string;
@@ -1047,8 +1047,8 @@ export type OperationUncheckedCreateWithoutMaterialsUsedInput = {
     startedAt?: Date | string | null;
     completedAt?: Date | string | null;
     notes?: string | null;
-    qcLog?: Prisma.QcLogUncheckedCreateNestedOneWithoutOperationInput;
     checkSheet?: Prisma.CheckSheetUncheckedCreateNestedOneWithoutOperationInput;
+    qcLog?: Prisma.QcLogUncheckedCreateNestedOneWithoutOperationInput;
 };
 export type OperationCreateOrConnectWithoutMaterialsUsedInput = {
     where: Prisma.OperationWhereUniqueInput;
@@ -1071,12 +1071,12 @@ export type OperationUpdateWithoutMaterialsUsedInput = {
     startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    qcLog?: Prisma.QcLogUpdateOneWithoutOperationNestedInput;
     checkSheet?: Prisma.CheckSheetUpdateOneWithoutOperationNestedInput;
     jobList?: Prisma.JobListUpdateOneRequiredWithoutOperationsNestedInput;
-    routingStep?: Prisma.RoutingStepUpdateOneRequiredWithoutOperationsNestedInput;
     machine?: Prisma.MachineUpdateOneWithoutOperationsNestedInput;
     operator?: Prisma.UserUpdateOneWithoutAssignedOperationsNestedInput;
+    routingStep?: Prisma.RoutingStepUpdateOneRequiredWithoutOperationsNestedInput;
+    qcLog?: Prisma.QcLogUpdateOneWithoutOperationNestedInput;
 };
 export type OperationUncheckedUpdateWithoutMaterialsUsedInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1090,8 +1090,8 @@ export type OperationUncheckedUpdateWithoutMaterialsUsedInput = {
     startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    qcLog?: Prisma.QcLogUncheckedUpdateOneWithoutOperationNestedInput;
     checkSheet?: Prisma.CheckSheetUncheckedUpdateOneWithoutOperationNestedInput;
+    qcLog?: Prisma.QcLogUncheckedUpdateOneWithoutOperationNestedInput;
 };
 export type OperationCreateManyOperatorInput = {
     id?: string;
@@ -1113,12 +1113,12 @@ export type OperationUpdateWithoutOperatorInput = {
     startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    materialsUsed?: Prisma.MaterialUsageUpdateManyWithoutOperationNestedInput;
-    qcLog?: Prisma.QcLogUpdateOneWithoutOperationNestedInput;
     checkSheet?: Prisma.CheckSheetUpdateOneWithoutOperationNestedInput;
+    materialsUsed?: Prisma.MaterialUsageUpdateManyWithoutOperationNestedInput;
     jobList?: Prisma.JobListUpdateOneRequiredWithoutOperationsNestedInput;
-    routingStep?: Prisma.RoutingStepUpdateOneRequiredWithoutOperationsNestedInput;
     machine?: Prisma.MachineUpdateOneWithoutOperationsNestedInput;
+    routingStep?: Prisma.RoutingStepUpdateOneRequiredWithoutOperationsNestedInput;
+    qcLog?: Prisma.QcLogUpdateOneWithoutOperationNestedInput;
 };
 export type OperationUncheckedUpdateWithoutOperatorInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1131,9 +1131,9 @@ export type OperationUncheckedUpdateWithoutOperatorInput = {
     startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    checkSheet?: Prisma.CheckSheetUncheckedUpdateOneWithoutOperationNestedInput;
     materialsUsed?: Prisma.MaterialUsageUncheckedUpdateManyWithoutOperationNestedInput;
     qcLog?: Prisma.QcLogUncheckedUpdateOneWithoutOperationNestedInput;
-    checkSheet?: Prisma.CheckSheetUncheckedUpdateOneWithoutOperationNestedInput;
 };
 export type OperationUncheckedUpdateManyWithoutOperatorInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1167,12 +1167,12 @@ export type OperationUpdateWithoutRoutingStepInput = {
     startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    materialsUsed?: Prisma.MaterialUsageUpdateManyWithoutOperationNestedInput;
-    qcLog?: Prisma.QcLogUpdateOneWithoutOperationNestedInput;
     checkSheet?: Prisma.CheckSheetUpdateOneWithoutOperationNestedInput;
+    materialsUsed?: Prisma.MaterialUsageUpdateManyWithoutOperationNestedInput;
     jobList?: Prisma.JobListUpdateOneRequiredWithoutOperationsNestedInput;
     machine?: Prisma.MachineUpdateOneWithoutOperationsNestedInput;
     operator?: Prisma.UserUpdateOneWithoutAssignedOperationsNestedInput;
+    qcLog?: Prisma.QcLogUpdateOneWithoutOperationNestedInput;
 };
 export type OperationUncheckedUpdateWithoutRoutingStepInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1185,9 +1185,9 @@ export type OperationUncheckedUpdateWithoutRoutingStepInput = {
     startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    checkSheet?: Prisma.CheckSheetUncheckedUpdateOneWithoutOperationNestedInput;
     materialsUsed?: Prisma.MaterialUsageUncheckedUpdateManyWithoutOperationNestedInput;
     qcLog?: Prisma.QcLogUncheckedUpdateOneWithoutOperationNestedInput;
-    checkSheet?: Prisma.CheckSheetUncheckedUpdateOneWithoutOperationNestedInput;
 };
 export type OperationUncheckedUpdateManyWithoutRoutingStepInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1221,12 +1221,12 @@ export type OperationUpdateWithoutMachineInput = {
     startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    materialsUsed?: Prisma.MaterialUsageUpdateManyWithoutOperationNestedInput;
-    qcLog?: Prisma.QcLogUpdateOneWithoutOperationNestedInput;
     checkSheet?: Prisma.CheckSheetUpdateOneWithoutOperationNestedInput;
+    materialsUsed?: Prisma.MaterialUsageUpdateManyWithoutOperationNestedInput;
     jobList?: Prisma.JobListUpdateOneRequiredWithoutOperationsNestedInput;
-    routingStep?: Prisma.RoutingStepUpdateOneRequiredWithoutOperationsNestedInput;
     operator?: Prisma.UserUpdateOneWithoutAssignedOperationsNestedInput;
+    routingStep?: Prisma.RoutingStepUpdateOneRequiredWithoutOperationsNestedInput;
+    qcLog?: Prisma.QcLogUpdateOneWithoutOperationNestedInput;
 };
 export type OperationUncheckedUpdateWithoutMachineInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1239,9 +1239,9 @@ export type OperationUncheckedUpdateWithoutMachineInput = {
     startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    checkSheet?: Prisma.CheckSheetUncheckedUpdateOneWithoutOperationNestedInput;
     materialsUsed?: Prisma.MaterialUsageUncheckedUpdateManyWithoutOperationNestedInput;
     qcLog?: Prisma.QcLogUncheckedUpdateOneWithoutOperationNestedInput;
-    checkSheet?: Prisma.CheckSheetUncheckedUpdateOneWithoutOperationNestedInput;
 };
 export type OperationUncheckedUpdateManyWithoutMachineInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1275,12 +1275,12 @@ export type OperationUpdateWithoutJobListInput = {
     startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    materialsUsed?: Prisma.MaterialUsageUpdateManyWithoutOperationNestedInput;
-    qcLog?: Prisma.QcLogUpdateOneWithoutOperationNestedInput;
     checkSheet?: Prisma.CheckSheetUpdateOneWithoutOperationNestedInput;
-    routingStep?: Prisma.RoutingStepUpdateOneRequiredWithoutOperationsNestedInput;
+    materialsUsed?: Prisma.MaterialUsageUpdateManyWithoutOperationNestedInput;
     machine?: Prisma.MachineUpdateOneWithoutOperationsNestedInput;
     operator?: Prisma.UserUpdateOneWithoutAssignedOperationsNestedInput;
+    routingStep?: Prisma.RoutingStepUpdateOneRequiredWithoutOperationsNestedInput;
+    qcLog?: Prisma.QcLogUpdateOneWithoutOperationNestedInput;
 };
 export type OperationUncheckedUpdateWithoutJobListInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1293,9 +1293,9 @@ export type OperationUncheckedUpdateWithoutJobListInput = {
     startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
     notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    checkSheet?: Prisma.CheckSheetUncheckedUpdateOneWithoutOperationNestedInput;
     materialsUsed?: Prisma.MaterialUsageUncheckedUpdateManyWithoutOperationNestedInput;
     qcLog?: Prisma.QcLogUncheckedUpdateOneWithoutOperationNestedInput;
-    checkSheet?: Prisma.CheckSheetUncheckedUpdateOneWithoutOperationNestedInput;
 };
 export type OperationUncheckedUpdateManyWithoutJobListInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1345,13 +1345,13 @@ export type OperationSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
     startedAt?: boolean;
     completedAt?: boolean;
     notes?: boolean;
-    materialsUsed?: boolean | Prisma.Operation$materialsUsedArgs<ExtArgs>;
-    qcLog?: boolean | Prisma.Operation$qcLogArgs<ExtArgs>;
     checkSheet?: boolean | Prisma.Operation$checkSheetArgs<ExtArgs>;
+    materialsUsed?: boolean | Prisma.Operation$materialsUsedArgs<ExtArgs>;
     jobList?: boolean | Prisma.JobListDefaultArgs<ExtArgs>;
-    routingStep?: boolean | Prisma.RoutingStepDefaultArgs<ExtArgs>;
     machine?: boolean | Prisma.Operation$machineArgs<ExtArgs>;
     operator?: boolean | Prisma.Operation$operatorArgs<ExtArgs>;
+    routingStep?: boolean | Prisma.RoutingStepDefaultArgs<ExtArgs>;
+    qcLog?: boolean | Prisma.Operation$qcLogArgs<ExtArgs>;
     _count?: boolean | Prisma.OperationCountOutputTypeDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["operation"]>;
 export type OperationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1367,9 +1367,9 @@ export type OperationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
     completedAt?: boolean;
     notes?: boolean;
     jobList?: boolean | Prisma.JobListDefaultArgs<ExtArgs>;
-    routingStep?: boolean | Prisma.RoutingStepDefaultArgs<ExtArgs>;
     machine?: boolean | Prisma.Operation$machineArgs<ExtArgs>;
     operator?: boolean | Prisma.Operation$operatorArgs<ExtArgs>;
+    routingStep?: boolean | Prisma.RoutingStepDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["operation"]>;
 export type OperationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
@@ -1384,9 +1384,9 @@ export type OperationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
     completedAt?: boolean;
     notes?: boolean;
     jobList?: boolean | Prisma.JobListDefaultArgs<ExtArgs>;
-    routingStep?: boolean | Prisma.RoutingStepDefaultArgs<ExtArgs>;
     machine?: boolean | Prisma.Operation$machineArgs<ExtArgs>;
     operator?: boolean | Prisma.Operation$operatorArgs<ExtArgs>;
+    routingStep?: boolean | Prisma.RoutingStepDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["operation"]>;
 export type OperationSelectScalar = {
     id?: boolean;
@@ -1403,37 +1403,37 @@ export type OperationSelectScalar = {
 };
 export type OperationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "jobListId" | "routingStepId" | "stepOrder" | "operationName" | "machineId" | "operatorId" | "status" | "startedAt" | "completedAt" | "notes", ExtArgs["result"]["operation"]>;
 export type OperationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    materialsUsed?: boolean | Prisma.Operation$materialsUsedArgs<ExtArgs>;
-    qcLog?: boolean | Prisma.Operation$qcLogArgs<ExtArgs>;
     checkSheet?: boolean | Prisma.Operation$checkSheetArgs<ExtArgs>;
+    materialsUsed?: boolean | Prisma.Operation$materialsUsedArgs<ExtArgs>;
     jobList?: boolean | Prisma.JobListDefaultArgs<ExtArgs>;
-    routingStep?: boolean | Prisma.RoutingStepDefaultArgs<ExtArgs>;
     machine?: boolean | Prisma.Operation$machineArgs<ExtArgs>;
     operator?: boolean | Prisma.Operation$operatorArgs<ExtArgs>;
+    routingStep?: boolean | Prisma.RoutingStepDefaultArgs<ExtArgs>;
+    qcLog?: boolean | Prisma.Operation$qcLogArgs<ExtArgs>;
     _count?: boolean | Prisma.OperationCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type OperationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     jobList?: boolean | Prisma.JobListDefaultArgs<ExtArgs>;
-    routingStep?: boolean | Prisma.RoutingStepDefaultArgs<ExtArgs>;
     machine?: boolean | Prisma.Operation$machineArgs<ExtArgs>;
     operator?: boolean | Prisma.Operation$operatorArgs<ExtArgs>;
+    routingStep?: boolean | Prisma.RoutingStepDefaultArgs<ExtArgs>;
 };
 export type OperationIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     jobList?: boolean | Prisma.JobListDefaultArgs<ExtArgs>;
-    routingStep?: boolean | Prisma.RoutingStepDefaultArgs<ExtArgs>;
     machine?: boolean | Prisma.Operation$machineArgs<ExtArgs>;
     operator?: boolean | Prisma.Operation$operatorArgs<ExtArgs>;
+    routingStep?: boolean | Prisma.RoutingStepDefaultArgs<ExtArgs>;
 };
 export type $OperationPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     name: "Operation";
     objects: {
-        materialsUsed: Prisma.$MaterialUsagePayload<ExtArgs>[];
-        qcLog: Prisma.$QcLogPayload<ExtArgs> | null;
         checkSheet: Prisma.$CheckSheetPayload<ExtArgs> | null;
+        materialsUsed: Prisma.$MaterialUsagePayload<ExtArgs>[];
         jobList: Prisma.$JobListPayload<ExtArgs>;
-        routingStep: Prisma.$RoutingStepPayload<ExtArgs>;
         machine: Prisma.$MachinePayload<ExtArgs> | null;
         operator: Prisma.$UserPayload<ExtArgs> | null;
+        routingStep: Prisma.$RoutingStepPayload<ExtArgs>;
+        qcLog: Prisma.$QcLogPayload<ExtArgs> | null;
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         id: string;
@@ -1776,13 +1776,13 @@ export interface OperationDelegate<ExtArgs extends runtime.Types.Extensions.Inte
  */
 export interface Prisma__OperationClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise";
-    materialsUsed<T extends Prisma.Operation$materialsUsedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Operation$materialsUsedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MaterialUsagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
-    qcLog<T extends Prisma.Operation$qcLogArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Operation$qcLogArgs<ExtArgs>>): Prisma.Prisma__QcLogClient<runtime.Types.Result.GetResult<Prisma.$QcLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
     checkSheet<T extends Prisma.Operation$checkSheetArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Operation$checkSheetArgs<ExtArgs>>): Prisma.Prisma__CheckSheetClient<runtime.Types.Result.GetResult<Prisma.$CheckSheetPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    materialsUsed<T extends Prisma.Operation$materialsUsedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Operation$materialsUsedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MaterialUsagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     jobList<T extends Prisma.JobListDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobListDefaultArgs<ExtArgs>>): Prisma.Prisma__JobListClient<runtime.Types.Result.GetResult<Prisma.$JobListPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
-    routingStep<T extends Prisma.RoutingStepDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RoutingStepDefaultArgs<ExtArgs>>): Prisma.Prisma__RoutingStepClient<runtime.Types.Result.GetResult<Prisma.$RoutingStepPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
     machine<T extends Prisma.Operation$machineArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Operation$machineArgs<ExtArgs>>): Prisma.Prisma__MachineClient<runtime.Types.Result.GetResult<Prisma.$MachinePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
     operator<T extends Prisma.Operation$operatorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Operation$operatorArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    routingStep<T extends Prisma.RoutingStepDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RoutingStepDefaultArgs<ExtArgs>>): Prisma.Prisma__RoutingStepClient<runtime.Types.Result.GetResult<Prisma.$RoutingStepPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
+    qcLog<T extends Prisma.Operation$qcLogArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Operation$qcLogArgs<ExtArgs>>): Prisma.Prisma__QcLogClient<runtime.Types.Result.GetResult<Prisma.$QcLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2203,6 +2203,24 @@ export type OperationDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Int
     limit?: number;
 };
 /**
+ * Operation.checkSheet
+ */
+export type Operation$checkSheetArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CheckSheet
+     */
+    select?: Prisma.CheckSheetSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CheckSheet
+     */
+    omit?: Prisma.CheckSheetOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.CheckSheetInclude<ExtArgs> | null;
+    where?: Prisma.CheckSheetWhereInput;
+};
+/**
  * Operation.materialsUsed
  */
 export type Operation$materialsUsedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2224,42 +2242,6 @@ export type Operation$materialsUsedArgs<ExtArgs extends runtime.Types.Extensions
     take?: number;
     skip?: number;
     distinct?: Prisma.MaterialUsageScalarFieldEnum | Prisma.MaterialUsageScalarFieldEnum[];
-};
-/**
- * Operation.qcLog
- */
-export type Operation$qcLogArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the QcLog
-     */
-    select?: Prisma.QcLogSelect<ExtArgs> | null;
-    /**
-     * Omit specific fields from the QcLog
-     */
-    omit?: Prisma.QcLogOmit<ExtArgs> | null;
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: Prisma.QcLogInclude<ExtArgs> | null;
-    where?: Prisma.QcLogWhereInput;
-};
-/**
- * Operation.checkSheet
- */
-export type Operation$checkSheetArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CheckSheet
-     */
-    select?: Prisma.CheckSheetSelect<ExtArgs> | null;
-    /**
-     * Omit specific fields from the CheckSheet
-     */
-    omit?: Prisma.CheckSheetOmit<ExtArgs> | null;
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: Prisma.CheckSheetInclude<ExtArgs> | null;
-    where?: Prisma.CheckSheetWhereInput;
 };
 /**
  * Operation.machine
@@ -2296,6 +2278,24 @@ export type Operation$operatorArgs<ExtArgs extends runtime.Types.Extensions.Inte
      */
     include?: Prisma.UserInclude<ExtArgs> | null;
     where?: Prisma.UserWhereInput;
+};
+/**
+ * Operation.qcLog
+ */
+export type Operation$qcLogArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QcLog
+     */
+    select?: Prisma.QcLogSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the QcLog
+     */
+    omit?: Prisma.QcLogOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.QcLogInclude<ExtArgs> | null;
+    where?: Prisma.QcLogWhereInput;
 };
 /**
  * Operation without action

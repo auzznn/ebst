@@ -179,17 +179,18 @@ export type UserWhereInput = {
     username?: Prisma.StringNullableFilter<"User"> | string | null;
     displayUsername?: Prisma.StringNullableFilter<"User"> | string | null;
     role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role;
-    sessions?: Prisma.SessionListRelationFilter;
     accounts?: Prisma.AccountListRelationFilter;
-    messages?: Prisma.MessageListRelationFilter;
-    members?: Prisma.ChannelMemberListRelationFilter;
-    journalEntries?: Prisma.JournalEntryListRelationFilter;
     businessDocuments?: Prisma.BusinessDocumentListRelationFilter;
+    members?: Prisma.ChannelMemberListRelationFilter;
     invoices?: Prisma.InvoiceListRelationFilter;
     createdJobCards?: Prisma.JobCardListRelationFilter;
+    journalEntries?: Prisma.JournalEntryListRelationFilter;
+    messages?: Prisma.MessageListRelationFilter;
     assignedOperations?: Prisma.OperationListRelationFilter;
     qcLogs?: Prisma.QcLogListRelationFilter;
+    sessions?: Prisma.SessionListRelationFilter;
     stockAdjustments?: Prisma.StockAdjustmentListRelationFilter;
+    stockLedgers?: Prisma.StockLedgerListRelationFilter;
 };
 export type UserOrderByWithRelationInput = {
     id?: Prisma.SortOrder;
@@ -202,17 +203,18 @@ export type UserOrderByWithRelationInput = {
     username?: Prisma.SortOrderInput | Prisma.SortOrder;
     displayUsername?: Prisma.SortOrderInput | Prisma.SortOrder;
     role?: Prisma.SortOrder;
-    sessions?: Prisma.SessionOrderByRelationAggregateInput;
     accounts?: Prisma.AccountOrderByRelationAggregateInput;
-    messages?: Prisma.MessageOrderByRelationAggregateInput;
-    members?: Prisma.ChannelMemberOrderByRelationAggregateInput;
-    journalEntries?: Prisma.JournalEntryOrderByRelationAggregateInput;
     businessDocuments?: Prisma.BusinessDocumentOrderByRelationAggregateInput;
+    members?: Prisma.ChannelMemberOrderByRelationAggregateInput;
     invoices?: Prisma.InvoiceOrderByRelationAggregateInput;
     createdJobCards?: Prisma.JobCardOrderByRelationAggregateInput;
+    journalEntries?: Prisma.JournalEntryOrderByRelationAggregateInput;
+    messages?: Prisma.MessageOrderByRelationAggregateInput;
     assignedOperations?: Prisma.OperationOrderByRelationAggregateInput;
     qcLogs?: Prisma.QcLogOrderByRelationAggregateInput;
+    sessions?: Prisma.SessionOrderByRelationAggregateInput;
     stockAdjustments?: Prisma.StockAdjustmentOrderByRelationAggregateInput;
+    stockLedgers?: Prisma.StockLedgerOrderByRelationAggregateInput;
 };
 export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: string;
@@ -228,18 +230,19 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
     updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string;
     displayUsername?: Prisma.StringNullableFilter<"User"> | string | null;
     role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role;
-    sessions?: Prisma.SessionListRelationFilter;
     accounts?: Prisma.AccountListRelationFilter;
-    messages?: Prisma.MessageListRelationFilter;
-    members?: Prisma.ChannelMemberListRelationFilter;
-    journalEntries?: Prisma.JournalEntryListRelationFilter;
     businessDocuments?: Prisma.BusinessDocumentListRelationFilter;
+    members?: Prisma.ChannelMemberListRelationFilter;
     invoices?: Prisma.InvoiceListRelationFilter;
     createdJobCards?: Prisma.JobCardListRelationFilter;
+    journalEntries?: Prisma.JournalEntryListRelationFilter;
+    messages?: Prisma.MessageListRelationFilter;
     assignedOperations?: Prisma.OperationListRelationFilter;
     qcLogs?: Prisma.QcLogListRelationFilter;
+    sessions?: Prisma.SessionListRelationFilter;
     stockAdjustments?: Prisma.StockAdjustmentListRelationFilter;
-}, "id" | "username" | "email">;
+    stockLedgers?: Prisma.StockLedgerListRelationFilter;
+}, "id" | "email" | "username">;
 export type UserOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
     name?: Prisma.SortOrder;
@@ -281,17 +284,18 @@ export type UserCreateInput = {
     username?: string | null;
     displayUsername?: string | null;
     role?: $Enums.Role;
-    sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
     accounts?: Prisma.AccountCreateNestedManyWithoutUserInput;
-    messages?: Prisma.MessageCreateNestedManyWithoutSenderInput;
-    members?: Prisma.ChannelMemberCreateNestedManyWithoutUserInput;
-    journalEntries?: Prisma.JournalEntryCreateNestedManyWithoutCreatedByInput;
     businessDocuments?: Prisma.BusinessDocumentCreateNestedManyWithoutUserInput;
+    members?: Prisma.ChannelMemberCreateNestedManyWithoutUserInput;
     invoices?: Prisma.InvoiceCreateNestedManyWithoutCreatedByInput;
     createdJobCards?: Prisma.JobCardCreateNestedManyWithoutCreatedByInput;
+    journalEntries?: Prisma.JournalEntryCreateNestedManyWithoutCreatedByInput;
+    messages?: Prisma.MessageCreateNestedManyWithoutSenderInput;
     assignedOperations?: Prisma.OperationCreateNestedManyWithoutOperatorInput;
     qcLogs?: Prisma.QcLogCreateNestedManyWithoutInspectorInput;
+    sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
     stockAdjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutAdjustedByInput;
+    stockLedgers?: Prisma.StockLedgerCreateNestedManyWithoutUserInput;
 };
 export type UserUncheckedCreateInput = {
     id: string;
@@ -304,17 +308,18 @@ export type UserUncheckedCreateInput = {
     username?: string | null;
     displayUsername?: string | null;
     role?: $Enums.Role;
-    sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
     accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput;
-    messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput;
-    members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutUserInput;
-    journalEntries?: Prisma.JournalEntryUncheckedCreateNestedManyWithoutCreatedByInput;
     businessDocuments?: Prisma.BusinessDocumentUncheckedCreateNestedManyWithoutUserInput;
+    members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutUserInput;
     invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCreatedByInput;
     createdJobCards?: Prisma.JobCardUncheckedCreateNestedManyWithoutCreatedByInput;
+    journalEntries?: Prisma.JournalEntryUncheckedCreateNestedManyWithoutCreatedByInput;
+    messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput;
     assignedOperations?: Prisma.OperationUncheckedCreateNestedManyWithoutOperatorInput;
     qcLogs?: Prisma.QcLogUncheckedCreateNestedManyWithoutInspectorInput;
+    sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
     stockAdjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutAdjustedByInput;
+    stockLedgers?: Prisma.StockLedgerUncheckedCreateNestedManyWithoutUserInput;
 };
 export type UserUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -327,17 +332,18 @@ export type UserUpdateInput = {
     username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-    sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
     accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput;
-    messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput;
-    members?: Prisma.ChannelMemberUpdateManyWithoutUserNestedInput;
-    journalEntries?: Prisma.JournalEntryUpdateManyWithoutCreatedByNestedInput;
     businessDocuments?: Prisma.BusinessDocumentUpdateManyWithoutUserNestedInput;
+    members?: Prisma.ChannelMemberUpdateManyWithoutUserNestedInput;
     invoices?: Prisma.InvoiceUpdateManyWithoutCreatedByNestedInput;
     createdJobCards?: Prisma.JobCardUpdateManyWithoutCreatedByNestedInput;
+    journalEntries?: Prisma.JournalEntryUpdateManyWithoutCreatedByNestedInput;
+    messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput;
     assignedOperations?: Prisma.OperationUpdateManyWithoutOperatorNestedInput;
     qcLogs?: Prisma.QcLogUpdateManyWithoutInspectorNestedInput;
+    sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
     stockAdjustments?: Prisma.StockAdjustmentUpdateManyWithoutAdjustedByNestedInput;
+    stockLedgers?: Prisma.StockLedgerUpdateManyWithoutUserNestedInput;
 };
 export type UserUncheckedUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -350,17 +356,18 @@ export type UserUncheckedUpdateInput = {
     username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-    sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
     accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput;
-    messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput;
-    members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutUserNestedInput;
-    journalEntries?: Prisma.JournalEntryUncheckedUpdateManyWithoutCreatedByNestedInput;
     businessDocuments?: Prisma.BusinessDocumentUncheckedUpdateManyWithoutUserNestedInput;
+    members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutUserNestedInput;
     invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCreatedByNestedInput;
     createdJobCards?: Prisma.JobCardUncheckedUpdateManyWithoutCreatedByNestedInput;
+    journalEntries?: Prisma.JournalEntryUncheckedUpdateManyWithoutCreatedByNestedInput;
+    messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput;
     assignedOperations?: Prisma.OperationUncheckedUpdateManyWithoutOperatorNestedInput;
     qcLogs?: Prisma.QcLogUncheckedUpdateManyWithoutInspectorNestedInput;
+    sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
     stockAdjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutAdjustedByNestedInput;
+    stockLedgers?: Prisma.StockLedgerUncheckedUpdateManyWithoutUserNestedInput;
 };
 export type UserCreateManyInput = {
     id: string;
@@ -591,6 +598,20 @@ export type UserUpdateOneRequiredWithoutStockAdjustmentsNestedInput = {
     connect?: Prisma.UserWhereUniqueInput;
     update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutStockAdjustmentsInput, Prisma.UserUpdateWithoutStockAdjustmentsInput>, Prisma.UserUncheckedUpdateWithoutStockAdjustmentsInput>;
 };
+export type UserCreateNestedOneWithoutStockLedgersInput = {
+    create?: Prisma.XOR<Prisma.UserCreateWithoutStockLedgersInput, Prisma.UserUncheckedCreateWithoutStockLedgersInput>;
+    connectOrCreate?: Prisma.UserCreateOrConnectWithoutStockLedgersInput;
+    connect?: Prisma.UserWhereUniqueInput;
+};
+export type UserUpdateOneWithoutStockLedgersNestedInput = {
+    create?: Prisma.XOR<Prisma.UserCreateWithoutStockLedgersInput, Prisma.UserUncheckedCreateWithoutStockLedgersInput>;
+    connectOrCreate?: Prisma.UserCreateOrConnectWithoutStockLedgersInput;
+    upsert?: Prisma.UserUpsertWithoutStockLedgersInput;
+    disconnect?: Prisma.UserWhereInput | boolean;
+    delete?: Prisma.UserWhereInput | boolean;
+    connect?: Prisma.UserWhereUniqueInput;
+    update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutStockLedgersInput, Prisma.UserUpdateWithoutStockLedgersInput>, Prisma.UserUncheckedUpdateWithoutStockLedgersInput>;
+};
 export type UserCreateWithoutSessionsInput = {
     id: string;
     name: string;
@@ -603,15 +624,16 @@ export type UserCreateWithoutSessionsInput = {
     displayUsername?: string | null;
     role?: $Enums.Role;
     accounts?: Prisma.AccountCreateNestedManyWithoutUserInput;
-    messages?: Prisma.MessageCreateNestedManyWithoutSenderInput;
-    members?: Prisma.ChannelMemberCreateNestedManyWithoutUserInput;
-    journalEntries?: Prisma.JournalEntryCreateNestedManyWithoutCreatedByInput;
     businessDocuments?: Prisma.BusinessDocumentCreateNestedManyWithoutUserInput;
+    members?: Prisma.ChannelMemberCreateNestedManyWithoutUserInput;
     invoices?: Prisma.InvoiceCreateNestedManyWithoutCreatedByInput;
     createdJobCards?: Prisma.JobCardCreateNestedManyWithoutCreatedByInput;
+    journalEntries?: Prisma.JournalEntryCreateNestedManyWithoutCreatedByInput;
+    messages?: Prisma.MessageCreateNestedManyWithoutSenderInput;
     assignedOperations?: Prisma.OperationCreateNestedManyWithoutOperatorInput;
     qcLogs?: Prisma.QcLogCreateNestedManyWithoutInspectorInput;
     stockAdjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutAdjustedByInput;
+    stockLedgers?: Prisma.StockLedgerCreateNestedManyWithoutUserInput;
 };
 export type UserUncheckedCreateWithoutSessionsInput = {
     id: string;
@@ -625,15 +647,16 @@ export type UserUncheckedCreateWithoutSessionsInput = {
     displayUsername?: string | null;
     role?: $Enums.Role;
     accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput;
-    messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput;
-    members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutUserInput;
-    journalEntries?: Prisma.JournalEntryUncheckedCreateNestedManyWithoutCreatedByInput;
     businessDocuments?: Prisma.BusinessDocumentUncheckedCreateNestedManyWithoutUserInput;
+    members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutUserInput;
     invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCreatedByInput;
     createdJobCards?: Prisma.JobCardUncheckedCreateNestedManyWithoutCreatedByInput;
+    journalEntries?: Prisma.JournalEntryUncheckedCreateNestedManyWithoutCreatedByInput;
+    messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput;
     assignedOperations?: Prisma.OperationUncheckedCreateNestedManyWithoutOperatorInput;
     qcLogs?: Prisma.QcLogUncheckedCreateNestedManyWithoutInspectorInput;
     stockAdjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutAdjustedByInput;
+    stockLedgers?: Prisma.StockLedgerUncheckedCreateNestedManyWithoutUserInput;
 };
 export type UserCreateOrConnectWithoutSessionsInput = {
     where: Prisma.UserWhereUniqueInput;
@@ -660,15 +683,16 @@ export type UserUpdateWithoutSessionsInput = {
     displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
     accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput;
-    messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput;
-    members?: Prisma.ChannelMemberUpdateManyWithoutUserNestedInput;
-    journalEntries?: Prisma.JournalEntryUpdateManyWithoutCreatedByNestedInput;
     businessDocuments?: Prisma.BusinessDocumentUpdateManyWithoutUserNestedInput;
+    members?: Prisma.ChannelMemberUpdateManyWithoutUserNestedInput;
     invoices?: Prisma.InvoiceUpdateManyWithoutCreatedByNestedInput;
     createdJobCards?: Prisma.JobCardUpdateManyWithoutCreatedByNestedInput;
+    journalEntries?: Prisma.JournalEntryUpdateManyWithoutCreatedByNestedInput;
+    messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput;
     assignedOperations?: Prisma.OperationUpdateManyWithoutOperatorNestedInput;
     qcLogs?: Prisma.QcLogUpdateManyWithoutInspectorNestedInput;
     stockAdjustments?: Prisma.StockAdjustmentUpdateManyWithoutAdjustedByNestedInput;
+    stockLedgers?: Prisma.StockLedgerUpdateManyWithoutUserNestedInput;
 };
 export type UserUncheckedUpdateWithoutSessionsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -682,15 +706,16 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
     displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
     accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput;
-    messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput;
-    members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutUserNestedInput;
-    journalEntries?: Prisma.JournalEntryUncheckedUpdateManyWithoutCreatedByNestedInput;
     businessDocuments?: Prisma.BusinessDocumentUncheckedUpdateManyWithoutUserNestedInput;
+    members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutUserNestedInput;
     invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCreatedByNestedInput;
     createdJobCards?: Prisma.JobCardUncheckedUpdateManyWithoutCreatedByNestedInput;
+    journalEntries?: Prisma.JournalEntryUncheckedUpdateManyWithoutCreatedByNestedInput;
+    messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput;
     assignedOperations?: Prisma.OperationUncheckedUpdateManyWithoutOperatorNestedInput;
     qcLogs?: Prisma.QcLogUncheckedUpdateManyWithoutInspectorNestedInput;
     stockAdjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutAdjustedByNestedInput;
+    stockLedgers?: Prisma.StockLedgerUncheckedUpdateManyWithoutUserNestedInput;
 };
 export type UserCreateWithoutAccountsInput = {
     id: string;
@@ -703,16 +728,17 @@ export type UserCreateWithoutAccountsInput = {
     username?: string | null;
     displayUsername?: string | null;
     role?: $Enums.Role;
-    sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
-    messages?: Prisma.MessageCreateNestedManyWithoutSenderInput;
-    members?: Prisma.ChannelMemberCreateNestedManyWithoutUserInput;
-    journalEntries?: Prisma.JournalEntryCreateNestedManyWithoutCreatedByInput;
     businessDocuments?: Prisma.BusinessDocumentCreateNestedManyWithoutUserInput;
+    members?: Prisma.ChannelMemberCreateNestedManyWithoutUserInput;
     invoices?: Prisma.InvoiceCreateNestedManyWithoutCreatedByInput;
     createdJobCards?: Prisma.JobCardCreateNestedManyWithoutCreatedByInput;
+    journalEntries?: Prisma.JournalEntryCreateNestedManyWithoutCreatedByInput;
+    messages?: Prisma.MessageCreateNestedManyWithoutSenderInput;
     assignedOperations?: Prisma.OperationCreateNestedManyWithoutOperatorInput;
     qcLogs?: Prisma.QcLogCreateNestedManyWithoutInspectorInput;
+    sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
     stockAdjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutAdjustedByInput;
+    stockLedgers?: Prisma.StockLedgerCreateNestedManyWithoutUserInput;
 };
 export type UserUncheckedCreateWithoutAccountsInput = {
     id: string;
@@ -725,16 +751,17 @@ export type UserUncheckedCreateWithoutAccountsInput = {
     username?: string | null;
     displayUsername?: string | null;
     role?: $Enums.Role;
-    sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
-    messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput;
-    members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutUserInput;
-    journalEntries?: Prisma.JournalEntryUncheckedCreateNestedManyWithoutCreatedByInput;
     businessDocuments?: Prisma.BusinessDocumentUncheckedCreateNestedManyWithoutUserInput;
+    members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutUserInput;
     invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCreatedByInput;
     createdJobCards?: Prisma.JobCardUncheckedCreateNestedManyWithoutCreatedByInput;
+    journalEntries?: Prisma.JournalEntryUncheckedCreateNestedManyWithoutCreatedByInput;
+    messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput;
     assignedOperations?: Prisma.OperationUncheckedCreateNestedManyWithoutOperatorInput;
     qcLogs?: Prisma.QcLogUncheckedCreateNestedManyWithoutInspectorInput;
+    sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
     stockAdjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutAdjustedByInput;
+    stockLedgers?: Prisma.StockLedgerUncheckedCreateNestedManyWithoutUserInput;
 };
 export type UserCreateOrConnectWithoutAccountsInput = {
     where: Prisma.UserWhereUniqueInput;
@@ -760,16 +787,17 @@ export type UserUpdateWithoutAccountsInput = {
     username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-    sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
-    messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput;
-    members?: Prisma.ChannelMemberUpdateManyWithoutUserNestedInput;
-    journalEntries?: Prisma.JournalEntryUpdateManyWithoutCreatedByNestedInput;
     businessDocuments?: Prisma.BusinessDocumentUpdateManyWithoutUserNestedInput;
+    members?: Prisma.ChannelMemberUpdateManyWithoutUserNestedInput;
     invoices?: Prisma.InvoiceUpdateManyWithoutCreatedByNestedInput;
     createdJobCards?: Prisma.JobCardUpdateManyWithoutCreatedByNestedInput;
+    journalEntries?: Prisma.JournalEntryUpdateManyWithoutCreatedByNestedInput;
+    messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput;
     assignedOperations?: Prisma.OperationUpdateManyWithoutOperatorNestedInput;
     qcLogs?: Prisma.QcLogUpdateManyWithoutInspectorNestedInput;
+    sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
     stockAdjustments?: Prisma.StockAdjustmentUpdateManyWithoutAdjustedByNestedInput;
+    stockLedgers?: Prisma.StockLedgerUpdateManyWithoutUserNestedInput;
 };
 export type UserUncheckedUpdateWithoutAccountsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -782,16 +810,17 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
     username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-    sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
-    messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput;
-    members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutUserNestedInput;
-    journalEntries?: Prisma.JournalEntryUncheckedUpdateManyWithoutCreatedByNestedInput;
     businessDocuments?: Prisma.BusinessDocumentUncheckedUpdateManyWithoutUserNestedInput;
+    members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutUserNestedInput;
     invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCreatedByNestedInput;
     createdJobCards?: Prisma.JobCardUncheckedUpdateManyWithoutCreatedByNestedInput;
+    journalEntries?: Prisma.JournalEntryUncheckedUpdateManyWithoutCreatedByNestedInput;
+    messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput;
     assignedOperations?: Prisma.OperationUncheckedUpdateManyWithoutOperatorNestedInput;
     qcLogs?: Prisma.QcLogUncheckedUpdateManyWithoutInspectorNestedInput;
+    sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
     stockAdjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutAdjustedByNestedInput;
+    stockLedgers?: Prisma.StockLedgerUncheckedUpdateManyWithoutUserNestedInput;
 };
 export type UserCreateWithoutMembersInput = {
     id: string;
@@ -804,16 +833,17 @@ export type UserCreateWithoutMembersInput = {
     username?: string | null;
     displayUsername?: string | null;
     role?: $Enums.Role;
-    sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
     accounts?: Prisma.AccountCreateNestedManyWithoutUserInput;
-    messages?: Prisma.MessageCreateNestedManyWithoutSenderInput;
-    journalEntries?: Prisma.JournalEntryCreateNestedManyWithoutCreatedByInput;
     businessDocuments?: Prisma.BusinessDocumentCreateNestedManyWithoutUserInput;
     invoices?: Prisma.InvoiceCreateNestedManyWithoutCreatedByInput;
     createdJobCards?: Prisma.JobCardCreateNestedManyWithoutCreatedByInput;
+    journalEntries?: Prisma.JournalEntryCreateNestedManyWithoutCreatedByInput;
+    messages?: Prisma.MessageCreateNestedManyWithoutSenderInput;
     assignedOperations?: Prisma.OperationCreateNestedManyWithoutOperatorInput;
     qcLogs?: Prisma.QcLogCreateNestedManyWithoutInspectorInput;
+    sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
     stockAdjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutAdjustedByInput;
+    stockLedgers?: Prisma.StockLedgerCreateNestedManyWithoutUserInput;
 };
 export type UserUncheckedCreateWithoutMembersInput = {
     id: string;
@@ -826,16 +856,17 @@ export type UserUncheckedCreateWithoutMembersInput = {
     username?: string | null;
     displayUsername?: string | null;
     role?: $Enums.Role;
-    sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
     accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput;
-    messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput;
-    journalEntries?: Prisma.JournalEntryUncheckedCreateNestedManyWithoutCreatedByInput;
     businessDocuments?: Prisma.BusinessDocumentUncheckedCreateNestedManyWithoutUserInput;
     invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCreatedByInput;
     createdJobCards?: Prisma.JobCardUncheckedCreateNestedManyWithoutCreatedByInput;
+    journalEntries?: Prisma.JournalEntryUncheckedCreateNestedManyWithoutCreatedByInput;
+    messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput;
     assignedOperations?: Prisma.OperationUncheckedCreateNestedManyWithoutOperatorInput;
     qcLogs?: Prisma.QcLogUncheckedCreateNestedManyWithoutInspectorInput;
+    sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
     stockAdjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutAdjustedByInput;
+    stockLedgers?: Prisma.StockLedgerUncheckedCreateNestedManyWithoutUserInput;
 };
 export type UserCreateOrConnectWithoutMembersInput = {
     where: Prisma.UserWhereUniqueInput;
@@ -861,16 +892,17 @@ export type UserUpdateWithoutMembersInput = {
     username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-    sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
     accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput;
-    messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput;
-    journalEntries?: Prisma.JournalEntryUpdateManyWithoutCreatedByNestedInput;
     businessDocuments?: Prisma.BusinessDocumentUpdateManyWithoutUserNestedInput;
     invoices?: Prisma.InvoiceUpdateManyWithoutCreatedByNestedInput;
     createdJobCards?: Prisma.JobCardUpdateManyWithoutCreatedByNestedInput;
+    journalEntries?: Prisma.JournalEntryUpdateManyWithoutCreatedByNestedInput;
+    messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput;
     assignedOperations?: Prisma.OperationUpdateManyWithoutOperatorNestedInput;
     qcLogs?: Prisma.QcLogUpdateManyWithoutInspectorNestedInput;
+    sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
     stockAdjustments?: Prisma.StockAdjustmentUpdateManyWithoutAdjustedByNestedInput;
+    stockLedgers?: Prisma.StockLedgerUpdateManyWithoutUserNestedInput;
 };
 export type UserUncheckedUpdateWithoutMembersInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -883,16 +915,17 @@ export type UserUncheckedUpdateWithoutMembersInput = {
     username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-    sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
     accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput;
-    messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput;
-    journalEntries?: Prisma.JournalEntryUncheckedUpdateManyWithoutCreatedByNestedInput;
     businessDocuments?: Prisma.BusinessDocumentUncheckedUpdateManyWithoutUserNestedInput;
     invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCreatedByNestedInput;
     createdJobCards?: Prisma.JobCardUncheckedUpdateManyWithoutCreatedByNestedInput;
+    journalEntries?: Prisma.JournalEntryUncheckedUpdateManyWithoutCreatedByNestedInput;
+    messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput;
     assignedOperations?: Prisma.OperationUncheckedUpdateManyWithoutOperatorNestedInput;
     qcLogs?: Prisma.QcLogUncheckedUpdateManyWithoutInspectorNestedInput;
+    sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
     stockAdjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutAdjustedByNestedInput;
+    stockLedgers?: Prisma.StockLedgerUncheckedUpdateManyWithoutUserNestedInput;
 };
 export type UserCreateWithoutMessagesInput = {
     id: string;
@@ -905,16 +938,17 @@ export type UserCreateWithoutMessagesInput = {
     username?: string | null;
     displayUsername?: string | null;
     role?: $Enums.Role;
-    sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
     accounts?: Prisma.AccountCreateNestedManyWithoutUserInput;
-    members?: Prisma.ChannelMemberCreateNestedManyWithoutUserInput;
-    journalEntries?: Prisma.JournalEntryCreateNestedManyWithoutCreatedByInput;
     businessDocuments?: Prisma.BusinessDocumentCreateNestedManyWithoutUserInput;
+    members?: Prisma.ChannelMemberCreateNestedManyWithoutUserInput;
     invoices?: Prisma.InvoiceCreateNestedManyWithoutCreatedByInput;
     createdJobCards?: Prisma.JobCardCreateNestedManyWithoutCreatedByInput;
+    journalEntries?: Prisma.JournalEntryCreateNestedManyWithoutCreatedByInput;
     assignedOperations?: Prisma.OperationCreateNestedManyWithoutOperatorInput;
     qcLogs?: Prisma.QcLogCreateNestedManyWithoutInspectorInput;
+    sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
     stockAdjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutAdjustedByInput;
+    stockLedgers?: Prisma.StockLedgerCreateNestedManyWithoutUserInput;
 };
 export type UserUncheckedCreateWithoutMessagesInput = {
     id: string;
@@ -927,16 +961,17 @@ export type UserUncheckedCreateWithoutMessagesInput = {
     username?: string | null;
     displayUsername?: string | null;
     role?: $Enums.Role;
-    sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
     accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput;
-    members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutUserInput;
-    journalEntries?: Prisma.JournalEntryUncheckedCreateNestedManyWithoutCreatedByInput;
     businessDocuments?: Prisma.BusinessDocumentUncheckedCreateNestedManyWithoutUserInput;
+    members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutUserInput;
     invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCreatedByInput;
     createdJobCards?: Prisma.JobCardUncheckedCreateNestedManyWithoutCreatedByInput;
+    journalEntries?: Prisma.JournalEntryUncheckedCreateNestedManyWithoutCreatedByInput;
     assignedOperations?: Prisma.OperationUncheckedCreateNestedManyWithoutOperatorInput;
     qcLogs?: Prisma.QcLogUncheckedCreateNestedManyWithoutInspectorInput;
+    sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
     stockAdjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutAdjustedByInput;
+    stockLedgers?: Prisma.StockLedgerUncheckedCreateNestedManyWithoutUserInput;
 };
 export type UserCreateOrConnectWithoutMessagesInput = {
     where: Prisma.UserWhereUniqueInput;
@@ -962,16 +997,17 @@ export type UserUpdateWithoutMessagesInput = {
     username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-    sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
     accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput;
-    members?: Prisma.ChannelMemberUpdateManyWithoutUserNestedInput;
-    journalEntries?: Prisma.JournalEntryUpdateManyWithoutCreatedByNestedInput;
     businessDocuments?: Prisma.BusinessDocumentUpdateManyWithoutUserNestedInput;
+    members?: Prisma.ChannelMemberUpdateManyWithoutUserNestedInput;
     invoices?: Prisma.InvoiceUpdateManyWithoutCreatedByNestedInput;
     createdJobCards?: Prisma.JobCardUpdateManyWithoutCreatedByNestedInput;
+    journalEntries?: Prisma.JournalEntryUpdateManyWithoutCreatedByNestedInput;
     assignedOperations?: Prisma.OperationUpdateManyWithoutOperatorNestedInput;
     qcLogs?: Prisma.QcLogUpdateManyWithoutInspectorNestedInput;
+    sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
     stockAdjustments?: Prisma.StockAdjustmentUpdateManyWithoutAdjustedByNestedInput;
+    stockLedgers?: Prisma.StockLedgerUpdateManyWithoutUserNestedInput;
 };
 export type UserUncheckedUpdateWithoutMessagesInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -984,16 +1020,17 @@ export type UserUncheckedUpdateWithoutMessagesInput = {
     username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-    sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
     accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput;
-    members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutUserNestedInput;
-    journalEntries?: Prisma.JournalEntryUncheckedUpdateManyWithoutCreatedByNestedInput;
     businessDocuments?: Prisma.BusinessDocumentUncheckedUpdateManyWithoutUserNestedInput;
+    members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutUserNestedInput;
     invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCreatedByNestedInput;
     createdJobCards?: Prisma.JobCardUncheckedUpdateManyWithoutCreatedByNestedInput;
+    journalEntries?: Prisma.JournalEntryUncheckedUpdateManyWithoutCreatedByNestedInput;
     assignedOperations?: Prisma.OperationUncheckedUpdateManyWithoutOperatorNestedInput;
     qcLogs?: Prisma.QcLogUncheckedUpdateManyWithoutInspectorNestedInput;
+    sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
     stockAdjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutAdjustedByNestedInput;
+    stockLedgers?: Prisma.StockLedgerUncheckedUpdateManyWithoutUserNestedInput;
 };
 export type UserCreateWithoutJournalEntriesInput = {
     id: string;
@@ -1006,16 +1043,17 @@ export type UserCreateWithoutJournalEntriesInput = {
     username?: string | null;
     displayUsername?: string | null;
     role?: $Enums.Role;
-    sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
     accounts?: Prisma.AccountCreateNestedManyWithoutUserInput;
-    messages?: Prisma.MessageCreateNestedManyWithoutSenderInput;
-    members?: Prisma.ChannelMemberCreateNestedManyWithoutUserInput;
     businessDocuments?: Prisma.BusinessDocumentCreateNestedManyWithoutUserInput;
+    members?: Prisma.ChannelMemberCreateNestedManyWithoutUserInput;
     invoices?: Prisma.InvoiceCreateNestedManyWithoutCreatedByInput;
     createdJobCards?: Prisma.JobCardCreateNestedManyWithoutCreatedByInput;
+    messages?: Prisma.MessageCreateNestedManyWithoutSenderInput;
     assignedOperations?: Prisma.OperationCreateNestedManyWithoutOperatorInput;
     qcLogs?: Prisma.QcLogCreateNestedManyWithoutInspectorInput;
+    sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
     stockAdjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutAdjustedByInput;
+    stockLedgers?: Prisma.StockLedgerCreateNestedManyWithoutUserInput;
 };
 export type UserUncheckedCreateWithoutJournalEntriesInput = {
     id: string;
@@ -1028,16 +1066,17 @@ export type UserUncheckedCreateWithoutJournalEntriesInput = {
     username?: string | null;
     displayUsername?: string | null;
     role?: $Enums.Role;
-    sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
     accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput;
-    messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput;
-    members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutUserInput;
     businessDocuments?: Prisma.BusinessDocumentUncheckedCreateNestedManyWithoutUserInput;
+    members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutUserInput;
     invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCreatedByInput;
     createdJobCards?: Prisma.JobCardUncheckedCreateNestedManyWithoutCreatedByInput;
+    messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput;
     assignedOperations?: Prisma.OperationUncheckedCreateNestedManyWithoutOperatorInput;
     qcLogs?: Prisma.QcLogUncheckedCreateNestedManyWithoutInspectorInput;
+    sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
     stockAdjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutAdjustedByInput;
+    stockLedgers?: Prisma.StockLedgerUncheckedCreateNestedManyWithoutUserInput;
 };
 export type UserCreateOrConnectWithoutJournalEntriesInput = {
     where: Prisma.UserWhereUniqueInput;
@@ -1063,16 +1102,17 @@ export type UserUpdateWithoutJournalEntriesInput = {
     username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-    sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
     accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput;
-    messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput;
-    members?: Prisma.ChannelMemberUpdateManyWithoutUserNestedInput;
     businessDocuments?: Prisma.BusinessDocumentUpdateManyWithoutUserNestedInput;
+    members?: Prisma.ChannelMemberUpdateManyWithoutUserNestedInput;
     invoices?: Prisma.InvoiceUpdateManyWithoutCreatedByNestedInput;
     createdJobCards?: Prisma.JobCardUpdateManyWithoutCreatedByNestedInput;
+    messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput;
     assignedOperations?: Prisma.OperationUpdateManyWithoutOperatorNestedInput;
     qcLogs?: Prisma.QcLogUpdateManyWithoutInspectorNestedInput;
+    sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
     stockAdjustments?: Prisma.StockAdjustmentUpdateManyWithoutAdjustedByNestedInput;
+    stockLedgers?: Prisma.StockLedgerUpdateManyWithoutUserNestedInput;
 };
 export type UserUncheckedUpdateWithoutJournalEntriesInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1085,16 +1125,17 @@ export type UserUncheckedUpdateWithoutJournalEntriesInput = {
     username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-    sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
     accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput;
-    messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput;
-    members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutUserNestedInput;
     businessDocuments?: Prisma.BusinessDocumentUncheckedUpdateManyWithoutUserNestedInput;
+    members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutUserNestedInput;
     invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCreatedByNestedInput;
     createdJobCards?: Prisma.JobCardUncheckedUpdateManyWithoutCreatedByNestedInput;
+    messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput;
     assignedOperations?: Prisma.OperationUncheckedUpdateManyWithoutOperatorNestedInput;
     qcLogs?: Prisma.QcLogUncheckedUpdateManyWithoutInspectorNestedInput;
+    sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
     stockAdjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutAdjustedByNestedInput;
+    stockLedgers?: Prisma.StockLedgerUncheckedUpdateManyWithoutUserNestedInput;
 };
 export type UserCreateWithoutBusinessDocumentsInput = {
     id: string;
@@ -1107,16 +1148,17 @@ export type UserCreateWithoutBusinessDocumentsInput = {
     username?: string | null;
     displayUsername?: string | null;
     role?: $Enums.Role;
-    sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
     accounts?: Prisma.AccountCreateNestedManyWithoutUserInput;
-    messages?: Prisma.MessageCreateNestedManyWithoutSenderInput;
     members?: Prisma.ChannelMemberCreateNestedManyWithoutUserInput;
-    journalEntries?: Prisma.JournalEntryCreateNestedManyWithoutCreatedByInput;
     invoices?: Prisma.InvoiceCreateNestedManyWithoutCreatedByInput;
     createdJobCards?: Prisma.JobCardCreateNestedManyWithoutCreatedByInput;
+    journalEntries?: Prisma.JournalEntryCreateNestedManyWithoutCreatedByInput;
+    messages?: Prisma.MessageCreateNestedManyWithoutSenderInput;
     assignedOperations?: Prisma.OperationCreateNestedManyWithoutOperatorInput;
     qcLogs?: Prisma.QcLogCreateNestedManyWithoutInspectorInput;
+    sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
     stockAdjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutAdjustedByInput;
+    stockLedgers?: Prisma.StockLedgerCreateNestedManyWithoutUserInput;
 };
 export type UserUncheckedCreateWithoutBusinessDocumentsInput = {
     id: string;
@@ -1129,16 +1171,17 @@ export type UserUncheckedCreateWithoutBusinessDocumentsInput = {
     username?: string | null;
     displayUsername?: string | null;
     role?: $Enums.Role;
-    sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
     accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput;
-    messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput;
     members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutUserInput;
-    journalEntries?: Prisma.JournalEntryUncheckedCreateNestedManyWithoutCreatedByInput;
     invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCreatedByInput;
     createdJobCards?: Prisma.JobCardUncheckedCreateNestedManyWithoutCreatedByInput;
+    journalEntries?: Prisma.JournalEntryUncheckedCreateNestedManyWithoutCreatedByInput;
+    messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput;
     assignedOperations?: Prisma.OperationUncheckedCreateNestedManyWithoutOperatorInput;
     qcLogs?: Prisma.QcLogUncheckedCreateNestedManyWithoutInspectorInput;
+    sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
     stockAdjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutAdjustedByInput;
+    stockLedgers?: Prisma.StockLedgerUncheckedCreateNestedManyWithoutUserInput;
 };
 export type UserCreateOrConnectWithoutBusinessDocumentsInput = {
     where: Prisma.UserWhereUniqueInput;
@@ -1164,16 +1207,17 @@ export type UserUpdateWithoutBusinessDocumentsInput = {
     username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-    sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
     accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput;
-    messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput;
     members?: Prisma.ChannelMemberUpdateManyWithoutUserNestedInput;
-    journalEntries?: Prisma.JournalEntryUpdateManyWithoutCreatedByNestedInput;
     invoices?: Prisma.InvoiceUpdateManyWithoutCreatedByNestedInput;
     createdJobCards?: Prisma.JobCardUpdateManyWithoutCreatedByNestedInput;
+    journalEntries?: Prisma.JournalEntryUpdateManyWithoutCreatedByNestedInput;
+    messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput;
     assignedOperations?: Prisma.OperationUpdateManyWithoutOperatorNestedInput;
     qcLogs?: Prisma.QcLogUpdateManyWithoutInspectorNestedInput;
+    sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
     stockAdjustments?: Prisma.StockAdjustmentUpdateManyWithoutAdjustedByNestedInput;
+    stockLedgers?: Prisma.StockLedgerUpdateManyWithoutUserNestedInput;
 };
 export type UserUncheckedUpdateWithoutBusinessDocumentsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1186,16 +1230,17 @@ export type UserUncheckedUpdateWithoutBusinessDocumentsInput = {
     username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-    sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
     accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput;
-    messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput;
     members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutUserNestedInput;
-    journalEntries?: Prisma.JournalEntryUncheckedUpdateManyWithoutCreatedByNestedInput;
     invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCreatedByNestedInput;
     createdJobCards?: Prisma.JobCardUncheckedUpdateManyWithoutCreatedByNestedInput;
+    journalEntries?: Prisma.JournalEntryUncheckedUpdateManyWithoutCreatedByNestedInput;
+    messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput;
     assignedOperations?: Prisma.OperationUncheckedUpdateManyWithoutOperatorNestedInput;
     qcLogs?: Prisma.QcLogUncheckedUpdateManyWithoutInspectorNestedInput;
+    sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
     stockAdjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutAdjustedByNestedInput;
+    stockLedgers?: Prisma.StockLedgerUncheckedUpdateManyWithoutUserNestedInput;
 };
 export type UserCreateWithoutInvoicesInput = {
     id: string;
@@ -1208,16 +1253,17 @@ export type UserCreateWithoutInvoicesInput = {
     username?: string | null;
     displayUsername?: string | null;
     role?: $Enums.Role;
-    sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
     accounts?: Prisma.AccountCreateNestedManyWithoutUserInput;
-    messages?: Prisma.MessageCreateNestedManyWithoutSenderInput;
-    members?: Prisma.ChannelMemberCreateNestedManyWithoutUserInput;
-    journalEntries?: Prisma.JournalEntryCreateNestedManyWithoutCreatedByInput;
     businessDocuments?: Prisma.BusinessDocumentCreateNestedManyWithoutUserInput;
+    members?: Prisma.ChannelMemberCreateNestedManyWithoutUserInput;
     createdJobCards?: Prisma.JobCardCreateNestedManyWithoutCreatedByInput;
+    journalEntries?: Prisma.JournalEntryCreateNestedManyWithoutCreatedByInput;
+    messages?: Prisma.MessageCreateNestedManyWithoutSenderInput;
     assignedOperations?: Prisma.OperationCreateNestedManyWithoutOperatorInput;
     qcLogs?: Prisma.QcLogCreateNestedManyWithoutInspectorInput;
+    sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
     stockAdjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutAdjustedByInput;
+    stockLedgers?: Prisma.StockLedgerCreateNestedManyWithoutUserInput;
 };
 export type UserUncheckedCreateWithoutInvoicesInput = {
     id: string;
@@ -1230,16 +1276,17 @@ export type UserUncheckedCreateWithoutInvoicesInput = {
     username?: string | null;
     displayUsername?: string | null;
     role?: $Enums.Role;
-    sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
     accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput;
-    messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput;
-    members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutUserInput;
-    journalEntries?: Prisma.JournalEntryUncheckedCreateNestedManyWithoutCreatedByInput;
     businessDocuments?: Prisma.BusinessDocumentUncheckedCreateNestedManyWithoutUserInput;
+    members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutUserInput;
     createdJobCards?: Prisma.JobCardUncheckedCreateNestedManyWithoutCreatedByInput;
+    journalEntries?: Prisma.JournalEntryUncheckedCreateNestedManyWithoutCreatedByInput;
+    messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput;
     assignedOperations?: Prisma.OperationUncheckedCreateNestedManyWithoutOperatorInput;
     qcLogs?: Prisma.QcLogUncheckedCreateNestedManyWithoutInspectorInput;
+    sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
     stockAdjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutAdjustedByInput;
+    stockLedgers?: Prisma.StockLedgerUncheckedCreateNestedManyWithoutUserInput;
 };
 export type UserCreateOrConnectWithoutInvoicesInput = {
     where: Prisma.UserWhereUniqueInput;
@@ -1265,16 +1312,17 @@ export type UserUpdateWithoutInvoicesInput = {
     username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-    sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
     accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput;
-    messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput;
-    members?: Prisma.ChannelMemberUpdateManyWithoutUserNestedInput;
-    journalEntries?: Prisma.JournalEntryUpdateManyWithoutCreatedByNestedInput;
     businessDocuments?: Prisma.BusinessDocumentUpdateManyWithoutUserNestedInput;
+    members?: Prisma.ChannelMemberUpdateManyWithoutUserNestedInput;
     createdJobCards?: Prisma.JobCardUpdateManyWithoutCreatedByNestedInput;
+    journalEntries?: Prisma.JournalEntryUpdateManyWithoutCreatedByNestedInput;
+    messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput;
     assignedOperations?: Prisma.OperationUpdateManyWithoutOperatorNestedInput;
     qcLogs?: Prisma.QcLogUpdateManyWithoutInspectorNestedInput;
+    sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
     stockAdjustments?: Prisma.StockAdjustmentUpdateManyWithoutAdjustedByNestedInput;
+    stockLedgers?: Prisma.StockLedgerUpdateManyWithoutUserNestedInput;
 };
 export type UserUncheckedUpdateWithoutInvoicesInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1287,16 +1335,17 @@ export type UserUncheckedUpdateWithoutInvoicesInput = {
     username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-    sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
     accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput;
-    messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput;
-    members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutUserNestedInput;
-    journalEntries?: Prisma.JournalEntryUncheckedUpdateManyWithoutCreatedByNestedInput;
     businessDocuments?: Prisma.BusinessDocumentUncheckedUpdateManyWithoutUserNestedInput;
+    members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutUserNestedInput;
     createdJobCards?: Prisma.JobCardUncheckedUpdateManyWithoutCreatedByNestedInput;
+    journalEntries?: Prisma.JournalEntryUncheckedUpdateManyWithoutCreatedByNestedInput;
+    messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput;
     assignedOperations?: Prisma.OperationUncheckedUpdateManyWithoutOperatorNestedInput;
     qcLogs?: Prisma.QcLogUncheckedUpdateManyWithoutInspectorNestedInput;
+    sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
     stockAdjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutAdjustedByNestedInput;
+    stockLedgers?: Prisma.StockLedgerUncheckedUpdateManyWithoutUserNestedInput;
 };
 export type UserCreateWithoutCreatedJobCardsInput = {
     id: string;
@@ -1309,16 +1358,17 @@ export type UserCreateWithoutCreatedJobCardsInput = {
     username?: string | null;
     displayUsername?: string | null;
     role?: $Enums.Role;
-    sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
     accounts?: Prisma.AccountCreateNestedManyWithoutUserInput;
-    messages?: Prisma.MessageCreateNestedManyWithoutSenderInput;
-    members?: Prisma.ChannelMemberCreateNestedManyWithoutUserInput;
-    journalEntries?: Prisma.JournalEntryCreateNestedManyWithoutCreatedByInput;
     businessDocuments?: Prisma.BusinessDocumentCreateNestedManyWithoutUserInput;
+    members?: Prisma.ChannelMemberCreateNestedManyWithoutUserInput;
     invoices?: Prisma.InvoiceCreateNestedManyWithoutCreatedByInput;
+    journalEntries?: Prisma.JournalEntryCreateNestedManyWithoutCreatedByInput;
+    messages?: Prisma.MessageCreateNestedManyWithoutSenderInput;
     assignedOperations?: Prisma.OperationCreateNestedManyWithoutOperatorInput;
     qcLogs?: Prisma.QcLogCreateNestedManyWithoutInspectorInput;
+    sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
     stockAdjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutAdjustedByInput;
+    stockLedgers?: Prisma.StockLedgerCreateNestedManyWithoutUserInput;
 };
 export type UserUncheckedCreateWithoutCreatedJobCardsInput = {
     id: string;
@@ -1331,16 +1381,17 @@ export type UserUncheckedCreateWithoutCreatedJobCardsInput = {
     username?: string | null;
     displayUsername?: string | null;
     role?: $Enums.Role;
-    sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
     accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput;
-    messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput;
-    members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutUserInput;
-    journalEntries?: Prisma.JournalEntryUncheckedCreateNestedManyWithoutCreatedByInput;
     businessDocuments?: Prisma.BusinessDocumentUncheckedCreateNestedManyWithoutUserInput;
+    members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutUserInput;
     invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCreatedByInput;
+    journalEntries?: Prisma.JournalEntryUncheckedCreateNestedManyWithoutCreatedByInput;
+    messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput;
     assignedOperations?: Prisma.OperationUncheckedCreateNestedManyWithoutOperatorInput;
     qcLogs?: Prisma.QcLogUncheckedCreateNestedManyWithoutInspectorInput;
+    sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
     stockAdjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutAdjustedByInput;
+    stockLedgers?: Prisma.StockLedgerUncheckedCreateNestedManyWithoutUserInput;
 };
 export type UserCreateOrConnectWithoutCreatedJobCardsInput = {
     where: Prisma.UserWhereUniqueInput;
@@ -1366,16 +1417,17 @@ export type UserUpdateWithoutCreatedJobCardsInput = {
     username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-    sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
     accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput;
-    messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput;
-    members?: Prisma.ChannelMemberUpdateManyWithoutUserNestedInput;
-    journalEntries?: Prisma.JournalEntryUpdateManyWithoutCreatedByNestedInput;
     businessDocuments?: Prisma.BusinessDocumentUpdateManyWithoutUserNestedInput;
+    members?: Prisma.ChannelMemberUpdateManyWithoutUserNestedInput;
     invoices?: Prisma.InvoiceUpdateManyWithoutCreatedByNestedInput;
+    journalEntries?: Prisma.JournalEntryUpdateManyWithoutCreatedByNestedInput;
+    messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput;
     assignedOperations?: Prisma.OperationUpdateManyWithoutOperatorNestedInput;
     qcLogs?: Prisma.QcLogUpdateManyWithoutInspectorNestedInput;
+    sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
     stockAdjustments?: Prisma.StockAdjustmentUpdateManyWithoutAdjustedByNestedInput;
+    stockLedgers?: Prisma.StockLedgerUpdateManyWithoutUserNestedInput;
 };
 export type UserUncheckedUpdateWithoutCreatedJobCardsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1388,16 +1440,17 @@ export type UserUncheckedUpdateWithoutCreatedJobCardsInput = {
     username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-    sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
     accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput;
-    messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput;
-    members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutUserNestedInput;
-    journalEntries?: Prisma.JournalEntryUncheckedUpdateManyWithoutCreatedByNestedInput;
     businessDocuments?: Prisma.BusinessDocumentUncheckedUpdateManyWithoutUserNestedInput;
+    members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutUserNestedInput;
     invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCreatedByNestedInput;
+    journalEntries?: Prisma.JournalEntryUncheckedUpdateManyWithoutCreatedByNestedInput;
+    messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput;
     assignedOperations?: Prisma.OperationUncheckedUpdateManyWithoutOperatorNestedInput;
     qcLogs?: Prisma.QcLogUncheckedUpdateManyWithoutInspectorNestedInput;
+    sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
     stockAdjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutAdjustedByNestedInput;
+    stockLedgers?: Prisma.StockLedgerUncheckedUpdateManyWithoutUserNestedInput;
 };
 export type UserCreateWithoutAssignedOperationsInput = {
     id: string;
@@ -1410,16 +1463,17 @@ export type UserCreateWithoutAssignedOperationsInput = {
     username?: string | null;
     displayUsername?: string | null;
     role?: $Enums.Role;
-    sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
     accounts?: Prisma.AccountCreateNestedManyWithoutUserInput;
-    messages?: Prisma.MessageCreateNestedManyWithoutSenderInput;
-    members?: Prisma.ChannelMemberCreateNestedManyWithoutUserInput;
-    journalEntries?: Prisma.JournalEntryCreateNestedManyWithoutCreatedByInput;
     businessDocuments?: Prisma.BusinessDocumentCreateNestedManyWithoutUserInput;
+    members?: Prisma.ChannelMemberCreateNestedManyWithoutUserInput;
     invoices?: Prisma.InvoiceCreateNestedManyWithoutCreatedByInput;
     createdJobCards?: Prisma.JobCardCreateNestedManyWithoutCreatedByInput;
+    journalEntries?: Prisma.JournalEntryCreateNestedManyWithoutCreatedByInput;
+    messages?: Prisma.MessageCreateNestedManyWithoutSenderInput;
     qcLogs?: Prisma.QcLogCreateNestedManyWithoutInspectorInput;
+    sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
     stockAdjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutAdjustedByInput;
+    stockLedgers?: Prisma.StockLedgerCreateNestedManyWithoutUserInput;
 };
 export type UserUncheckedCreateWithoutAssignedOperationsInput = {
     id: string;
@@ -1432,16 +1486,17 @@ export type UserUncheckedCreateWithoutAssignedOperationsInput = {
     username?: string | null;
     displayUsername?: string | null;
     role?: $Enums.Role;
-    sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
     accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput;
-    messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput;
-    members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutUserInput;
-    journalEntries?: Prisma.JournalEntryUncheckedCreateNestedManyWithoutCreatedByInput;
     businessDocuments?: Prisma.BusinessDocumentUncheckedCreateNestedManyWithoutUserInput;
+    members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutUserInput;
     invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCreatedByInput;
     createdJobCards?: Prisma.JobCardUncheckedCreateNestedManyWithoutCreatedByInput;
+    journalEntries?: Prisma.JournalEntryUncheckedCreateNestedManyWithoutCreatedByInput;
+    messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput;
     qcLogs?: Prisma.QcLogUncheckedCreateNestedManyWithoutInspectorInput;
+    sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
     stockAdjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutAdjustedByInput;
+    stockLedgers?: Prisma.StockLedgerUncheckedCreateNestedManyWithoutUserInput;
 };
 export type UserCreateOrConnectWithoutAssignedOperationsInput = {
     where: Prisma.UserWhereUniqueInput;
@@ -1467,16 +1522,17 @@ export type UserUpdateWithoutAssignedOperationsInput = {
     username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-    sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
     accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput;
-    messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput;
-    members?: Prisma.ChannelMemberUpdateManyWithoutUserNestedInput;
-    journalEntries?: Prisma.JournalEntryUpdateManyWithoutCreatedByNestedInput;
     businessDocuments?: Prisma.BusinessDocumentUpdateManyWithoutUserNestedInput;
+    members?: Prisma.ChannelMemberUpdateManyWithoutUserNestedInput;
     invoices?: Prisma.InvoiceUpdateManyWithoutCreatedByNestedInput;
     createdJobCards?: Prisma.JobCardUpdateManyWithoutCreatedByNestedInput;
+    journalEntries?: Prisma.JournalEntryUpdateManyWithoutCreatedByNestedInput;
+    messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput;
     qcLogs?: Prisma.QcLogUpdateManyWithoutInspectorNestedInput;
+    sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
     stockAdjustments?: Prisma.StockAdjustmentUpdateManyWithoutAdjustedByNestedInput;
+    stockLedgers?: Prisma.StockLedgerUpdateManyWithoutUserNestedInput;
 };
 export type UserUncheckedUpdateWithoutAssignedOperationsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1489,16 +1545,17 @@ export type UserUncheckedUpdateWithoutAssignedOperationsInput = {
     username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-    sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
     accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput;
-    messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput;
-    members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutUserNestedInput;
-    journalEntries?: Prisma.JournalEntryUncheckedUpdateManyWithoutCreatedByNestedInput;
     businessDocuments?: Prisma.BusinessDocumentUncheckedUpdateManyWithoutUserNestedInput;
+    members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutUserNestedInput;
     invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCreatedByNestedInput;
     createdJobCards?: Prisma.JobCardUncheckedUpdateManyWithoutCreatedByNestedInput;
+    journalEntries?: Prisma.JournalEntryUncheckedUpdateManyWithoutCreatedByNestedInput;
+    messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput;
     qcLogs?: Prisma.QcLogUncheckedUpdateManyWithoutInspectorNestedInput;
+    sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
     stockAdjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutAdjustedByNestedInput;
+    stockLedgers?: Prisma.StockLedgerUncheckedUpdateManyWithoutUserNestedInput;
 };
 export type UserCreateWithoutQcLogsInput = {
     id: string;
@@ -1511,16 +1568,17 @@ export type UserCreateWithoutQcLogsInput = {
     username?: string | null;
     displayUsername?: string | null;
     role?: $Enums.Role;
-    sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
     accounts?: Prisma.AccountCreateNestedManyWithoutUserInput;
-    messages?: Prisma.MessageCreateNestedManyWithoutSenderInput;
-    members?: Prisma.ChannelMemberCreateNestedManyWithoutUserInput;
-    journalEntries?: Prisma.JournalEntryCreateNestedManyWithoutCreatedByInput;
     businessDocuments?: Prisma.BusinessDocumentCreateNestedManyWithoutUserInput;
+    members?: Prisma.ChannelMemberCreateNestedManyWithoutUserInput;
     invoices?: Prisma.InvoiceCreateNestedManyWithoutCreatedByInput;
     createdJobCards?: Prisma.JobCardCreateNestedManyWithoutCreatedByInput;
+    journalEntries?: Prisma.JournalEntryCreateNestedManyWithoutCreatedByInput;
+    messages?: Prisma.MessageCreateNestedManyWithoutSenderInput;
     assignedOperations?: Prisma.OperationCreateNestedManyWithoutOperatorInput;
+    sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
     stockAdjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutAdjustedByInput;
+    stockLedgers?: Prisma.StockLedgerCreateNestedManyWithoutUserInput;
 };
 export type UserUncheckedCreateWithoutQcLogsInput = {
     id: string;
@@ -1533,16 +1591,17 @@ export type UserUncheckedCreateWithoutQcLogsInput = {
     username?: string | null;
     displayUsername?: string | null;
     role?: $Enums.Role;
-    sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
     accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput;
-    messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput;
-    members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutUserInput;
-    journalEntries?: Prisma.JournalEntryUncheckedCreateNestedManyWithoutCreatedByInput;
     businessDocuments?: Prisma.BusinessDocumentUncheckedCreateNestedManyWithoutUserInput;
+    members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutUserInput;
     invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCreatedByInput;
     createdJobCards?: Prisma.JobCardUncheckedCreateNestedManyWithoutCreatedByInput;
+    journalEntries?: Prisma.JournalEntryUncheckedCreateNestedManyWithoutCreatedByInput;
+    messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput;
     assignedOperations?: Prisma.OperationUncheckedCreateNestedManyWithoutOperatorInput;
+    sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
     stockAdjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutAdjustedByInput;
+    stockLedgers?: Prisma.StockLedgerUncheckedCreateNestedManyWithoutUserInput;
 };
 export type UserCreateOrConnectWithoutQcLogsInput = {
     where: Prisma.UserWhereUniqueInput;
@@ -1568,16 +1627,17 @@ export type UserUpdateWithoutQcLogsInput = {
     username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-    sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
     accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput;
-    messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput;
-    members?: Prisma.ChannelMemberUpdateManyWithoutUserNestedInput;
-    journalEntries?: Prisma.JournalEntryUpdateManyWithoutCreatedByNestedInput;
     businessDocuments?: Prisma.BusinessDocumentUpdateManyWithoutUserNestedInput;
+    members?: Prisma.ChannelMemberUpdateManyWithoutUserNestedInput;
     invoices?: Prisma.InvoiceUpdateManyWithoutCreatedByNestedInput;
     createdJobCards?: Prisma.JobCardUpdateManyWithoutCreatedByNestedInput;
+    journalEntries?: Prisma.JournalEntryUpdateManyWithoutCreatedByNestedInput;
+    messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput;
     assignedOperations?: Prisma.OperationUpdateManyWithoutOperatorNestedInput;
+    sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
     stockAdjustments?: Prisma.StockAdjustmentUpdateManyWithoutAdjustedByNestedInput;
+    stockLedgers?: Prisma.StockLedgerUpdateManyWithoutUserNestedInput;
 };
 export type UserUncheckedUpdateWithoutQcLogsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1590,16 +1650,17 @@ export type UserUncheckedUpdateWithoutQcLogsInput = {
     username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-    sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
     accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput;
-    messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput;
-    members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutUserNestedInput;
-    journalEntries?: Prisma.JournalEntryUncheckedUpdateManyWithoutCreatedByNestedInput;
     businessDocuments?: Prisma.BusinessDocumentUncheckedUpdateManyWithoutUserNestedInput;
+    members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutUserNestedInput;
     invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCreatedByNestedInput;
     createdJobCards?: Prisma.JobCardUncheckedUpdateManyWithoutCreatedByNestedInput;
+    journalEntries?: Prisma.JournalEntryUncheckedUpdateManyWithoutCreatedByNestedInput;
+    messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput;
     assignedOperations?: Prisma.OperationUncheckedUpdateManyWithoutOperatorNestedInput;
+    sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
     stockAdjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutAdjustedByNestedInput;
+    stockLedgers?: Prisma.StockLedgerUncheckedUpdateManyWithoutUserNestedInput;
 };
 export type UserCreateWithoutStockAdjustmentsInput = {
     id: string;
@@ -1612,16 +1673,17 @@ export type UserCreateWithoutStockAdjustmentsInput = {
     username?: string | null;
     displayUsername?: string | null;
     role?: $Enums.Role;
-    sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
     accounts?: Prisma.AccountCreateNestedManyWithoutUserInput;
-    messages?: Prisma.MessageCreateNestedManyWithoutSenderInput;
-    members?: Prisma.ChannelMemberCreateNestedManyWithoutUserInput;
-    journalEntries?: Prisma.JournalEntryCreateNestedManyWithoutCreatedByInput;
     businessDocuments?: Prisma.BusinessDocumentCreateNestedManyWithoutUserInput;
+    members?: Prisma.ChannelMemberCreateNestedManyWithoutUserInput;
     invoices?: Prisma.InvoiceCreateNestedManyWithoutCreatedByInput;
     createdJobCards?: Prisma.JobCardCreateNestedManyWithoutCreatedByInput;
+    journalEntries?: Prisma.JournalEntryCreateNestedManyWithoutCreatedByInput;
+    messages?: Prisma.MessageCreateNestedManyWithoutSenderInput;
     assignedOperations?: Prisma.OperationCreateNestedManyWithoutOperatorInput;
     qcLogs?: Prisma.QcLogCreateNestedManyWithoutInspectorInput;
+    sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
+    stockLedgers?: Prisma.StockLedgerCreateNestedManyWithoutUserInput;
 };
 export type UserUncheckedCreateWithoutStockAdjustmentsInput = {
     id: string;
@@ -1634,16 +1696,17 @@ export type UserUncheckedCreateWithoutStockAdjustmentsInput = {
     username?: string | null;
     displayUsername?: string | null;
     role?: $Enums.Role;
-    sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
     accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput;
-    messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput;
-    members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutUserInput;
-    journalEntries?: Prisma.JournalEntryUncheckedCreateNestedManyWithoutCreatedByInput;
     businessDocuments?: Prisma.BusinessDocumentUncheckedCreateNestedManyWithoutUserInput;
+    members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutUserInput;
     invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCreatedByInput;
     createdJobCards?: Prisma.JobCardUncheckedCreateNestedManyWithoutCreatedByInput;
+    journalEntries?: Prisma.JournalEntryUncheckedCreateNestedManyWithoutCreatedByInput;
+    messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput;
     assignedOperations?: Prisma.OperationUncheckedCreateNestedManyWithoutOperatorInput;
     qcLogs?: Prisma.QcLogUncheckedCreateNestedManyWithoutInspectorInput;
+    sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
+    stockLedgers?: Prisma.StockLedgerUncheckedCreateNestedManyWithoutUserInput;
 };
 export type UserCreateOrConnectWithoutStockAdjustmentsInput = {
     where: Prisma.UserWhereUniqueInput;
@@ -1669,16 +1732,17 @@ export type UserUpdateWithoutStockAdjustmentsInput = {
     username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-    sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
     accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput;
-    messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput;
-    members?: Prisma.ChannelMemberUpdateManyWithoutUserNestedInput;
-    journalEntries?: Prisma.JournalEntryUpdateManyWithoutCreatedByNestedInput;
     businessDocuments?: Prisma.BusinessDocumentUpdateManyWithoutUserNestedInput;
+    members?: Prisma.ChannelMemberUpdateManyWithoutUserNestedInput;
     invoices?: Prisma.InvoiceUpdateManyWithoutCreatedByNestedInput;
     createdJobCards?: Prisma.JobCardUpdateManyWithoutCreatedByNestedInput;
+    journalEntries?: Prisma.JournalEntryUpdateManyWithoutCreatedByNestedInput;
+    messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput;
     assignedOperations?: Prisma.OperationUpdateManyWithoutOperatorNestedInput;
     qcLogs?: Prisma.QcLogUpdateManyWithoutInspectorNestedInput;
+    sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
+    stockLedgers?: Prisma.StockLedgerUpdateManyWithoutUserNestedInput;
 };
 export type UserUncheckedUpdateWithoutStockAdjustmentsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1691,45 +1755,153 @@ export type UserUncheckedUpdateWithoutStockAdjustmentsInput = {
     username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
-    sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
     accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput;
-    messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput;
-    members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutUserNestedInput;
-    journalEntries?: Prisma.JournalEntryUncheckedUpdateManyWithoutCreatedByNestedInput;
     businessDocuments?: Prisma.BusinessDocumentUncheckedUpdateManyWithoutUserNestedInput;
+    members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutUserNestedInput;
     invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCreatedByNestedInput;
     createdJobCards?: Prisma.JobCardUncheckedUpdateManyWithoutCreatedByNestedInput;
+    journalEntries?: Prisma.JournalEntryUncheckedUpdateManyWithoutCreatedByNestedInput;
+    messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput;
     assignedOperations?: Prisma.OperationUncheckedUpdateManyWithoutOperatorNestedInput;
     qcLogs?: Prisma.QcLogUncheckedUpdateManyWithoutInspectorNestedInput;
+    sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
+    stockLedgers?: Prisma.StockLedgerUncheckedUpdateManyWithoutUserNestedInput;
+};
+export type UserCreateWithoutStockLedgersInput = {
+    id: string;
+    name: string;
+    email: string;
+    emailVerified?: boolean;
+    image?: string | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    username?: string | null;
+    displayUsername?: string | null;
+    role?: $Enums.Role;
+    accounts?: Prisma.AccountCreateNestedManyWithoutUserInput;
+    businessDocuments?: Prisma.BusinessDocumentCreateNestedManyWithoutUserInput;
+    members?: Prisma.ChannelMemberCreateNestedManyWithoutUserInput;
+    invoices?: Prisma.InvoiceCreateNestedManyWithoutCreatedByInput;
+    createdJobCards?: Prisma.JobCardCreateNestedManyWithoutCreatedByInput;
+    journalEntries?: Prisma.JournalEntryCreateNestedManyWithoutCreatedByInput;
+    messages?: Prisma.MessageCreateNestedManyWithoutSenderInput;
+    assignedOperations?: Prisma.OperationCreateNestedManyWithoutOperatorInput;
+    qcLogs?: Prisma.QcLogCreateNestedManyWithoutInspectorInput;
+    sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
+    stockAdjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutAdjustedByInput;
+};
+export type UserUncheckedCreateWithoutStockLedgersInput = {
+    id: string;
+    name: string;
+    email: string;
+    emailVerified?: boolean;
+    image?: string | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    username?: string | null;
+    displayUsername?: string | null;
+    role?: $Enums.Role;
+    accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput;
+    businessDocuments?: Prisma.BusinessDocumentUncheckedCreateNestedManyWithoutUserInput;
+    members?: Prisma.ChannelMemberUncheckedCreateNestedManyWithoutUserInput;
+    invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCreatedByInput;
+    createdJobCards?: Prisma.JobCardUncheckedCreateNestedManyWithoutCreatedByInput;
+    journalEntries?: Prisma.JournalEntryUncheckedCreateNestedManyWithoutCreatedByInput;
+    messages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput;
+    assignedOperations?: Prisma.OperationUncheckedCreateNestedManyWithoutOperatorInput;
+    qcLogs?: Prisma.QcLogUncheckedCreateNestedManyWithoutInspectorInput;
+    sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
+    stockAdjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutAdjustedByInput;
+};
+export type UserCreateOrConnectWithoutStockLedgersInput = {
+    where: Prisma.UserWhereUniqueInput;
+    create: Prisma.XOR<Prisma.UserCreateWithoutStockLedgersInput, Prisma.UserUncheckedCreateWithoutStockLedgersInput>;
+};
+export type UserUpsertWithoutStockLedgersInput = {
+    update: Prisma.XOR<Prisma.UserUpdateWithoutStockLedgersInput, Prisma.UserUncheckedUpdateWithoutStockLedgersInput>;
+    create: Prisma.XOR<Prisma.UserCreateWithoutStockLedgersInput, Prisma.UserUncheckedCreateWithoutStockLedgersInput>;
+    where?: Prisma.UserWhereInput;
+};
+export type UserUpdateToOneWithWhereWithoutStockLedgersInput = {
+    where?: Prisma.UserWhereInput;
+    data: Prisma.XOR<Prisma.UserUpdateWithoutStockLedgersInput, Prisma.UserUncheckedUpdateWithoutStockLedgersInput>;
+};
+export type UserUpdateWithoutStockLedgersInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    email?: Prisma.StringFieldUpdateOperationsInput | string;
+    emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
+    accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput;
+    businessDocuments?: Prisma.BusinessDocumentUpdateManyWithoutUserNestedInput;
+    members?: Prisma.ChannelMemberUpdateManyWithoutUserNestedInput;
+    invoices?: Prisma.InvoiceUpdateManyWithoutCreatedByNestedInput;
+    createdJobCards?: Prisma.JobCardUpdateManyWithoutCreatedByNestedInput;
+    journalEntries?: Prisma.JournalEntryUpdateManyWithoutCreatedByNestedInput;
+    messages?: Prisma.MessageUpdateManyWithoutSenderNestedInput;
+    assignedOperations?: Prisma.OperationUpdateManyWithoutOperatorNestedInput;
+    qcLogs?: Prisma.QcLogUpdateManyWithoutInspectorNestedInput;
+    sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
+    stockAdjustments?: Prisma.StockAdjustmentUpdateManyWithoutAdjustedByNestedInput;
+};
+export type UserUncheckedUpdateWithoutStockLedgersInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    email?: Prisma.StringFieldUpdateOperationsInput | string;
+    emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    displayUsername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
+    accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput;
+    businessDocuments?: Prisma.BusinessDocumentUncheckedUpdateManyWithoutUserNestedInput;
+    members?: Prisma.ChannelMemberUncheckedUpdateManyWithoutUserNestedInput;
+    invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCreatedByNestedInput;
+    createdJobCards?: Prisma.JobCardUncheckedUpdateManyWithoutCreatedByNestedInput;
+    journalEntries?: Prisma.JournalEntryUncheckedUpdateManyWithoutCreatedByNestedInput;
+    messages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput;
+    assignedOperations?: Prisma.OperationUncheckedUpdateManyWithoutOperatorNestedInput;
+    qcLogs?: Prisma.QcLogUncheckedUpdateManyWithoutInspectorNestedInput;
+    sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
+    stockAdjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutAdjustedByNestedInput;
 };
 /**
  * Count Type UserCountOutputType
  */
 export type UserCountOutputType = {
-    sessions: number;
     accounts: number;
-    messages: number;
-    members: number;
-    journalEntries: number;
     businessDocuments: number;
+    members: number;
     invoices: number;
     createdJobCards: number;
+    journalEntries: number;
+    messages: number;
     assignedOperations: number;
     qcLogs: number;
+    sessions: number;
     stockAdjustments: number;
+    stockLedgers: number;
 };
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    sessions?: boolean | UserCountOutputTypeCountSessionsArgs;
     accounts?: boolean | UserCountOutputTypeCountAccountsArgs;
-    messages?: boolean | UserCountOutputTypeCountMessagesArgs;
-    members?: boolean | UserCountOutputTypeCountMembersArgs;
-    journalEntries?: boolean | UserCountOutputTypeCountJournalEntriesArgs;
     businessDocuments?: boolean | UserCountOutputTypeCountBusinessDocumentsArgs;
+    members?: boolean | UserCountOutputTypeCountMembersArgs;
     invoices?: boolean | UserCountOutputTypeCountInvoicesArgs;
     createdJobCards?: boolean | UserCountOutputTypeCountCreatedJobCardsArgs;
+    journalEntries?: boolean | UserCountOutputTypeCountJournalEntriesArgs;
+    messages?: boolean | UserCountOutputTypeCountMessagesArgs;
     assignedOperations?: boolean | UserCountOutputTypeCountAssignedOperationsArgs;
     qcLogs?: boolean | UserCountOutputTypeCountQcLogsArgs;
+    sessions?: boolean | UserCountOutputTypeCountSessionsArgs;
     stockAdjustments?: boolean | UserCountOutputTypeCountStockAdjustmentsArgs;
+    stockLedgers?: boolean | UserCountOutputTypeCountStockLedgersArgs;
 };
 /**
  * UserCountOutputType without action
@@ -1743,38 +1915,20 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    where?: Prisma.SessionWhereInput;
-};
-/**
- * UserCountOutputType without action
- */
 export type UserCountOutputTypeCountAccountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     where?: Prisma.AccountWhereInput;
 };
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    where?: Prisma.MessageWhereInput;
+export type UserCountOutputTypeCountBusinessDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.BusinessDocumentWhereInput;
 };
 /**
  * UserCountOutputType without action
  */
 export type UserCountOutputTypeCountMembersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     where?: Prisma.ChannelMemberWhereInput;
-};
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountJournalEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    where?: Prisma.JournalEntryWhereInput;
-};
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountBusinessDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    where?: Prisma.BusinessDocumentWhereInput;
 };
 /**
  * UserCountOutputType without action
@@ -1791,6 +1945,18 @@ export type UserCountOutputTypeCountCreatedJobCardsArgs<ExtArgs extends runtime.
 /**
  * UserCountOutputType without action
  */
+export type UserCountOutputTypeCountJournalEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.JournalEntryWhereInput;
+};
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.MessageWhereInput;
+};
+/**
+ * UserCountOutputType without action
+ */
 export type UserCountOutputTypeCountAssignedOperationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     where?: Prisma.OperationWhereInput;
 };
@@ -1803,8 +1969,20 @@ export type UserCountOutputTypeCountQcLogsArgs<ExtArgs extends runtime.Types.Ext
 /**
  * UserCountOutputType without action
  */
+export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.SessionWhereInput;
+};
+/**
+ * UserCountOutputType without action
+ */
 export type UserCountOutputTypeCountStockAdjustmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     where?: Prisma.StockAdjustmentWhereInput;
+};
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountStockLedgersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.StockLedgerWhereInput;
 };
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
@@ -1817,17 +1995,18 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
     username?: boolean;
     displayUsername?: boolean;
     role?: boolean;
-    sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>;
     accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>;
-    messages?: boolean | Prisma.User$messagesArgs<ExtArgs>;
-    members?: boolean | Prisma.User$membersArgs<ExtArgs>;
-    journalEntries?: boolean | Prisma.User$journalEntriesArgs<ExtArgs>;
     businessDocuments?: boolean | Prisma.User$businessDocumentsArgs<ExtArgs>;
+    members?: boolean | Prisma.User$membersArgs<ExtArgs>;
     invoices?: boolean | Prisma.User$invoicesArgs<ExtArgs>;
     createdJobCards?: boolean | Prisma.User$createdJobCardsArgs<ExtArgs>;
+    journalEntries?: boolean | Prisma.User$journalEntriesArgs<ExtArgs>;
+    messages?: boolean | Prisma.User$messagesArgs<ExtArgs>;
     assignedOperations?: boolean | Prisma.User$assignedOperationsArgs<ExtArgs>;
     qcLogs?: boolean | Prisma.User$qcLogsArgs<ExtArgs>;
+    sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>;
     stockAdjustments?: boolean | Prisma.User$stockAdjustmentsArgs<ExtArgs>;
+    stockLedgers?: boolean | Prisma.User$stockLedgersArgs<ExtArgs>;
     _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["user"]>;
 export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1868,17 +2047,18 @@ export type UserSelectScalar = {
 };
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "createdAt" | "updatedAt" | "username" | "displayUsername" | "role", ExtArgs["result"]["user"]>;
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>;
     accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>;
-    messages?: boolean | Prisma.User$messagesArgs<ExtArgs>;
-    members?: boolean | Prisma.User$membersArgs<ExtArgs>;
-    journalEntries?: boolean | Prisma.User$journalEntriesArgs<ExtArgs>;
     businessDocuments?: boolean | Prisma.User$businessDocumentsArgs<ExtArgs>;
+    members?: boolean | Prisma.User$membersArgs<ExtArgs>;
     invoices?: boolean | Prisma.User$invoicesArgs<ExtArgs>;
     createdJobCards?: boolean | Prisma.User$createdJobCardsArgs<ExtArgs>;
+    journalEntries?: boolean | Prisma.User$journalEntriesArgs<ExtArgs>;
+    messages?: boolean | Prisma.User$messagesArgs<ExtArgs>;
     assignedOperations?: boolean | Prisma.User$assignedOperationsArgs<ExtArgs>;
     qcLogs?: boolean | Prisma.User$qcLogsArgs<ExtArgs>;
+    sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>;
     stockAdjustments?: boolean | Prisma.User$stockAdjustmentsArgs<ExtArgs>;
+    stockLedgers?: boolean | Prisma.User$stockLedgersArgs<ExtArgs>;
     _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {};
@@ -1886,17 +2066,18 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     name: "User";
     objects: {
-        sessions: Prisma.$SessionPayload<ExtArgs>[];
         accounts: Prisma.$AccountPayload<ExtArgs>[];
-        messages: Prisma.$MessagePayload<ExtArgs>[];
-        members: Prisma.$ChannelMemberPayload<ExtArgs>[];
-        journalEntries: Prisma.$JournalEntryPayload<ExtArgs>[];
         businessDocuments: Prisma.$BusinessDocumentPayload<ExtArgs>[];
+        members: Prisma.$ChannelMemberPayload<ExtArgs>[];
         invoices: Prisma.$InvoicePayload<ExtArgs>[];
         createdJobCards: Prisma.$JobCardPayload<ExtArgs>[];
+        journalEntries: Prisma.$JournalEntryPayload<ExtArgs>[];
+        messages: Prisma.$MessagePayload<ExtArgs>[];
         assignedOperations: Prisma.$OperationPayload<ExtArgs>[];
         qcLogs: Prisma.$QcLogPayload<ExtArgs>[];
+        sessions: Prisma.$SessionPayload<ExtArgs>[];
         stockAdjustments: Prisma.$StockAdjustmentPayload<ExtArgs>[];
+        stockLedgers: Prisma.$StockLedgerPayload<ExtArgs>[];
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         id: string;
@@ -2238,17 +2419,18 @@ export interface UserDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise";
-    sessions<T extends Prisma.User$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     accounts<T extends Prisma.User$accountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
-    messages<T extends Prisma.User$messagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
-    members<T extends Prisma.User$membersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$membersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ChannelMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
-    journalEntries<T extends Prisma.User$journalEntriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$journalEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     businessDocuments<T extends Prisma.User$businessDocumentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$businessDocumentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BusinessDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
+    members<T extends Prisma.User$membersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$membersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ChannelMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     invoices<T extends Prisma.User$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     createdJobCards<T extends Prisma.User$createdJobCardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdJobCardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$JobCardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
+    journalEntries<T extends Prisma.User$journalEntriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$journalEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
+    messages<T extends Prisma.User$messagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     assignedOperations<T extends Prisma.User$assignedOperationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$assignedOperationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OperationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     qcLogs<T extends Prisma.User$qcLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$qcLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QcLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
+    sessions<T extends Prisma.User$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     stockAdjustments<T extends Prisma.User$stockAdjustmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$stockAdjustmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StockAdjustmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
+    stockLedgers<T extends Prisma.User$stockLedgersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$stockLedgersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StockLedgerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2660,29 +2842,6 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
     limit?: number;
 };
 /**
- * User.sessions
- */
-export type User$sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Session
-     */
-    select?: Prisma.SessionSelect<ExtArgs> | null;
-    /**
-     * Omit specific fields from the Session
-     */
-    omit?: Prisma.SessionOmit<ExtArgs> | null;
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: Prisma.SessionInclude<ExtArgs> | null;
-    where?: Prisma.SessionWhereInput;
-    orderBy?: Prisma.SessionOrderByWithRelationInput | Prisma.SessionOrderByWithRelationInput[];
-    cursor?: Prisma.SessionWhereUniqueInput;
-    take?: number;
-    skip?: number;
-    distinct?: Prisma.SessionScalarFieldEnum | Prisma.SessionScalarFieldEnum[];
-};
-/**
  * User.accounts
  */
 export type User$accountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2706,27 +2865,27 @@ export type User$accountsArgs<ExtArgs extends runtime.Types.Extensions.InternalA
     distinct?: Prisma.AccountScalarFieldEnum | Prisma.AccountScalarFieldEnum[];
 };
 /**
- * User.messages
+ * User.businessDocuments
  */
-export type User$messagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$businessDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Message
+     * Select specific fields to fetch from the BusinessDocument
      */
-    select?: Prisma.MessageSelect<ExtArgs> | null;
+    select?: Prisma.BusinessDocumentSelect<ExtArgs> | null;
     /**
-     * Omit specific fields from the Message
+     * Omit specific fields from the BusinessDocument
      */
-    omit?: Prisma.MessageOmit<ExtArgs> | null;
+    omit?: Prisma.BusinessDocumentOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Prisma.MessageInclude<ExtArgs> | null;
-    where?: Prisma.MessageWhereInput;
-    orderBy?: Prisma.MessageOrderByWithRelationInput | Prisma.MessageOrderByWithRelationInput[];
-    cursor?: Prisma.MessageWhereUniqueInput;
+    include?: Prisma.BusinessDocumentInclude<ExtArgs> | null;
+    where?: Prisma.BusinessDocumentWhereInput;
+    orderBy?: Prisma.BusinessDocumentOrderByWithRelationInput | Prisma.BusinessDocumentOrderByWithRelationInput[];
+    cursor?: Prisma.BusinessDocumentWhereUniqueInput;
     take?: number;
     skip?: number;
-    distinct?: Prisma.MessageScalarFieldEnum | Prisma.MessageScalarFieldEnum[];
+    distinct?: Prisma.BusinessDocumentScalarFieldEnum | Prisma.BusinessDocumentScalarFieldEnum[];
 };
 /**
  * User.members
@@ -2750,52 +2909,6 @@ export type User$membersArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
     take?: number;
     skip?: number;
     distinct?: Prisma.ChannelMemberScalarFieldEnum | Prisma.ChannelMemberScalarFieldEnum[];
-};
-/**
- * User.journalEntries
- */
-export type User$journalEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the JournalEntry
-     */
-    select?: Prisma.JournalEntrySelect<ExtArgs> | null;
-    /**
-     * Omit specific fields from the JournalEntry
-     */
-    omit?: Prisma.JournalEntryOmit<ExtArgs> | null;
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: Prisma.JournalEntryInclude<ExtArgs> | null;
-    where?: Prisma.JournalEntryWhereInput;
-    orderBy?: Prisma.JournalEntryOrderByWithRelationInput | Prisma.JournalEntryOrderByWithRelationInput[];
-    cursor?: Prisma.JournalEntryWhereUniqueInput;
-    take?: number;
-    skip?: number;
-    distinct?: Prisma.JournalEntryScalarFieldEnum | Prisma.JournalEntryScalarFieldEnum[];
-};
-/**
- * User.businessDocuments
- */
-export type User$businessDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the BusinessDocument
-     */
-    select?: Prisma.BusinessDocumentSelect<ExtArgs> | null;
-    /**
-     * Omit specific fields from the BusinessDocument
-     */
-    omit?: Prisma.BusinessDocumentOmit<ExtArgs> | null;
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: Prisma.BusinessDocumentInclude<ExtArgs> | null;
-    where?: Prisma.BusinessDocumentWhereInput;
-    orderBy?: Prisma.BusinessDocumentOrderByWithRelationInput | Prisma.BusinessDocumentOrderByWithRelationInput[];
-    cursor?: Prisma.BusinessDocumentWhereUniqueInput;
-    take?: number;
-    skip?: number;
-    distinct?: Prisma.BusinessDocumentScalarFieldEnum | Prisma.BusinessDocumentScalarFieldEnum[];
 };
 /**
  * User.invoices
@@ -2844,6 +2957,52 @@ export type User$createdJobCardsArgs<ExtArgs extends runtime.Types.Extensions.In
     distinct?: Prisma.JobCardScalarFieldEnum | Prisma.JobCardScalarFieldEnum[];
 };
 /**
+ * User.journalEntries
+ */
+export type User$journalEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JournalEntry
+     */
+    select?: Prisma.JournalEntrySelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the JournalEntry
+     */
+    omit?: Prisma.JournalEntryOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.JournalEntryInclude<ExtArgs> | null;
+    where?: Prisma.JournalEntryWhereInput;
+    orderBy?: Prisma.JournalEntryOrderByWithRelationInput | Prisma.JournalEntryOrderByWithRelationInput[];
+    cursor?: Prisma.JournalEntryWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: Prisma.JournalEntryScalarFieldEnum | Prisma.JournalEntryScalarFieldEnum[];
+};
+/**
+ * User.messages
+ */
+export type User$messagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Message
+     */
+    select?: Prisma.MessageSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Message
+     */
+    omit?: Prisma.MessageOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.MessageInclude<ExtArgs> | null;
+    where?: Prisma.MessageWhereInput;
+    orderBy?: Prisma.MessageOrderByWithRelationInput | Prisma.MessageOrderByWithRelationInput[];
+    cursor?: Prisma.MessageWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: Prisma.MessageScalarFieldEnum | Prisma.MessageScalarFieldEnum[];
+};
+/**
  * User.assignedOperations
  */
 export type User$assignedOperationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2890,6 +3049,29 @@ export type User$qcLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
     distinct?: Prisma.QcLogScalarFieldEnum | Prisma.QcLogScalarFieldEnum[];
 };
 /**
+ * User.sessions
+ */
+export type User$sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Session
+     */
+    select?: Prisma.SessionSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Session
+     */
+    omit?: Prisma.SessionOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.SessionInclude<ExtArgs> | null;
+    where?: Prisma.SessionWhereInput;
+    orderBy?: Prisma.SessionOrderByWithRelationInput | Prisma.SessionOrderByWithRelationInput[];
+    cursor?: Prisma.SessionWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: Prisma.SessionScalarFieldEnum | Prisma.SessionScalarFieldEnum[];
+};
+/**
  * User.stockAdjustments
  */
 export type User$stockAdjustmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2911,6 +3093,29 @@ export type User$stockAdjustmentsArgs<ExtArgs extends runtime.Types.Extensions.I
     take?: number;
     skip?: number;
     distinct?: Prisma.StockAdjustmentScalarFieldEnum | Prisma.StockAdjustmentScalarFieldEnum[];
+};
+/**
+ * User.stockLedgers
+ */
+export type User$stockLedgersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StockLedger
+     */
+    select?: Prisma.StockLedgerSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the StockLedger
+     */
+    omit?: Prisma.StockLedgerOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.StockLedgerInclude<ExtArgs> | null;
+    where?: Prisma.StockLedgerWhereInput;
+    orderBy?: Prisma.StockLedgerOrderByWithRelationInput | Prisma.StockLedgerOrderByWithRelationInput[];
+    cursor?: Prisma.StockLedgerWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: Prisma.StockLedgerScalarFieldEnum | Prisma.StockLedgerScalarFieldEnum[];
 };
 /**
  * User without action

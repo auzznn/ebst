@@ -216,8 +216,8 @@ export type MaterialUsageWhereInput = {
   materialId?: Prisma.StringFilter<"MaterialUsage"> | string
   qtyUsed?: Prisma.DecimalFilter<"MaterialUsage"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   loggedAt?: Prisma.DateTimeFilter<"MaterialUsage"> | Date | string
-  operation?: Prisma.XOR<Prisma.OperationScalarRelationFilter, Prisma.OperationWhereInput>
   material?: Prisma.XOR<Prisma.MaterialScalarRelationFilter, Prisma.MaterialWhereInput>
+  operation?: Prisma.XOR<Prisma.OperationScalarRelationFilter, Prisma.OperationWhereInput>
 }
 
 export type MaterialUsageOrderByWithRelationInput = {
@@ -226,8 +226,8 @@ export type MaterialUsageOrderByWithRelationInput = {
   materialId?: Prisma.SortOrder
   qtyUsed?: Prisma.SortOrder
   loggedAt?: Prisma.SortOrder
-  operation?: Prisma.OperationOrderByWithRelationInput
   material?: Prisma.MaterialOrderByWithRelationInput
+  operation?: Prisma.OperationOrderByWithRelationInput
 }
 
 export type MaterialUsageWhereUniqueInput = Prisma.AtLeast<{
@@ -239,8 +239,8 @@ export type MaterialUsageWhereUniqueInput = Prisma.AtLeast<{
   materialId?: Prisma.StringFilter<"MaterialUsage"> | string
   qtyUsed?: Prisma.DecimalFilter<"MaterialUsage"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   loggedAt?: Prisma.DateTimeFilter<"MaterialUsage"> | Date | string
-  operation?: Prisma.XOR<Prisma.OperationScalarRelationFilter, Prisma.OperationWhereInput>
   material?: Prisma.XOR<Prisma.MaterialScalarRelationFilter, Prisma.MaterialWhereInput>
+  operation?: Prisma.XOR<Prisma.OperationScalarRelationFilter, Prisma.OperationWhereInput>
 }, "id">
 
 export type MaterialUsageOrderByWithAggregationInput = {
@@ -271,8 +271,8 @@ export type MaterialUsageCreateInput = {
   id?: string
   qtyUsed: runtime.Decimal | runtime.DecimalJsLike | number | string
   loggedAt?: Date | string
-  operation: Prisma.OperationCreateNestedOneWithoutMaterialsUsedInput
   material: Prisma.MaterialCreateNestedOneWithoutUsagesInput
+  operation: Prisma.OperationCreateNestedOneWithoutMaterialsUsedInput
 }
 
 export type MaterialUsageUncheckedCreateInput = {
@@ -287,8 +287,8 @@ export type MaterialUsageUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   qtyUsed?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   loggedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  operation?: Prisma.OperationUpdateOneRequiredWithoutMaterialsUsedNestedInput
   material?: Prisma.MaterialUpdateOneRequiredWithoutUsagesNestedInput
+  operation?: Prisma.OperationUpdateOneRequiredWithoutMaterialsUsedNestedInput
 }
 
 export type MaterialUsageUncheckedUpdateInput = {
@@ -602,8 +602,8 @@ export type MaterialUsageSelect<ExtArgs extends runtime.Types.Extensions.Interna
   materialId?: boolean
   qtyUsed?: boolean
   loggedAt?: boolean
-  operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
   material?: boolean | Prisma.MaterialDefaultArgs<ExtArgs>
+  operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["materialUsage"]>
 
 export type MaterialUsageSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -612,8 +612,8 @@ export type MaterialUsageSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   materialId?: boolean
   qtyUsed?: boolean
   loggedAt?: boolean
-  operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
   material?: boolean | Prisma.MaterialDefaultArgs<ExtArgs>
+  operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["materialUsage"]>
 
 export type MaterialUsageSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -622,8 +622,8 @@ export type MaterialUsageSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   materialId?: boolean
   qtyUsed?: boolean
   loggedAt?: boolean
-  operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
   material?: boolean | Prisma.MaterialDefaultArgs<ExtArgs>
+  operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["materialUsage"]>
 
 export type MaterialUsageSelectScalar = {
@@ -636,23 +636,23 @@ export type MaterialUsageSelectScalar = {
 
 export type MaterialUsageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "operationId" | "materialId" | "qtyUsed" | "loggedAt", ExtArgs["result"]["materialUsage"]>
 export type MaterialUsageInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
   material?: boolean | Prisma.MaterialDefaultArgs<ExtArgs>
+  operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
 }
 export type MaterialUsageIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
   material?: boolean | Prisma.MaterialDefaultArgs<ExtArgs>
+  operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
 }
 export type MaterialUsageIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
   material?: boolean | Prisma.MaterialDefaultArgs<ExtArgs>
+  operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
 }
 
 export type $MaterialUsagePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "MaterialUsage"
   objects: {
-    operation: Prisma.$OperationPayload<ExtArgs>
     material: Prisma.$MaterialPayload<ExtArgs>
+    operation: Prisma.$OperationPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1054,8 +1054,8 @@ readonly fields: MaterialUsageFieldRefs;
  */
 export interface Prisma__MaterialUsageClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  operation<T extends Prisma.OperationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OperationDefaultArgs<ExtArgs>>): Prisma.Prisma__OperationClient<runtime.Types.Result.GetResult<Prisma.$OperationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   material<T extends Prisma.MaterialDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MaterialDefaultArgs<ExtArgs>>): Prisma.Prisma__MaterialClient<runtime.Types.Result.GetResult<Prisma.$MaterialPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  operation<T extends Prisma.OperationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OperationDefaultArgs<ExtArgs>>): Prisma.Prisma__OperationClient<runtime.Types.Result.GetResult<Prisma.$OperationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

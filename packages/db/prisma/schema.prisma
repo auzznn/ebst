@@ -1,52 +1,44 @@
-datasource db {
-  provider = "postgresql"
-}
-
 generator client {
   provider     = "prisma-client"
   output       = "../prisma-generated"
   moduleFormat = "cjs"
 }
 
-model User {
-  id                String             @id
-  name              String
-  email             String
-  emailVerified     Boolean            @default(false)
-  image             String?
-  createdAt         DateTime           @default(now())
-  updatedAt         DateTime           @updatedAt
-  sessions          Session[]
-  accounts          Account[]
-  username          String?            @unique
-  displayUsername   String?
-  messages          Message[]
-  members           ChannelMember[]
-  role              Role               @default(FINANCE)
-  journalEntries    JournalEntry[]
-  businessDocuments BusinessDocument[]
-  invoices          Invoice[]
-
-  createdJobCards    JobCard[]         @relation("JobCardCreatedBy")
-  assignedOperations Operation[]       @relation("OperationOperator")
-  qcLogs             QcLog[]           @relation("QcInspector")
-  stockAdjustments   StockAdjustment[] @relation("StockAdjustedBy")
-
-  @@unique([email])
-  @@map("user")
+datasource db {
+  provider = "postgresql"
 }
 
-enum Role {
-  ADMIN
-  FINANCE
-  EXECUTIVE
-  OPERATOR
+model User {
+  id                 String             @id
+  name               String
+  email              String             @unique
+  emailVerified      Boolean            @default(false)
+  image              String?
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+  username           String?            @unique
+  displayUsername    String?
+  role               Role               @default(FINANCE)
+  accounts           Account[]
+  businessDocuments  BusinessDocument[]
+  members            ChannelMember[]
+  invoices           Invoice[]
+  createdJobCards    JobCard[]          @relation("JobCardCreatedBy")
+  journalEntries     JournalEntry[]
+  messages           Message[]
+  assignedOperations Operation[]        @relation("OperationOperator")
+  qcLogs             QcLog[]            @relation("QcInspector")
+  sessions           Session[]
+  stockAdjustments   StockAdjustment[]  @relation("StockAdjustedBy")
+  stockLedgers       StockLedger[]
+
+  @@map("user")
 }
 
 model Session {
   id        String   @id
   expiresAt DateTime
-  token     String
+  token     String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   ipAddress String?
@@ -54,7 +46,6 @@ model Session {
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([token])
   @@index([userId])
   @@map("session")
 }
@@ -64,7 +55,6 @@ model Account {
   accountId             String
   providerId            String
   userId                String
-  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   accessToken           String?
   refreshToken          String?
   idToken               String?
@@ -74,6 +64,7 @@ model Account {
   password              String?
   createdAt             DateTime  @default(now())
   updatedAt             DateTime  @updatedAt
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@map("account")
@@ -91,8 +82,6 @@ model Verification {
   @@map("verification")
 }
 
-//1. ─── Chat Module ──────────────────────────────────────────
-
 model Channel {
   id          String          @id @default(uuid())
   name        String?
@@ -100,8 +89,8 @@ model Channel {
   dmKey       String?         @unique
   createdAt   DateTime        @default(now())
   lastMessage DateTime        @default(now())
-  messages    Message[]
   members     ChannelMember[]
+  messages    Message[]
 
   @@map("channel")
 }
@@ -110,8 +99,8 @@ model ChannelMember {
   userId    String
   channelId String
   joinedAt  DateTime @default(now())
-  user      User     @relation(fields: [userId], references: [id])
   channel   Channel  @relation(fields: [channelId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
 
   @@id([userId, channelId])
   @@map("channel_member")
@@ -125,32 +114,20 @@ model Message {
   createdAt DateTime @default(now())
   senderId  String
   channelId String
-  sender    User     @relation(fields: [senderId], references: [id])
   channel   Channel  @relation(fields: [channelId], references: [id])
+  sender    User     @relation(fields: [senderId], references: [id])
 
   @@map("message")
 }
 
-//2. ─── Accounting Module ──────────────────────────────────────────
-
-enum AccountType {
-  ASSET
-  CONTRA_ASSET
-  LIABILITY
-  EQUITY
-  REVENUE
-  EXPENSE
-}
-
 model ChartOfAccount {
-  id         String      @id @default(uuid())
-  code       String      @unique
-  name       String
-  type       AccountType
-  parentCode String?
-  isActive   Boolean     @default(true)
-  createdAt  DateTime    @default(now())
-
+  id           String        @id @default(uuid())
+  code         String        @unique
+  name         String
+  type         AccountType
+  parentCode   String?
+  isActive     Boolean       @default(true)
+  createdAt    DateTime      @default(now())
   journalLines JournalLine[]
 
   @@map("chart_of_account")
@@ -160,7 +137,7 @@ model JournalEntry {
   id          String        @id @default(uuid())
   date        DateTime
   description String
-  period      String // "2025-12" format
+  period      String
   createdAt   DateTime      @default(now())
   createdById String
   createdBy   User          @relation(fields: [createdById], references: [id])
@@ -172,12 +149,12 @@ model JournalEntry {
 model JournalLine {
   id             String         @id @default(uuid())
   journalEntryId String
-  journalEntry   JournalEntry   @relation(fields: [journalEntryId], references: [id], onDelete: Cascade)
   accountId      String
-  account        ChartOfAccount @relation(fields: [accountId], references: [id])
   amount         Float
   isDebit        Boolean
   description    String?
+  account        ChartOfAccount @relation(fields: [accountId], references: [id])
+  journalEntry   JournalEntry   @relation(fields: [journalEntryId], references: [id], onDelete: Cascade)
 
   @@map("journal_line")
 }
@@ -197,17 +174,6 @@ model FixedAsset {
   @@map("fixed_asset")
 }
 
-//3. ─── Business Documents ────────────────────────────────────────
-
-enum DocumentType {
-  INVOICE
-  PURCHASE_ORDER
-  DELIVERY_NOTE
-  CHECK_SHEET
-  DRAWING
-  OTHER
-}
-
 model BusinessDocument {
   id           String       @id @default(uuid())
   key          String       @unique
@@ -219,64 +185,50 @@ model BusinessDocument {
   createdAt    DateTime     @default(now())
   updatedAt    DateTime     @updatedAt
   userId       String
-
-  user       User        @relation(fields: [userId], references: [id])
-  invoice    Invoice?
-  checkSheet CheckSheet?
-  qcFinding  QcFinding?
-  part       Part?
+  user         User         @relation(fields: [userId], references: [id])
+  checkSheet   CheckSheet?
+  invoice      Invoice?
+  part         Part?
+  qcFinding    QcFinding?
 
   @@map("business_document")
 }
 
 model Customer {
-  id        String   @id @default(uuid())
-  name      String
-  email     String
-  phone     String
-  address   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
+  id            String          @id @default(uuid())
+  name          String
+  email         String
+  phone         String
+  address       String
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
   invoices      Invoice[]
   purchaseOrder PurchaseOrder[]
 
   @@map("customer")
 }
 
-//4. ─── Invoice ────────────────────────────────────────────────────
-
-enum InvoiceStatus {
-  UNPAID
-  PAID
-  PARTIAL
-  CANCELLED
-}
-
 model Invoice {
-  id              String        @id @default(uuid())
-  invoiceNo       String        @unique
+  id              String            @id @default(uuid())
+  invoiceNo       String            @unique
   date            DateTime
   poNo            String?
-  status          InvoiceStatus @default(UNPAID)
-  dppHargaJual    Decimal       @db.Decimal(15, 0)
-  dppNilaiLain    Decimal       @db.Decimal(15, 0)
-  ppn             Decimal       @db.Decimal(15, 0)
-  total           Decimal       @db.Decimal(15, 0)
-  createdAt       DateTime      @default(now())
-  updatedAt       DateTime      @updatedAt
-  purchaseOrderId String?       @unique
-
-  // Relations
-  customerId    String
-  customer      Customer          @relation(fields: [customerId], references: [id])
-  createdById   String
-  createdBy     User              @relation(fields: [createdById], references: [id])
-  documentId    String?           @unique
-  document      BusinessDocument? @relation(fields: [documentId], references: [id])
-  purchaseOrder PurchaseOrder?    @relation(fields: [purchaseOrderId], references: [id])
-
-  items InvoiceItem[]
+  status          InvoiceStatus     @default(UNPAID)
+  dppHargaJual    Decimal           @db.Decimal(15, 0)
+  dppNilaiLain    Decimal           @db.Decimal(15, 0)
+  ppn             Decimal           @db.Decimal(15, 0)
+  total           Decimal           @db.Decimal(15, 0)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  customerId      String
+  createdById     String
+  documentId      String?           @unique
+  purchaseOrderId String?           @unique
+  createdBy       User              @relation(fields: [createdById], references: [id])
+  customer        Customer          @relation(fields: [customerId], references: [id])
+  document        BusinessDocument? @relation(fields: [documentId], references: [id])
+  purchaseOrder   PurchaseOrder?    @relation(fields: [purchaseOrderId], references: [id])
+  items           InvoiceItem[]
 
   @@map("invoice")
 }
@@ -290,68 +242,55 @@ model InvoiceItem {
   qty         Decimal @db.Decimal(15, 0)
   qtyUnit     String
   amount      Decimal @db.Decimal(15, 0)
-
-  invoiceId String
-  invoice   Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  invoiceId   String
+  invoice     Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
 
   @@map("invoice_item")
 }
 
-//5. ––– Purchase Order –––––––––––––––––––––––––––––––––––
-
 model PurchaseOrder {
-  id         String   @id @default(cuid())
-  poNumber   String   @unique
-  customer   Customer @relation(fields: [customerId], references: [id])
+  id         String       @id @default(cuid())
+  poNumber   String       @unique
   customerId String
   dueDate    DateTime
   notes      String?
-  createdAt  DateTime @default(now())
-
-  lineItems PoLineItem[]
-  jobCards  JobCard[]
-  invoice   Invoice?
+  createdAt  DateTime     @default(now())
+  invoice    Invoice?
+  jobCards   JobCard?
+  lineItems  PoLineItem[]
+  customer   Customer     @relation(fields: [customerId], references: [id])
 
   @@map("purchase_order")
 }
 
 model PoLineItem {
-  id              String  @id @default(cuid())
+  id              String        @id @default(cuid())
   purchaseOrderId String
   partId          String
   quantity        Int
-  unitPrice       Decimal @db.Decimal(15, 0)
-
-  purchaseOrder PurchaseOrder @relation(fields: [purchaseOrderId], references: [id])
-  part          Part          @relation(fields: [partId], references: [id])
-  jobList       JobList?
+  unitPrice       Decimal       @db.Decimal(15, 0)
+  jobList         JobList?
+  part            Part          @relation(fields: [partId], references: [id])
+  purchaseOrder   PurchaseOrder @relation(fields: [purchaseOrderId], references: [id])
 
   @@map("po_line_item")
 }
 
-//6. ––– Part & Routing Step –––––––––––––––––––––––––––––––––––
-
-enum CastingType {
-  INVESTMENT
-  SAND
-}
-
 model Part {
-  id          String            @id @default(cuid())
-  partNo      String            @unique
-  description String
-  castingType CastingType
-  drawingId   String?           @unique
-  drawing     BusinessDocument? @relation(fields: [drawingId], references: [id])
-  createdAt   DateTime          @default(now())
-
-  routing        RoutingTemplate?
-  lineItems      PoLineItem[]
+  id             String             @id @default(cuid())
+  partNo         String             @unique
+  description    String
+  castingType    CastingType
+  createdAt      DateTime           @default(now())
+  materialId     String?
+  drawingId      String?            @unique
   jobLists       JobList[]
+  drawing        BusinessDocument?  @relation(fields: [drawingId], references: [id])
+  material       Material?          @relation(fields: [materialId], references: [id])
   materials      PartMaterial[]
   specifications PartSpecification?
-  material       Material?          @relation(fields: [materialId], references: [id])
-  materialId     String?
+  lineItems      PoLineItem[]
+  routing        RoutingTemplate?
 
   @@map("part")
 }
@@ -360,152 +299,105 @@ model PartMaterial {
   id         String   @id @default(cuid())
   partId     String
   materialId String
-  ratio      Decimal  @db.Decimal(5, 2) // Composition ratio, e.g., 60.00 for 60%
-  part       Part     @relation(fields: [partId], references: [id], onDelete: Cascade)
+  ratio      Decimal  @db.Decimal(5, 2)
   material   Material @relation(fields: [materialId], references: [id])
+  part       Part     @relation(fields: [partId], references: [id], onDelete: Cascade)
 
   @@unique([partId, materialId])
   @@map("part_material")
 }
 
 model PartSpecification {
-  id     String @id @default(cuid())
-  partId String @unique
-  part   Part   @relation(fields: [partId], references: [id], onDelete: Cascade)
-
-  // Dimensions
-  length Decimal? @db.Decimal(10, 2)
-  width  Decimal? @db.Decimal(10, 2)
-  height Decimal? @db.Decimal(10, 2)
-  weight Decimal? @db.Decimal(10, 2)
-  unit   String   @default("mm") // mm, inch, etc.
-
-  // Other specs
+  id            String   @id @default(cuid())
+  partId        String   @unique
+  length        Decimal? @db.Decimal(10, 2)
+  width         Decimal? @db.Decimal(10, 2)
+  height        Decimal? @db.Decimal(10, 2)
+  weight        Decimal? @db.Decimal(10, 2)
+  unit          String   @default("mm")
   tolerance     String?
   surfaceFinish String?
-  otherSpecs    Json?   @default("{}")
+  otherSpecs    Json?    @default("{}")
+  part          Part     @relation(fields: [partId], references: [id], onDelete: Cascade)
 
   @@map("part_specification")
 }
 
-// One routing template per part — defines the standard operation sequence
 model RoutingTemplate {
-  id        String   @id @default(cuid())
-  part      Part     @relation(fields: [partId], references: [id])
-  partId    String   @unique
-  createdAt DateTime @default(now())
-
-  steps RoutingStep[]
+  id        String        @id @default(cuid())
+  partId    String        @unique
+  createdAt DateTime      @default(now())
+  steps     RoutingStep[]
+  part      Part          @relation(fields: [partId], references: [id])
 
   @@map("routing_template")
 }
 
-// Each step in the routing — ordered, reusable definition
 model RoutingStep {
-  id                 String  @id @default(cuid())
+  id                 String          @id @default(cuid())
   routingTemplateId  String
-  stepOrder          Int // 1, 2, 3... enforces sequence
-  operationName      String // "Pattern Making", "Moulding", "Pouring", etc.
-  defaultMachineType String? // hint for assignment, e.g. "CNC Lathe"
+  stepOrder          Int
+  operationName      String
+  defaultMachineType String?
+  estimatedMinutes   Int?
   defaultMachineId   String?
-  estimatedMinutes   Int? // optional time estimate
-
-  operations     Operation[]
-  routing        RoutingTemplate @relation(fields: [routingTemplateId], references: [id])
-  defaultMachine Machine?        @relation("DefaultMachine", fields: [defaultMachineId], references: [id])
+  operations         Operation[]
+  defaultMachine     Machine?        @relation("DefaultMachine", fields: [defaultMachineId], references: [id])
+  routing            RoutingTemplate @relation(fields: [routingTemplateId], references: [id])
 
   @@unique([routingTemplateId, stepOrder])
   @@map("routing_step")
 }
 
-//7. ––– Machine ––––––––––––––––––––––––––––––––––––––––––
-
 model Machine {
-  id          String  @id @default(cuid())
-  name        String
-  machineType String // "CNC Lathe", "Sand Moulder", "Furnace", etc.
-  isActive    Boolean @default(true)
-
-  // Future: opcuaEndpoint String? — plug OPC-UA in here later
+  id           String        @id @default(cuid())
+  name         String
+  machineType  String
+  isActive     Boolean       @default(true)
   operations   Operation[]
   defaultSteps RoutingStep[] @relation("DefaultMachine")
 
   @@map("machine")
 }
 
-//8. ─── Job Card & Operations ────────────────────────────────────────
-enum JobCardStatus {
-  PENDING // created, not started
-  IN_PROGRESS // at least one operation started
-  COMPLETED // all operations done, passed QC
-  ON_HOLD // blocked for some reason
-  CANCELLED
-}
-
-enum OperationStatus {
-  WAITING // previous step not yet complete
-  QUEUED // ready to start
-  IN_PROGRESS
-  COMPLETED
-  REJECTED // failed QC, cannot continue
-}
-
-enum QcResult {
-  PASS
-  REPAIR
-  REJECT
-}
-
-enum MaterialUnit {
-  KG
-  GRAM
-  LITRE
-  PIECE
-  METRE
-}
-
-// one
 model JobCard {
-  id              String        @id @default(cuid())
-  jobNo           String        @unique
-  purchaseOrderId String?       @unique // one card per PO
-  status          JobCardStatus @default(PENDING) // derived
+  id              String         @id @default(cuid())
+  jobNo           String         @unique
+  purchaseOrderId String?        @unique
+  status          JobCardStatus  @default(PENDING)
   createdById     String
-  createdAt       DateTime      @default(now())
+  createdAt       DateTime       @default(now())
   completedAt     DateTime?
-
-  jobLists      JobList[]
-  purchaseOrder PurchaseOrder? @relation(fields: [purchaseOrderId], references: [id])
-  createdBy     User           @relation("JobCardCreatedBy", fields: [createdById], references: [id])
+  createdBy       User           @relation("JobCardCreatedBy", fields: [createdById], references: [id])
+  purchaseOrder   PurchaseOrder? @relation(fields: [purchaseOrderId], references: [id])
+  jobLists        JobList[]
 
   @@map("job_card")
 }
 
 model JobList {
-  id         String        @id @default(cuid())
-  jobCardId  String
-  partId     String?
-  lineItemId String?       @unique // one joblist per line item
-  quantity   Int
-  status     JobCardStatus @default(PENDING) // derived
-
-  operations   Operation[]
-  jobMaterials JobMaterial[]
+  id           String        @id @default(cuid())
+  jobCardId    String
+  lineItemId   String?       @unique
+  quantity     Int
+  status       JobCardStatus @default(PENDING)
+  partId       String?
   jobCard      JobCard       @relation(fields: [jobCardId], references: [id])
-  part         Part?         @relation(fields: [partId], references: [id])
   lineItem     PoLineItem?   @relation(fields: [lineItemId], references: [id])
+  part         Part?         @relation(fields: [partId], references: [id])
+  jobMaterials JobMaterial[]
+  operations   Operation[]
 
   @@map("job_list")
 }
 
 model JobMaterial {
-  id         String  @id @default(cuid())
+  id         String   @id @default(cuid())
   jobListId  String
   materialId String
-  quantity   Decimal @db.Decimal(10, 3)
-
-  jobList  JobList  @relation(fields: [jobListId], references: [id])
-  material Material @relation(fields: [materialId], references: [id])
+  quantity   Decimal  @db.Decimal(10, 3)
+  jobList    JobList  @relation(fields: [jobListId], references: [id])
+  material   Material @relation(fields: [materialId], references: [id])
 
   @@map("job_material")
 }
@@ -522,62 +414,233 @@ model Operation {
   startedAt     DateTime?
   completedAt   DateTime?
   notes         String?
-
-  materialsUsed MaterialUsage[]
-  qcLog         QcLog?
   checkSheet    CheckSheet?
-
-  jobList     JobList     @relation(fields: [jobListId], references: [id])
-  routingStep RoutingStep @relation(fields: [routingStepId], references: [id])
-  machine     Machine?    @relation(fields: [machineId], references: [id])
-  operator    User?       @relation("OperationOperator", fields: [operatorId], references: [id])
+  materialsUsed MaterialUsage[]
+  jobList       JobList         @relation(fields: [jobListId], references: [id])
+  machine       Machine?        @relation(fields: [machineId], references: [id])
+  operator      User?           @relation("OperationOperator", fields: [operatorId], references: [id])
+  routingStep   RoutingStep     @relation(fields: [routingStepId], references: [id])
+  qcLog         QcLog?
 
   @@unique([jobListId, stepOrder])
   @@map("operation")
 }
 
 model QcLog {
-  id          String    @id @default(cuid())
-  operation   Operation @relation(fields: [operationId], references: [id])
-  operationId String    @unique
+  id          String      @id @default(cuid())
+  operationId String      @unique
   result      QcResult
-  reason      String? // required if REPAIR or REJECT
-  inspector   User      @relation("QcInspector", fields: [inspectorId], references: [id])
+  reason      String?
   inspectorId String
-  loggedAt    DateTime  @default(now())
-
-  findings QcFinding[]
+  loggedAt    DateTime    @default(now())
+  findings    QcFinding[]
+  inspector   User        @relation("QcInspector", fields: [inspectorId], references: [id])
+  operation   Operation   @relation(fields: [operationId], references: [id])
 
   @@map("qc_log")
 }
 
-enum FindingCategory {
-  DIMENSION // Linear/geometric measurements
-  SURFACE // Surface finish, smoothness, roughness
-  CHEMICAL // Chemical composition, material properties
-  VISUAL // Visual defects, appearance
-  FUNCTIONAL // Functional / performance test
-  OTHER
-}
-
 model QcFinding {
-  id      String @id @default(cuid())
-  qcLog   QcLog  @relation(fields: [qcLogId], references: [id], onDelete: Cascade)
-  qcLogId String
-
-  category      FindingCategory @default(OTHER)
-  parameter     String // e.g. "Outer Diameter", "Surface Roughness Ra"
-  specification String? // Expected spec / tolerance
-  measuredValue String? // Actual measured value
-  unit          String? // "mm", "µm", "Rc", etc.
-  description   String? // Free-text finding description
-  isConforming  Boolean         @default(true)
-
-  // Optional supporting document (e.g. scan from external machine)
-  documentId String?           @unique
-  document   BusinessDocument? @relation(fields: [documentId], references: [id])
+  id            String            @id @default(cuid())
+  qcLogId       String
+  category      FindingCategory   @default(OTHER)
+  parameter     String
+  specification String?
+  measuredValue String?
+  unit          String?
+  description   String?
+  isConforming  Boolean           @default(true)
+  documentId    String?           @unique
+  document      BusinessDocument? @relation(fields: [documentId], references: [id])
+  qcLog         QcLog             @relation(fields: [qcLogId], references: [id], onDelete: Cascade)
 
   @@map("qc_finding")
+}
+
+model CheckSheet {
+  id          String            @id @default(cuid())
+  type        CheckSheetType
+  operationId String            @unique
+  documentId  String?           @unique
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+  document    BusinessDocument? @relation(fields: [documentId], references: [id])
+  operation   Operation         @relation(fields: [operationId], references: [id])
+  rows        CheckSheetRow[]
+
+  @@map("check_sheet")
+}
+
+model CheckSheetRow {
+  id            String     @id @default(cuid())
+  checkSheetId  String
+  parameterName String
+  targetValue   String?
+  actualValue   String?
+  minTolerance  Decimal?   @db.Decimal(10, 4)
+  maxTolerance  Decimal?   @db.Decimal(10, 4)
+  isPass        Boolean?
+  checkSheet    CheckSheet @relation(fields: [checkSheetId], references: [id], onDelete: Cascade)
+
+  @@map("check_sheet_row")
+}
+
+/// We could not retrieve columns for the underlying table. Either it has none or you are missing rights to see them. Please check your privileges.
+// model CheckSheetConfig {
+// @@map("check_sheet_config")
+// @@ignore
+// }
+
+model Material {
+  id               String            @id @default(cuid())
+  name             String
+  code             String            @unique
+  description      String?
+  unit             MaterialUnit
+  stockQty         Decimal           @default(0) @db.Decimal(10, 3)
+  reorderThreshold Decimal           @db.Decimal(10, 3)
+  reorderQty       Decimal           @db.Decimal(10, 3)
+  supplierId       String?
+  unitCost         Decimal?          @db.Decimal(15, 0)
+  createdAt        DateTime          @default(now())
+  jobMaterials     JobMaterial[]
+  supplier         Supplier?         @relation(fields: [supplierId], references: [id])
+  usages           MaterialUsage[]
+  parts            Part[]
+  partMaterials    PartMaterial[]
+  adjustments      StockAdjustment[]
+  stockLedgers     StockLedger[]
+
+  @@map("material")
+}
+
+model MaterialUsage {
+  id          String    @id @default(cuid())
+  operationId String
+  materialId  String
+  qtyUsed     Decimal   @db.Decimal(10, 3)
+  loggedAt    DateTime  @default(now())
+  material    Material  @relation(fields: [materialId], references: [id])
+  operation   Operation @relation(fields: [operationId], references: [id])
+
+  @@map("material_usage")
+}
+
+model StockAdjustment {
+  id           String   @id @default(cuid())
+  materialId   String
+  qty          Decimal  @db.Decimal(10, 3)
+  reason       String
+  adjustedById String
+  adjustedAt   DateTime @default(now())
+  adjustedBy   User     @relation("StockAdjustedBy", fields: [adjustedById], references: [id])
+  material     Material @relation(fields: [materialId], references: [id])
+
+  @@map("stock_adjustment")
+}
+
+model StockLedger {
+  id              String                @id @default(cuid())
+  materialId      String
+  transactionType LedgerTransactionType
+  qtyChange       Decimal               @db.Decimal(10, 3)
+  balanceAfter    Decimal               @db.Decimal(10, 3)
+  reason          String?
+  referenceId     String?
+  userId          String?
+  createdAt       DateTime              @default(now())
+  material        Material              @relation(fields: [materialId], references: [id])
+  user            User?                 @relation(fields: [userId], references: [id])
+
+  @@map("stock_ledger")
+}
+
+model Supplier {
+  id        String     @id @default(cuid())
+  name      String
+  phone     String?
+  email     String?
+  address   String?
+  createdAt DateTime   @default(now())
+  materials Material[]
+
+  @@map("supplier")
+}
+
+enum Role {
+  ADMIN
+  FINANCE
+  EXECUTIVE
+  OPERATOR
+}
+
+enum AccountType {
+  ASSET
+  CONTRA_ASSET
+  LIABILITY
+  EQUITY
+  REVENUE
+  EXPENSE
+}
+
+enum DocumentType {
+  INVOICE
+  PURCHASE_ORDER
+  DELIVERY_NOTE
+  OTHER
+  CHECK_SHEET
+  DRAWING
+}
+
+enum InvoiceStatus {
+  UNPAID
+  PAID
+  PARTIAL
+  CANCELLED
+}
+
+enum CastingType {
+  INVESTMENT
+  SAND
+}
+
+enum JobCardStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  ON_HOLD
+  CANCELLED
+}
+
+enum OperationStatus {
+  WAITING
+  QUEUED
+  IN_PROGRESS
+  COMPLETED
+  REJECTED
+}
+
+enum QcResult {
+  PASS
+  REPAIR
+  REJECT
+}
+
+enum MaterialUnit {
+  KG
+  GRAM
+  LITRE
+  PIECE
+  METRE
+}
+
+enum FindingCategory {
+  DIMENSION
+  SURFACE
+  CHEMICAL
+  VISUAL
+  FUNCTIONAL
+  OTHER
 }
 
 enum CheckSheetType {
@@ -585,107 +648,9 @@ enum CheckSheetType {
   FINISHING
 }
 
-model CheckSheet {
-  id          String         @id @default(cuid())
-  type        CheckSheetType
-  operation   Operation      @relation(fields: [operationId], references: [id])
-  operationId String         @unique
-
-  // Link to a file (e.g. melting machine report)
-  documentId String?           @unique
-  document   BusinessDocument? @relation(fields: [documentId], references: [id])
-
-  rows CheckSheetRow[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("check_sheet")
-}
-
-model CheckSheetRow {
-  id           String     @id @default(cuid())
-  checkSheetId String
-  checkSheet   CheckSheet @relation(fields: [checkSheetId], references: [id], onDelete: Cascade)
-
-  parameterName String // e.g. "Carbon", "Outer Diameter"
-  targetValue   String? // Expected value/spec
-  actualValue   String? // Measured value
-  minTolerance  Decimal? @db.Decimal(10, 4)
-  maxTolerance  Decimal? @db.Decimal(10, 4)
-  isPass        Boolean?
-
-  @@map("check_sheet_row")
-}
-
-model CheckSheetConfig {
-
-  @@map("check_sheet_config")
-  @@ignore
-}
-
-// 9. ––– Material & Stock –––––––––––––––––––––––––––––––––––
-
-model Material {
-  id               String       @id @default(cuid())
-  name             String
-  code             String       @unique // e.g. "ALU-380", "SAND-SIL"
-  description      String?
-  unit             MaterialUnit
-  stockQty         Decimal      @default(0) @db.Decimal(10, 3)
-  reorderThreshold Decimal      @db.Decimal(10, 3) // alert fires below this
-  reorderQty       Decimal      @db.Decimal(10, 3) // suggested order quantity
-  supplier         Supplier?    @relation(fields: [supplierId], references: [id])
-  supplierId       String?
-  unitCost         Decimal?     @db.Decimal(15, 0)
-  createdAt        DateTime     @default(now())
-
-  usages        MaterialUsage[]
-  adjustments   StockAdjustment[]
-  parts         Part[]
-  jobMaterials  JobMaterial[]
-  partMaterials PartMaterial[]
-
-  @@map("material")
-}
-
-// Records how much of a material an operation consumed
-// Automatically deducted from Material.stockQty when operation starts
-model MaterialUsage {
-  id          String    @id @default(cuid())
-  operation   Operation @relation(fields: [operationId], references: [id])
-  operationId String
-  material    Material  @relation(fields: [materialId], references: [id])
-  materialId  String
-  qtyUsed     Decimal   @db.Decimal(10, 3)
-  loggedAt    DateTime  @default(now())
-
-  @@map("material_usage")
-}
-
-// Manual stock adjustments — receipts, corrections, write-offs
-model StockAdjustment {
-  id           String   @id @default(cuid())
-  material     Material @relation(fields: [materialId], references: [id])
-  materialId   String
-  qty          Decimal  @db.Decimal(10, 3) // positive = in, negative = out
-  reason       String // "Goods received", "Stock count correction", etc.
-  adjustedBy   User     @relation("StockAdjustedBy", fields: [adjustedById], references: [id])
-  adjustedById String
-  adjustedAt   DateTime @default(now())
-
-  @@map("stock_adjustment")
-}
-
-model Supplier {
-  id        String   @id @default(cuid())
-  name      String
-  phone     String?
-  email     String?
-  address   String?
-  createdAt DateTime @default(now())
-
-  materials Material[]
-
-  @@map("supplier")
+enum LedgerTransactionType {
+  RECEIPT
+  ADJUSTMENT
+  USAGE
+  RETURN
 }

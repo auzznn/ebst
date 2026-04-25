@@ -82,3 +82,41 @@ export const useInventory = (page: number = 1, limit: number = 10) => {
     allocateMaterial: allocateMaterialMutation.mutateAsync,
   };
 };
+
+export interface StockLedgerEntry {
+  id: string;
+  materialId: string;
+  transactionType: 'RECEIPT' | 'ADJUSTMENT' | 'USAGE' | 'RETURN';
+  qtyChange: number;
+  balanceAfter: number;
+  reason?: string;
+  referenceId?: string;
+  userId?: string;
+  user?: {
+    id: string;
+    name: string;
+  };
+  createdAt: string;
+}
+
+export const useMaterialDetails = (id: string) => {
+  return useQuery({
+    queryKey: ['material', id],
+    queryFn: async () => {
+      const { data } = await api.get<Material>(`/inventory/materials/${id}`);
+      return data;
+    },
+    enabled: !!id,
+  });
+};
+
+export const useMaterialLedger = (id: string, page: number = 1, limit: number = 20) => {
+  return useQuery({
+    queryKey: ['material-ledger', id, page, limit],
+    queryFn: async () => {
+      const { data } = await api.get<{ data: StockLedgerEntry[], meta: { totalPages: number, page: number, total: number } }>(`/inventory/materials/${id}/ledger`, { params: { page, limit } });
+      return data;
+    },
+    enabled: !!id,
+  });
+};

@@ -154,8 +154,8 @@ export type MessageWhereInput = {
     createdAt?: Prisma.DateTimeFilter<"Message"> | Date | string;
     senderId?: Prisma.StringFilter<"Message"> | string;
     channelId?: Prisma.StringFilter<"Message"> | string;
-    sender?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
     channel?: Prisma.XOR<Prisma.ChannelScalarRelationFilter, Prisma.ChannelWhereInput>;
+    sender?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
 };
 export type MessageOrderByWithRelationInput = {
     id?: Prisma.SortOrder;
@@ -165,8 +165,8 @@ export type MessageOrderByWithRelationInput = {
     createdAt?: Prisma.SortOrder;
     senderId?: Prisma.SortOrder;
     channelId?: Prisma.SortOrder;
-    sender?: Prisma.UserOrderByWithRelationInput;
     channel?: Prisma.ChannelOrderByWithRelationInput;
+    sender?: Prisma.UserOrderByWithRelationInput;
 };
 export type MessageWhereUniqueInput = Prisma.AtLeast<{
     id?: string;
@@ -179,8 +179,8 @@ export type MessageWhereUniqueInput = Prisma.AtLeast<{
     createdAt?: Prisma.DateTimeFilter<"Message"> | Date | string;
     senderId?: Prisma.StringFilter<"Message"> | string;
     channelId?: Prisma.StringFilter<"Message"> | string;
-    sender?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
     channel?: Prisma.XOR<Prisma.ChannelScalarRelationFilter, Prisma.ChannelWhereInput>;
+    sender?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
 }, "id">;
 export type MessageOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
@@ -212,8 +212,8 @@ export type MessageCreateInput = {
     type?: string;
     fileUrl?: string | null;
     createdAt?: Date | string;
-    sender: Prisma.UserCreateNestedOneWithoutMessagesInput;
     channel: Prisma.ChannelCreateNestedOneWithoutMessagesInput;
+    sender: Prisma.UserCreateNestedOneWithoutMessagesInput;
 };
 export type MessageUncheckedCreateInput = {
     id?: string;
@@ -230,8 +230,8 @@ export type MessageUpdateInput = {
     type?: Prisma.StringFieldUpdateOperationsInput | string;
     fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    sender?: Prisma.UserUpdateOneRequiredWithoutMessagesNestedInput;
     channel?: Prisma.ChannelUpdateOneRequiredWithoutMessagesNestedInput;
+    sender?: Prisma.UserUpdateOneRequiredWithoutMessagesNestedInput;
 };
 export type MessageUncheckedUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -536,8 +536,8 @@ export type MessageSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     createdAt?: boolean;
     senderId?: boolean;
     channelId?: boolean;
-    sender?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     channel?: boolean | Prisma.ChannelDefaultArgs<ExtArgs>;
+    sender?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["message"]>;
 export type MessageSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
@@ -547,8 +547,8 @@ export type MessageSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
     createdAt?: boolean;
     senderId?: boolean;
     channelId?: boolean;
-    sender?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     channel?: boolean | Prisma.ChannelDefaultArgs<ExtArgs>;
+    sender?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["message"]>;
 export type MessageSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
@@ -558,8 +558,8 @@ export type MessageSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
     createdAt?: boolean;
     senderId?: boolean;
     channelId?: boolean;
-    sender?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     channel?: boolean | Prisma.ChannelDefaultArgs<ExtArgs>;
+    sender?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["message"]>;
 export type MessageSelectScalar = {
     id?: boolean;
@@ -572,22 +572,22 @@ export type MessageSelectScalar = {
 };
 export type MessageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "content" | "type" | "fileUrl" | "createdAt" | "senderId" | "channelId", ExtArgs["result"]["message"]>;
 export type MessageInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    sender?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     channel?: boolean | Prisma.ChannelDefaultArgs<ExtArgs>;
+    sender?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
 };
 export type MessageIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    sender?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     channel?: boolean | Prisma.ChannelDefaultArgs<ExtArgs>;
+    sender?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
 };
 export type MessageIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    sender?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     channel?: boolean | Prisma.ChannelDefaultArgs<ExtArgs>;
+    sender?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
 };
 export type $MessagePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     name: "Message";
     objects: {
-        sender: Prisma.$UserPayload<ExtArgs>;
         channel: Prisma.$ChannelPayload<ExtArgs>;
+        sender: Prisma.$UserPayload<ExtArgs>;
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         id: string;
@@ -926,8 +926,8 @@ export interface MessageDelegate<ExtArgs extends runtime.Types.Extensions.Intern
  */
 export interface Prisma__MessageClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise";
-    sender<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
     channel<T extends Prisma.ChannelDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ChannelDefaultArgs<ExtArgs>>): Prisma.Prisma__ChannelClient<runtime.Types.Result.GetResult<Prisma.$ChannelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
+    sender<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.

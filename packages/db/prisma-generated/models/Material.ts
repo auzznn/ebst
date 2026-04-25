@@ -276,12 +276,13 @@ export type MaterialWhereInput = {
   supplierId?: Prisma.StringNullableFilter<"Material"> | string | null
   unitCost?: Prisma.DecimalNullableFilter<"Material"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFilter<"Material"> | Date | string
+  jobMaterials?: Prisma.JobMaterialListRelationFilter
   supplier?: Prisma.XOR<Prisma.SupplierNullableScalarRelationFilter, Prisma.SupplierWhereInput> | null
   usages?: Prisma.MaterialUsageListRelationFilter
-  adjustments?: Prisma.StockAdjustmentListRelationFilter
   parts?: Prisma.PartListRelationFilter
-  jobMaterials?: Prisma.JobMaterialListRelationFilter
   partMaterials?: Prisma.PartMaterialListRelationFilter
+  adjustments?: Prisma.StockAdjustmentListRelationFilter
+  stockLedgers?: Prisma.StockLedgerListRelationFilter
 }
 
 export type MaterialOrderByWithRelationInput = {
@@ -296,12 +297,13 @@ export type MaterialOrderByWithRelationInput = {
   supplierId?: Prisma.SortOrderInput | Prisma.SortOrder
   unitCost?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  jobMaterials?: Prisma.JobMaterialOrderByRelationAggregateInput
   supplier?: Prisma.SupplierOrderByWithRelationInput
   usages?: Prisma.MaterialUsageOrderByRelationAggregateInput
-  adjustments?: Prisma.StockAdjustmentOrderByRelationAggregateInput
   parts?: Prisma.PartOrderByRelationAggregateInput
-  jobMaterials?: Prisma.JobMaterialOrderByRelationAggregateInput
   partMaterials?: Prisma.PartMaterialOrderByRelationAggregateInput
+  adjustments?: Prisma.StockAdjustmentOrderByRelationAggregateInput
+  stockLedgers?: Prisma.StockLedgerOrderByRelationAggregateInput
 }
 
 export type MaterialWhereUniqueInput = Prisma.AtLeast<{
@@ -319,12 +321,13 @@ export type MaterialWhereUniqueInput = Prisma.AtLeast<{
   supplierId?: Prisma.StringNullableFilter<"Material"> | string | null
   unitCost?: Prisma.DecimalNullableFilter<"Material"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFilter<"Material"> | Date | string
+  jobMaterials?: Prisma.JobMaterialListRelationFilter
   supplier?: Prisma.XOR<Prisma.SupplierNullableScalarRelationFilter, Prisma.SupplierWhereInput> | null
   usages?: Prisma.MaterialUsageListRelationFilter
-  adjustments?: Prisma.StockAdjustmentListRelationFilter
   parts?: Prisma.PartListRelationFilter
-  jobMaterials?: Prisma.JobMaterialListRelationFilter
   partMaterials?: Prisma.PartMaterialListRelationFilter
+  adjustments?: Prisma.StockAdjustmentListRelationFilter
+  stockLedgers?: Prisma.StockLedgerListRelationFilter
 }, "id" | "code">
 
 export type MaterialOrderByWithAggregationInput = {
@@ -374,12 +377,13 @@ export type MaterialCreateInput = {
   reorderQty: runtime.Decimal | runtime.DecimalJsLike | number | string
   unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
+  jobMaterials?: Prisma.JobMaterialCreateNestedManyWithoutMaterialInput
   supplier?: Prisma.SupplierCreateNestedOneWithoutMaterialsInput
   usages?: Prisma.MaterialUsageCreateNestedManyWithoutMaterialInput
-  adjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutMaterialInput
   parts?: Prisma.PartCreateNestedManyWithoutMaterialInput
-  jobMaterials?: Prisma.JobMaterialCreateNestedManyWithoutMaterialInput
   partMaterials?: Prisma.PartMaterialCreateNestedManyWithoutMaterialInput
+  adjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutMaterialInput
+  stockLedgers?: Prisma.StockLedgerCreateNestedManyWithoutMaterialInput
 }
 
 export type MaterialUncheckedCreateInput = {
@@ -394,11 +398,12 @@ export type MaterialUncheckedCreateInput = {
   supplierId?: string | null
   unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
-  usages?: Prisma.MaterialUsageUncheckedCreateNestedManyWithoutMaterialInput
-  adjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutMaterialInput
-  parts?: Prisma.PartUncheckedCreateNestedManyWithoutMaterialInput
   jobMaterials?: Prisma.JobMaterialUncheckedCreateNestedManyWithoutMaterialInput
+  usages?: Prisma.MaterialUsageUncheckedCreateNestedManyWithoutMaterialInput
+  parts?: Prisma.PartUncheckedCreateNestedManyWithoutMaterialInput
   partMaterials?: Prisma.PartMaterialUncheckedCreateNestedManyWithoutMaterialInput
+  adjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutMaterialInput
+  stockLedgers?: Prisma.StockLedgerUncheckedCreateNestedManyWithoutMaterialInput
 }
 
 export type MaterialUpdateInput = {
@@ -412,12 +417,13 @@ export type MaterialUpdateInput = {
   reorderQty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  jobMaterials?: Prisma.JobMaterialUpdateManyWithoutMaterialNestedInput
   supplier?: Prisma.SupplierUpdateOneWithoutMaterialsNestedInput
   usages?: Prisma.MaterialUsageUpdateManyWithoutMaterialNestedInput
-  adjustments?: Prisma.StockAdjustmentUpdateManyWithoutMaterialNestedInput
   parts?: Prisma.PartUpdateManyWithoutMaterialNestedInput
-  jobMaterials?: Prisma.JobMaterialUpdateManyWithoutMaterialNestedInput
   partMaterials?: Prisma.PartMaterialUpdateManyWithoutMaterialNestedInput
+  adjustments?: Prisma.StockAdjustmentUpdateManyWithoutMaterialNestedInput
+  stockLedgers?: Prisma.StockLedgerUpdateManyWithoutMaterialNestedInput
 }
 
 export type MaterialUncheckedUpdateInput = {
@@ -432,11 +438,12 @@ export type MaterialUncheckedUpdateInput = {
   supplierId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  usages?: Prisma.MaterialUsageUncheckedUpdateManyWithoutMaterialNestedInput
-  adjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutMaterialNestedInput
-  parts?: Prisma.PartUncheckedUpdateManyWithoutMaterialNestedInput
   jobMaterials?: Prisma.JobMaterialUncheckedUpdateManyWithoutMaterialNestedInput
+  usages?: Prisma.MaterialUsageUncheckedUpdateManyWithoutMaterialNestedInput
+  parts?: Prisma.PartUncheckedUpdateManyWithoutMaterialNestedInput
   partMaterials?: Prisma.PartMaterialUncheckedUpdateManyWithoutMaterialNestedInput
+  adjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutMaterialNestedInput
+  stockLedgers?: Prisma.StockLedgerUncheckedUpdateManyWithoutMaterialNestedInput
 }
 
 export type MaterialCreateManyInput = {
@@ -632,6 +639,20 @@ export type MaterialUpdateOneRequiredWithoutAdjustmentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.MaterialUpdateToOneWithWhereWithoutAdjustmentsInput, Prisma.MaterialUpdateWithoutAdjustmentsInput>, Prisma.MaterialUncheckedUpdateWithoutAdjustmentsInput>
 }
 
+export type MaterialCreateNestedOneWithoutStockLedgersInput = {
+  create?: Prisma.XOR<Prisma.MaterialCreateWithoutStockLedgersInput, Prisma.MaterialUncheckedCreateWithoutStockLedgersInput>
+  connectOrCreate?: Prisma.MaterialCreateOrConnectWithoutStockLedgersInput
+  connect?: Prisma.MaterialWhereUniqueInput
+}
+
+export type MaterialUpdateOneRequiredWithoutStockLedgersNestedInput = {
+  create?: Prisma.XOR<Prisma.MaterialCreateWithoutStockLedgersInput, Prisma.MaterialUncheckedCreateWithoutStockLedgersInput>
+  connectOrCreate?: Prisma.MaterialCreateOrConnectWithoutStockLedgersInput
+  upsert?: Prisma.MaterialUpsertWithoutStockLedgersInput
+  connect?: Prisma.MaterialWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MaterialUpdateToOneWithWhereWithoutStockLedgersInput, Prisma.MaterialUpdateWithoutStockLedgersInput>, Prisma.MaterialUncheckedUpdateWithoutStockLedgersInput>
+}
+
 export type MaterialCreateNestedManyWithoutSupplierInput = {
   create?: Prisma.XOR<Prisma.MaterialCreateWithoutSupplierInput, Prisma.MaterialUncheckedCreateWithoutSupplierInput> | Prisma.MaterialCreateWithoutSupplierInput[] | Prisma.MaterialUncheckedCreateWithoutSupplierInput[]
   connectOrCreate?: Prisma.MaterialCreateOrConnectWithoutSupplierInput | Prisma.MaterialCreateOrConnectWithoutSupplierInput[]
@@ -685,11 +706,12 @@ export type MaterialCreateWithoutPartsInput = {
   reorderQty: runtime.Decimal | runtime.DecimalJsLike | number | string
   unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
+  jobMaterials?: Prisma.JobMaterialCreateNestedManyWithoutMaterialInput
   supplier?: Prisma.SupplierCreateNestedOneWithoutMaterialsInput
   usages?: Prisma.MaterialUsageCreateNestedManyWithoutMaterialInput
-  adjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutMaterialInput
-  jobMaterials?: Prisma.JobMaterialCreateNestedManyWithoutMaterialInput
   partMaterials?: Prisma.PartMaterialCreateNestedManyWithoutMaterialInput
+  adjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutMaterialInput
+  stockLedgers?: Prisma.StockLedgerCreateNestedManyWithoutMaterialInput
 }
 
 export type MaterialUncheckedCreateWithoutPartsInput = {
@@ -704,10 +726,11 @@ export type MaterialUncheckedCreateWithoutPartsInput = {
   supplierId?: string | null
   unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
-  usages?: Prisma.MaterialUsageUncheckedCreateNestedManyWithoutMaterialInput
-  adjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutMaterialInput
   jobMaterials?: Prisma.JobMaterialUncheckedCreateNestedManyWithoutMaterialInput
+  usages?: Prisma.MaterialUsageUncheckedCreateNestedManyWithoutMaterialInput
   partMaterials?: Prisma.PartMaterialUncheckedCreateNestedManyWithoutMaterialInput
+  adjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutMaterialInput
+  stockLedgers?: Prisma.StockLedgerUncheckedCreateNestedManyWithoutMaterialInput
 }
 
 export type MaterialCreateOrConnectWithoutPartsInput = {
@@ -737,11 +760,12 @@ export type MaterialUpdateWithoutPartsInput = {
   reorderQty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  jobMaterials?: Prisma.JobMaterialUpdateManyWithoutMaterialNestedInput
   supplier?: Prisma.SupplierUpdateOneWithoutMaterialsNestedInput
   usages?: Prisma.MaterialUsageUpdateManyWithoutMaterialNestedInput
-  adjustments?: Prisma.StockAdjustmentUpdateManyWithoutMaterialNestedInput
-  jobMaterials?: Prisma.JobMaterialUpdateManyWithoutMaterialNestedInput
   partMaterials?: Prisma.PartMaterialUpdateManyWithoutMaterialNestedInput
+  adjustments?: Prisma.StockAdjustmentUpdateManyWithoutMaterialNestedInput
+  stockLedgers?: Prisma.StockLedgerUpdateManyWithoutMaterialNestedInput
 }
 
 export type MaterialUncheckedUpdateWithoutPartsInput = {
@@ -756,10 +780,11 @@ export type MaterialUncheckedUpdateWithoutPartsInput = {
   supplierId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  usages?: Prisma.MaterialUsageUncheckedUpdateManyWithoutMaterialNestedInput
-  adjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutMaterialNestedInput
   jobMaterials?: Prisma.JobMaterialUncheckedUpdateManyWithoutMaterialNestedInput
+  usages?: Prisma.MaterialUsageUncheckedUpdateManyWithoutMaterialNestedInput
   partMaterials?: Prisma.PartMaterialUncheckedUpdateManyWithoutMaterialNestedInput
+  adjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutMaterialNestedInput
+  stockLedgers?: Prisma.StockLedgerUncheckedUpdateManyWithoutMaterialNestedInput
 }
 
 export type MaterialCreateWithoutPartMaterialsInput = {
@@ -773,11 +798,12 @@ export type MaterialCreateWithoutPartMaterialsInput = {
   reorderQty: runtime.Decimal | runtime.DecimalJsLike | number | string
   unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
+  jobMaterials?: Prisma.JobMaterialCreateNestedManyWithoutMaterialInput
   supplier?: Prisma.SupplierCreateNestedOneWithoutMaterialsInput
   usages?: Prisma.MaterialUsageCreateNestedManyWithoutMaterialInput
-  adjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutMaterialInput
   parts?: Prisma.PartCreateNestedManyWithoutMaterialInput
-  jobMaterials?: Prisma.JobMaterialCreateNestedManyWithoutMaterialInput
+  adjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutMaterialInput
+  stockLedgers?: Prisma.StockLedgerCreateNestedManyWithoutMaterialInput
 }
 
 export type MaterialUncheckedCreateWithoutPartMaterialsInput = {
@@ -792,10 +818,11 @@ export type MaterialUncheckedCreateWithoutPartMaterialsInput = {
   supplierId?: string | null
   unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
-  usages?: Prisma.MaterialUsageUncheckedCreateNestedManyWithoutMaterialInput
-  adjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutMaterialInput
-  parts?: Prisma.PartUncheckedCreateNestedManyWithoutMaterialInput
   jobMaterials?: Prisma.JobMaterialUncheckedCreateNestedManyWithoutMaterialInput
+  usages?: Prisma.MaterialUsageUncheckedCreateNestedManyWithoutMaterialInput
+  parts?: Prisma.PartUncheckedCreateNestedManyWithoutMaterialInput
+  adjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutMaterialInput
+  stockLedgers?: Prisma.StockLedgerUncheckedCreateNestedManyWithoutMaterialInput
 }
 
 export type MaterialCreateOrConnectWithoutPartMaterialsInput = {
@@ -825,11 +852,12 @@ export type MaterialUpdateWithoutPartMaterialsInput = {
   reorderQty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  jobMaterials?: Prisma.JobMaterialUpdateManyWithoutMaterialNestedInput
   supplier?: Prisma.SupplierUpdateOneWithoutMaterialsNestedInput
   usages?: Prisma.MaterialUsageUpdateManyWithoutMaterialNestedInput
-  adjustments?: Prisma.StockAdjustmentUpdateManyWithoutMaterialNestedInput
   parts?: Prisma.PartUpdateManyWithoutMaterialNestedInput
-  jobMaterials?: Prisma.JobMaterialUpdateManyWithoutMaterialNestedInput
+  adjustments?: Prisma.StockAdjustmentUpdateManyWithoutMaterialNestedInput
+  stockLedgers?: Prisma.StockLedgerUpdateManyWithoutMaterialNestedInput
 }
 
 export type MaterialUncheckedUpdateWithoutPartMaterialsInput = {
@@ -844,10 +872,11 @@ export type MaterialUncheckedUpdateWithoutPartMaterialsInput = {
   supplierId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  usages?: Prisma.MaterialUsageUncheckedUpdateManyWithoutMaterialNestedInput
-  adjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutMaterialNestedInput
-  parts?: Prisma.PartUncheckedUpdateManyWithoutMaterialNestedInput
   jobMaterials?: Prisma.JobMaterialUncheckedUpdateManyWithoutMaterialNestedInput
+  usages?: Prisma.MaterialUsageUncheckedUpdateManyWithoutMaterialNestedInput
+  parts?: Prisma.PartUncheckedUpdateManyWithoutMaterialNestedInput
+  adjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutMaterialNestedInput
+  stockLedgers?: Prisma.StockLedgerUncheckedUpdateManyWithoutMaterialNestedInput
 }
 
 export type MaterialCreateWithoutJobMaterialsInput = {
@@ -863,9 +892,10 @@ export type MaterialCreateWithoutJobMaterialsInput = {
   createdAt?: Date | string
   supplier?: Prisma.SupplierCreateNestedOneWithoutMaterialsInput
   usages?: Prisma.MaterialUsageCreateNestedManyWithoutMaterialInput
-  adjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutMaterialInput
   parts?: Prisma.PartCreateNestedManyWithoutMaterialInput
   partMaterials?: Prisma.PartMaterialCreateNestedManyWithoutMaterialInput
+  adjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutMaterialInput
+  stockLedgers?: Prisma.StockLedgerCreateNestedManyWithoutMaterialInput
 }
 
 export type MaterialUncheckedCreateWithoutJobMaterialsInput = {
@@ -881,9 +911,10 @@ export type MaterialUncheckedCreateWithoutJobMaterialsInput = {
   unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   usages?: Prisma.MaterialUsageUncheckedCreateNestedManyWithoutMaterialInput
-  adjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutMaterialInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutMaterialInput
   partMaterials?: Prisma.PartMaterialUncheckedCreateNestedManyWithoutMaterialInput
+  adjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutMaterialInput
+  stockLedgers?: Prisma.StockLedgerUncheckedCreateNestedManyWithoutMaterialInput
 }
 
 export type MaterialCreateOrConnectWithoutJobMaterialsInput = {
@@ -915,9 +946,10 @@ export type MaterialUpdateWithoutJobMaterialsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   supplier?: Prisma.SupplierUpdateOneWithoutMaterialsNestedInput
   usages?: Prisma.MaterialUsageUpdateManyWithoutMaterialNestedInput
-  adjustments?: Prisma.StockAdjustmentUpdateManyWithoutMaterialNestedInput
   parts?: Prisma.PartUpdateManyWithoutMaterialNestedInput
   partMaterials?: Prisma.PartMaterialUpdateManyWithoutMaterialNestedInput
+  adjustments?: Prisma.StockAdjustmentUpdateManyWithoutMaterialNestedInput
+  stockLedgers?: Prisma.StockLedgerUpdateManyWithoutMaterialNestedInput
 }
 
 export type MaterialUncheckedUpdateWithoutJobMaterialsInput = {
@@ -933,9 +965,10 @@ export type MaterialUncheckedUpdateWithoutJobMaterialsInput = {
   unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   usages?: Prisma.MaterialUsageUncheckedUpdateManyWithoutMaterialNestedInput
-  adjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutMaterialNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutMaterialNestedInput
   partMaterials?: Prisma.PartMaterialUncheckedUpdateManyWithoutMaterialNestedInput
+  adjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutMaterialNestedInput
+  stockLedgers?: Prisma.StockLedgerUncheckedUpdateManyWithoutMaterialNestedInput
 }
 
 export type MaterialCreateWithoutUsagesInput = {
@@ -949,11 +982,12 @@ export type MaterialCreateWithoutUsagesInput = {
   reorderQty: runtime.Decimal | runtime.DecimalJsLike | number | string
   unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
-  supplier?: Prisma.SupplierCreateNestedOneWithoutMaterialsInput
-  adjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutMaterialInput
-  parts?: Prisma.PartCreateNestedManyWithoutMaterialInput
   jobMaterials?: Prisma.JobMaterialCreateNestedManyWithoutMaterialInput
+  supplier?: Prisma.SupplierCreateNestedOneWithoutMaterialsInput
+  parts?: Prisma.PartCreateNestedManyWithoutMaterialInput
   partMaterials?: Prisma.PartMaterialCreateNestedManyWithoutMaterialInput
+  adjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutMaterialInput
+  stockLedgers?: Prisma.StockLedgerCreateNestedManyWithoutMaterialInput
 }
 
 export type MaterialUncheckedCreateWithoutUsagesInput = {
@@ -968,10 +1002,11 @@ export type MaterialUncheckedCreateWithoutUsagesInput = {
   supplierId?: string | null
   unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
-  adjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutMaterialInput
-  parts?: Prisma.PartUncheckedCreateNestedManyWithoutMaterialInput
   jobMaterials?: Prisma.JobMaterialUncheckedCreateNestedManyWithoutMaterialInput
+  parts?: Prisma.PartUncheckedCreateNestedManyWithoutMaterialInput
   partMaterials?: Prisma.PartMaterialUncheckedCreateNestedManyWithoutMaterialInput
+  adjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutMaterialInput
+  stockLedgers?: Prisma.StockLedgerUncheckedCreateNestedManyWithoutMaterialInput
 }
 
 export type MaterialCreateOrConnectWithoutUsagesInput = {
@@ -1001,11 +1036,12 @@ export type MaterialUpdateWithoutUsagesInput = {
   reorderQty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  supplier?: Prisma.SupplierUpdateOneWithoutMaterialsNestedInput
-  adjustments?: Prisma.StockAdjustmentUpdateManyWithoutMaterialNestedInput
-  parts?: Prisma.PartUpdateManyWithoutMaterialNestedInput
   jobMaterials?: Prisma.JobMaterialUpdateManyWithoutMaterialNestedInput
+  supplier?: Prisma.SupplierUpdateOneWithoutMaterialsNestedInput
+  parts?: Prisma.PartUpdateManyWithoutMaterialNestedInput
   partMaterials?: Prisma.PartMaterialUpdateManyWithoutMaterialNestedInput
+  adjustments?: Prisma.StockAdjustmentUpdateManyWithoutMaterialNestedInput
+  stockLedgers?: Prisma.StockLedgerUpdateManyWithoutMaterialNestedInput
 }
 
 export type MaterialUncheckedUpdateWithoutUsagesInput = {
@@ -1020,10 +1056,11 @@ export type MaterialUncheckedUpdateWithoutUsagesInput = {
   supplierId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  adjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutMaterialNestedInput
-  parts?: Prisma.PartUncheckedUpdateManyWithoutMaterialNestedInput
   jobMaterials?: Prisma.JobMaterialUncheckedUpdateManyWithoutMaterialNestedInput
+  parts?: Prisma.PartUncheckedUpdateManyWithoutMaterialNestedInput
   partMaterials?: Prisma.PartMaterialUncheckedUpdateManyWithoutMaterialNestedInput
+  adjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutMaterialNestedInput
+  stockLedgers?: Prisma.StockLedgerUncheckedUpdateManyWithoutMaterialNestedInput
 }
 
 export type MaterialCreateWithoutAdjustmentsInput = {
@@ -1037,11 +1074,12 @@ export type MaterialCreateWithoutAdjustmentsInput = {
   reorderQty: runtime.Decimal | runtime.DecimalJsLike | number | string
   unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
+  jobMaterials?: Prisma.JobMaterialCreateNestedManyWithoutMaterialInput
   supplier?: Prisma.SupplierCreateNestedOneWithoutMaterialsInput
   usages?: Prisma.MaterialUsageCreateNestedManyWithoutMaterialInput
   parts?: Prisma.PartCreateNestedManyWithoutMaterialInput
-  jobMaterials?: Prisma.JobMaterialCreateNestedManyWithoutMaterialInput
   partMaterials?: Prisma.PartMaterialCreateNestedManyWithoutMaterialInput
+  stockLedgers?: Prisma.StockLedgerCreateNestedManyWithoutMaterialInput
 }
 
 export type MaterialUncheckedCreateWithoutAdjustmentsInput = {
@@ -1056,10 +1094,11 @@ export type MaterialUncheckedCreateWithoutAdjustmentsInput = {
   supplierId?: string | null
   unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
+  jobMaterials?: Prisma.JobMaterialUncheckedCreateNestedManyWithoutMaterialInput
   usages?: Prisma.MaterialUsageUncheckedCreateNestedManyWithoutMaterialInput
   parts?: Prisma.PartUncheckedCreateNestedManyWithoutMaterialInput
-  jobMaterials?: Prisma.JobMaterialUncheckedCreateNestedManyWithoutMaterialInput
   partMaterials?: Prisma.PartMaterialUncheckedCreateNestedManyWithoutMaterialInput
+  stockLedgers?: Prisma.StockLedgerUncheckedCreateNestedManyWithoutMaterialInput
 }
 
 export type MaterialCreateOrConnectWithoutAdjustmentsInput = {
@@ -1089,11 +1128,12 @@ export type MaterialUpdateWithoutAdjustmentsInput = {
   reorderQty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  jobMaterials?: Prisma.JobMaterialUpdateManyWithoutMaterialNestedInput
   supplier?: Prisma.SupplierUpdateOneWithoutMaterialsNestedInput
   usages?: Prisma.MaterialUsageUpdateManyWithoutMaterialNestedInput
   parts?: Prisma.PartUpdateManyWithoutMaterialNestedInput
-  jobMaterials?: Prisma.JobMaterialUpdateManyWithoutMaterialNestedInput
   partMaterials?: Prisma.PartMaterialUpdateManyWithoutMaterialNestedInput
+  stockLedgers?: Prisma.StockLedgerUpdateManyWithoutMaterialNestedInput
 }
 
 export type MaterialUncheckedUpdateWithoutAdjustmentsInput = {
@@ -1108,10 +1148,103 @@ export type MaterialUncheckedUpdateWithoutAdjustmentsInput = {
   supplierId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  jobMaterials?: Prisma.JobMaterialUncheckedUpdateManyWithoutMaterialNestedInput
   usages?: Prisma.MaterialUsageUncheckedUpdateManyWithoutMaterialNestedInput
   parts?: Prisma.PartUncheckedUpdateManyWithoutMaterialNestedInput
-  jobMaterials?: Prisma.JobMaterialUncheckedUpdateManyWithoutMaterialNestedInput
   partMaterials?: Prisma.PartMaterialUncheckedUpdateManyWithoutMaterialNestedInput
+  stockLedgers?: Prisma.StockLedgerUncheckedUpdateManyWithoutMaterialNestedInput
+}
+
+export type MaterialCreateWithoutStockLedgersInput = {
+  id?: string
+  name: string
+  code: string
+  description?: string | null
+  unit: $Enums.MaterialUnit
+  stockQty?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  reorderThreshold: runtime.Decimal | runtime.DecimalJsLike | number | string
+  reorderQty: runtime.Decimal | runtime.DecimalJsLike | number | string
+  unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+  jobMaterials?: Prisma.JobMaterialCreateNestedManyWithoutMaterialInput
+  supplier?: Prisma.SupplierCreateNestedOneWithoutMaterialsInput
+  usages?: Prisma.MaterialUsageCreateNestedManyWithoutMaterialInput
+  parts?: Prisma.PartCreateNestedManyWithoutMaterialInput
+  partMaterials?: Prisma.PartMaterialCreateNestedManyWithoutMaterialInput
+  adjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutMaterialInput
+}
+
+export type MaterialUncheckedCreateWithoutStockLedgersInput = {
+  id?: string
+  name: string
+  code: string
+  description?: string | null
+  unit: $Enums.MaterialUnit
+  stockQty?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  reorderThreshold: runtime.Decimal | runtime.DecimalJsLike | number | string
+  reorderQty: runtime.Decimal | runtime.DecimalJsLike | number | string
+  supplierId?: string | null
+  unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+  jobMaterials?: Prisma.JobMaterialUncheckedCreateNestedManyWithoutMaterialInput
+  usages?: Prisma.MaterialUsageUncheckedCreateNestedManyWithoutMaterialInput
+  parts?: Prisma.PartUncheckedCreateNestedManyWithoutMaterialInput
+  partMaterials?: Prisma.PartMaterialUncheckedCreateNestedManyWithoutMaterialInput
+  adjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutMaterialInput
+}
+
+export type MaterialCreateOrConnectWithoutStockLedgersInput = {
+  where: Prisma.MaterialWhereUniqueInput
+  create: Prisma.XOR<Prisma.MaterialCreateWithoutStockLedgersInput, Prisma.MaterialUncheckedCreateWithoutStockLedgersInput>
+}
+
+export type MaterialUpsertWithoutStockLedgersInput = {
+  update: Prisma.XOR<Prisma.MaterialUpdateWithoutStockLedgersInput, Prisma.MaterialUncheckedUpdateWithoutStockLedgersInput>
+  create: Prisma.XOR<Prisma.MaterialCreateWithoutStockLedgersInput, Prisma.MaterialUncheckedCreateWithoutStockLedgersInput>
+  where?: Prisma.MaterialWhereInput
+}
+
+export type MaterialUpdateToOneWithWhereWithoutStockLedgersInput = {
+  where?: Prisma.MaterialWhereInput
+  data: Prisma.XOR<Prisma.MaterialUpdateWithoutStockLedgersInput, Prisma.MaterialUncheckedUpdateWithoutStockLedgersInput>
+}
+
+export type MaterialUpdateWithoutStockLedgersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unit?: Prisma.EnumMaterialUnitFieldUpdateOperationsInput | $Enums.MaterialUnit
+  stockQty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reorderThreshold?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reorderQty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  jobMaterials?: Prisma.JobMaterialUpdateManyWithoutMaterialNestedInput
+  supplier?: Prisma.SupplierUpdateOneWithoutMaterialsNestedInput
+  usages?: Prisma.MaterialUsageUpdateManyWithoutMaterialNestedInput
+  parts?: Prisma.PartUpdateManyWithoutMaterialNestedInput
+  partMaterials?: Prisma.PartMaterialUpdateManyWithoutMaterialNestedInput
+  adjustments?: Prisma.StockAdjustmentUpdateManyWithoutMaterialNestedInput
+}
+
+export type MaterialUncheckedUpdateWithoutStockLedgersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unit?: Prisma.EnumMaterialUnitFieldUpdateOperationsInput | $Enums.MaterialUnit
+  stockQty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reorderThreshold?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reorderQty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  supplierId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  jobMaterials?: Prisma.JobMaterialUncheckedUpdateManyWithoutMaterialNestedInput
+  usages?: Prisma.MaterialUsageUncheckedUpdateManyWithoutMaterialNestedInput
+  parts?: Prisma.PartUncheckedUpdateManyWithoutMaterialNestedInput
+  partMaterials?: Prisma.PartMaterialUncheckedUpdateManyWithoutMaterialNestedInput
+  adjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutMaterialNestedInput
 }
 
 export type MaterialCreateWithoutSupplierInput = {
@@ -1125,11 +1258,12 @@ export type MaterialCreateWithoutSupplierInput = {
   reorderQty: runtime.Decimal | runtime.DecimalJsLike | number | string
   unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
-  usages?: Prisma.MaterialUsageCreateNestedManyWithoutMaterialInput
-  adjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutMaterialInput
-  parts?: Prisma.PartCreateNestedManyWithoutMaterialInput
   jobMaterials?: Prisma.JobMaterialCreateNestedManyWithoutMaterialInput
+  usages?: Prisma.MaterialUsageCreateNestedManyWithoutMaterialInput
+  parts?: Prisma.PartCreateNestedManyWithoutMaterialInput
   partMaterials?: Prisma.PartMaterialCreateNestedManyWithoutMaterialInput
+  adjustments?: Prisma.StockAdjustmentCreateNestedManyWithoutMaterialInput
+  stockLedgers?: Prisma.StockLedgerCreateNestedManyWithoutMaterialInput
 }
 
 export type MaterialUncheckedCreateWithoutSupplierInput = {
@@ -1143,11 +1277,12 @@ export type MaterialUncheckedCreateWithoutSupplierInput = {
   reorderQty: runtime.Decimal | runtime.DecimalJsLike | number | string
   unitCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
-  usages?: Prisma.MaterialUsageUncheckedCreateNestedManyWithoutMaterialInput
-  adjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutMaterialInput
-  parts?: Prisma.PartUncheckedCreateNestedManyWithoutMaterialInput
   jobMaterials?: Prisma.JobMaterialUncheckedCreateNestedManyWithoutMaterialInput
+  usages?: Prisma.MaterialUsageUncheckedCreateNestedManyWithoutMaterialInput
+  parts?: Prisma.PartUncheckedCreateNestedManyWithoutMaterialInput
   partMaterials?: Prisma.PartMaterialUncheckedCreateNestedManyWithoutMaterialInput
+  adjustments?: Prisma.StockAdjustmentUncheckedCreateNestedManyWithoutMaterialInput
+  stockLedgers?: Prisma.StockLedgerUncheckedCreateNestedManyWithoutMaterialInput
 }
 
 export type MaterialCreateOrConnectWithoutSupplierInput = {
@@ -1217,11 +1352,12 @@ export type MaterialUpdateWithoutSupplierInput = {
   reorderQty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  usages?: Prisma.MaterialUsageUpdateManyWithoutMaterialNestedInput
-  adjustments?: Prisma.StockAdjustmentUpdateManyWithoutMaterialNestedInput
-  parts?: Prisma.PartUpdateManyWithoutMaterialNestedInput
   jobMaterials?: Prisma.JobMaterialUpdateManyWithoutMaterialNestedInput
+  usages?: Prisma.MaterialUsageUpdateManyWithoutMaterialNestedInput
+  parts?: Prisma.PartUpdateManyWithoutMaterialNestedInput
   partMaterials?: Prisma.PartMaterialUpdateManyWithoutMaterialNestedInput
+  adjustments?: Prisma.StockAdjustmentUpdateManyWithoutMaterialNestedInput
+  stockLedgers?: Prisma.StockLedgerUpdateManyWithoutMaterialNestedInput
 }
 
 export type MaterialUncheckedUpdateWithoutSupplierInput = {
@@ -1235,11 +1371,12 @@ export type MaterialUncheckedUpdateWithoutSupplierInput = {
   reorderQty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unitCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  usages?: Prisma.MaterialUsageUncheckedUpdateManyWithoutMaterialNestedInput
-  adjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutMaterialNestedInput
-  parts?: Prisma.PartUncheckedUpdateManyWithoutMaterialNestedInput
   jobMaterials?: Prisma.JobMaterialUncheckedUpdateManyWithoutMaterialNestedInput
+  usages?: Prisma.MaterialUsageUncheckedUpdateManyWithoutMaterialNestedInput
+  parts?: Prisma.PartUncheckedUpdateManyWithoutMaterialNestedInput
   partMaterials?: Prisma.PartMaterialUncheckedUpdateManyWithoutMaterialNestedInput
+  adjustments?: Prisma.StockAdjustmentUncheckedUpdateManyWithoutMaterialNestedInput
+  stockLedgers?: Prisma.StockLedgerUncheckedUpdateManyWithoutMaterialNestedInput
 }
 
 export type MaterialUncheckedUpdateManyWithoutSupplierInput = {
@@ -1261,19 +1398,21 @@ export type MaterialUncheckedUpdateManyWithoutSupplierInput = {
  */
 
 export type MaterialCountOutputType = {
-  usages: number
-  adjustments: number
-  parts: number
   jobMaterials: number
+  usages: number
+  parts: number
   partMaterials: number
+  adjustments: number
+  stockLedgers: number
 }
 
 export type MaterialCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  usages?: boolean | MaterialCountOutputTypeCountUsagesArgs
-  adjustments?: boolean | MaterialCountOutputTypeCountAdjustmentsArgs
-  parts?: boolean | MaterialCountOutputTypeCountPartsArgs
   jobMaterials?: boolean | MaterialCountOutputTypeCountJobMaterialsArgs
+  usages?: boolean | MaterialCountOutputTypeCountUsagesArgs
+  parts?: boolean | MaterialCountOutputTypeCountPartsArgs
   partMaterials?: boolean | MaterialCountOutputTypeCountPartMaterialsArgs
+  adjustments?: boolean | MaterialCountOutputTypeCountAdjustmentsArgs
+  stockLedgers?: boolean | MaterialCountOutputTypeCountStockLedgersArgs
 }
 
 /**
@@ -1289,15 +1428,15 @@ export type MaterialCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ext
 /**
  * MaterialCountOutputType without action
  */
-export type MaterialCountOutputTypeCountUsagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.MaterialUsageWhereInput
+export type MaterialCountOutputTypeCountJobMaterialsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.JobMaterialWhereInput
 }
 
 /**
  * MaterialCountOutputType without action
  */
-export type MaterialCountOutputTypeCountAdjustmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.StockAdjustmentWhereInput
+export type MaterialCountOutputTypeCountUsagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MaterialUsageWhereInput
 }
 
 /**
@@ -1310,15 +1449,22 @@ export type MaterialCountOutputTypeCountPartsArgs<ExtArgs extends runtime.Types.
 /**
  * MaterialCountOutputType without action
  */
-export type MaterialCountOutputTypeCountJobMaterialsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.JobMaterialWhereInput
+export type MaterialCountOutputTypeCountPartMaterialsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PartMaterialWhereInput
 }
 
 /**
  * MaterialCountOutputType without action
  */
-export type MaterialCountOutputTypeCountPartMaterialsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PartMaterialWhereInput
+export type MaterialCountOutputTypeCountAdjustmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.StockAdjustmentWhereInput
+}
+
+/**
+ * MaterialCountOutputType without action
+ */
+export type MaterialCountOutputTypeCountStockLedgersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.StockLedgerWhereInput
 }
 
 
@@ -1334,12 +1480,13 @@ export type MaterialSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   supplierId?: boolean
   unitCost?: boolean
   createdAt?: boolean
+  jobMaterials?: boolean | Prisma.Material$jobMaterialsArgs<ExtArgs>
   supplier?: boolean | Prisma.Material$supplierArgs<ExtArgs>
   usages?: boolean | Prisma.Material$usagesArgs<ExtArgs>
-  adjustments?: boolean | Prisma.Material$adjustmentsArgs<ExtArgs>
   parts?: boolean | Prisma.Material$partsArgs<ExtArgs>
-  jobMaterials?: boolean | Prisma.Material$jobMaterialsArgs<ExtArgs>
   partMaterials?: boolean | Prisma.Material$partMaterialsArgs<ExtArgs>
+  adjustments?: boolean | Prisma.Material$adjustmentsArgs<ExtArgs>
+  stockLedgers?: boolean | Prisma.Material$stockLedgersArgs<ExtArgs>
   _count?: boolean | Prisma.MaterialCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["material"]>
 
@@ -1389,12 +1536,13 @@ export type MaterialSelectScalar = {
 
 export type MaterialOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "code" | "description" | "unit" | "stockQty" | "reorderThreshold" | "reorderQty" | "supplierId" | "unitCost" | "createdAt", ExtArgs["result"]["material"]>
 export type MaterialInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  jobMaterials?: boolean | Prisma.Material$jobMaterialsArgs<ExtArgs>
   supplier?: boolean | Prisma.Material$supplierArgs<ExtArgs>
   usages?: boolean | Prisma.Material$usagesArgs<ExtArgs>
-  adjustments?: boolean | Prisma.Material$adjustmentsArgs<ExtArgs>
   parts?: boolean | Prisma.Material$partsArgs<ExtArgs>
-  jobMaterials?: boolean | Prisma.Material$jobMaterialsArgs<ExtArgs>
   partMaterials?: boolean | Prisma.Material$partMaterialsArgs<ExtArgs>
+  adjustments?: boolean | Prisma.Material$adjustmentsArgs<ExtArgs>
+  stockLedgers?: boolean | Prisma.Material$stockLedgersArgs<ExtArgs>
   _count?: boolean | Prisma.MaterialCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type MaterialIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1407,12 +1555,13 @@ export type MaterialIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
 export type $MaterialPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Material"
   objects: {
+    jobMaterials: Prisma.$JobMaterialPayload<ExtArgs>[]
     supplier: Prisma.$SupplierPayload<ExtArgs> | null
     usages: Prisma.$MaterialUsagePayload<ExtArgs>[]
-    adjustments: Prisma.$StockAdjustmentPayload<ExtArgs>[]
     parts: Prisma.$PartPayload<ExtArgs>[]
-    jobMaterials: Prisma.$JobMaterialPayload<ExtArgs>[]
     partMaterials: Prisma.$PartMaterialPayload<ExtArgs>[]
+    adjustments: Prisma.$StockAdjustmentPayload<ExtArgs>[]
+    stockLedgers: Prisma.$StockLedgerPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1820,12 +1969,13 @@ readonly fields: MaterialFieldRefs;
  */
 export interface Prisma__MaterialClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  jobMaterials<T extends Prisma.Material$jobMaterialsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Material$jobMaterialsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$JobMaterialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   supplier<T extends Prisma.Material$supplierArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Material$supplierArgs<ExtArgs>>): Prisma.Prisma__SupplierClient<runtime.Types.Result.GetResult<Prisma.$SupplierPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   usages<T extends Prisma.Material$usagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Material$usagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MaterialUsagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  adjustments<T extends Prisma.Material$adjustmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Material$adjustmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StockAdjustmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   parts<T extends Prisma.Material$partsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Material$partsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PartPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  jobMaterials<T extends Prisma.Material$jobMaterialsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Material$jobMaterialsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$JobMaterialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   partMaterials<T extends Prisma.Material$partMaterialsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Material$partMaterialsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PartMaterialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  adjustments<T extends Prisma.Material$adjustmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Material$adjustmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StockAdjustmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  stockLedgers<T extends Prisma.Material$stockLedgersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Material$stockLedgersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StockLedgerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2267,6 +2417,30 @@ export type MaterialDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
+ * Material.jobMaterials
+ */
+export type Material$jobMaterialsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the JobMaterial
+   */
+  select?: Prisma.JobMaterialSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the JobMaterial
+   */
+  omit?: Prisma.JobMaterialOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.JobMaterialInclude<ExtArgs> | null
+  where?: Prisma.JobMaterialWhereInput
+  orderBy?: Prisma.JobMaterialOrderByWithRelationInput | Prisma.JobMaterialOrderByWithRelationInput[]
+  cursor?: Prisma.JobMaterialWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.JobMaterialScalarFieldEnum | Prisma.JobMaterialScalarFieldEnum[]
+}
+
+/**
  * Material.supplier
  */
 export type Material$supplierArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2310,30 +2484,6 @@ export type Material$usagesArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
- * Material.adjustments
- */
-export type Material$adjustmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the StockAdjustment
-   */
-  select?: Prisma.StockAdjustmentSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the StockAdjustment
-   */
-  omit?: Prisma.StockAdjustmentOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.StockAdjustmentInclude<ExtArgs> | null
-  where?: Prisma.StockAdjustmentWhereInput
-  orderBy?: Prisma.StockAdjustmentOrderByWithRelationInput | Prisma.StockAdjustmentOrderByWithRelationInput[]
-  cursor?: Prisma.StockAdjustmentWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.StockAdjustmentScalarFieldEnum | Prisma.StockAdjustmentScalarFieldEnum[]
-}
-
-/**
  * Material.parts
  */
 export type Material$partsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2358,30 +2508,6 @@ export type Material$partsArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * Material.jobMaterials
- */
-export type Material$jobMaterialsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the JobMaterial
-   */
-  select?: Prisma.JobMaterialSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the JobMaterial
-   */
-  omit?: Prisma.JobMaterialOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.JobMaterialInclude<ExtArgs> | null
-  where?: Prisma.JobMaterialWhereInput
-  orderBy?: Prisma.JobMaterialOrderByWithRelationInput | Prisma.JobMaterialOrderByWithRelationInput[]
-  cursor?: Prisma.JobMaterialWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.JobMaterialScalarFieldEnum | Prisma.JobMaterialScalarFieldEnum[]
-}
-
-/**
  * Material.partMaterials
  */
 export type Material$partMaterialsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2403,6 +2529,54 @@ export type Material$partMaterialsArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.PartMaterialScalarFieldEnum | Prisma.PartMaterialScalarFieldEnum[]
+}
+
+/**
+ * Material.adjustments
+ */
+export type Material$adjustmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the StockAdjustment
+   */
+  select?: Prisma.StockAdjustmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the StockAdjustment
+   */
+  omit?: Prisma.StockAdjustmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.StockAdjustmentInclude<ExtArgs> | null
+  where?: Prisma.StockAdjustmentWhereInput
+  orderBy?: Prisma.StockAdjustmentOrderByWithRelationInput | Prisma.StockAdjustmentOrderByWithRelationInput[]
+  cursor?: Prisma.StockAdjustmentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.StockAdjustmentScalarFieldEnum | Prisma.StockAdjustmentScalarFieldEnum[]
+}
+
+/**
+ * Material.stockLedgers
+ */
+export type Material$stockLedgersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the StockLedger
+   */
+  select?: Prisma.StockLedgerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the StockLedger
+   */
+  omit?: Prisma.StockLedgerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.StockLedgerInclude<ExtArgs> | null
+  where?: Prisma.StockLedgerWhereInput
+  orderBy?: Prisma.StockLedgerOrderByWithRelationInput | Prisma.StockLedgerOrderByWithRelationInput[]
+  cursor?: Prisma.StockLedgerWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.StockLedgerScalarFieldEnum | Prisma.StockLedgerScalarFieldEnum[]
 }
 
 /**

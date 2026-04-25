@@ -35,9 +35,9 @@ export const DocumentType = {
   INVOICE: 'INVOICE',
   PURCHASE_ORDER: 'PURCHASE_ORDER',
   DELIVERY_NOTE: 'DELIVERY_NOTE',
+  OTHER: 'OTHER',
   CHECK_SHEET: 'CHECK_SHEET',
-  DRAWING: 'DRAWING',
-  OTHER: 'OTHER'
+  DRAWING: 'DRAWING'
 } as const
 
 export type DocumentType = (typeof DocumentType)[keyof typeof DocumentType]
@@ -121,3 +121,13 @@ export const CheckSheetType = {
 } as const
 
 export type CheckSheetType = (typeof CheckSheetType)[keyof typeof CheckSheetType]
+
+
+export const LedgerTransactionType = {
+  RECEIPT: 'RECEIPT',
+  ADJUSTMENT: 'ADJUSTMENT',
+  USAGE: 'USAGE',
+  RETURN: 'RETURN'
+} as const
+
+export type LedgerTransactionType = (typeof LedgerTransactionType)[keyof typeof LedgerTransactionType]
